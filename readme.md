@@ -1,6 +1,6 @@
-# simple sass compiler
+# simple sass compiler demo（tutorial only）
 
-This is an simplified example of all the major pieces of a compiler written in easy to read JavaScript.
+This is a simplified example of all the major pieces of a compiler written in easy to read JavaScript.
 
 ## Feature 
 A simple compiler that transform basic sass to css
