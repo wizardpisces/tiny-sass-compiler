@@ -21,11 +21,16 @@ function input_stream(input) {
         throw new Error(msg + " (" + line + ":" + col + ")");
     }
 }
+/**
+ * 
+ * @param {input_stream processed stream method} input 
+ * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
+ * { type: "str", value: "12px" }
+ * { type: "var", value: "$height" }      // identifiers
+ * 
+ */
 
 
-// { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
-// { type: "str", value: "12px" } // strings
-// { type: "var", value: "$height" }            // identifiers
 function lex(input) {
     let current = null;
 
@@ -150,6 +155,8 @@ function lex(input) {
 /**
  *  Todos: add import modules
  *  
+ *  @param {lex processed stream method} input
+ * 
  *  Basic:
  * 
  *  str { type: "str", value: STRING }

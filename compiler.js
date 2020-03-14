@@ -83,9 +83,7 @@ function transform_ast(ast) {
     function transform_assign(exp, env) {
         /**
          * set real value to env and delete variable assign exp
-         * 
          * or
-
          * replace variable with real value
           */
 
