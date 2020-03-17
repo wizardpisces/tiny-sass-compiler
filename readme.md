@@ -14,3 +14,32 @@ This project is for people who want to understand parser and AST(abstract syntac
 ## Tests
 
 Run with node test.js
+
+input:
+
+```scss
+$top : 20px;
+$margin: 2px;
+$right: $top;
+.main2{
+    margin: 1px;
+    right: $right;
+}
+.main {
+    top  : $top;   
+    .child1{
+        margin:$margin;
+        .child2{
+            background:green;
+        }
+    }
+}
+```
+output:
+
+```css
+ .main2{margin:1px;right:20px;} 
+ .main{top:20px;} 
+ .main .child1{margin:2px;} 
+ .main .child1 .child2{background:green;}
+```
