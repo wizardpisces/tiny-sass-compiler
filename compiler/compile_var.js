@@ -1,3 +1,4 @@
+
 /**
  * use Enviroment to maintain a scope to interprete variable scope
  * 
@@ -39,11 +40,9 @@ Environment.prototype = {
     },
     def: function (name, value) {
         return this.vars[name] = value;
-    },
-    updateSelector: function (selector) {
-        return this.selector = this.selector + ' ' + selector
     }
 };
+
 /**
  * 
  * @param {refer to parser result,eg: ast-example} ast 
@@ -51,11 +50,15 @@ Environment.prototype = {
  * transform variable to real value based on scope
  */
 
-function transform_ast(ast) {
+module.exports = function compile_var(ast) {
     let env = new Environment();
 
-    function is_var(exp) {
-        return exp.type === 'var'
+    function is_var(expOrString) { // handle situation : border: $borderWidth solid red;
+        if (typeof expOrString === 'string') {
+            return expOrString.startsWith('$')
+        }
+
+        return expOrString.type === 'var';
     }
 
     function evaluate(exp, env) {
@@ -64,6 +67,7 @@ function transform_ast(ast) {
             case "var": return transform_var(exp, env);
             case "assign": return transform_assign(exp, env);
             case "child": return transform_child(exp, env);
+            case "@extend": return exp;
 
             default:
                 throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
@@ -71,6 +75,17 @@ function transform_ast(ast) {
     }
 
     function transform_str(exp) {
+        // handle str may consist of (var+ | str+ , eg: border:$borderWidth solid red;)
+        let arr = exp.value.split(/\s+/);
+
+        if (arr.length > 1) {
+            arr = arr.map(varOrStr => {
+                return is_var(varOrStr) ? env.get(varOrStr) : varOrStr
+            })
+        }
+
+        exp.value = arr.join(' ')
+
         return exp;
     }
 
@@ -110,93 +125,3 @@ function transform_ast(ast) {
 
     return toplevel(ast, env);
 }
-/**
- *
- * ast => ast
- * transform nested sass ast to flattened css ast
- * 
- */
-
-function flatten_ast(ast) {
-    let env = new Environment();
-
-    function flatten_child(child, arr=[]) {
-
-        function flatten(child,parentSelector=''){
-            child.selector.value = parentSelector + ' ' + child.selector.value
-            arr.push(child);
-            child.children.forEach((exp, index) => {
-                if (exp.type === 'child') {
-                    child.children.splice(index, 1)
-                    flatten(exp, child.selector.value)
-                }
-            });
-            return arr;
-        }
-
-        return flatten(child)
-    }
-
-    function toplevel(ast) {
-        let prog = [];
-        
-        ast.prog.forEach(exp => {
-            if (exp.type === 'child') {
-                prog = prog.concat(...flatten_child(exp))
-            }else{
-                prog.push(exp)
-            }
-        });
-
-        ast.prog = prog;
-
-        return ast;
-    }
-
-    return toplevel(ast, env)
-}
-
-/**
- * 
- * ast => css
- * 
- */
-
-function make_css(ast) {
-
-    function compile(exp) {
-        switch (exp.type) {
-            case "str": return css_str(exp);
-            case "var": return css_var(exp);
-            case "assign": return css_assign(exp);
-            case "child": return css_child(exp);
-
-            default:
-                throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
-        }
-    }
-
-    function css_str(exp) {
-        return exp.value;
-    }
-
-    function css_var(exp) {
-        return exp.value;
-    }
-
-    function css_assign(exp) {
-        return compile(exp.left) + ':' + compile(exp.right) + ';';
-    }
-
-    function css_child(exp) {
-        return exp.selector.value + '{' + exp.children.map(child => compile(child)).join('') + '}';
-    }
-
-    function toplevel(ast) {
-        return ast.prog.map(exp => compile(exp)).join('');
-    }
-
-    return toplevel(ast);
-}
-
-module.exports = compiler = (ast) => make_css(flatten_ast((transform_ast(ast))));

@@ -1,46 +1,31 @@
-const parser = require('./parser.js')
-const compiler = require('./compiler.js')
+const parser = require('./parser')
+const compiler = require('./compiler')
 const fs = require('fs');
 
-var scss = `
-$top : 20px;
-$margin: 2px;
-$right: $top;
-.main2{
-    margin: 1px;
-    right: $right;
+const test_cases = {
+    scss_var_nested: require('./test/var-nested.js'),
+    scss_var_combined: require('./test/var-combined.js'),
+    scss_extend: require('./test/extend.js'),
 }
-.main {
-    top  : $top;   
-    .child1{
-        margin:$margin;
-        .child2{
-            background:green;
+
+for(case_name in test_cases){
+    run_case(case_name,test_cases[case_name])
+}
+
+function run_case(case_name,scss){
+    let result = parser(scss)
+    fs.writeFile(`./test-result/ast-${case_name}.json`, JSON.stringify(result), function (err) {
+        if (err) {
+            console.log(`parse failed ${case_name}`)            
+            return console.error(err);
         }
-    }
-}`
-
-// scss = `
-// $font-stack:    Helvetica, sans-serif;
-// $primary-color: #333;
-
-// body {
-//   font: 100% $font-stack;
-//   color: $primary-color;
-// }
-// `
-
-let result = parser(scss)
-
-fs.writeFile('./ast-example.json', JSON.stringify(result), function (err) {
-    if (err) {
-        return console.error(err);
-    }
-    console.log('success')
-})
-fs.writeFile('./test-example.scss', (compiler(result)), function (err) {
-    if (err) {
-        return console.error(err);
-    }
-    console.log('success')
-})
+        // console.log(`parse success ${case_name}`)
+        fs.writeFile(`./test-result/result-${case_name}.scss`, (compiler(result)), function (err) {
+            if (err) {
+                console.log(`compile failed ${case_name}`)
+                return console.error(err);
+            }
+            console.log(`compile success ${case_name}`)
+        })
+    })
+}
