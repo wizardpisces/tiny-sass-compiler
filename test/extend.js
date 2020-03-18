@@ -2,18 +2,18 @@
  * test @extend
  */
 module.exports = scss = `
-%message-shared {
+.message-shared {
 border: 1px solid #ccc;
 padding: 10px;
 color: #333;
 }
 
 .message {
-    @extend %message-shared;
+    @extend .message-shared;
 }
 
 .success {
-    @extend %message-shared;
+    @extend .message-shared;
     border-color: green;
 }
 `;

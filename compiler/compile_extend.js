@@ -50,9 +50,10 @@ function compile_extend(ast) {
                     value: extendSelectorPair[child.selector.value].join(',')
                 }
             } else {
+                console.log(extendSelectorPair, child.selector.value)
                 child.selector = {
                     type: 'str',
-                    value: extendSelectorPair[child.selector.value].push(child.selector.value).join(',')
+                    value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(',')
                 }
             }
             return child;
