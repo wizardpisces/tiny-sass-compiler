@@ -3,9 +3,10 @@ const compiler = require('./compiler')
 const fs = require('fs');
 
 const test_cases = {
-    scss_var_nested: require('./test/var-nested.js'),
-    scss_var_combined: require('./test/var-combined.js'),
-    scss_extend: require('./test/extend.js'),
+    var_nest: require('./test/var-nested.js'),
+    var_simple: require('./test/var-simple.js'),
+    extend: require('./test/extend.js'),
+    // operator: require('./test/operator.js'),
 }
 
 for(case_name in test_cases){

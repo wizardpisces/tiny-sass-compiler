@@ -6,7 +6,7 @@
  * 
  */
 
-function compile_nested(ast) {
+module.exports = function tranform_nest(ast) {
     function flatten_child(child, arr = []) {
 
         function flatten(child, parentSelector = '') {
@@ -43,5 +43,3 @@ function compile_nested(ast) {
 
     return toplevel(ast)
 }
-
-module.exports = compile_nested;

@@ -50,21 +50,14 @@ Environment.prototype = {
  * transform variable to real value based on scope
  */
 
-module.exports = function compile_var(ast) {
+module.exports = function transform_var(ast) {
     let env = new Environment();
-
-    function is_var(expOrString) { // handle situation : border: $borderWidth solid red;
-        if (typeof expOrString === 'string') {
-            return expOrString.startsWith('$')
-        }
-
-        return expOrString.type === 'var';
-    }
 
     function evaluate(exp, env) {
         switch (exp.type) {
             case "str": return transform_str(exp);
             case "var": return transform_var(exp, env);
+            case "list": return transform_list(exp, env);
             case "assign": return transform_assign(exp, env);
             case "child": return transform_child(exp, env);
             case "@extend": return exp;
@@ -74,17 +67,17 @@ module.exports = function compile_var(ast) {
         }
     }
 
-    function transform_str(exp) {
-        // handle str may consist of (var+ | str+ , eg: border:$borderWidth solid red;)
-        let arr = exp.value.split(/\s+/);
-
-        if (arr.length > 1) {
-            arr = arr.map(varOrStr => {
-                return is_var(varOrStr) ? env.get(varOrStr) : varOrStr
-            })
+    function transform_list(exp, env){
+        return {
+            type: "str",
+            value: exp.value.map(item => {
+                // console.log('evaluate(item, env)', item,evaluate(item, env))
+               return evaluate(item, env).value
+            }).join(' ').trim()
         }
+    }
 
-        exp.value = arr.join(' ')
+    function transform_str(exp) {
 
         return exp;
     }
@@ -102,7 +95,7 @@ module.exports = function compile_var(ast) {
          * replace variable with real value
           */
 
-        if (is_var(exp.left)) {
+        if(exp.left.type === "var"){
             env.set(exp.left.value, evaluate(exp.right, env).value)
             return null;
         }
@@ -119,7 +112,10 @@ module.exports = function compile_var(ast) {
     }
 
     function toplevel(ast, env) {
+        // console.log(JSON.stringify(ast))
+
         ast.prog = ast.prog.map(exp => evaluate(exp, env)).filter(exp => exp !== null)
+        // console.log(JSON.stringify(ast))
         return ast;
     }
 

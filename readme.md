@@ -2,8 +2,14 @@
 
 This is a simplified example of all the major pieces of a compiler written in easy to read JavaScript.
 
-## Feature 
+## Description 
 A simple compiler that transform basic sass to css
+
+### Support features:
+
+1. Variables
+2. nesting
+3. Extend
 
 ## Target people
 
@@ -14,6 +20,8 @@ This project is for people who want to understand parser and AST(abstract syntac
 ## Tests
 
 Run with node test.js
+
+Sample1:
 
 input:
 

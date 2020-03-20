@@ -4,7 +4,7 @@
  * compile @extend
  */
 
-function compile_extend(ast) {
+module.exports =function transform_extend(ast) {
     /**
      * transform
      * 
@@ -50,7 +50,6 @@ function compile_extend(ast) {
                     value: extendSelectorPair[child.selector.value].join(',')
                 }
             } else {
-                console.log(extendSelectorPair, child.selector.value)
                 child.selector = {
                     type: 'str',
                     value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(',')
@@ -71,5 +70,3 @@ function compile_extend(ast) {
 
     return toplevel(ast);
 }
-
-module.exports = compile_extend

@@ -1,5 +1,5 @@
 function input_stream(input) {
-    var pos = 0, line = 1, col = 0;
+    var pos = 0, line = 1, col = 0, preLine;
     return {
         next: next,
         peek: peek,
@@ -8,6 +8,7 @@ function input_stream(input) {
     };
     function next() {
         var ch = input.charAt(pos++);
+
         if (ch == "\n") line++ , col = 0; else col++;
         return ch;
     }

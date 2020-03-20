@@ -6,7 +6,7 @@ module.exports = scss = `
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 
-body {
+body .test{
   font: 100% $font-stack;
   color: $primary-color;
 }

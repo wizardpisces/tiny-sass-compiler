@@ -4,30 +4,39 @@
  *  
  *  @param {lex processed stream method} input
  * 
- *  Basic:
+ *  Basic ast:
  * 
- *  str { type: "str", value: STRING }  // str = (\s+str\s+ | \s+var\s+)+
+ *  str { type: "str", value: STRING }  // str = (str\s+ | var\s+)*
  *  var { type: "var", value: NAME }
  *  prog { type:"prog", selector: str, prog: [AST...] }   // toplevel
  *  extend { type:"@extend",body: str | placeholder } 
+ *  list {type:"list",value:[AST]}
  * 
- *  AST:
+ *  complicated AST:
  * 
+ *  binary { type: "binary", operator: OPERATOR, left: str|var|binary, right: str|var|binary } // + | - | * | /
+ *  assign { type: "assign", operator: ":", left: str | var, right: list[str|var|binary] }
  *  child { type:"child", selector: str | placeholder, children: [AST...] }
- *  assign { type: "assign", operator: ":", left: str | var, right: str | var }
- * 
 */
 
 function parse(input) {
-
+    const PRECEDENCE = {
+        "+": 10, "-": 10,
+        "*": 20, "/": 20, "%": 20,
+    };
     function is_punc(ch) {
         var tok = input.peek();
-        return tok && tok.type == "punc" && (!ch || tok.value == ch);
+        return tok && tok.type == "punc" && (!ch || tok.value == ch) && tok;
     }
 
     function is_kw(kw) {
         var tok = input.peek();
-        return tok && tok.type == "kw" && (!kw || tok.value == kw);
+        return tok && tok.type == "kw" && (!kw || tok.value == kw) && tok;
+    }
+
+    function is_op(op) {
+        var tok = input.peek();
+        return tok && tok.type == "op" && (!op || tok.value == op) && tok;
     }
 
     function is_assign() {
@@ -56,12 +65,45 @@ function parse(input) {
         return a;
     }
 
+    function read_while(predicate) {
+        var tokens = [];
+        while (!input.eof() && predicate(input.peek()))
+            tokens.push(input.next());
+        return tokens;
+    }
+
+    function maybe_binary(left,left_prec){
+        let tok = is_op()
+        if (tok){
+            if (PRECEDENCE[tok.value] > left_prec){
+                input.next();//skip op
+                return maybe_binary({
+                    type:"binary",
+                    operator: tok.value,
+                    left: left,
+                    right: maybe_binary(parse_atom(), PRECEDENCE[tok.value])
+                }, left_prec)
+            }
+        }
+        return left;
+    }
+
     function parse_assign(left) {
         input.next();
+        function parse_assign_right(){
+            let right=[]
+            while(!is_punc(';')){
+                right.push(maybe_binary(parse_atom(),0))
+            }
+            return right;
+        }
         return {
             type: 'assign',
             left: left,
-            right: parse_atom()
+            right: {
+                type:'list',
+                value: parse_assign_right()
+            }
         }
     }
 
@@ -69,6 +111,13 @@ function parse(input) {
         return {
             type: '@extend',
             body: input.next()
+        }
+    }
+
+    function parse_consecutive_str(){
+        return {
+            type: 'str',
+            value : read_while(tok=>tok.type ==='str').map(tok=>tok.value).join(' ')
         }
     }
 
@@ -92,8 +141,13 @@ function parse(input) {
             return parse_extend();
         }
         let tok = input.peek();
-        if (tok.type === "var" || tok.type === "str" || tok.type === "placeholder")
+        if (tok.type === "var" || tok.type === "placeholder"){
             return input.next();
+        }
+
+        if (tok.type === "str"){
+            return parse_consecutive_str()
+        }
     }
 
     function parse_expression() {
@@ -105,7 +159,9 @@ function parse(input) {
     function parse_toplevel() {
         var prog = [];
         while (!input.eof()) {
-            prog.push(parse_expression());
+            let result = parse_expression()
+        // console.log('result', JSON.stringify(result))
+            prog.push(result);
             if (!input.eof()) skip_punc(";");
         }
         return { type: "prog", selector: {

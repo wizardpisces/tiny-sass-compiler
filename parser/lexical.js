@@ -5,19 +5,24 @@
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
  * { type: "kw", value: "@extend" }      //  @extend
- * { type: "placeholder", value: "%str" }      //  % started string
- * 
+ * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
+ * { type: "op", value: "!=" }            // operators
  */
 
 function lex(input) {
     let current = null;
     let keywords = ' @extend ';
+    let op_chars = "+-*/%"
 
     return {
         next,
         peek,
         eof,
         croak: input.croak
+    }
+
+    function is_comment_char(ch) {
+        return "/".indexOf(ch) >= 0;
     }
 
     function is_punc(ch) {
@@ -31,6 +36,11 @@ function lex(input) {
     function skip_comment() {
         read_while(function (ch) { return ch != "\n" });
         input.next();
+    }
+
+    function is_op_char(ch) {
+        // return "+-*/%=&|<>!".indexOf(ch) >= 0;
+        return op_chars.indexOf(ch) >= 0;
     }
 
     function is_assign_char(ch) {
@@ -79,14 +89,6 @@ function lex(input) {
         };
     }
 
-    function read_placeholder() {
-        var placeholder = read_while(is_base_char);
-        return {
-            type: 'placeholder',
-            value: placeholder.trim()
-        };
-    }
-
     function read_assign_char() {
         return {
             type: "assign",
@@ -102,10 +104,16 @@ function lex(input) {
         };
     }
 
-    function read_end(endChars) {
-        var str = "";
-        var is_ended = ch => endChars.indexOf(ch) >= 0;
-        // input.next();
+    function generate_op_token(op) {
+        return {
+            type: "op",
+            value: op
+        }
+    }
+
+    function read_end(endReg) {
+        let str = "";
+        let is_ended = ch => endReg.test(ch);
         while (!input.eof()) {
             var ch = input.peek();
             if (is_ended(ch)) {
@@ -117,12 +125,36 @@ function lex(input) {
         }
         return str.trim();
     }
+
     function read_string() {
-        let str = read_end('{:;');
+        let str = read_end(/[{:;\s]/);
         return {
             type: "str",
             value: str
         };
+    }
+
+    function maybe_comment(ch) {
+
+        if (is_comment_char(input.peek())) {
+            skip_comment();
+            return read_next()
+        }else{
+            // console.log('ch',ch)
+            return generate_op_token(ch)
+        }
+    }
+
+    function maybe_placeholder(ch) {
+        if (is_base_char(input.peek())) {
+            return {
+                type: 'placeholder',
+                value: ch + read_while(is_base_char)
+            }
+        } else {
+            // console.log('ch', ch)
+            return generate_op_token(ch)
+        }
     }
 
     function read_next() {
@@ -130,21 +162,21 @@ function lex(input) {
         if (input.eof()) return null;
         var ch = input.peek();
 
-        if (ch == "/") { //Todos:还未支持多行注释如："/**/",(支持 "//" 这种注释)
-            skip_comment();
-            return read_next();
-        }
-
+        /**
+         * comment //  contains op /
+         * Todos:还未支持多行注释如：\/**\/
+        */
+        if (is_comment_char(ch)) return maybe_comment(input.next()); 
+        if (is_placeholder_start(ch)) return maybe_placeholder(input.next());// @extend %message-shared;  contains op '%'
+        
         if (is_assign_char(ch)) return read_assign_char();
         if (is_id_start(ch)) return read_ident();
         if (is_punc(ch)) return {
             type: "punc",
             value: input.next()
         };
-
         if (is_keyword_start(ch)) return read_keyword();// @extend .message-shared;
-        if (is_placeholder_start(ch)) return read_placeholder();// @extend %message-shared;
-
+        if (is_op_char(ch)) return generate_op_token(input.next());
         if (is_base_char(ch)) return read_string();
 
         input.croak("Can't handle character: " + ch);
