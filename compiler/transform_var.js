@@ -59,6 +59,8 @@ module.exports = function transform_var(ast) {
             case "var": return transform_var(exp, env);
             case "list": return transform_list(exp, env);
             case "assign": return transform_assign(exp, env);
+            case "binary": return transform_binary(exp, env);
+
             case "child": return transform_child(exp, env);
             case "@extend": return exp;
 
@@ -77,8 +79,68 @@ module.exports = function transform_var(ast) {
         }
     }
 
-    function transform_str(exp) {
+    /**
+     * Todos:add more unit type eg: pt px etc
+     * 
+     */
+    function transform_binary(exp, env){
+        
+        let hasPercent = false,
+            unitExtracted = false,
+            unit = "px";
 
+        function parseFloatFn(str){
+            if(str === "100%"){
+                hasPercent = true;
+                return 1;
+            }
+            
+            /**
+             * make the first encountered unit as the final unit
+              */
+            if (!unitExtracted){
+                unitExtracted = true;
+                unit = str.match(/\d+([a-z]*)/)[1];
+            }
+            
+            return parseFloat(str)
+        }
+
+        function transformVal(str){
+            function transformPercent(str){
+                return parseFloat(str) * 100 + "%";
+            }
+            function addUnit(str){
+                return str+unit;
+            }
+            return hasPercent ? transformPercent(str) : addUnit(str)
+        }
+
+        function evaluate_binary(ast){
+            const opAcMap = {
+                '+': (left, right) => left + right,
+                '-': (left, right) => left - right,
+                '/': (left, right) => left / right,
+                '*': (left, right) => left * right,
+                '%': (left, right) => left % right,
+            };
+
+            if (ast.type === "str") return parseFloatFn(ast.value);
+            if (ast.type === "var") return evaluate_binary(evaluate(ast, env))
+            if (ast.type === "binary") return opAcMap[ast.operator](evaluate_binary(ast.left),evaluate_binary(ast.right));
+
+            throw new Error("Don't know how to evaluate_binary type: " + ast.type);
+        };
+
+        let value = evaluate_binary(exp);
+
+        return {
+            type: "str",
+            value: transformVal(value)
+        }
+    }
+
+    function transform_str(exp) {
         return exp;
     }
 

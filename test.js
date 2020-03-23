@@ -6,7 +6,7 @@ const test_cases = {
     var_nest: require('./test/var-nested.js'),
     var_simple: require('./test/var-simple.js'),
     extend: require('./test/extend.js'),
-    // operator: require('./test/operator.js'),
+    operator: require('./test/operator.js'),
 }
 
 for(case_name in test_cases){

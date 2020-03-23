@@ -8,8 +8,9 @@ A simple compiler that transform basic sass to css
 ### Support features:
 
 1. Variables
-2. nesting
+2. Nesting
 3. Extend
+4. Operators
 
 ## Target people
 
