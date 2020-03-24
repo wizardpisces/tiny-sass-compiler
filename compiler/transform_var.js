@@ -60,6 +60,8 @@ module.exports = function transform_var(ast) {
             case "list": return transform_list(exp, env);
             case "assign": return transform_assign(exp, env);
             case "binary": return transform_binary(exp, env);
+            case "@mixin": return transform_mixin(exp, env);
+            case "@include": return transform_include(exp, env);
 
             case "child": return transform_child(exp, env);
             case "@extend": return exp;
@@ -77,6 +79,13 @@ module.exports = function transform_var(ast) {
                return evaluate(item, env).value
             }).join(' ').trim()
         }
+    }
+
+    function transform_mixin(exp,env){
+        return exp;
+    }
+    function transform_include(exp,env){
+        return exp;
     }
 
     /**

@@ -4,14 +4,14 @@
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
- * { type: "kw", value: "@extend" }      //  @extend
+ * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include"
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // operators
  */
 
 function lex(input) {
     let current = null;
-    let keywords = ' @extend ';
+    let keywords = ' @extend @mixin @include ';
     let op_chars = "+-*/%"
 
     return {
@@ -80,6 +80,7 @@ function lex(input) {
 
     function read_keyword() {
         var kw = read_while(is_base_char);
+        // console.log('kw',kw)
         if (!is_keyword(kw)) {
             return input.croak(`Unknown keyword ${kw}`)
         }
@@ -127,7 +128,7 @@ function lex(input) {
     }
 
     function read_string() {
-        let str = read_end(/[{:;\s]/);
+        let str = read_end(/[{}():;\s]/);
         return {
             type: "str",
             value: str
@@ -157,6 +158,17 @@ function lex(input) {
         }
     }
 
+    function maybe_token(ch){
+        if (input.peek() === ' '){
+            return generate_op_token(ch);
+        }else{
+            return {
+                type : 'str',
+                value : ch+read_string().value
+            };
+        }
+    }
+
     function read_next() {
         read_while(is_whitespace);
         if (input.eof()) return null;
@@ -176,7 +188,7 @@ function lex(input) {
             value: input.next()
         };
         if (is_keyword_start(ch)) return read_keyword();// @extend .message-shared;
-        if (is_op_char(ch)) return generate_op_token(input.next());
+        if (is_op_char(ch)) return maybe_token(input.next());
         if (is_base_char(ch)) return read_string();
 
         input.croak("Can't handle character: " + ch);

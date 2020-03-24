@@ -5,11 +5,11 @@ This is a simplified example of all the major pieces of a compiler written in ea
 ## Description 
 A simple compiler that transform basic sass to css
 
-### Support features:
+### Partially Support features:
 
 1. Variables
 2. Nesting
-3. Extend
+3. Extend/Inheritance
 4. Operators
 
 ## Target people

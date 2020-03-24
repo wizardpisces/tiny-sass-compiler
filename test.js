@@ -3,10 +3,11 @@ const compiler = require('./compiler')
 const fs = require('fs');
 
 const test_cases = {
-    var_nest: require('./test/var-nested.js'),
-    var_simple: require('./test/var-simple.js'),
-    extend: require('./test/extend.js'),
-    operator: require('./test/operator.js'),
+    // var_nest: require('./test/var-nested.js'),
+    // var_simple: require('./test/var-simple.js'),
+    // extend: require('./test/extend.js'),
+    // operator: require('./test/operator.js'),
+    mixin: require('./test/mixin.js'),
 }
 
 for(case_name in test_cases){
