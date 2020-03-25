@@ -140,7 +140,7 @@ function parse(input) {
     function parse_include() {
         let id = {
             type: "identifier",
-            name: input.next()
+            name: input.next().value
         }
         return {
             type: "@include",

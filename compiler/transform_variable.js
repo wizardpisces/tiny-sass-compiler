@@ -19,7 +19,7 @@ Environment.prototype = {
         return new Environment(this);
     },
     lookup: function (name) {
-        var scope = this;
+        let scope = this;
         while (scope) {
             if (Object.prototype.hasOwnProperty.call(scope.vars, name))
                 return scope;
@@ -31,13 +31,13 @@ Environment.prototype = {
             return this.vars[name];
         throw new Error("Undefined variable " + name);
     },
-    set: function (name, value) {
-        var scope = this.lookup(name);
-        // let's not allow defining globals from a nested environment
-        if (!scope && this.parent)
-            throw new Error("Undefined variable " + name);
-        return (scope || this).vars[name] = value;
-    },
+    // set: function (name, value) {
+    //     let scope = this.lookup(name);
+    //     // let's not allow defining globals from a nested environment
+    //     if (!scope && this.parent)
+    //         throw new Error("Undefined variable " + name);
+    //     return (scope || this).vars[name] = value;
+    // },
     def: function (name, value) {
         return this.vars[name] = value;
     }
@@ -50,7 +50,7 @@ Environment.prototype = {
  * transform variable to real value based on scope
  */
 
-module.exports = function transform_var(ast) {
+module.exports = function transform_variable(ast) {
     let env = new Environment();
 
     function evaluate(exp, env) {
@@ -63,7 +63,10 @@ module.exports = function transform_var(ast) {
             case "@mixin": return transform_mixin(exp, env);
             case "@include": return transform_include(exp, env);
 
-            case "child": return transform_child(exp, env);
+            case "child":
+            case "block":
+                return transform_child(exp, env);
+
             case "@extend": return exp;
 
             default:
@@ -75,17 +78,35 @@ module.exports = function transform_var(ast) {
         return {
             type: "str",
             value: exp.value.map(item => {
-                // console.log('evaluate(item, env)', item,evaluate(item, env))
                return evaluate(item, env).value
             }).join(' ').trim()
         }
     }
 
+/**
+ * transform @mixin -> set to env -> delete @mixin ast
+ */
     function transform_mixin(exp,env){
-        return exp;
+
+        function make_function(){
+            let params = exp.params;
+            let scope = env.extend();
+            params.forEach((exp, i) => {
+                if(exp.type === 'var'){
+                    scope.def(exp.value, i < arguments.length ? arguments[i] : false)
+                }
+            })
+            return evaluate(exp.body, scope);
+        }
+
+        env.def(exp.id.name,make_function)
+
+        return null;
     }
+
     function transform_include(exp,env){
-        return exp;
+        let func = env.get(exp.id.name);
+        return func.apply(null,exp.args.map(arg => evaluate(arg, env).value))
     }
 
     /**
@@ -167,7 +188,7 @@ module.exports = function transform_var(ast) {
           */
 
         if(exp.left.type === "var"){
-            env.set(exp.left.value, evaluate(exp.right, env).value)
+            env.def(exp.left.value, evaluate(exp.right, env).value)
             return null;
         }
 
@@ -177,8 +198,24 @@ module.exports = function transform_var(ast) {
     }
 
     function transform_child(exp, env) {
+
+        function flatten_included_block(children){
+            let arr = []
+            children.forEach(child=>{
+                if(child.type === 'block'){
+                    arr = arr.concat(flatten_included_block(child.children))
+                }else{
+                    arr.push(child)
+                }
+            })
+            return arr;
+        }
+
         env = env.extend();
+
         exp.children = exp.children.map(child => evaluate(child, env)).filter(exp => exp !== null);
+        exp.children = flatten_included_block(exp.children); // resolve @include include_function_block
+
         return exp;
     }
 

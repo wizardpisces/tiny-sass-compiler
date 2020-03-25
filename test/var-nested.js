@@ -6,7 +6,8 @@ $top : 20px;
 $margin: 2px;
 $right: $top;
 .main2{
-    margin: 1px;
+    $margin: 3px;
+    margin: $margin;
     right: $right;
 }
 .main {
