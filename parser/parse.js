@@ -55,19 +55,18 @@ function parse(input) {
         // }
     }
 
-    function delimited(start, stop, separator, parser) {
+    function delimited(start, stop, separator, parser) {// FIFO
         var a = [], first = true;
         skip_punc(start);
-        let count = 0;
+        // let count = 0;
         // console.log('start', start);
         while (!input.eof()) {
-            if (count++ === 10) break;
+            // if (count++ === 10) break;
             if (is_punc(stop)) break;
             if (first) first = false; else skip_punc(separator);
             if (is_punc(stop)) break;
 
             let result = parser();
-
             // console.log('result', result)
             a.push(result);
         }
@@ -110,6 +109,27 @@ function parse(input) {
         }
     }
 
+    function parse_child(selector) {
+        var children = delimited("{", "}", ";", parse_expression);
+        // if (children.length == 0) return FALSE;
+        // if (block.length == 1) return block[0];
+        return { type: "child", selector, children };
+    }
+
+    function maybe_assign(exp) {
+        let expr = exp();
+
+        if (is_assign()) {
+            return parse_assign(expr)
+        }
+
+        if (is_punc('{')) {
+            return parse_child(expr) //passin selector
+        }
+
+        return expr;
+    }
+
     function parse_extend() {
         return {
             type: '@extend',
@@ -118,7 +138,7 @@ function parse(input) {
     }
 
     function parse_block() {
-        var children = delimited("{", "}", ";", parse_expression);
+        let children = delimited("{", "}", ";", parse_expression);
         return { type: "block", children };
     }
 
@@ -133,10 +153,11 @@ function parse(input) {
         return {
             type: "@mixin",
             id,
-            params: delimited('(', ')', ',', parse_expression),
+            params: is_punc('{') ? [] : delimited('(', ')', ',', parse_expression), // %extend like expr or func expr
             body: parse_block()
         }
     }
+
     function parse_include() {
         let id = {
             type: "identifier",
@@ -145,13 +166,12 @@ function parse(input) {
         return {
             type: "@include",
             id,
-            args: delimited('(', ')', ',', parse_expression),
-            // body: parse_block()
+            args: is_punc(';') ? [] : delimited('(', ')', ',', parse_expression), // extend like expr or call expr
         }
     }
-
     
     function parse_consecutive_str() { //to resolve test skew(20deg) rotate(20deg);
+
         function maybe_call(exp) {//to resolve rotate(30deg) this kind of inner call expression
             let expr = exp();
 
@@ -177,46 +197,32 @@ function parse(input) {
             value: read_while(tok => tok.type === 'str').map(tok => tok.value).join(' ')
         }
     }
-  
-    function maybe_assign(exp) {
-
-        let expr = exp();
-
-        if (is_assign()) {
-            return parse_assign(expr)
-        }
-
-        if (is_punc('{')) {
-            return parse_child(expr) //passin selector
-        }
-
-        return expr;
-    }
 
     function parse_atom() {
-            if (is_kw('@extend')) {
-                input.next()
-                return parse_extend();
-            }
+        
+        if (is_kw('@extend')) {
+            input.next()
+            return parse_extend();
+        }
 
-            if (is_kw('@mixin')) {
-                input.next()
-                return parse_mixin();
-            }
+        if (is_kw('@mixin')) {
+            input.next()
+            return parse_mixin();
+        }
 
-            if (is_kw('@include')) {
-                input.next()
-                return parse_include();
-            }
+        if (is_kw('@include')) {
+            input.next()
+            return parse_include();
+        }
 
-            let tok = input.peek();
-            if (tok.type === "var" || tok.type === "placeholder") {
-                return input.next();
-            }
+        let tok = input.peek();
+        if (tok.type === "var" || tok.type === "placeholder") {
+            return input.next();
+        }
 
-            if (tok.type === "str") {
-                return parse_consecutive_str()
-            }
+        if (tok.type === "str") {
+            return parse_consecutive_str()
+        }
     }
 
     function parse_expression() {
@@ -225,7 +231,7 @@ function parse(input) {
         })
     }
 
-    function parse_toplevel() {
+    function parse_prog(){
         var prog = [];
         while (!input.eof()) {
             let result = parse_expression()
@@ -234,18 +240,12 @@ function parse(input) {
             if (!input.eof()) skip_punc(";");
         }
         return {
-            type: "prog", selector: {
-                type: "str",
-                value: "body"
-            }, prog
+            type: "prog", prog
         };
     }
 
-    function parse_child(selector) {
-        var children = delimited("{", "}", ";", parse_expression);
-        // if (children.length == 0) return FALSE;
-        // if (block.length == 1) return block[0];
-        return { type: "child", selector, children };
+    function parse_toplevel() {
+        return parse_prog()
     }
 
     return parse_toplevel()

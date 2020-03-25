@@ -3,10 +3,10 @@ const compiler = require('./compiler')
 const fs = require('fs');
 
 const test_cases = {
-    var_nest: require('./test/var-nested.js'),
-    var_simple: require('./test/var-simple.js'),
-    extend: require('./test/extend.js'),
-    operator: require('./test/operator.js'),
+    // var_nest: require('./test/var-nested.js'),
+    // var_simple: require('./test/var-simple.js'),
+    // extend: require('./test/extend.js'),
+    // operator: require('./test/operator.js'),
     mixin: require('./test/mixin.js'),
 }
 
@@ -22,7 +22,7 @@ function run_case(case_name,scss){
             return console.error(err);
         }
         // console.log(`parse success ${case_name}`)
-        fs.writeFile(`./test-result/result-${case_name}.scss`, (compiler(result)), function (err) {
+        fs.writeFile(`./test-result/result-${case_name}.css`, (compiler(result)), function (err) {
             if (err) {
                 console.log(`compile failed ${case_name}`)
                 return console.error(err);
