@@ -11,6 +11,7 @@ A simple compiler that transform basic sass to css
 2. Nesting
 3. Extend/Inheritance
 4. Operators
+5. Mixins
 
 ## Target people
 
