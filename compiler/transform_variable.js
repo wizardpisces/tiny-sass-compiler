@@ -56,6 +56,7 @@ module.exports = function transform_variable(ast) {
     function evaluate(exp, env) {
         switch (exp.type) {
             case "str": return transform_str(exp);
+            case "punc": return transform_punc(exp);
             case "var": return transform_var(exp, env);
             case "list": return transform_list(exp, env);
             case "assign": return transform_assign(exp, env);
@@ -82,6 +83,15 @@ module.exports = function transform_variable(ast) {
             }).join(' ').trim()
         }
     }
+/**
+ * Solve situation, treat punc ',' as str
+ * $font:    Helvetica, sans-serif;
+ * 
+ */
+    function transform_punc(exp) {
+        exp.type = 'str'
+        return exp;
+    }
 
 /**
  * transform @mixin -> set to env -> delete @mixin ast
@@ -91,11 +101,30 @@ module.exports = function transform_variable(ast) {
         function make_function(){
             let params = exp.params;
             let scope = env.extend();
-            params.forEach((exp, i) => {
-                if(exp.type === 'var'){
-                    scope.def(exp.value, i < arguments.length ? arguments[i] : false)
+            function handle_params_default_value(params){
+                return params.map((param) => {
+                    let ret = param;
+                    if (param.type === 'assign') {
+                        ret = {
+                            type: 'var',
+                            value: param.left.value
+                        }
+                        evaluate(param, scope)
+                    }
+                    return ret;
+                })
+            }
+
+            params = handle_params_default_value(params);
+
+            params.forEach((param, i) => {
+                if (param.type === 'var' && arguments[i]) {
+                    scope.def(param.value, arguments[i])
                 }
             })
+
+            // console.log('make_function', JSON.stringify(params), JSON.stringify(scope))
+
             return evaluate(exp.body, scope);
         }
 

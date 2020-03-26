@@ -12,37 +12,39 @@
 // }`
 
 // Basic not call form
-module.exports = `@mixin reset-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+// module.exports = `@mixin reset-list {
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+// }
 
-@mixin horizontal-list {
-  @include reset-list;
+// @mixin horizontal-list {
+//   @include reset-list;
 
-  li {
-    display: inline-block;
-  }
-}
-
-nav ul {
-  @include horizontal-list;
-}`
-
-// Optional Arguments
-// module.exports = `@mixin replace-text($image, $x: 50%, $y: 50%) {
-//   text-indent: -99999em;
-//   overflow: hidden;
-//   text-align: left;
-
-//   background: {
-//     image: $image;
-//     repeat: no-repeat;
-//     position: $x $y;
+//   li {
+//     display: inline-block;
 //   }
 // }
 
-// .mail-icon {
-//   @include replace-text(url("/images/mail.svg"), 0);
+// nav ul {
+//   @include horizontal-list;
 // }`
+
+// Optional Arguments
+module.exports = `
+$font:    Helvetica, sans-serif;
+@mixin replace-text($image,$x:default1, $y:default2) {
+  text-indent: -99999em;
+  overflow: hidden;
+  text-align: left;
+
+  background {
+    image: $image;
+    repeat: no-repeat;
+    position: $x $y;
+  }
+}
+
+.mail-icon {
+  @include replace-text(url("/images/mail.svg"),$font);
+}`

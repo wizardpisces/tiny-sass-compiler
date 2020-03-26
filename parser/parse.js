@@ -21,11 +21,32 @@
  *  child { type:"child", selector: str | placeholder, children: [ AST... ] }
 */
 
+const debug = (function(){
+    let isDebug = false,
+        count = 0;
+    return ()=>{
+        if(count++>20 && isDebug){
+            return true;
+        }
+        return false;
+    }
+})()
+
 function parse(input) {
     const PRECEDENCE = {
         "+": 10, "-": 10,
         "*": 20, "/": 20, "%": 20,
     };
+
+    let assign_right_end_condition = default_assign_right_end_condition;
+
+    function default_assign_right_end_condition(){
+        return is_punc(';')
+    }
+
+    function reset_assign_right_end_condition(){
+        assign_right_end_condition = default_assign_right_end_condition
+    }
 
     function is_punc(ch) {
         var tok = input.peek();
@@ -58,16 +79,16 @@ function parse(input) {
     function delimited(start, stop, separator, parser) {// FIFO
         var a = [], first = true;
         skip_punc(start);
-        // let count = 0;
         // console.log('start', start);
         while (!input.eof()) {
-            // if (count++ === 10) break;
+            if (debug()) break;
             if (is_punc(stop)) break;
             if (first) first = false; else skip_punc(separator);
             if (is_punc(stop)) break;
 
             let result = parser();
-            // console.log('result', result)
+
+            // console.log('delimited result：', result)
             a.push(result);
         }
         skip_punc(stop);
@@ -94,9 +115,12 @@ function parse(input) {
         input.next();
         function parse_assign_right() {
             let right = []
-            while (!is_punc(';')) {
-                right.push(maybe_binary(parse_atom(), 0))
+            while (!assign_right_end_condition()) {
+                if(debug()) break;
+                let result = maybe_binary(parse_atom(), 0);
+                right.push(result)
             }
+            // console.log('parse_assign_right result:',JSON.stringify(right))
             return right;
         }
         return {
@@ -149,11 +173,26 @@ function parse(input) {
         let id = {
             type: "identifier",
             name: input.next().value
+        },
+        params = [];
+
+        
+        if(!is_punc('{')){
+            /**
+             * Support default params
+             * @mixin replace-text($image,$x:default1, $y:default2) {
+              */
+            assign_right_end_condition = () => is_punc(',') || is_punc(')');
+
+            params = delimited('(', ')', ',', parse_expression);
         }
+
+        reset_assign_right_end_condition()
+
         return {
             type: "@mixin",
             id,
-            params: is_punc('{') ? [] : delimited('(', ')', ',', parse_expression), // %extend like expr or func expr
+            params, // %extend like expr or func expr
             body: parse_block()
         }
     }
@@ -216,7 +255,7 @@ function parse(input) {
         }
 
         let tok = input.peek();
-        if (tok.type === "var" || tok.type === "placeholder") {
+        if (tok.type === "var" || tok.type === "placeholder" || tok.type === "punc") {
             return input.next();
         }
 

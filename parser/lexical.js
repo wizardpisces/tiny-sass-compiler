@@ -48,7 +48,7 @@ function lex(input) {
     }
 
     function is_base_char(ch) {
-        return /[a-z0-9_\.\#\@\%\-]/i.test(ch);
+        return /[a-z0-9_\.\#\@\%\-"]/i.test(ch);
     }
 
     function is_id_char_limit(ch) {
@@ -128,7 +128,7 @@ function lex(input) {
     }
 
     function read_string() {
-        let str = read_end(/[{}():;\s]/);
+        let str = read_end(/[,;{}():\s]/);
         return {
             type: "str",
             value: str
