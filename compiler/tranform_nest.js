@@ -10,7 +10,23 @@ module.exports = function tranform_nest(ast) {
     function flatten_child(child, arr = []) {
 
         function flatten(child, parentSelector = '') {
-            child.selector.value = (parentSelector + ' ' + child.selector.value).trim()
+
+            /**
+             * https://sass-lang.com/documentation/style-rules/parent-selector
+             * support parent selector with loosening restriction
+             */
+            
+            let containParentSelector = false;
+
+            if(child.selector.value.indexOf('&')>=0){
+                containParentSelector = true;
+                child.selector.value = child.selector.value.replace(/&/, parentSelector)
+            }
+
+            if (!containParentSelector){
+                child.selector.value = (parentSelector + ' ' + child.selector.value).trim()
+            }
+
             arr.push(child);
             child.children.forEach((exp, index) => {
                 if (exp.type === 'child') {

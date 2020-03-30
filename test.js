@@ -2,12 +2,20 @@ const parser = require('./parser')
 const compiler = require('./compiler')
 const fs = require('fs');
 
+/**
+ * Todos:
+ * enhance test
+ */
+
 const test_cases = {
     var_nest: require('./test/var-nested.js'),
     var_simple: require('./test/var-simple.js'),
     extend: require('./test/extend.js'),
     operator: require('./test/operator.js'),
-    mixin: require('./test/mixin.js'),
+    mixin_optional_params: require('./test/mixin/optional_params.js'),
+    mixin_basic: require('./test/mixin/basic.js'),
+    mixin_var_key: require('./test/mixin/var_key.js'),
+    mixin_params: require('./test/mixin/params.js'),
 }
 
 for(case_name in test_cases){

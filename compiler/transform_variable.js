@@ -58,6 +58,7 @@ module.exports = function transform_variable(ast) {
             case "str": return transform_str(exp);
             case "punc": return transform_punc(exp);
             case "var": return transform_var(exp, env);
+            case "var_key": return transform_var_key(exp, env);
             case "list": return transform_list(exp, env);
             case "assign": return transform_assign(exp, env);
             case "binary": return transform_binary(exp, env);
@@ -209,6 +210,10 @@ module.exports = function transform_variable(ast) {
         return exp;
     }
 
+    function transform_var_key(exp, env) {
+        return transform_var(exp, env);
+    }
+
     function transform_assign(exp, env) {
         /**
          * set real value to env and delete variable assign exp
@@ -216,9 +221,14 @@ module.exports = function transform_variable(ast) {
          * replace variable with real value
           */
 
+
         if(exp.left.type === "var"){
             env.def(exp.left.value, evaluate(exp.right, env).value)
             return null;
+        }
+
+        if (exp.left.type === "var_key"){
+            exp.left = evaluate(exp.left, env);
         }
 
         exp.right = evaluate(exp.right, env);

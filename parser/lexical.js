@@ -26,7 +26,7 @@ function lex(input) {
     }
 
     function is_punc(ch) {
-        return ",;(){}[]".indexOf(ch) >= 0;
+        return ",;(){}#".indexOf(ch) >= 0;// support expr { #{var}:var }
     }
 
     function is_id_start(ch) {
@@ -48,7 +48,8 @@ function lex(input) {
     }
 
     function is_base_char(ch) {
-        return /[a-z0-9_\.\#\@\%\-"]/i.test(ch);
+        return /[a-z0-9_\.\#\@\%\-"&\[\]]/i.test(ch);
+        // return !is_punc(ch);
     }
 
     function is_id_char_limit(ch) {
@@ -158,9 +159,27 @@ function lex(input) {
         }
     }
 
-    function maybe_token(ch){
+    function maybe_op_token(ch){
         if (input.peek() === ' '){
             return generate_op_token(ch);
+        }else{
+            return {
+                type : 'str',
+                value : ch+read_string().value
+            };
+        }
+    }
+    
+    function read_punc(ch){
+        return {
+            type:'punc',
+            value: ch
+        }
+    }
+
+    function maybe_punc(ch){
+        if (input.peek() === '{'){
+            return read_punc(ch);
         }else{
             return {
                 type : 'str',
@@ -183,12 +202,14 @@ function lex(input) {
         
         if (is_assign_char(ch)) return read_assign_char();
         if (is_id_start(ch)) return read_ident();
-        if (is_punc(ch)) return {
-            type: "punc",
-            value: input.next()
-        };
+        if (is_punc(ch)) {
+            if(ch==='#'){
+                return maybe_punc(input.next())
+            }
+            return read_punc(input.next())
+        }
         if (is_keyword_start(ch)) return read_keyword();// @extend .message-shared;
-        if (is_op_char(ch)) return maybe_token(input.next());
+        if (is_op_char(ch)) return maybe_op_token(input.next());
         if (is_base_char(ch)) return read_string();
 
         input.croak("Can't handle character: " + ch);

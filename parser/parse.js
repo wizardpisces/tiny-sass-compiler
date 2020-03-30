@@ -8,6 +8,7 @@
  * 
  *  str { type: "str", value: STRING }  // str = (str\s+ | var\s+)*
  *  var { type: "var", value: NAME } // var.value === variable's name string
+ *  var { type: "var_key", value: NAME } // to identify expr { #{var} : value }
  *  prog { type:"prog", selector: str, prog: [ AST... ] }   // toplevel
  *  @extend { type:"@extend",body: str | placeholder } 
  *  list {type:"list",value:[ AST ]}
@@ -237,6 +238,31 @@ function parse(input) {
         }
     }
 
+    function parse_key_var_wrapper(expr){
+        skip_punc('{')
+        let var_key = input.next();
+        if(var_key.type!=="var"){
+            input.croak(`${var_key} should be a variable which starts with '$'`)
+        }
+        skip_punc('}')
+        return {
+            type:'var_key',
+            value:var_key.value
+        };
+    }
+
+    function maybe_key_var_wrapper(exp){
+        let expr = exp();
+
+        if(is_punc('{')){
+            return parse_key_var_wrapper()
+        }
+
+        expr.type = "str";
+
+        return expr;
+    }
+
     function parse_atom() {
         
         if (is_kw('@extend')) {
@@ -255,8 +281,15 @@ function parse(input) {
         }
 
         let tok = input.peek();
-        if (tok.type === "var" || tok.type === "placeholder" || tok.type === "punc") {
+        if (tok.type === "var" || tok.type === "placeholder") {
             return input.next();
+        }
+
+        if (tok.type === "punc"){
+            if(tok.value === "#"){
+                return maybe_key_var_wrapper(()=>input.next())
+            }
+            return input.next()
         }
 
         if (tok.type === "str") {
