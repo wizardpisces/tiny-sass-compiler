@@ -1,0 +1,1 @@
+{"type":"prog","prog":[{"type":"child","selector":{"type":"str","value":"body .test"},"children":[{"type":"assign","left":{"type":"str","value":"font"},"right":{"type":"str","value":"100% Helvetica , sans-serif"}},{"type":"assign","left":{"type":"str","value":"color"},"right":{"type":"str","value":"#333"}}]}]}

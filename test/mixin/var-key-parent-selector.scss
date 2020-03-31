@@ -1,6 +1,3 @@
-
-// variable key ,basic parent selector &
-module.exports = `
 @mixin rtl($property, $ltr-value, $rtl-value) {
   #{$property}: $ltr-value;
 
@@ -11,4 +8,4 @@ module.exports = `
 
 .sidebar {
   @include rtl(float, left, right);
-}`
+}

@@ -1,0 +1,1 @@
+{"type":"prog","prog":[{"type":"child","selector":{"type":"str","value":".sidebar"},"children":[{"type":"assign","left":{"type":"str","value":"float"},"right":{"type":"str","value":"left"}}]},{"type":"child","selector":{"type":"str","value":"[dir=rtl] .sidebar.second"},"children":[{"type":"assign","left":{"type":"str","value":"float"},"right":{"type":"str","value":"right"}}]}]}
