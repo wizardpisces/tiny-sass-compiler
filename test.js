@@ -1,8 +1,8 @@
+const cssbeautify = require('cssbeautify');
 const parser = require('./parser')
 const compiler = require('./compiler')
 const fs = require('fs');
 const path = require('path');
-
 /**
  * Todos:
  * enhance test
@@ -51,7 +51,7 @@ function run(inputDir,outputDir = './test-dist'){
         function write_compiled() {
             let compiled = compiler(ast, path.join(__dirname,sourceDirname))
 
-            fs.writeFile(path.join(cssDistPath, basename + '.css'), compiled, function (err) {
+            fs.writeFile(path.join(cssDistPath, basename + '.css'), cssbeautify(compiled), function (err) {
                 if (err) {
                     return console.error(`compile failed ${basename}`);
                 }

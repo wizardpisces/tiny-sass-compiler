@@ -1,1 +1,19 @@
-.message,.success,.message-shared{border:1px solid #ccc;padding:10px;color:#333;}.error{border:1px solid #ccc;padding:10px;color:#333;}.success{border-color:green;}.error{color:red;}
+.message,.success,.message-shared {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+
+.error {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+
+.success {
+    border-color: green;
+}
+
+.error {
+    color: red;
+}

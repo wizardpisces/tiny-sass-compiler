@@ -1,1 +1,13 @@
-.container{width:9px;}article[role="main"]{float:left;width:62.5%;}aside[role="complementary"]{float:right;width:31.25%;}
+.container {
+    width: 9px;
+}
+
+article[role="main"] {
+    float: left;
+    width: 62.5%;
+}
+
+aside[role="complementary"] {
+    float: right;
+    width: 31.25%;
+}

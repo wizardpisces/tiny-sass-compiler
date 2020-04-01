@@ -1,1 +1,11 @@
-.mail-icon{text-indent:-99999em;overflow:hidden;text-align:left;}.mail-icon background{image:url("/images/mail.svg");repeat:no-repeat;position:Helvetica , sans-serif default2;}
+.mail-icon {
+    text-indent: -99999em;
+    overflow: hidden;
+    text-align: left;
+}
+
+.mail-icon background {
+    image: url("/images/mail.svg");
+    repeat: no-repeat;
+    position: Helvetica , sans-serif default2;
+}
