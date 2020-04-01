@@ -12,6 +12,7 @@ A simple compiler that transform basic sass to css
 3. Extend/Inheritance
 4. Operators
 5. Mixins
+6. Modules
 
 ## Target people
 
