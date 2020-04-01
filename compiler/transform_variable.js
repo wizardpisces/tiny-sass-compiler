@@ -66,7 +66,7 @@ module.exports = function transform_variable(ast) {
             case "@include": return transform_include(exp, env);
 
             case "child":
-            case "block":
+            case "body":
                 return transform_child(exp, env);
 
             case "@extend": return exp;
@@ -238,11 +238,11 @@ module.exports = function transform_variable(ast) {
 
     function transform_child(exp, env) {
 
-        function flatten_included_block(children){
+        function flatten_included_body(children){
             let arr = []
             children.forEach(child=>{
-                if(child.type === 'block'){
-                    arr = arr.concat(flatten_included_block(child.children))
+                if(child.type === 'body'){
+                    arr = arr.concat(flatten_included_body(child.children))
                 }else{
                     arr.push(child)
                 }
@@ -253,7 +253,7 @@ module.exports = function transform_variable(ast) {
         env = env.extend();
 
         exp.children = exp.children.map(child => evaluate(child, env)).filter(exp => exp !== null);
-        exp.children = flatten_included_block(exp.children); // resolve @include include_function_block
+        exp.children = flatten_included_body(exp.children); // resolve @include include_function_body
 
         return exp;
     }

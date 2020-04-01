@@ -31,7 +31,7 @@ module.exports =function transform_extend(ast) {
         function collect(child) {
             child.children = child.children.map(exp => {
                 if (exp.type === '@extend') {
-                    extendSelectorPair[exp.body.value] = (extendSelectorPair[exp.body.value] || []).concat(child.selector.value)
+                    extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(child.selector.value)
                     return null;
                 }
                 return exp;

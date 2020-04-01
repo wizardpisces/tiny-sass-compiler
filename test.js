@@ -39,7 +39,7 @@ function run(inputDir,outputDir = './test-dist'){
         }
 
         function write_ast(cb) {
-            fs.writeFile(path.join(astDistPath, basename + '.json'), JSON.stringify(ast), function (err) {
+            fs.writeFile(path.join(astDistPath, basename + '.json'), JSON.stringify(ast, null, 2), function (err) {
                 if (err) {
                     console.error(err)
                     return console.error(`parse failed ${basename}`);

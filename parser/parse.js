@@ -4,22 +4,24 @@
  *  
  *  @param {lex processed stream method} input
  * 
- *  Basic ast:
+ *  ast unit
  * 
  *  str { type: "str", value: STRING }  // str = (str\s+ | var\s+)*
  *  var { type: "var", value: NAME } // var.value === variable's name string
- *  var { type: "var_key", value: NAME } // to identify expr { #{var} : value }
- *  prog { type:"prog", selector: str, prog: [ AST... ] }   // toplevel
- *  @extend { type:"@extend",body: str | placeholder } 
- *  list {type:"list",value:[ AST ]}
+ *  var_key { type: "var_key", value: NAME } // to solve assign { #{var} : value }
+ *  list { type:"list",value:[ ast ] }
+ *  body { type:"body", chidren:[ AST ] }
  * 
- *  complicated AST:
+ *  AST Expression:
  *  
- *  binary { type: "binary", operator: OPERATOR, left: str|var|binary, right: str|var|binary } // + | - | * | /
- *  @mixin  { type: "@mixin", id:{ type:"identifier", name:"string" } , params: [ Identifier... ], body: AST }
- *  @include { type: "@include", id:{ type:"identifier", name:"string" } , args: [ Literal... ] }
- *  assign { type: "assign", operator: ":", left: str | var, right: list [ str | var | binary] }
- *  child { type:"child", selector: str | placeholder, children: [ AST... ] }
+ *  prog { type:"prog", selector: str, prog: [ AST ] }   // toplevel
+ *  binary { type: "binary", operator: OPERATOR, left: str | var | binary, right: str | var | binary } // + | - | * | /
+ *  @extend { type:"@extend", param: str | placeholder } 
+ *  @import { type: "@import", params:[ str ] }
+ *  @mixin  { type: "@mixin", id:{ type:"identifier", name:"string" } , params: [ var | assign ], body: body }
+ *  @include { type: "@include", id:{ type:"identifier", name:"string" } , args: [ str | var | binary ] }
+ *  assign { type: "assign", operator: ":", left: str | var | var_key, right: list [ str | var | binary ] }
+ *  child { type:"child", selector: str | placeholder, children: [ AST ] }
 */
 
 const debug = (function(){
@@ -158,17 +160,17 @@ function parse(input) {
     function parse_extend() {
         return {
             type: '@extend',
-            body: input.next()
+            param: input.next()
         }
     }
 
-    function parse_block() {
+    function parse_body() {
         let children = delimited("{", "}", ";", parse_expression);
-        return { type: "block", children };
+        return { type: "body", children };
     }
 
     /**
-     * Todos: add @content kw and include block
+     * Todos: add @content kw and include body
      */
     function parse_mixin() {
         let id = {
@@ -194,7 +196,7 @@ function parse(input) {
             type: "@mixin",
             id,
             params, // %extend like expr or func expr
-            body: parse_block()
+            body: parse_body()
         }
     }
 
