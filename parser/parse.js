@@ -209,10 +209,38 @@ function parse(input) {
             args: is_punc(';') ? [] : delimited('(', ')', ',', parse_expression), // extend like expr or call expr
         }
     }
+
+    function parse_import() {
+
+        function processFilenameExp(exp) {
+            exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
+            return exp;
+        }
+
+        let delimitor = input.peek(),
+            params = [];
+
+        if (!delimitor.value.startsWith("'") && !delimitor.value.startsWith('"') ){
+            console.log(delimitor.value)
+            input.croak(`@import expected with ' or " but encountered ${delimitor}`)
+        }
+
+        while(!is_punc(';')){  // @import 'foundation/code', 'foundation/lists';
+            params.push( processFilenameExp(input.next()) );
+            if(is_punc(',')){
+                skip_punc(',')
+            }
+        }
+
+        return {
+            type: "@import",
+            params
+        }
+    }
     
     function parse_consecutive_str() { //to resolve test skew(20deg) rotate(20deg);
 
-        function maybe_call(exp) {//to resolve rotate(30deg) this kind of inner call expression
+        function maybe_call(exp) {//to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
             let expr = exp();
 
             if (is_punc('(')) {
@@ -278,6 +306,11 @@ function parse(input) {
         if (is_kw('@include')) {
             input.next()
             return parse_include();
+        }
+
+        if (is_kw('@import')) {
+            input.next()
+            return parse_import();
         }
 
         let tok = input.peek();

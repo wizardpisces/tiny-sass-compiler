@@ -4,14 +4,14 @@
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
- * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include"
+ * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import"
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // operators
  */
 
 function lex(input) {
     let current = null;
-    let keywords = ' @extend @mixin @include ';
+    let keywords = ' @extend @mixin @include @import ';
     let op_chars = "+-*/%"
 
     return {
@@ -48,7 +48,7 @@ function lex(input) {
     }
 
     function is_base_char(ch) {
-        return /[a-z0-9_\.\#\@\%\-"&\[\]]/i.test(ch);
+        return /[a-z0-9_\.\#\@\%\-"'&\[\]]/i.test(ch);
         // return !is_punc(ch);
     }
 
@@ -208,7 +208,7 @@ function lex(input) {
             }
             return read_punc(input.next())
         }
-        if (is_keyword_start(ch)) return read_keyword();// @extend .message-shared;
+        if (is_keyword_start(ch)) return read_keyword();//eg: @extend .message-shared;
         if (is_op_char(ch)) return maybe_op_token(input.next());
         if (is_base_char(ch)) return read_string();
 
