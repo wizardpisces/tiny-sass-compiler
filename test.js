@@ -70,6 +70,9 @@ function run(inputDir,outputDir = './test-dist'){
             if(filename.startsWith('_')){
                 return;
             }
+
+            if (filename === 'flow-control') return;
+
             let filePath = path.join(currentDir, filename),
                 stat = fs.lstatSync(filePath)
             if (stat.isFile()) {

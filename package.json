@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "tiny-sass-compiler",
   "version": "1.0.0",
   "description": "simple scss compiler",
   "main": "test.js",
@@ -7,14 +7,14 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wizardpisces/tiny-sass-compiler.git"
   },
   "keywords": [
-    "sass",
+    "scss",
     "css",
     "compiler",
     "ast"

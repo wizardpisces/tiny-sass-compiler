@@ -19,7 +19,9 @@ This project is for people who want to understand parser and AST(abstract syntac
 
 ## Tests
 
-Run with node test.js
+```js
+npm run test
+```
 
 Sample1:
 

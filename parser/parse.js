@@ -1,28 +1,4 @@
 
-/**
- *  Todos: add import modules
- *  
- *  @param {lex processed stream method} input
- * 
- *  ast unit
- * 
- *  str { type: "str", value: STRING }  // str = (str\s+ | var\s+)*
- *  var { type: "var", value: NAME } // var.value === variable's name string
- *  var_key { type: "var_key", value: NAME } // to solve assign { #{var} : value }
- *  list { type:"list",value:[ ast ] }
- *  body { type:"body", chidren:[ AST ] }
- * 
- *  AST Expression:
- *  
- *  prog { type:"prog", selector: str, prog: [ AST ] }   // toplevel
- *  binary { type: "binary", operator: OPERATOR, left: str | var | binary, right: str | var | binary } // + | - | * | /
- *  @extend { type:"@extend", param: str | placeholder } 
- *  @import { type: "@import", params:[ str ] }
- *  @mixin  { type: "@mixin", id:{ type:"identifier", name:"string" } , params: [ var | assign ], body: body }
- *  @include { type: "@include", id:{ type:"identifier", name:"string" } , args: [ str | var | binary ] }
- *  assign { type: "assign", operator: ":", left: str | var | var_key, right: list [ str | var | binary ] }
- *  child { type:"child", selector: str | placeholder, children: [ AST ] }
-*/
 
 const debug = (function(){
     let isDebug = false,
@@ -35,7 +11,13 @@ const debug = (function(){
     }
 })()
 
+/**
+ * 
+ * @param {lex processed stream method} input
+ */
+
 function parse(input) {
+
     const PRECEDENCE = {
         "+": 10, "-": 10,
         "*": 20, "/": 20, "%": 20,

@@ -4,14 +4,14 @@
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
- * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import"
+ * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import" | "@if"
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
- * { type: "op", value: "!=" }            // operators
+* { type: "op", value: "+" }            // + - % * /
  */
 
 function lex(input) {
     let current = null;
-    let keywords = ' @extend @mixin @include @import ';
+    let keywords = ' @extend @mixin @include @import @if ';
     let op_chars = "+-*/%"
 
     return {
