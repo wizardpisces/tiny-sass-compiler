@@ -49,7 +49,14 @@ function run(inputDir,outputDir = './test-dist'){
         }
 
         function write_compiled() {
-            let compiled = compiler(ast, path.join(__dirname,sourceDirname))
+            let compiled = null;
+            try{
+                compiled = compiler(ast, path.join(__dirname,sourceDirname))
+            }catch(e){
+                console.log('Error path: ',path.join(__dirname, sourceDirname))
+                console.log(e)
+                return;
+            }
 
             fs.writeFile(path.join(cssDistPath, basename + '.css'), cssbeautify(compiled), function (err) {
                 if (err) {
@@ -71,7 +78,9 @@ function run(inputDir,outputDir = './test-dist'){
                 return;
             }
 
-            if (filename === 'flow-control') return;
+            // console.log(filename)
+
+            // if (filename !== 'flow-control' && filename !== 'if.scss') return;
 
             let filePath = path.join(currentDir, filename),
                 stat = fs.lstatSync(filePath)

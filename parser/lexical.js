@@ -6,13 +6,15 @@
  * { type: "var", value: "$height" }      // identifiers
  * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import" | "@if"
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
-* { type: "op", value: "+" }            // + - % * /
+ * { type: "op", value: "!=" }            // + - % * / != ==
  */
 
 function lex(input) {
     let current = null;
     let keywords = ' @extend @mixin @include @import @if ';
-    let op_chars = "+-*/%"
+    let op_chars = ' + - * / % ',
+        comparison_op_chars = '!=><',
+        comparison_op_tokens = ['==','!=','>=','<=','>','<']
 
     return {
         next,
@@ -40,7 +42,16 @@ function lex(input) {
 
     function is_op_char(ch) {
         // return "+-*/%=&|<>!".indexOf(ch) >= 0;
-        return op_chars.indexOf(ch) >= 0;
+        return op_chars.indexOf(' ' + ch + ' ') >= 0;
+    }
+
+    function is_comparison_op_char(ch) {
+        // return "+-*/%=&|<>!".indexOf(ch) >= 0;
+        return comparison_op_chars.indexOf(ch) >= 0;
+    }
+
+    function is_comparison_op_tokens(str){
+        return comparison_op_tokens.indexOf(str) >=0;
     }
 
     function is_assign_char(ch) {
@@ -159,13 +170,24 @@ function lex(input) {
         }
     }
 
-    function maybe_op_token(ch){
+    function maybe_op_token(chStr){
         if (input.peek() === ' '){
-            return generate_op_token(ch);
+            return generate_op_token(chStr);
         }else{
             return {
                 type : 'str',
-                value : ch+read_string().value
+                value: chStr+read_string().value
+            };
+        }
+    }
+
+    function maybe_comparison_op_token(chStr){
+        if (is_comparison_op_tokens(chStr)){
+            return generate_op_token(chStr);
+        }else{
+            return {
+                type : 'str',
+                value: chStr+read_string().value
             };
         }
     }
@@ -209,7 +231,8 @@ function lex(input) {
             return read_punc(input.next())
         }
         if (is_keyword_start(ch)) return read_keyword();//eg: @extend .message-shared;
-        if (is_op_char(ch)) return maybe_op_token(input.next());
+        if (is_op_char(ch)) return maybe_op_token(read_while(is_op_char));
+        if (is_comparison_op_char(ch)) return maybe_comparison_op_token(read_while(is_comparison_op_char));
         if (is_base_char(ch)) return read_string();
 
         input.croak("Can't handle character: " + ch);

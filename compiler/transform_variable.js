@@ -42,6 +42,12 @@ Environment.prototype = {
         return this.vars[name] = value;
     }
 };
+/**
+ * todos: optimize deep_clone
+ */
+function deep_clone(obj){
+    return JSON.parse(JSON.stringify(obj))
+}
 
 /**
  * 
@@ -55,21 +61,29 @@ module.exports = function transform_variable(ast) {
 
     function evaluate(exp, env) {
         switch (exp.type) {
+            /**
+             * Expression
+             */
             case "str": return transform_str(exp);
             case "punc": return transform_punc(exp);
+            case "op": return transform_op(exp);
             case "var": return transform_var(exp, env);
             case "var_key": return transform_var_key(exp, env);
             case "list": return transform_list(exp, env);
+
+            /**
+             * Statement
+             */
             case "assign": return transform_assign(exp, env);
             case "binary": return transform_binary(exp, env);
             case "@mixin": return transform_mixin(exp, env);
             case "@include": return transform_include(exp, env);
-
             case "child":
             case "body":
                 return transform_child(exp, env);
 
             case "@extend": return exp;
+            case "IfStatement": return transform_if(exp, env);
 
             default:
                 throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
@@ -84,14 +98,49 @@ module.exports = function transform_variable(ast) {
             }).join(' ').trim()
         }
     }
+
+    function transform_if(exp, env){
+        function is_true_exp(expression, env){
+
+            let resultExp = expression;
+            /**
+             *  1. if $bool { }
+             *  2. if true { }
+            */
+
+            if (resultExp.type === 'var'){
+                resultExp = evaluate(expression, env);
+            }
+
+            if (resultExp.value === "0" || resultExp.value==="false"){
+                return false;
+            }
+
+            return true
+        }
+
+        if (is_true_exp(exp.test, env)){
+            return evaluate(exp.consequent, env);
+        }else{
+            return null;
+        }
+    }
+
 /**
- * Solve situation, treat punc ',' as str
- * $font:    Helvetica, sans-serif;
- * 
+ * Solve situation, assign value with punc, eg:
+ * $font: Helvetica, sans-serif;
  */
     function transform_punc(exp) {
         exp.type = 'str'
         return exp;
+    }
+
+/**
+ * Solve situation, selector with operators, eg:
+ * .a > b{}
+ */
+    function transform_op(exp){
+        return transform_punc(exp);
     }
 
 /**
@@ -100,8 +149,15 @@ module.exports = function transform_variable(ast) {
     function transform_mixin(exp,env){
 
         function make_function(){
-            let params = exp.params;
-            let scope = env.extend();
+            
+            /**
+             * deep clone function statement to restore context when called multiple times
+             */
+
+            let expClone = deep_clone(exp),
+                params = expClone.params,
+                scope = env.extend();
+
             function handle_params_default_value(params){
                 return params.map((param) => {
                     let ret = param;
@@ -124,9 +180,9 @@ module.exports = function transform_variable(ast) {
                 }
             })
 
-            // console.log('make_function', JSON.stringify(params), JSON.stringify(scope))
-
-            return evaluate(exp.body, scope);
+            // console.log('make_function', JSON.stringify(params), JSON.stringify(arguments))
+            // console.log(expClone.body)
+            return evaluate(expClone.body, scope);
         }
 
         env.def(exp.id.name,make_function)
@@ -136,7 +192,18 @@ module.exports = function transform_variable(ast) {
 
     function transform_include(exp,env){
         let func = env.get(exp.id.name);
-        return func.apply(null,exp.args.map(arg => evaluate(arg, env).value))
+        return func.apply(null,exp.args.map(arg => {
+            // console.log(JSON.stringify(arg),'---',JSON.stringify(argEvaluated))
+
+            /**
+             * @include avatar(100px, $circle: false);
+             */
+            if (arg.type === 'assign') {
+                return evaluate(arg.right, env).value
+            }
+
+            return evaluate(arg, env).value
+        }))
     }
 
     /**
@@ -253,7 +320,13 @@ module.exports = function transform_variable(ast) {
         env = env.extend();
 
         exp.children = exp.children.map(child => evaluate(child, env)).filter(exp => exp !== null);
-        exp.children = flatten_included_body(exp.children); // resolve @include include_function_body
+        /**
+         * resolve BlockStatement/body
+         * 
+         * @include include_function_body
+         * @if which contain BlockStatement
+          */
+        exp.children = flatten_included_body(exp.children);
 
         return exp;
     }

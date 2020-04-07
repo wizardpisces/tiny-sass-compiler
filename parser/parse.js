@@ -25,8 +25,22 @@ function parse(input) {
 
     let assign_right_end_condition = default_assign_right_end_condition;
 
+/**
+ * end with ';' , eg:
+ * 
+ * $boder : 1px solid red;
+ * 
+ * end with ',' | ')' , eg:
+ * 
+ * @mixin test($param1:1,$param2:2){} // assign expression in @mixin or $include
+  */
+
     function default_assign_right_end_condition(){
         return is_punc(';')
+    }
+
+    function set_call_params_args_assign_right_end_condition(){
+        assign_right_end_condition = () => is_punc(',') || is_punc(')');
     }
 
     function reset_assign_right_end_condition(){
@@ -64,17 +78,14 @@ function parse(input) {
     function delimited(start, stop, separator, parser) {// FIFO
         var a = [], first = true;
         skip_punc(start);
-        // console.log('start', start);
+
         while (!input.eof()) {
             if (debug()) break;
             if (is_punc(stop)) break;
             if (first) first = false; else skip_punc(separator);
             if (is_punc(stop)) break;
 
-            let result = parser();
-
-            // console.log('delimited result：', result)
-            a.push(result);
+            a.push(parser());
         }
         skip_punc(stop);
         return a;
@@ -146,7 +157,7 @@ function parse(input) {
         }
     }
 
-    function parse_body() {
+    function parse_block_statement() {
         let children = delimited("{", "}", ";", parse_expression);
         return { type: "body", children };
     }
@@ -167,7 +178,7 @@ function parse(input) {
              * Support default params
              * @mixin replace-text($image,$x:default1, $y:default2) {
               */
-            assign_right_end_condition = () => is_punc(',') || is_punc(')');
+            set_call_params_args_assign_right_end_condition()
 
             params = delimited('(', ')', ',', parse_expression);
         }
@@ -178,7 +189,7 @@ function parse(input) {
             type: "@mixin",
             id,
             params, // %extend like expr or func expr
-            body: parse_body()
+            body: parse_block_statement()
         }
     }
 
@@ -186,11 +197,20 @@ function parse(input) {
         let id = {
             type: "identifier",
             name: input.next().value
+        },
+        args = [];// @include mixin1;
+
+        if(!is_punc(';')){ 
+            set_call_params_args_assign_right_end_condition()
+            args = delimited('(', ')', ',', parse_expression); // extend like expr or call expr
         }
+
+        reset_assign_right_end_condition()
+
         return {
             type: "@include",
             id,
-            args: is_punc(';') ? [] : delimited('(', ')', ',', parse_expression), // extend like expr or call expr
+            args,
         }
     }
 
@@ -205,7 +225,6 @@ function parse(input) {
             params = [];
 
         if (!delimitor.value.startsWith("'") && !delimitor.value.startsWith('"') ){
-            console.log(delimitor.value)
             input.croak(`@import expected with ' or " but encountered ${delimitor}`)
         }
 
@@ -220,6 +239,22 @@ function parse(input) {
             type: "@import",
             params
         }
+    }
+
+    function parse_if(){
+        let alternate = null,
+            testExpression = true,
+            blockStatement = [];
+
+        testExpression = parse_atom();
+
+        if (!is_punc('{')){
+            input.croak(`@if expect '{' but encountered ${input.next()}`)            
+        }
+
+        blockStatement = parse_block_statement();
+
+        return { type: "IfStatement", test: testExpression, consequent: blockStatement, alternate: alternate }
     }
     
     function parse_consecutive_str() { //to resolve test skew(20deg) rotate(20deg);
@@ -250,7 +285,7 @@ function parse(input) {
         }
     }
 
-    function parse_key_var_wrapper(expr){
+    function parse_key_var_wrapper(){
         skip_punc('{')
         let var_key = input.next();
         if(var_key.type!=="var"){
@@ -295,6 +330,11 @@ function parse(input) {
         if (is_kw('@import')) {
             input.next()
             return parse_import();
+        }
+
+        if (is_kw('@if')) {
+            input.next()
+            return parse_if();
         }
 
         let tok = input.peek();

@@ -1,0 +1,184 @@
+{
+  "type": "prog",
+  "prog": [
+    {
+      "type": "@mixin",
+      "id": {
+        "type": "identifier",
+        "name": "avatar"
+      },
+      "params": [
+        {
+          "type": "var",
+          "value": "$size"
+        },
+        {
+          "type": "assign",
+          "left": {
+            "type": "var",
+            "value": "$circle"
+          },
+          "right": {
+            "type": "list",
+            "value": [
+              {
+                "type": "str",
+                "value": "false"
+              }
+            ]
+          }
+        }
+      ],
+      "body": {
+        "type": "body",
+        "children": [
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "width"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "var",
+                  "value": "$size"
+                }
+              ]
+            }
+          },
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "height"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "var",
+                  "value": "$size"
+                }
+              ]
+            }
+          },
+          {
+            "type": "IfStatement",
+            "test": {
+              "type": "var",
+              "value": "$circle"
+            },
+            "consequent": {
+              "type": "body",
+              "children": [
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "border-radius"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "binary",
+                        "operator": "/",
+                        "left": {
+                          "type": "var",
+                          "value": "$size"
+                        },
+                        "right": {
+                          "type": "str",
+                          "value": "2"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "alternate": null
+          }
+        ]
+      }
+    },
+    {
+      "type": "child",
+      "selector": {
+        "type": "str",
+        "value": ".square-av"
+      },
+      "children": [
+        {
+          "type": "@include",
+          "id": {
+            "type": "identifier",
+            "name": "avatar"
+          },
+          "args": [
+            {
+              "type": "str",
+              "value": "100px"
+            },
+            {
+              "type": "assign",
+              "left": {
+                "type": "var",
+                "value": "$circle"
+              },
+              "right": {
+                "type": "list",
+                "value": [
+                  {
+                    "type": "str",
+                    "value": "false"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "child",
+      "selector": {
+        "type": "str",
+        "value": ".circle-av"
+      },
+      "children": [
+        {
+          "type": "@include",
+          "id": {
+            "type": "identifier",
+            "name": "avatar"
+          },
+          "args": [
+            {
+              "type": "str",
+              "value": "100px"
+            },
+            {
+              "type": "assign",
+              "left": {
+                "type": "var",
+                "value": "$circle"
+              },
+              "right": {
+                "type": "list",
+                "value": [
+                  {
+                    "type": "str",
+                    "value": "true"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
