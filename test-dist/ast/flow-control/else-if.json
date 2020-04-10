@@ -1,0 +1,318 @@
+{
+  "type": "prog",
+  "prog": [
+    {
+      "type": "@mixin",
+      "id": {
+        "type": "identifier",
+        "name": "triangle"
+      },
+      "params": [
+        {
+          "type": "var",
+          "value": "$size"
+        },
+        {
+          "type": "var",
+          "value": "$color"
+        },
+        {
+          "type": "var",
+          "value": "$direction"
+        }
+      ],
+      "body": {
+        "type": "body",
+        "children": [
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "height"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "str",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "width"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "str",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "border-color"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "str",
+                  "value": "transparent"
+                }
+              ]
+            }
+          },
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "border-style"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "str",
+                  "value": "solid"
+                }
+              ]
+            }
+          },
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "border-width"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "binary",
+                  "operator": "/",
+                  "left": {
+                    "type": "var",
+                    "value": "$size"
+                  },
+                  "right": {
+                    "type": "str",
+                    "value": "2"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "IfStatement",
+            "test": {
+              "type": "binary",
+              "operator": "==",
+              "left": {
+                "type": "var",
+                "value": "$direction"
+              },
+              "right": {
+                "type": "str",
+                "value": "up"
+              }
+            },
+            "consequent": {
+              "type": "body",
+              "children": [
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "border-bottom-color"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "var",
+                        "value": "$color"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "alternate": {
+              "type": "IfStatement",
+              "test": {
+                "type": "binary",
+                "operator": "==",
+                "left": {
+                  "type": "var",
+                  "value": "$direction"
+                },
+                "right": {
+                  "type": "str",
+                  "value": "right"
+                }
+              },
+              "consequent": {
+                "type": "body",
+                "children": [
+                  {
+                    "type": "assign",
+                    "left": {
+                      "type": "str",
+                      "value": "border-left-color"
+                    },
+                    "right": {
+                      "type": "list",
+                      "value": [
+                        {
+                          "type": "var",
+                          "value": "$color"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "alternate": {
+                "type": "IfStatement",
+                "test": {
+                  "type": "binary",
+                  "operator": "==",
+                  "left": {
+                    "type": "var",
+                    "value": "$direction"
+                  },
+                  "right": {
+                    "type": "str",
+                    "value": "down"
+                  }
+                },
+                "consequent": {
+                  "type": "body",
+                  "children": [
+                    {
+                      "type": "assign",
+                      "left": {
+                        "type": "str",
+                        "value": "border-top-color"
+                      },
+                      "right": {
+                        "type": "list",
+                        "value": [
+                          {
+                            "type": "var",
+                            "value": "$color"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "alternate": {
+                  "type": "IfStatement",
+                  "test": {
+                    "type": "binary",
+                    "operator": "==",
+                    "left": {
+                      "type": "var",
+                      "value": "$direction"
+                    },
+                    "right": {
+                      "type": "str",
+                      "value": "left"
+                    }
+                  },
+                  "consequent": {
+                    "type": "body",
+                    "children": [
+                      {
+                        "type": "assign",
+                        "left": {
+                          "type": "str",
+                          "value": "border-right-color"
+                        },
+                        "right": {
+                          "type": "list",
+                          "value": [
+                            {
+                              "type": "var",
+                              "value": "$color"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "alternate": {
+                    "type": "body",
+                    "children": [
+                      {
+                        "type": "@error",
+                        "value": {
+                          "type": "list",
+                          "value": [
+                            {
+                              "type": "str",
+                              "value": "\"Unknown direction"
+                            },
+                            {
+                              "type": "var_key",
+                              "value": "$direction"
+                            },
+                            {
+                              "type": "str",
+                              "value": ".\""
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "child",
+      "selector": {
+        "type": "str",
+        "value": ".next"
+      },
+      "children": [
+        {
+          "type": "@include",
+          "id": {
+            "type": "identifier",
+            "name": "triangle"
+          },
+          "args": [
+            {
+              "type": "str",
+              "value": "5px"
+            },
+            {
+              "type": "str",
+              "value": "black"
+            },
+            {
+              "type": "str",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

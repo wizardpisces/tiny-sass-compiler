@@ -25,6 +25,7 @@ body { type:"body", chidren:[ Statement ] }
 @mixin  { type: "@mixin", id:{ type:"identifier", name: string } , params: [ var | assign ], body: body }
 child { type:"child", selector: str | placeholder, children: [ Expression ] }
 assign { type: "assign", operator: ":", left: str | var | var_key, right: list }
+@error  { type: "@error", value: list }
 ```
 
 ### Choice

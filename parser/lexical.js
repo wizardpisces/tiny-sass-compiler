@@ -4,14 +4,15 @@
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
- * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import" | "@if"
+ * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import" | "@if" | "@else" | "@error"
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // + - % * / != ==
  */
+let { is_else_if_statement} = require('./util')
 
 function lex(input) {
     let current = null;
-    let keywords = ' @extend @mixin @include @import @if ';
+    let keywords = ' @extend @mixin @include @import @if @else @error ';
     let op_chars = ' + - * / % ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==','!=','>=','<=','>','<']
@@ -67,8 +68,8 @@ function lex(input) {
         return is_id_start(ch) || /[a-z0-9_-]/i.test(ch); // sass变量名限制
     }
 
-    function is_keyword(x) {
-        return keywords.indexOf(" " + x + " ") >= 0;
+    function is_keyword(kw) {
+        return keywords.indexOf(" " + kw + " ") >= 0;
     }
 
     function is_keyword_start(ch) {
@@ -92,7 +93,7 @@ function lex(input) {
 
     function read_keyword() {
         var kw = read_while(is_base_char);
-        // console.log('kw',kw)
+
         if (!is_keyword(kw)) {
             return input.croak(`Unknown keyword ${kw}`)
         }
@@ -153,7 +154,6 @@ function lex(input) {
             skip_comment();
             return read_next()
         }else{
-            // console.log('ch',ch)
             return generate_op_token(ch)
         }
     }
@@ -165,7 +165,6 @@ function lex(input) {
                 value: ch + read_while(is_base_char)
             }
         } else {
-            // console.log('ch', ch)
             return generate_op_token(ch)
         }
     }
@@ -183,6 +182,7 @@ function lex(input) {
 
     function maybe_comparison_op_token(chStr){
         if (is_comparison_op_tokens(chStr)){
+
             return generate_op_token(chStr);
         }else{
             return {
@@ -245,7 +245,6 @@ function lex(input) {
         var tok = current;
         current = null;
         tok = tok || read_next();
-        // console.log('tok', tok)
         return tok;
     }
     function eof() {

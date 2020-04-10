@@ -1,15 +1,5 @@
 
-
-const debug = (function(){
-    let isDebug = false,
-        count = 0;
-    return ()=>{
-        if(count++>20 && isDebug){
-            return true;
-        }
-        return false;
-    }
-})()
+let { is_else_if_statement, debug } = require('./util')
 
 /**
  * 
@@ -19,11 +9,15 @@ const debug = (function(){
 function parse(input) {
 
     const PRECEDENCE = {
+        "=": 1,
+        "||": 2,
+        "&&": 3,
+        "<": 7, ">": 7, "<=": 7, ">=": 7, "==": 7, "!=": 7,
         "+": 10, "-": 10,
         "*": 20, "/": 20, "%": 20,
     };
 
-    let assign_right_end_condition = default_assign_right_end_condition;
+    let assign_right_end_condition = default_right_end_condition;
 
 /**
  * end with ';' , eg:
@@ -35,7 +29,7 @@ function parse(input) {
  * @mixin test($param1:1,$param2:2){} // assign expression in @mixin or $include
   */
 
-    function default_assign_right_end_condition(){
+    function default_right_end_condition(){
         return is_punc(';')
     }
 
@@ -44,7 +38,7 @@ function parse(input) {
     }
 
     function reset_assign_right_end_condition(){
-        assign_right_end_condition = default_assign_right_end_condition
+        assign_right_end_condition = default_right_end_condition
     }
 
     function is_punc(ch) {
@@ -56,6 +50,11 @@ function parse(input) {
         var tok = input.peek();
         return tok && tok.type == "kw" && (!kw || tok.value == kw) && tok;
     }
+
+    // function is_else_if_kw(){
+    //     var tok = input.peek();
+    //     return tok && tok.type == "kw" && is_else_if_statement(tok.value) && tok;
+    // }
 
     function is_op(op) {
         var tok = input.peek();
@@ -116,7 +115,6 @@ function parse(input) {
                 let result = maybe_binary(parse_atom(), 0);
                 right.push(result)
             }
-            // console.log('parse_assign_right result:',JSON.stringify(right))
             return right;
         }
         return {
@@ -246,15 +244,46 @@ function parse(input) {
             testExpression = true,
             blockStatement = [];
 
-        testExpression = parse_atom();
+        testExpression = maybe_binary(parse_atom(),0);
 
         if (!is_punc('{')){
-            input.croak(`@if expect '{' but encountered ${input.next()}`)            
+            input.croak(`@if expect '{' but encountered '${input.next().value}'`)            
         }
 
         blockStatement = parse_block_statement();
 
+        if (is_kw('@else')){
+            input.next();
+            let predictToken = input.peek();
+            /**
+             * check if it's a @else if  statement
+              */
+            if (predictToken.type === 'str' && predictToken.value === 'if'){
+                input.next();
+                alternate = parse_if();
+            }else{
+                alternate = parse_block_statement()
+            }
+        }
+
         return { type: "IfStatement", test: testExpression, consequent: blockStatement, alternate: alternate }
+    }
+
+    function parse_error(){
+        function parse_list() {
+            let list = []
+            while (!default_right_end_condition()) {
+                list.push(parse_atom())
+            }
+            return {
+                type:'list',
+                value: list
+            }
+        }
+        return {
+            type:"@error",
+            value: parse_list()
+        }
     }
     
     function parse_consecutive_str() { //to resolve test skew(20deg) rotate(20deg);
@@ -337,6 +366,11 @@ function parse(input) {
             return parse_if();
         }
 
+        if (is_kw('@error')) {
+            input.next()
+            return parse_error();
+        }
+
         let tok = input.peek();
         if (tok.type === "var" || tok.type === "placeholder") {
             return input.next();
@@ -364,7 +398,6 @@ function parse(input) {
         var prog = [];
         while (!input.eof()) {
             let result = parse_expression()
-            // console.log('result', JSON.stringify(result))
             prog.push(result);
             if (!input.eof()) skip_punc(";");
         }

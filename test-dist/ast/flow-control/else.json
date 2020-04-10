@@ -1,0 +1,248 @@
+{
+  "type": "prog",
+  "prog": [
+    {
+      "type": "assign",
+      "left": {
+        "type": "var",
+        "value": "$light-background"
+      },
+      "right": {
+        "type": "list",
+        "value": [
+          {
+            "type": "str",
+            "value": "#f2ece4"
+          }
+        ]
+      }
+    },
+    {
+      "type": "assign",
+      "left": {
+        "type": "var",
+        "value": "$light-text"
+      },
+      "right": {
+        "type": "list",
+        "value": [
+          {
+            "type": "str",
+            "value": "#036"
+          }
+        ]
+      }
+    },
+    {
+      "type": "assign",
+      "left": {
+        "type": "var",
+        "value": "$dark-background"
+      },
+      "right": {
+        "type": "list",
+        "value": [
+          {
+            "type": "str",
+            "value": "#6b717f"
+          }
+        ]
+      }
+    },
+    {
+      "type": "assign",
+      "left": {
+        "type": "var",
+        "value": "$dark-text"
+      },
+      "right": {
+        "type": "list",
+        "value": [
+          {
+            "type": "str",
+            "value": "#d2e1dd"
+          }
+        ]
+      }
+    },
+    {
+      "type": "@mixin",
+      "id": {
+        "type": "identifier",
+        "name": "theme-colors"
+      },
+      "params": [
+        {
+          "type": "assign",
+          "left": {
+            "type": "var",
+            "value": "$light-theme"
+          },
+          "right": {
+            "type": "list",
+            "value": [
+              {
+                "type": "str",
+                "value": "true"
+              }
+            ]
+          }
+        }
+      ],
+      "body": {
+        "type": "body",
+        "children": [
+          {
+            "type": "IfStatement",
+            "test": {
+              "type": "var",
+              "value": "$light-theme"
+            },
+            "consequent": {
+              "type": "body",
+              "children": [
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "background-color"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "var",
+                        "value": "$light-background"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "color"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "var",
+                        "value": "$light-text"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "alternate": {
+              "type": "body",
+              "children": [
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "background-color"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "var",
+                        "value": "$dark-background"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "str",
+                    "value": "color"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "var",
+                        "value": "$dark-text"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "child",
+      "selector": {
+        "type": "str",
+        "value": ".banner"
+      },
+      "children": [
+        {
+          "type": "@include",
+          "id": {
+            "type": "identifier",
+            "name": "theme-colors"
+          },
+          "args": [
+            {
+              "type": "assign",
+              "left": {
+                "type": "var",
+                "value": "$light-theme"
+              },
+              "right": {
+                "type": "list",
+                "value": [
+                  {
+                    "type": "str",
+                    "value": "true"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "child",
+          "selector": {
+            "type": "str",
+            "value": "body.dark &"
+          },
+          "children": [
+            {
+              "type": "@include",
+              "id": {
+                "type": "identifier",
+                "name": "theme-colors"
+              },
+              "args": [
+                {
+                  "type": "assign",
+                  "left": {
+                    "type": "var",
+                    "value": "$light-theme"
+                  },
+                  "right": {
+                    "type": "list",
+                    "value": [
+                      {
+                        "type": "str",
+                        "value": "false"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

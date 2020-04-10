@@ -85,6 +85,9 @@ module.exports = function transform_variable(ast) {
             case "@extend": return exp;
             case "IfStatement": return transform_if(exp, env);
 
+            case "@error": 
+                throw new Error(transform_list(exp.value, env).value) 
+
             default:
                 throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
         }
@@ -108,7 +111,7 @@ module.exports = function transform_variable(ast) {
              *  2. if true { }
             */
 
-            if (resultExp.type === 'var'){
+            if (resultExp.type === 'var' || resultExp.type === 'binary'){
                 resultExp = evaluate(expression, env);
             }
 
@@ -121,6 +124,8 @@ module.exports = function transform_variable(ast) {
 
         if (is_true_exp(exp.test, env)){
             return evaluate(exp.consequent, env);
+        }else if(exp.alternate){
+            return evaluate(exp.alternate, env)
         }else{
             return null;
         }
@@ -180,8 +185,6 @@ module.exports = function transform_variable(ast) {
                 }
             })
 
-            // console.log('make_function', JSON.stringify(params), JSON.stringify(arguments))
-            // console.log(expClone.body)
             return evaluate(expClone.body, scope);
         }
 
@@ -193,7 +196,6 @@ module.exports = function transform_variable(ast) {
     function transform_include(exp,env){
         let func = env.get(exp.id.name);
         return func.apply(null,exp.args.map(arg => {
-            // console.log(JSON.stringify(arg),'---',JSON.stringify(argEvaluated))
 
             /**
              * @include avatar(100px, $circle: false);
@@ -214,9 +216,14 @@ module.exports = function transform_variable(ast) {
         
         let hasPercent = false,
             unitExtracted = false,
-            unit = "px";
+            unit = "";
 
         function parseFloatFn(str){
+
+            if (isNaN(parseFloat(str))){
+                return str;
+            }
+            
             if(str === "100%"){
                 hasPercent = true;
                 return 1;
@@ -227,7 +234,8 @@ module.exports = function transform_variable(ast) {
               */
             if (!unitExtracted){
                 unitExtracted = true;
-                unit = str.match(/\d+([a-z]*)/)[1];
+                let matched = str.match(/\d+([a-z]*)/);
+                unit = matched && matched.length > 0 ? matched[1] : ''
             }
             
             return parseFloat(str)
@@ -250,6 +258,7 @@ module.exports = function transform_variable(ast) {
                 '/': (left, right) => left / right,
                 '*': (left, right) => left * right,
                 '%': (left, right) => left % right,
+                '==':(left, right) => left == right
             };
 
             if (ast.type === "str") return parseFloatFn(ast.value);
@@ -332,10 +341,7 @@ module.exports = function transform_variable(ast) {
     }
 
     function toplevel(ast, env) {
-        // console.log(JSON.stringify(ast))
-
         ast.prog = ast.prog.map(exp => evaluate(exp, env)).filter(exp => exp !== null)
-        // console.log(JSON.stringify(ast))
         return ast;
     }
 

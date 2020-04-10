@@ -80,7 +80,7 @@ function run(inputDir,outputDir = './test-dist'){
 
             // console.log(filename)
 
-            // if (filename !== 'flow-control' && filename !== 'if.scss') return;
+            // if (filename !== 'flow-control' && filename !== 'else-if.scss') return;
 
             let filePath = path.join(currentDir, filename),
                 stat = fs.lstatSync(filePath)
