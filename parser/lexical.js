@@ -4,15 +4,14 @@
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: "str", value: "12px" }
  * { type: "var", value: "$height" }      // identifiers
- * { type: "kw", value: "@extend"}      // "@extend" | "@mixin" | "@include" | "@import" | "@if" | "@else" | "@error"
+ * { type: "kw", value: "@extend"}    // keywords below
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // + - % * / != ==
  */
-let { is_else_if_statement} = require('./util')
 
 function lex(input) {
     let current = null;
-    let keywords = ' @extend @mixin @include @import @if @else @error ';
+    let keywords = ' @extend @mixin @include @import @if @else @error @each ';
     let op_chars = ' + - * / % ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==','!=','>=','<=','>','<']
@@ -85,14 +84,14 @@ function lex(input) {
     }
 
     function read_while(predicate) {
-        var str = "";
+        let str = "";
         while (!input.eof() && predicate(input.peek()))
             str += input.next();
         return str;
     }
 
     function read_keyword() {
-        var kw = read_while(is_base_char);
+        let kw = read_while(is_base_char);
 
         if (!is_keyword(kw)) {
             return input.croak(`Unknown keyword ${kw}`)
@@ -111,7 +110,7 @@ function lex(input) {
     }
 
     function read_ident() {
-        var id = read_while(is_id_char_limit);
+        let id = read_while(is_id_char_limit);
         return {
             type: "var",
             value: id.trim()
@@ -129,7 +128,7 @@ function lex(input) {
         let str = "";
         let is_ended = ch => endReg.test(ch);
         while (!input.eof()) {
-            var ch = input.peek();
+            let ch = input.peek();
             if (is_ended(ch)) {
                 break;
             } else {
@@ -141,7 +140,11 @@ function lex(input) {
     }
 
     function read_string() {
-        let str = read_end(/[,;{}():\s]/);
+        /**
+         * '#' end eg:
+         * .icon-#{$size} {}
+         */
+        let str = read_end(/[,;{}():#\s]/);
         return {
             type: "str",
             value: str
@@ -213,7 +216,7 @@ function lex(input) {
     function read_next() {
         read_while(is_whitespace);
         if (input.eof()) return null;
-        var ch = input.peek();
+        let ch = input.peek();
 
         /**
          * comment //  contains op /
@@ -242,7 +245,7 @@ function lex(input) {
         return current || (current = read_next());
     }
     function next() {
-        var tok = current;
+        let tok = current;
         current = null;
         tok = tok || read_next();
         return tok;

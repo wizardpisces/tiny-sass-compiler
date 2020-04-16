@@ -9,11 +9,16 @@ const debug = (function () {
     }
 })()
 
-function is_else_if_statement(kw) {
-    return /^@else\s*if/i.test(kw)
-}
+const PRECEDENCE = {
+    "=": 1,
+    "||": 2,
+    "&&": 3,
+    "<": 7, ">": 7, "<=": 7, ">=": 7, "==": 7, "!=": 7,
+    "+": 10, "-": 10,
+    "*": 20, "/": 20, "%": 20,
+};
 
 module.exports = {
-    is_else_if_statement,
-    debug
+    debug,
+    PRECEDENCE
 }

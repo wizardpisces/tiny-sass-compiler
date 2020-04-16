@@ -77,10 +77,8 @@ function run(inputDir,outputDir = './test-dist'){
             if(filename.startsWith('_')){
                 return;
             }
-
             // console.log(filename)
-
-            // if (filename !== 'flow-control' && filename !== 'else-if.scss') return;
+            if (filename!== 'flow-control' &&  filename !== 'each' && filename !=='each.scss') return;
 
             let filePath = path.join(currentDir, filename),
                 stat = fs.lstatSync(filePath)

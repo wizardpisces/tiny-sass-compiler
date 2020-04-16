@@ -1,5 +1,5 @@
 
-let { is_else_if_statement, debug } = require('./util')
+let { debug, PRECEDENCE } = require('./util')
 
 /**
  * 
@@ -7,15 +7,6 @@ let { is_else_if_statement, debug } = require('./util')
  */
 
 function parse(input) {
-
-    const PRECEDENCE = {
-        "=": 1,
-        "||": 2,
-        "&&": 3,
-        "<": 7, ">": 7, "<=": 7, ">=": 7, "==": 7, "!=": 7,
-        "+": 10, "-": 10,
-        "*": 20, "/": 20, "%": 20,
-    };
 
     let assign_right_end_condition = default_right_end_condition;
 
@@ -42,27 +33,22 @@ function parse(input) {
     }
 
     function is_punc(ch) {
-        var tok = input.peek();
+        let tok = input.peek();
         return tok && tok.type == "punc" && (!ch || tok.value == ch) && tok;
     }
 
     function is_kw(kw) {
-        var tok = input.peek();
+        let tok = input.peek();
         return tok && tok.type == "kw" && (!kw || tok.value == kw) && tok;
     }
 
-    // function is_else_if_kw(){
-    //     var tok = input.peek();
-    //     return tok && tok.type == "kw" && is_else_if_statement(tok.value) && tok;
-    // }
-
     function is_op(op) {
-        var tok = input.peek();
+        let tok = input.peek();
         return tok && tok.type == "op" && (!op || tok.value == op) && tok;
     }
 
     function is_assign() {
-        var tok = input.peek()
+        let tok = input.peek()
         return tok && tok.type === "assign";
     }
 
@@ -75,7 +61,7 @@ function parse(input) {
     }
 
     function delimited(start, stop, separator, parser) {// FIFO
-        var a = [], first = true;
+        let a = [], first = true;
         skip_punc(start);
 
         while (!input.eof()) {
@@ -128,7 +114,7 @@ function parse(input) {
     }
 
     function parse_child(selector) {
-        var children = delimited("{", "}", ";", parse_expression);
+        let children = delimited("{", "}", ";", parse_expression);
         // if (children.length == 0) return FALSE;
         // if (block.length == 1) return block[0];
         return { type: "child", selector, children };
@@ -140,6 +126,14 @@ function parse(input) {
         if (is_assign()) {
             return parse_assign(expr)
         }
+
+        /**
+         * .icon-#{$size} {}
+          */
+
+        // if(is_punc('#')){
+        //     // return maybe_list_key([exp]);
+        // }
 
         if (is_punc('{')) {
             return parse_child(expr) //passin selector
@@ -269,17 +263,40 @@ function parse(input) {
         return { type: "IfStatement", test: testExpression, consequent: blockStatement, alternate: alternate }
     }
 
-    function parse_error(){
-        function parse_list() {
-            let list = []
-            while (!default_right_end_condition()) {
-                list.push(parse_atom())
-            }
-            return {
-                type:'list',
-                value: list
-            }
+    function parse_each(){
+        let left = parse_atom();
+
+        /**
+         * skip "in" expression
+          */
+
+        input.next();
+
+        let right = parse_atom();
+
+        skip_punc('{')
+        let blockStatement = parse_expression()
+        skip_punc('}')
+        return {
+            type: "EachStatement",
+            left,
+            right,
+            body: blockStatement
         }
+    }
+
+    function parse_list(endCheck = () => !default_right_end_condition()) {
+        let list = []
+        while (endCheck()) {
+            list.push(parse_atom())
+        }
+        return {
+            type:'list',
+            value: list
+        }
+    }
+
+    function parse_error(){
         return {
             type:"@error",
             value: parse_list()
@@ -327,6 +344,11 @@ function parse(input) {
         };
     }
 
+    /**
+     * 
+     * #{var} 
+     */
+
     function maybe_key_var_wrapper(exp){
         let expr = exp();
 
@@ -335,6 +357,17 @@ function parse(input) {
         }
 
         expr.type = "str";
+
+        /**
+         * color: #1212; or #selector{}
+          */
+        let nextToken = parse_atom();
+
+        if(nextToken.type!=='str'){
+            input.croak(`[maybe_key_var_wrapper]: expect str token but received ${nextToken.value}`)
+        }
+
+        expr.value = expr.value + nextToken.value;
 
         return expr;
     }
@@ -366,6 +399,11 @@ function parse(input) {
             return parse_if();
         }
 
+        if (is_kw('@each')) {
+            input.next()
+            return parse_each();
+        }
+
         if (is_kw('@error')) {
             input.next()
             return parse_error();
@@ -395,7 +433,7 @@ function parse(input) {
     }
 
     function parse_prog(){
-        var prog = [];
+        let prog = [];
         while (!input.eof()) {
             let result = parse_expression()
             prog.push(result);

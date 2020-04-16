@@ -13,6 +13,7 @@ function compile_css(ast) {
             case "var": return css_var(exp);
             case "assign": return css_assign(exp);
             case "child": return css_child(exp);
+            case "empty": return '';
 
             default:
                 throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));

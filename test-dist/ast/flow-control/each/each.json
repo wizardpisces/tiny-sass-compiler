@@ -1,0 +1,90 @@
+{
+  "type": "prog",
+  "prog": [
+    {
+      "type": "assign",
+      "left": {
+        "type": "var",
+        "value": "$sizes"
+      },
+      "right": {
+        "type": "list",
+        "value": [
+          {
+            "type": "str",
+            "value": "40px"
+          },
+          {
+            "type": "punc",
+            "value": ","
+          },
+          {
+            "type": "str",
+            "value": "50px"
+          }
+        ]
+      }
+    },
+    {
+      "type": "EachStatement",
+      "left": {
+        "type": "var",
+        "value": "$size"
+      },
+      "right": {
+        "type": "var",
+        "value": "$sizes"
+      },
+      "body": {
+        "type": "child",
+        "selector": {
+          "type": "str",
+          "value": ".icon-"
+        },
+        "children": [
+          {
+            "type": "assign",
+            "left": {
+              "type": "str",
+              "value": "font-size"
+            },
+            "right": {
+              "type": "list",
+              "value": [
+                {
+                  "type": "var",
+                  "value": "$size"
+                }
+              ]
+            }
+          },
+          {
+            "type": "child",
+            "selector": {
+              "type": "str",
+              "value": ".ok"
+            },
+            "children": [
+              {
+                "type": "assign",
+                "left": {
+                  "type": "str",
+                  "value": "font-size"
+                },
+                "right": {
+                  "type": "list",
+                  "value": [
+                    {
+                      "type": "var",
+                      "value": "$size"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

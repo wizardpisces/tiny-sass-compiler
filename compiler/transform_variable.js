@@ -18,14 +18,14 @@ Environment.prototype = {
     extend: function () {
         return new Environment(this);
     },
-    lookup: function (name) {
-        let scope = this;
-        while (scope) {
-            if (Object.prototype.hasOwnProperty.call(scope.vars, name))
-                return scope;
-            scope = scope.parent;
-        }
-    },
+    // lookup: function (name) {
+    //     let scope = this;
+    //     while (scope) {
+    //         if (Object.prototype.hasOwnProperty.call(scope.vars, name))
+    //             return scope;
+    //         scope = scope.parent;
+    //     }
+    // },
     get: function (name) {
         if (name in this.vars)
             return this.vars[name];
@@ -80,10 +80,11 @@ module.exports = function transform_variable(ast) {
             case "@include": return transform_include(exp, env);
             case "child":
             case "body":
-                return transform_child(exp, env);
+                return transform_child_or_body(exp, env);
 
             case "@extend": return exp;
             case "IfStatement": return transform_if(exp, env);
+            case "EachStatement": return transform_each(exp, env);
 
             case "@error": 
                 throw new Error(transform_list(exp.value, env).value) 
@@ -101,8 +102,50 @@ module.exports = function transform_variable(ast) {
             }).join(' ').trim()
         }
     }
+    /**
+     * any expressions separated with spaces or commas count as a list
+     */
+    function transform_each(exp, env){
+        let restoredContext = deep_clone(exp);
+        let right = evaluate(restoredContext.right, env),
+            scope = env.extend(),
+            list = [];
 
+        if(right.type === "str"){
+            list = right.value.split(/,|\s+/).filter(val=>val!=='')
+        }
+
+        let children = list.map(val => {
+            /**
+             * restore context with iterate multiple times
+             */
+
+            restoredContext = deep_clone(exp);
+            
+            scope.def(restoredContext.left.value, val);
+
+            return evaluate(restoredContext.body, scope)
+        })
+
+        /**
+         * return a created an empty child whose children will be flattened in transform_nest
+         */
+
+        return evaluate({
+            type: 'child',
+            selector:{
+                type:'str',
+                value:''
+            },
+            children,
+        },env) ;
+
+    }
+/**
+ * context will be restored with function 
+ */
     function transform_if(exp, env){
+
         function is_true_exp(expression, env){
 
             let resultExp = expression;
@@ -159,8 +202,8 @@ module.exports = function transform_variable(ast) {
              * deep clone function statement to restore context when called multiple times
              */
 
-            let expClone = deep_clone(exp),
-                params = expClone.params,
+            let restoredContext = deep_clone(exp),
+                params = restoredContext.params,
                 scope = env.extend();
 
             function handle_params_default_value(params){
@@ -185,7 +228,7 @@ module.exports = function transform_variable(ast) {
                 }
             })
 
-            return evaluate(expClone.body, scope);
+            return evaluate(restoredContext.body, scope);
         }
 
         env.def(exp.id.name,make_function)
@@ -252,13 +295,24 @@ module.exports = function transform_variable(ast) {
         }
 
         function evaluate_binary(ast){
+
             const opAcMap = {
+                // '=': (left, right) => left = right,
+                '||': (left, right) => left || right,
+                '&&': (left, right) => left && right,
+
+                '==':(left, right) => left == right,
+                '!=':(left, right) => left != right,
+                '>=':(left, right) => left >= right,
+                '<=':(left, right) => left <= right,
+                '<=':(left, right) => left <= right,
+
                 '+': (left, right) => left + right,
                 '-': (left, right) => left - right,
                 '/': (left, right) => left / right,
                 '*': (left, right) => left * right,
                 '%': (left, right) => left % right,
-                '==':(left, right) => left == right
+
             };
 
             if (ast.type === "str") return parseFloatFn(ast.value);
@@ -312,7 +366,7 @@ module.exports = function transform_variable(ast) {
         return exp;
     }
 
-    function transform_child(exp, env) {
+    function transform_child_or_body(exp, env) {
 
         function flatten_included_body(children){
             let arr = []
@@ -326,9 +380,9 @@ module.exports = function transform_variable(ast) {
             return arr;
         }
 
-        env = env.extend();
+        let scope = env.extend();
 
-        exp.children = exp.children.map(child => evaluate(child, env)).filter(exp => exp !== null);
+        exp.children = exp.children.map(child => evaluate(child, scope)).filter(exp => exp !== null);
         /**
          * resolve BlockStatement/body
          * 
@@ -341,7 +395,10 @@ module.exports = function transform_variable(ast) {
     }
 
     function toplevel(ast, env) {
+        // console.log(JSON.stringify(ast))
         ast.prog = ast.prog.map(exp => evaluate(exp, env)).filter(exp => exp !== null)
+        // console.log(JSON.stringify(ast))
+
         return ast;
     }
 

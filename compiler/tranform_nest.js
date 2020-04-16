@@ -26,11 +26,18 @@ module.exports = function tranform_nest(ast) {
             if (!containParentSelector){
                 child.selector.value = (parentSelector + ' ' + child.selector.value).trim()
             }
+            
+            /**
+             * 清理空的选择器
+              */
+            child.selector.value  && arr.push(child);
 
-            arr.push(child);
+            /**
+             * 
+              */
             child.children.forEach((exp, index) => {
                 if (exp.type === 'child') {
-                    child.children.splice(index, 1)
+                    child.children.splice(index, 1,{type:'empty'})
                     flatten(exp, child.selector.value)
                 }
             });
