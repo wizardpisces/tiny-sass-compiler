@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 26,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 17,
         "type": "var",
         "value": "$light-background"
       },
@@ -11,6 +15,8 @@
         "type": "list",
         "value": [
           {
+            "start": 19,
+            "end": 26,
             "type": "str",
             "value": "#f2ece4"
           }
@@ -18,8 +24,12 @@
       }
     },
     {
+      "start": 28,
+      "end": 45,
       "type": "assign",
       "left": {
+        "start": 28,
+        "end": 39,
         "type": "var",
         "value": "$light-text"
       },
@@ -27,6 +37,8 @@
         "type": "list",
         "value": [
           {
+            "start": 41,
+            "end": 45,
             "type": "str",
             "value": "#036"
           }
@@ -34,8 +46,12 @@
       }
     },
     {
+      "start": 47,
+      "end": 72,
       "type": "assign",
       "left": {
+        "start": 47,
+        "end": 63,
         "type": "var",
         "value": "$dark-background"
       },
@@ -43,6 +59,8 @@
         "type": "list",
         "value": [
           {
+            "start": 65,
+            "end": 72,
             "type": "str",
             "value": "#6b717f"
           }
@@ -50,8 +68,12 @@
       }
     },
     {
+      "start": 74,
+      "end": 93,
       "type": "assign",
       "left": {
+        "start": 74,
+        "end": 84,
         "type": "var",
         "value": "$dark-text"
       },
@@ -59,6 +81,8 @@
         "type": "list",
         "value": [
           {
+            "start": 86,
+            "end": 93,
             "type": "str",
             "value": "#d2e1dd"
           }
@@ -66,6 +90,8 @@
       }
     },
     {
+      "start": 96,
+      "end": 304,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -73,8 +99,12 @@
       },
       "params": [
         {
+          "start": 116,
+          "end": 134,
           "type": "assign",
           "left": {
+            "start": 116,
+            "end": 128,
             "type": "var",
             "value": "$light-theme"
           },
@@ -82,6 +112,8 @@
             "type": "list",
             "value": [
               {
+                "start": 130,
+                "end": 134,
                 "type": "str",
                 "value": "true"
               }
@@ -93,8 +125,12 @@
         "type": "body",
         "children": [
           {
+            "start": 140,
+            "end": 302,
             "type": "IfStatement",
             "test": {
+              "start": 144,
+              "end": 156,
               "type": "var",
               "value": "$light-theme"
             },
@@ -102,8 +138,12 @@
               "type": "body",
               "children": [
                 {
+                  "start": 163,
+                  "end": 198,
                   "type": "assign",
                   "left": {
+                    "start": 163,
+                    "end": 179,
                     "type": "str",
                     "value": "background-color"
                   },
@@ -111,6 +151,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 181,
+                        "end": 198,
                         "type": "var",
                         "value": "$light-background"
                       }
@@ -118,8 +160,12 @@
                   }
                 },
                 {
+                  "start": 204,
+                  "end": 222,
                   "type": "assign",
                   "left": {
+                    "start": 204,
+                    "end": 209,
                     "type": "str",
                     "value": "color"
                   },
@@ -127,6 +173,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 211,
+                        "end": 222,
                         "type": "var",
                         "value": "$light-text"
                       }
@@ -139,8 +187,12 @@
               "type": "body",
               "children": [
                 {
+                  "start": 240,
+                  "end": 274,
                   "type": "assign",
                   "left": {
+                    "start": 240,
+                    "end": 256,
                     "type": "str",
                     "value": "background-color"
                   },
@@ -148,6 +200,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 258,
+                        "end": 274,
                         "type": "var",
                         "value": "$dark-background"
                       }
@@ -155,8 +209,12 @@
                   }
                 },
                 {
+                  "start": 280,
+                  "end": 297,
                   "type": "assign",
                   "left": {
+                    "start": 280,
+                    "end": 285,
                     "type": "str",
                     "value": "color"
                   },
@@ -164,6 +222,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 287,
+                        "end": 297,
                         "type": "var",
                         "value": "$dark-text"
                       }
@@ -179,11 +239,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 306,
+        "end": 313,
         "type": "str",
         "value": ".banner"
       },
       "children": [
         {
+          "start": 318,
+          "end": 359,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -191,8 +255,12 @@
           },
           "args": [
             {
+              "start": 340,
+              "end": 358,
               "type": "assign",
               "left": {
+                "start": 340,
+                "end": 352,
                 "type": "var",
                 "value": "$light-theme"
               },
@@ -200,6 +268,8 @@
                 "type": "list",
                 "value": [
                   {
+                    "start": 354,
+                    "end": 358,
                     "type": "str",
                     "value": "true"
                   }
@@ -211,11 +281,15 @@
         {
           "type": "child",
           "selector": {
+            "start": 363,
+            "end": 374,
             "type": "str",
             "value": "body.dark &"
           },
           "children": [
             {
+              "start": 381,
+              "end": 423,
               "type": "@include",
               "id": {
                 "type": "identifier",
@@ -223,8 +297,12 @@
               },
               "args": [
                 {
+                  "start": 403,
+                  "end": 422,
                   "type": "assign",
                   "left": {
+                    "start": 403,
+                    "end": 415,
                     "type": "var",
                     "value": "$light-theme"
                   },
@@ -232,6 +310,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 417,
+                        "end": 422,
                         "type": "str",
                         "value": "false"
                       }

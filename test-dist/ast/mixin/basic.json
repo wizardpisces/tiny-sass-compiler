@@ -2,6 +2,8 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 68,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -12,8 +14,12 @@
         "type": "body",
         "children": [
           {
+            "start": 22,
+            "end": 31,
             "type": "assign",
             "left": {
+              "start": 22,
+              "end": 28,
               "type": "str",
               "value": "margin"
             },
@@ -21,6 +27,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 30,
+                  "end": 31,
                   "type": "str",
                   "value": "0"
                 }
@@ -28,8 +36,12 @@
             }
           },
           {
+            "start": 35,
+            "end": 45,
             "type": "assign",
             "left": {
+              "start": 35,
+              "end": 42,
               "type": "str",
               "value": "padding"
             },
@@ -37,6 +49,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 44,
+                  "end": 45,
                   "type": "str",
                   "value": "0"
                 }
@@ -44,8 +58,12 @@
             }
           },
           {
+            "start": 49,
+            "end": 65,
             "type": "assign",
             "left": {
+              "start": 49,
+              "end": 59,
               "type": "str",
               "value": "list-style"
             },
@@ -53,6 +71,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 61,
+                  "end": 65,
                   "type": "str",
                   "value": "none"
                 }
@@ -63,6 +83,8 @@
       }
     },
     {
+      "start": 70,
+      "end": 158,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -73,6 +95,8 @@
         "type": "body",
         "children": [
           {
+            "start": 97,
+            "end": 116,
             "type": "@include",
             "id": {
               "type": "identifier",
@@ -83,13 +107,19 @@
           {
             "type": "child",
             "selector": {
+              "start": 121,
+              "end": 123,
               "type": "str",
               "value": "li"
             },
             "children": [
               {
+                "start": 130,
+                "end": 151,
                 "type": "assign",
                 "left": {
+                  "start": 130,
+                  "end": 137,
                   "type": "str",
                   "value": "display"
                 },
@@ -97,6 +127,8 @@
                   "type": "list",
                   "value": [
                     {
+                      "start": 139,
+                      "end": 151,
                       "type": "str",
                       "value": "inline-block"
                     }
@@ -111,11 +143,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 160,
+        "end": 166,
         "type": "str",
         "value": "nav ul"
       },
       "children": [
         {
+          "start": 171,
+          "end": 195,
           "type": "@include",
           "id": {
             "type": "identifier",

@@ -1,10 +1,11 @@
-$sizes: 40px, 50px;
+$sizes: 40px,  50px;
 
 @each $size in $sizes {
-  .icon- {
+  .icon-#asfssd-#{$size} {
     font-size: $size;
     .ok{
         font-size: $size;
+        border: $size  solid        #111111;
     }
   }
 }

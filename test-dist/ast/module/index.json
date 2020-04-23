@@ -2,6 +2,8 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 36,
       "type": "@import",
       "params": [
         {
@@ -13,13 +15,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 39,
+        "end": 47,
         "type": "str",
         "value": ".inverse"
       },
       "children": [
         {
+          "start": 52,
+          "end": 84,
           "type": "assign",
           "left": {
+            "start": 52,
+            "end": 68,
             "type": "str",
             "value": "background-color"
           },
@@ -27,6 +35,8 @@
             "type": "list",
             "value": [
               {
+                "start": 70,
+                "end": 84,
                 "type": "var",
                 "value": "$primary-color"
               }
@@ -34,8 +44,12 @@
           }
         },
         {
+          "start": 88,
+          "end": 100,
           "type": "assign",
           "left": {
+            "start": 88,
+            "end": 93,
             "type": "str",
             "value": "color"
           },
@@ -43,6 +57,8 @@
             "type": "list",
             "value": [
               {
+                "start": 95,
+                "end": 100,
                 "type": "str",
                 "value": "white"
               }

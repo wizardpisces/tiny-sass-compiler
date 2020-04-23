@@ -2,6 +2,8 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 469,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -9,14 +11,20 @@
       },
       "params": [
         {
+          "start": 16,
+          "end": 21,
           "type": "var",
           "value": "$size"
         },
         {
+          "start": 23,
+          "end": 29,
           "type": "var",
           "value": "$color"
         },
         {
+          "start": 31,
+          "end": 41,
           "type": "var",
           "value": "$direction"
         }
@@ -25,8 +33,12 @@
         "type": "body",
         "children": [
           {
+            "start": 47,
+            "end": 56,
             "type": "assign",
             "left": {
+              "start": 47,
+              "end": 53,
               "type": "str",
               "value": "height"
             },
@@ -34,6 +46,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 55,
+                  "end": 56,
                   "type": "str",
                   "value": "0"
                 }
@@ -41,8 +55,12 @@
             }
           },
           {
+            "start": 60,
+            "end": 68,
             "type": "assign",
             "left": {
+              "start": 60,
+              "end": 65,
               "type": "str",
               "value": "width"
             },
@@ -50,6 +68,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 67,
+                  "end": 68,
                   "type": "str",
                   "value": "0"
                 }
@@ -57,8 +77,12 @@
             }
           },
           {
+            "start": 73,
+            "end": 98,
             "type": "assign",
             "left": {
+              "start": 73,
+              "end": 85,
               "type": "str",
               "value": "border-color"
             },
@@ -66,6 +90,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 87,
+                  "end": 98,
                   "type": "str",
                   "value": "transparent"
                 }
@@ -73,8 +99,12 @@
             }
           },
           {
+            "start": 102,
+            "end": 121,
             "type": "assign",
             "left": {
+              "start": 102,
+              "end": 114,
               "type": "str",
               "value": "border-style"
             },
@@ -82,6 +112,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 116,
+                  "end": 121,
                   "type": "str",
                   "value": "solid"
                 }
@@ -89,8 +121,12 @@
             }
           },
           {
+            "start": 125,
+            "end": 148,
             "type": "assign",
             "left": {
+              "start": 125,
+              "end": 137,
               "type": "str",
               "value": "border-width"
             },
@@ -101,10 +137,14 @@
                   "type": "binary",
                   "operator": "/",
                   "left": {
+                    "start": 139,
+                    "end": 144,
                     "type": "var",
                     "value": "$size"
                   },
                   "right": {
+                    "start": 147,
+                    "end": 148,
                     "type": "str",
                     "value": "2"
                   }
@@ -113,15 +153,21 @@
             }
           },
           {
+            "start": 153,
+            "end": 467,
             "type": "IfStatement",
             "test": {
               "type": "binary",
               "operator": "==",
               "left": {
+                "start": 157,
+                "end": 167,
                 "type": "var",
                 "value": "$direction"
               },
               "right": {
+                "start": 171,
+                "end": 173,
                 "type": "str",
                 "value": "up"
               }
@@ -130,8 +176,12 @@
               "type": "body",
               "children": [
                 {
+                  "start": 180,
+                  "end": 207,
                   "type": "assign",
                   "left": {
+                    "start": 180,
+                    "end": 199,
                     "type": "str",
                     "value": "border-bottom-color"
                   },
@@ -139,6 +189,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 201,
+                        "end": 207,
                         "type": "var",
                         "value": "$color"
                       }
@@ -153,10 +205,14 @@
                 "type": "binary",
                 "operator": "==",
                 "left": {
+                  "start": 222,
+                  "end": 232,
                   "type": "var",
                   "value": "$direction"
                 },
                 "right": {
+                  "start": 236,
+                  "end": 241,
                   "type": "str",
                   "value": "right"
                 }
@@ -165,8 +221,12 @@
                 "type": "body",
                 "children": [
                   {
+                    "start": 248,
+                    "end": 273,
                     "type": "assign",
                     "left": {
+                      "start": 248,
+                      "end": 265,
                       "type": "str",
                       "value": "border-left-color"
                     },
@@ -174,6 +234,8 @@
                       "type": "list",
                       "value": [
                         {
+                          "start": 267,
+                          "end": 273,
                           "type": "var",
                           "value": "$color"
                         }
@@ -188,10 +250,14 @@
                   "type": "binary",
                   "operator": "==",
                   "left": {
+                    "start": 288,
+                    "end": 298,
                     "type": "var",
                     "value": "$direction"
                   },
                   "right": {
+                    "start": 302,
+                    "end": 306,
                     "type": "str",
                     "value": "down"
                   }
@@ -200,8 +266,12 @@
                   "type": "body",
                   "children": [
                     {
+                      "start": 313,
+                      "end": 337,
                       "type": "assign",
                       "left": {
+                        "start": 313,
+                        "end": 329,
                         "type": "str",
                         "value": "border-top-color"
                       },
@@ -209,6 +279,8 @@
                         "type": "list",
                         "value": [
                           {
+                            "start": 331,
+                            "end": 337,
                             "type": "var",
                             "value": "$color"
                           }
@@ -223,10 +295,14 @@
                     "type": "binary",
                     "operator": "==",
                     "left": {
+                      "start": 352,
+                      "end": 362,
                       "type": "var",
                       "value": "$direction"
                     },
                     "right": {
+                      "start": 366,
+                      "end": 370,
                       "type": "str",
                       "value": "left"
                     }
@@ -235,8 +311,12 @@
                     "type": "body",
                     "children": [
                       {
+                        "start": 377,
+                        "end": 403,
                         "type": "assign",
                         "left": {
+                          "start": 377,
+                          "end": 395,
                           "type": "str",
                           "value": "border-right-color"
                         },
@@ -244,6 +324,8 @@
                           "type": "list",
                           "value": [
                             {
+                              "start": 397,
+                              "end": 403,
                               "type": "var",
                               "value": "$color"
                             }
@@ -256,19 +338,27 @@
                     "type": "body",
                     "children": [
                       {
+                        "start": 421,
+                        "end": 462,
                         "type": "@error",
                         "value": {
                           "type": "list",
                           "value": [
                             {
+                              "start": 428,
+                              "end": 446,
                               "type": "str",
                               "value": "\"Unknown direction"
                             },
                             {
+                              "start": 447,
+                              "end": 460,
                               "type": "var_key",
                               "value": "$direction"
                             },
                             {
+                              "start": 460,
+                              "end": 462,
                               "type": "str",
                               "value": ".\""
                             }
@@ -287,11 +377,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 471,
+        "end": 476,
         "type": "str",
         "value": ".next"
       },
       "children": [
         {
+          "start": 481,
+          "end": 517,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -299,14 +393,20 @@
           },
           "args": [
             {
+              "start": 499,
+              "end": 502,
               "type": "str",
               "value": "5px"
             },
             {
+              "start": 504,
+              "end": 509,
               "type": "str",
               "value": "black"
             },
             {
+              "start": 511,
+              "end": 516,
               "type": "str",
               "value": "right"
             }

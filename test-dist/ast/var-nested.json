@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 11,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 4,
         "type": "var",
         "value": "$top"
       },
@@ -11,6 +15,8 @@
         "type": "list",
         "value": [
           {
+            "start": 7,
+            "end": 11,
             "type": "str",
             "value": "20px"
           }
@@ -18,8 +24,12 @@
       }
     },
     {
+      "start": 13,
+      "end": 25,
       "type": "assign",
       "left": {
+        "start": 13,
+        "end": 20,
         "type": "var",
         "value": "$margin"
       },
@@ -27,6 +37,8 @@
         "type": "list",
         "value": [
           {
+            "start": 22,
+            "end": 25,
             "type": "str",
             "value": "2px"
           }
@@ -34,8 +46,12 @@
       }
     },
     {
+      "start": 27,
+      "end": 39,
       "type": "assign",
       "left": {
+        "start": 27,
+        "end": 33,
         "type": "var",
         "value": "$right"
       },
@@ -43,6 +59,8 @@
         "type": "list",
         "value": [
           {
+            "start": 35,
+            "end": 39,
             "type": "var",
             "value": "$top"
           }
@@ -52,13 +70,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 41,
+        "end": 47,
         "type": "str",
         "value": ".main2"
       },
       "children": [
         {
+          "start": 53,
+          "end": 65,
           "type": "assign",
           "left": {
+            "start": 53,
+            "end": 60,
             "type": "var",
             "value": "$margin"
           },
@@ -66,6 +90,8 @@
             "type": "list",
             "value": [
               {
+                "start": 62,
+                "end": 65,
                 "type": "str",
                 "value": "3px"
               }
@@ -73,8 +99,12 @@
           }
         },
         {
+          "start": 71,
+          "end": 86,
           "type": "assign",
           "left": {
+            "start": 71,
+            "end": 77,
             "type": "str",
             "value": "margin"
           },
@@ -82,6 +112,8 @@
             "type": "list",
             "value": [
               {
+                "start": 79,
+                "end": 86,
                 "type": "var",
                 "value": "$margin"
               }
@@ -89,8 +121,12 @@
           }
         },
         {
+          "start": 92,
+          "end": 105,
           "type": "assign",
           "left": {
+            "start": 92,
+            "end": 97,
             "type": "str",
             "value": "right"
           },
@@ -98,6 +134,8 @@
             "type": "list",
             "value": [
               {
+                "start": 99,
+                "end": 105,
                 "type": "var",
                 "value": "$right"
               }
@@ -109,13 +147,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 109,
+        "end": 114,
         "type": "str",
         "value": ".main"
       },
       "children": [
         {
+          "start": 121,
+          "end": 132,
           "type": "assign",
           "left": {
+            "start": 121,
+            "end": 124,
             "type": "str",
             "value": "top"
           },
@@ -123,6 +167,8 @@
             "type": "list",
             "value": [
               {
+                "start": 128,
+                "end": 132,
                 "type": "var",
                 "value": "$top"
               }
@@ -132,13 +178,19 @@
         {
           "type": "child",
           "selector": {
+            "start": 141,
+            "end": 148,
             "type": "str",
             "value": ".child1"
           },
           "children": [
             {
+              "start": 158,
+              "end": 172,
               "type": "assign",
               "left": {
+                "start": 158,
+                "end": 164,
                 "type": "str",
                 "value": "margin"
               },
@@ -146,6 +198,8 @@
                 "type": "list",
                 "value": [
                   {
+                    "start": 165,
+                    "end": 172,
                     "type": "var",
                     "value": "$margin"
                   }
@@ -155,13 +209,19 @@
             {
               "type": "child",
               "selector": {
+                "start": 182,
+                "end": 189,
                 "type": "str",
                 "value": ".child2"
               },
               "children": [
                 {
+                  "start": 203,
+                  "end": 219,
                   "type": "assign",
                   "left": {
+                    "start": 203,
+                    "end": 213,
                     "type": "str",
                     "value": "background"
                   },
@@ -169,6 +229,8 @@
                     "type": "list",
                     "value": [
                       {
+                        "start": 214,
+                        "end": 219,
                         "type": "str",
                         "value": "green"
                       }

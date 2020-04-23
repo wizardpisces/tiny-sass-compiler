@@ -1,4 +1,8 @@
 
+let {
+    fillWhitespace
+} = require('../parser/util')
+
 /**
  * use Enviroment to maintain a scope to interprete variable scope
  * 
@@ -97,9 +101,9 @@ module.exports = function transform_variable(ast) {
     function transform_list(exp, env){
         return {
             type: "str",
-            value: exp.value.map(item => {
+            value: fillWhitespace(exp.value).map(item => {
                return evaluate(item, env).value
-            }).join(' ').trim()
+            }).join('').trim()
         }
     }
     /**
@@ -383,6 +387,9 @@ module.exports = function transform_variable(ast) {
         let scope = env.extend();
 
         exp.children = exp.children.map(child => evaluate(child, scope)).filter(exp => exp !== null);
+        if(exp.selector && exp.selector.type === 'list'){
+            exp.selector = evaluate(exp.selector,scope)
+        }
         /**
          * resolve BlockStatement/body
          * 

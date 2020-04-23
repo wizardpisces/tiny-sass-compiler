@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 31,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 10,
         "type": "var",
         "value": "$property2"
       },
@@ -11,6 +15,8 @@
         "type": "list",
         "value": [
           {
+            "start": 13,
+            "end": 31,
             "type": "str",
             "value": "skew(30deg,20deg)"
           }
@@ -18,6 +24,8 @@
       }
     },
     {
+      "start": 33,
+      "end": 170,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -25,10 +33,14 @@
       },
       "params": [
         {
+          "start": 50,
+          "end": 59,
           "type": "var",
           "value": "$property"
         },
         {
+          "start": 60,
+          "end": 70,
           "type": "var",
           "value": "$property2"
         }
@@ -37,8 +49,12 @@
         "type": "body",
         "children": [
           {
+            "start": 76,
+            "end": 104,
             "type": "assign",
             "left": {
+              "start": 76,
+              "end": 93,
               "type": "str",
               "value": "-webkit-transform"
             },
@@ -46,6 +62,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 95,
+                  "end": 104,
                   "type": "var",
                   "value": "$property"
                 }
@@ -53,8 +71,12 @@
             }
           },
           {
+            "start": 108,
+            "end": 132,
             "type": "assign",
             "left": {
+              "start": 108,
+              "end": 121,
               "type": "str",
               "value": "-ms-transform"
             },
@@ -62,6 +84,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 123,
+                  "end": 132,
                   "type": "var",
                   "value": "$property"
                 }
@@ -69,8 +93,12 @@
             }
           },
           {
+            "start": 136,
+            "end": 167,
             "type": "assign",
             "left": {
+              "start": 136,
+              "end": 145,
               "type": "str",
               "value": "transform"
             },
@@ -78,10 +106,14 @@
               "type": "list",
               "value": [
                 {
+                  "start": 147,
+                  "end": 156,
                   "type": "var",
                   "value": "$property"
                 },
                 {
+                  "start": 157,
+                  "end": 167,
                   "type": "var",
                   "value": "$property2"
                 }
@@ -94,11 +126,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 171,
+        "end": 175,
         "type": "str",
         "value": ".box"
       },
       "children": [
         {
+          "start": 181,
+          "end": 225,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -106,18 +142,26 @@
           },
           "args": [
             {
+              "start": 200,
+              "end": 213,
               "type": "str",
               "value": "rotate(30deg)"
             },
             {
+              "start": 214,
+              "end": 224,
               "type": "var",
               "value": "$property2"
             }
           ]
         },
         {
+          "start": 230,
+          "end": 238,
           "type": "assign",
           "left": {
+            "start": 230,
+            "end": 234,
             "type": "str",
             "value": "left"
           },
@@ -125,6 +169,8 @@
             "type": "list",
             "value": [
               {
+                "start": 235,
+                "end": 238,
                 "type": "str",
                 "value": "1px"
               }

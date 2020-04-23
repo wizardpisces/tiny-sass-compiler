@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 37,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 11,
         "type": "var",
         "value": "$font-stack"
       },
@@ -11,14 +15,20 @@
         "type": "list",
         "value": [
           {
+            "start": 16,
+            "end": 25,
             "type": "str",
             "value": "Helvetica"
           },
           {
+            "start": 25,
+            "end": 26,
             "type": "punc",
             "value": ","
           },
           {
+            "start": 27,
+            "end": 37,
             "type": "str",
             "value": "sans-serif"
           }
@@ -26,8 +36,12 @@
       }
     },
     {
+      "start": 39,
+      "end": 59,
       "type": "assign",
       "left": {
+        "start": 39,
+        "end": 53,
         "type": "var",
         "value": "$primary-color"
       },
@@ -35,6 +49,8 @@
         "type": "list",
         "value": [
           {
+            "start": 55,
+            "end": 59,
             "type": "str",
             "value": "#333"
           }
@@ -44,13 +60,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 62,
+        "end": 72,
         "type": "str",
         "value": "body .test"
       },
       "children": [
         {
+          "start": 76,
+          "end": 98,
           "type": "assign",
           "left": {
+            "start": 76,
+            "end": 80,
             "type": "str",
             "value": "font"
           },
@@ -58,10 +80,14 @@
             "type": "list",
             "value": [
               {
+                "start": 82,
+                "end": 86,
                 "type": "str",
                 "value": "100%"
               },
               {
+                "start": 87,
+                "end": 98,
                 "type": "var",
                 "value": "$font-stack"
               }
@@ -69,8 +95,12 @@
           }
         },
         {
+          "start": 102,
+          "end": 123,
           "type": "assign",
           "left": {
+            "start": 102,
+            "end": 107,
             "type": "str",
             "value": "color"
           },
@@ -78,6 +108,8 @@
             "type": "list",
             "value": [
               {
+                "start": 109,
+                "end": 123,
                 "type": "var",
                 "value": "$primary-color"
               }

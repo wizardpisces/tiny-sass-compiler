@@ -3,7 +3,7 @@
   "prog": [
     {
       "start": 0,
-      "end": 18,
+      "end": 19,
       "type": "assign",
       "left": {
         "start": 0,
@@ -15,7 +15,7 @@
         "type": "list",
         "value": [
           {
-            "start": 7,
+            "start": 8,
             "end": 12,
             "type": "str",
             "value": "40px"
@@ -27,8 +27,8 @@
             "value": ","
           },
           {
-            "start": 13,
-            "end": 18,
+            "start": 15,
+            "end": 19,
             "type": "str",
             "value": "50px"
           }
@@ -36,37 +36,48 @@
       }
     },
     {
-      "start": 19,
-      "end": 124,
+      "start": 22,
+      "end": 186,
       "type": "EachStatement",
       "left": {
-        "start": 26,
-        "end": 32,
+        "start": 28,
+        "end": 33,
         "type": "var",
         "value": "$size"
       },
       "right": {
-        "start": 35,
-        "end": 42,
+        "start": 37,
+        "end": 43,
         "type": "var",
         "value": "$sizes"
       },
       "body": {
         "type": "child",
         "selector": {
-          "start": 44,
-          "end": 53,
-          "type": "str",
-          "value": ".icon-"
+          "type": "list",
+          "value": [
+            {
+              "start": 48,
+              "end": 62,
+              "type": "str",
+              "value": ".icon-#asfssd-"
+            },
+            {
+              "start": 62,
+              "end": 70,
+              "type": "var_key",
+              "value": "$size"
+            }
+          ]
         },
         "children": [
           {
-            "start": 55,
-            "end": 76,
+            "start": 77,
+            "end": 93,
             "type": "assign",
             "left": {
-              "start": 55,
-              "end": 69,
+              "start": 77,
+              "end": 86,
               "type": "str",
               "value": "font-size"
             },
@@ -74,8 +85,8 @@
               "type": "list",
               "value": [
                 {
-                  "start": 70,
-                  "end": 76,
+                  "start": 88,
+                  "end": 93,
                   "type": "var",
                   "value": "$size"
                 }
@@ -85,19 +96,19 @@
           {
             "type": "child",
             "selector": {
-              "start": 77,
-              "end": 85,
+              "start": 99,
+              "end": 102,
               "type": "str",
               "value": ".ok"
             },
             "children": [
               {
-                "start": 86,
-                "end": 111,
+                "start": 112,
+                "end": 128,
                 "type": "assign",
                 "left": {
-                  "start": 86,
-                  "end": 104,
+                  "start": 112,
+                  "end": 121,
                   "type": "str",
                   "value": "font-size"
                 },
@@ -105,10 +116,38 @@
                   "type": "list",
                   "value": [
                     {
-                      "start": 105,
-                      "end": 111,
+                      "start": 123,
+                      "end": 128,
                       "type": "var",
                       "value": "$size"
+                    }
+                  ]
+                }
+              },
+              {
+                "start": 138,
+                "end": 173,
+                "type": "assign",
+                "left": {
+                  "start": 138,
+                  "end": 144,
+                  "type": "str",
+                  "value": "border"
+                },
+                "right": {
+                  "type": "list",
+                  "value": [
+                    {
+                      "start": 146,
+                      "end": 151,
+                      "type": "var",
+                      "value": "$size"
+                    },
+                    {
+                      "start": 153,
+                      "end": 173,
+                      "type": "str",
+                      "value": "solid #111111"
                     }
                   ]
                 }

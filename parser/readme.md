@@ -18,7 +18,7 @@ var_key { type: "var_key", value: string } // to solve "str-#{var}" , expression
  * iterable eg: $each value in list
   */
 
-list { type:"list",value:[ str | var ] }
+list { type:"list",value:[ str | var | var_key ] }
 
 binary { type: "binary", operator: OPERATOR, left: str | var | binary, right: str | var | binary } // + | - | * | /
 ```
@@ -31,7 +31,7 @@ body { type:"body", chidren:[ Statement | Expression ] } // difference between b
 @extend { type:"@extend", param: str | placeholder }
 @import { type: "@import", params:[ str ] }
 @mixin  { type: "@mixin", id:{ type:"identifier", name: string } , params: [ var | assign ], body: body }
-child { type:"child", selector: str | placeholder, children: [ Statement | Expression ] }
+child { type:"child", selector: str | placeholder | list, children: [ Statement | Expression ] }
 assign { type: "assign", operator: ":", left: str | var | var_key, right: list }
 @error  { type: "@error", value: list }
 ```

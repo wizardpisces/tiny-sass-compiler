@@ -1,5 +1,9 @@
 
-let { debug, PRECEDENCE } = require('./util')
+let {
+    debug,
+    PRECEDENCE,
+    fillWhitespace
+} = require('./util')
 
 /**
  * 
@@ -15,6 +19,7 @@ function parse(input) {
             let originalFn = parserNamespace[fnKey]
             parserNamespace[fnKey] = function(){
                 let args = Array.prototype.slice.call(arguments);
+                input.eliminateWhitespace()
                 let start = input.getCoordination().pos,
                     ast = originalFn.apply(null, args),
                     end = input.getCoordination().pos;
@@ -119,6 +124,18 @@ function parse(input) {
             if (tok.type === "str") {
                 return parse_consecutive_str()
             }
+        },
+
+        maybe_call: function(exp) { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
+            let expr = exp();
+
+            if (is_punc('(')) {
+                return {
+                    type: expr.type,
+                    value: expr.value + '(' + delimited('(', ')', ',', parse_expression).map(expr => expr.value).join(',') + ')'
+                }
+            }
+            return expr;
         }
 
     }
@@ -221,12 +238,18 @@ function parse(input) {
         }
 
         /**
+         * handle selector may contain key_var, which should be resolved to list ast
          * .icon-#{$size} {}
-          */
+        */
 
-        // if(is_punc('#')){
-        //     return maybe_var_key(expr)
-        // }
+        if(is_punc('#')){
+            return maybe_assign(()=>{
+                return {
+                    type:'list',
+                    value: expr.type === 'list' ? expr.value.concat(parserNamespace.parse_atom()) : [expr].concat(parserNamespace.parse_atom())
+                }
+            })
+        }
 
         if (is_punc('{')) {
             return parse_child(expr) //passin selector
@@ -396,31 +419,24 @@ function parse(input) {
         }
     }
     
+    
+
     function parse_consecutive_str() { //to resolve test skew(20deg) rotate(20deg);
 
-        function maybe_call(exp) {//to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
-            let expr = exp();
-
-            if (is_punc('(')) {
-                return {
-                    type: expr.type,
-                    value: expr.value + '(' + delimited('(', ')', ',', parse_expression).map(expr => expr.value).join(',') + ')'
-                }
-            }
-            return expr;
-        }
 
         function read_while(predicate) {
             let tokens = [];
 
             while (!input.eof() && predicate(input.peek()))
-                tokens.push(maybe_call(() => input.next()));
+                tokens.push(parserNamespace.maybe_call(() => input.next()));
             return tokens;
         }
 
+        let tokens = read_while(tok => tok.type === 'str')
+
         return {
             type: 'str',
-            value: read_while(tok => tok.type === 'str').map(tok => tok.value).join(' ')
+            value: fillWhitespace(tokens).map(tok => tok.value).join('')
         }
     }
 

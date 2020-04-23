@@ -10,7 +10,7 @@
  */
 
 function lex(input) {
-    let current = null;
+    // let current = null;
     let keywords = ' @extend @mixin @include @import @if @else @error @each ';
     let op_chars = ' + - * / % ',
         comparison_op_chars = '!=><',
@@ -19,6 +19,7 @@ function lex(input) {
     return {
         next,
         peek,
+        eliminateWhitespace,
         eof,
         getCoordination:input.getCoordination,
         setCoordination:input.setCoordination,
@@ -257,12 +258,17 @@ function lex(input) {
         // return current || (current = peek_next());
         return peek_next();
     }
-    function next() {
+    function next(before_hook,after_hook) {
         // let tok = current;
         // current = null;
         // tok = tok || read_next();
         return read_next();
     }
+
+    function eliminateWhitespace(){
+        read_while(is_whitespace);
+    }
+
     function eof() {
         return peek() == null;
     }

@@ -2,6 +2,8 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 124,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -9,12 +11,18 @@
       },
       "params": [
         {
+          "start": 14,
+          "end": 19,
           "type": "var",
           "value": "$size"
         },
         {
+          "start": 21,
+          "end": 35,
           "type": "assign",
           "left": {
+            "start": 21,
+            "end": 28,
             "type": "var",
             "value": "$circle"
           },
@@ -22,6 +30,8 @@
             "type": "list",
             "value": [
               {
+                "start": 30,
+                "end": 35,
                 "type": "str",
                 "value": "false"
               }
@@ -33,8 +43,12 @@
         "type": "body",
         "children": [
           {
+            "start": 41,
+            "end": 53,
             "type": "assign",
             "left": {
+              "start": 41,
+              "end": 46,
               "type": "str",
               "value": "width"
             },
@@ -42,6 +56,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 48,
+                  "end": 53,
                   "type": "var",
                   "value": "$size"
                 }
@@ -49,8 +65,12 @@
             }
           },
           {
+            "start": 57,
+            "end": 70,
             "type": "assign",
             "left": {
+              "start": 57,
+              "end": 63,
               "type": "str",
               "value": "height"
             },
@@ -58,6 +78,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 65,
+                  "end": 70,
                   "type": "var",
                   "value": "$size"
                 }
@@ -65,8 +87,12 @@
             }
           },
           {
+            "start": 75,
+            "end": 122,
             "type": "IfStatement",
             "test": {
+              "start": 79,
+              "end": 86,
               "type": "var",
               "value": "$circle"
             },
@@ -74,8 +100,12 @@
               "type": "body",
               "children": [
                 {
+                  "start": 93,
+                  "end": 117,
                   "type": "assign",
                   "left": {
+                    "start": 93,
+                    "end": 106,
                     "type": "str",
                     "value": "border-radius"
                   },
@@ -86,10 +116,14 @@
                         "type": "binary",
                         "operator": "/",
                         "left": {
+                          "start": 108,
+                          "end": 113,
                           "type": "var",
                           "value": "$size"
                         },
                         "right": {
+                          "start": 116,
+                          "end": 117,
                           "type": "str",
                           "value": "2"
                         }
@@ -107,11 +141,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 126,
+        "end": 136,
         "type": "str",
         "value": ".square-av"
       },
       "children": [
         {
+          "start": 139,
+          "end": 177,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -119,12 +157,18 @@
           },
           "args": [
             {
+              "start": 155,
+              "end": 160,
               "type": "str",
               "value": "100px"
             },
             {
+              "start": 162,
+              "end": 176,
               "type": "assign",
               "left": {
+                "start": 162,
+                "end": 169,
                 "type": "var",
                 "value": "$circle"
               },
@@ -132,6 +176,8 @@
                 "type": "list",
                 "value": [
                   {
+                    "start": 171,
+                    "end": 176,
                     "type": "str",
                     "value": "false"
                   }
@@ -145,11 +191,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 181,
+        "end": 191,
         "type": "str",
         "value": ".circle-av"
       },
       "children": [
         {
+          "start": 194,
+          "end": 231,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -157,12 +207,18 @@
           },
           "args": [
             {
+              "start": 210,
+              "end": 215,
               "type": "str",
               "value": "100px"
             },
             {
+              "start": 217,
+              "end": 230,
               "type": "assign",
               "left": {
+                "start": 217,
+                "end": 224,
                 "type": "var",
                 "value": "$circle"
               },
@@ -170,6 +226,8 @@
                 "type": "list",
                 "value": [
                   {
+                    "start": 226,
+                    "end": 230,
                     "type": "str",
                     "value": "true"
                   }

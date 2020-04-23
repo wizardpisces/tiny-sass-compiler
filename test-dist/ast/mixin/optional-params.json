@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 31,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 5,
         "type": "var",
         "value": "$font"
       },
@@ -11,14 +15,20 @@
         "type": "list",
         "value": [
           {
+            "start": 10,
+            "end": 19,
             "type": "str",
             "value": "Helvetica"
           },
           {
+            "start": 19,
+            "end": 20,
             "type": "punc",
             "value": ","
           },
           {
+            "start": 21,
+            "end": 31,
             "type": "str",
             "value": "sans-serif"
           }
@@ -26,6 +36,8 @@
       }
     },
     {
+      "start": 33,
+      "end": 237,
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -33,12 +45,18 @@
       },
       "params": [
         {
+          "start": 53,
+          "end": 59,
           "type": "var",
           "value": "$image"
         },
         {
+          "start": 60,
+          "end": 71,
           "type": "assign",
           "left": {
+            "start": 60,
+            "end": 62,
             "type": "var",
             "value": "$x"
           },
@@ -46,6 +64,8 @@
             "type": "list",
             "value": [
               {
+                "start": 63,
+                "end": 71,
                 "type": "str",
                 "value": "default1"
               }
@@ -53,8 +73,12 @@
           }
         },
         {
+          "start": 73,
+          "end": 84,
           "type": "assign",
           "left": {
+            "start": 73,
+            "end": 75,
             "type": "var",
             "value": "$y"
           },
@@ -62,6 +86,8 @@
             "type": "list",
             "value": [
               {
+                "start": 76,
+                "end": 84,
                 "type": "str",
                 "value": "default2"
               }
@@ -73,8 +99,12 @@
         "type": "body",
         "children": [
           {
+            "start": 90,
+            "end": 111,
             "type": "assign",
             "left": {
+              "start": 90,
+              "end": 101,
               "type": "str",
               "value": "text-indent"
             },
@@ -82,6 +112,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 103,
+                  "end": 111,
                   "type": "str",
                   "value": "-99999em"
                 }
@@ -89,8 +121,12 @@
             }
           },
           {
+            "start": 115,
+            "end": 131,
             "type": "assign",
             "left": {
+              "start": 115,
+              "end": 123,
               "type": "str",
               "value": "overflow"
             },
@@ -98,6 +134,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 125,
+                  "end": 131,
                   "type": "str",
                   "value": "hidden"
                 }
@@ -105,8 +143,12 @@
             }
           },
           {
+            "start": 135,
+            "end": 151,
             "type": "assign",
             "left": {
+              "start": 135,
+              "end": 145,
               "type": "str",
               "value": "text-align"
             },
@@ -114,6 +156,8 @@
               "type": "list",
               "value": [
                 {
+                  "start": 147,
+                  "end": 151,
                   "type": "str",
                   "value": "left"
                 }
@@ -123,13 +167,19 @@
           {
             "type": "child",
             "selector": {
+              "start": 156,
+              "end": 166,
               "type": "str",
               "value": "background"
             },
             "children": [
               {
+                "start": 173,
+                "end": 186,
                 "type": "assign",
                 "left": {
+                  "start": 173,
+                  "end": 178,
                   "type": "str",
                   "value": "image"
                 },
@@ -137,6 +187,8 @@
                   "type": "list",
                   "value": [
                     {
+                      "start": 180,
+                      "end": 186,
                       "type": "var",
                       "value": "$image"
                     }
@@ -144,8 +196,12 @@
                 }
               },
               {
+                "start": 192,
+                "end": 209,
                 "type": "assign",
                 "left": {
+                  "start": 192,
+                  "end": 198,
                   "type": "str",
                   "value": "repeat"
                 },
@@ -153,6 +209,8 @@
                   "type": "list",
                   "value": [
                     {
+                      "start": 200,
+                      "end": 209,
                       "type": "str",
                       "value": "no-repeat"
                     }
@@ -160,8 +218,12 @@
                 }
               },
               {
+                "start": 215,
+                "end": 230,
                 "type": "assign",
                 "left": {
+                  "start": 215,
+                  "end": 223,
                   "type": "str",
                   "value": "position"
                 },
@@ -169,10 +231,14 @@
                   "type": "list",
                   "value": [
                     {
+                      "start": 225,
+                      "end": 227,
                       "type": "var",
                       "value": "$x"
                     },
                     {
+                      "start": 228,
+                      "end": 230,
                       "type": "var",
                       "value": "$y"
                     }
@@ -187,11 +253,15 @@
     {
       "type": "child",
       "selector": {
+        "start": 239,
+        "end": 249,
         "type": "str",
         "value": ".mail-icon"
       },
       "children": [
         {
+          "start": 254,
+          "end": 306,
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -199,10 +269,14 @@
           },
           "args": [
             {
+              "start": 276,
+              "end": 299,
               "type": "str",
               "value": "url(\"/images/mail.svg\")"
             },
             {
+              "start": 300,
+              "end": 305,
               "type": "var",
               "value": "$font"
             }

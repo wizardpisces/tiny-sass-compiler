@@ -2,8 +2,12 @@
   "type": "prog",
   "prog": [
     {
+      "start": 0,
+      "end": 12,
       "type": "assign",
       "left": {
+        "start": 0,
+        "end": 4,
         "type": "var",
         "value": "$var"
       },
@@ -11,6 +15,8 @@
         "type": "list",
         "value": [
           {
+            "start": 7,
+            "end": 12,
             "type": "str",
             "value": "600px"
           }
@@ -20,13 +26,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 14,
+        "end": 24,
         "type": "str",
         "value": ".container"
       },
       "children": [
         {
+          "start": 29,
+          "end": 45,
           "type": "assign",
           "left": {
+            "start": 29,
+            "end": 34,
             "type": "str",
             "value": "width"
           },
@@ -37,10 +49,14 @@
                 "type": "binary",
                 "operator": "+",
                 "left": {
+                  "start": 36,
+                  "end": 39,
                   "type": "str",
                   "value": "1px"
                 },
                 "right": {
+                  "start": 42,
+                  "end": 45,
                   "type": "str",
                   "value": "8px"
                 }
@@ -53,13 +69,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 50,
+        "end": 70,
         "type": "str",
         "value": "article[role=\"main\"]"
       },
       "children": [
         {
+          "start": 75,
+          "end": 86,
           "type": "assign",
           "left": {
+            "start": 75,
+            "end": 80,
             "type": "str",
             "value": "float"
           },
@@ -67,6 +89,8 @@
             "type": "list",
             "value": [
               {
+                "start": 82,
+                "end": 86,
                 "type": "str",
                 "value": "left"
               }
@@ -74,8 +98,12 @@
           }
         },
         {
+          "start": 90,
+          "end": 116,
           "type": "assign",
           "left": {
+            "start": 90,
+            "end": 95,
             "type": "str",
             "value": "width"
           },
@@ -89,15 +117,21 @@
                   "type": "binary",
                   "operator": "/",
                   "left": {
+                    "start": 97,
+                    "end": 101,
                     "type": "var",
                     "value": "$var"
                   },
                   "right": {
+                    "start": 104,
+                    "end": 109,
                     "type": "str",
                     "value": "960px"
                   }
                 },
                 "right": {
+                  "start": 112,
+                  "end": 116,
                   "type": "str",
                   "value": "100%"
                 }
@@ -110,13 +144,19 @@
     {
       "type": "child",
       "selector": {
+        "start": 121,
+        "end": 148,
         "type": "str",
         "value": "aside[role=\"complementary\"]"
       },
       "children": [
         {
+          "start": 153,
+          "end": 165,
           "type": "assign",
           "left": {
+            "start": 153,
+            "end": 158,
             "type": "str",
             "value": "float"
           },
@@ -124,6 +164,8 @@
             "type": "list",
             "value": [
               {
+                "start": 160,
+                "end": 165,
                 "type": "str",
                 "value": "right"
               }
@@ -131,8 +173,12 @@
           }
         },
         {
+          "start": 169,
+          "end": 196,
           "type": "assign",
           "left": {
+            "start": 169,
+            "end": 174,
             "type": "str",
             "value": "width"
           },
@@ -146,15 +192,21 @@
                   "type": "binary",
                   "operator": "/",
                   "left": {
+                    "start": 176,
+                    "end": 181,
                     "type": "str",
                     "value": "300px"
                   },
                   "right": {
+                    "start": 184,
+                    "end": 189,
                     "type": "str",
                     "value": "960px"
                   }
                 },
                 "right": {
+                  "start": 192,
+                  "end": 196,
                   "type": "str",
                   "value": "100%"
                 }
