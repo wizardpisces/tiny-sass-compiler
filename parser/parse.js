@@ -10,6 +10,120 @@ function parse(input) {
 
     let assign_right_end_condition = default_right_end_condition;
 
+    function injectPositionToParser(parserNamespace){
+        function injectPosition(fnKey) {
+            let originalFn = parserNamespace[fnKey]
+            parserNamespace[fnKey] = function(){
+                let args = Array.prototype.slice.call(arguments);
+                let start = input.getCoordination().pos,
+                    ast = originalFn.apply(null, args),
+                    end = input.getCoordination().pos;
+
+                /**
+                 * adjust start position
+                 * if arguments exist it might be an evaluated expression eg: parse_assign left param
+                 */
+                if(args && args.length > 0){
+                    if(typeof args[0].start === undefined){
+                        input.croak(`[${fnKey}]: expect expression with start property!`)
+                    }
+                     start = start > args[0].start ? args[0].start : start;
+                }
+
+                return {
+                    start,
+                    end,
+                    ...ast
+                };
+            }
+        }
+    
+        Object.keys(parserNamespace).forEach(fnKey => {
+            injectPosition(fnKey)
+        })
+    }
+
+    let parserNamespace = {
+        parse_assign: function(left){
+
+             input.next();
+
+             function parse_assign_right() {
+                 let right = []
+                 while (!assign_right_end_condition()) {
+                     if (debug()) break;
+                     let result = maybe_binary(parserNamespace.parse_atom(), 0);
+                     right.push(result)
+                 }
+                 return right;
+             }
+             return {
+                 type: 'assign',
+                 left: left,
+                 right: {
+                     type: 'list',
+                     value: parse_assign_right()
+                 }
+             }
+        },
+
+        parse_atom: function(){
+
+            if (is_kw('@extend')) {
+                input.next()
+                return parse_extend();
+            }
+
+            if (is_kw('@mixin')) {
+                input.next()
+                return parse_mixin();
+            }
+
+            if (is_kw('@include')) {
+                input.next()
+                return parse_include();
+            }
+
+            if (is_kw('@import')) {
+                input.next()
+                return parse_import();
+            }
+
+            if (is_kw('@if')) {
+                input.next()
+                return parse_if();
+            }
+
+            if (is_kw('@each')) {
+                input.next()
+                return parse_each();
+            }
+
+            if (is_kw('@error')) {
+                input.next()
+                return parse_error();
+            }
+
+            let tok = input.peek();
+            if (tok.type === "var" || tok.type === "placeholder") {
+                return input.next();
+            }
+
+            if (tok.type === "punc") {
+                if (tok.value === "#") {
+                    return maybe_key_var_wrapper(() => input.next())
+                }
+                return input.next()
+            }
+
+            if (tok.type === "str") {
+                return parse_consecutive_str()
+            }
+        }
+
+    }
+
+    injectPositionToParser(parserNamespace);
 /**
  * end with ';' , eg:
  * 
@@ -85,32 +199,11 @@ function parse(input) {
                     type: "binary",
                     operator: tok.value,
                     left: left,
-                    right: maybe_binary(parse_atom(), PRECEDENCE[tok.value])
+                    right: maybe_binary(parserNamespace.parse_atom(), PRECEDENCE[tok.value])
                 }, left_prec)
             }
         }
         return left;
-    }
-
-    function parse_assign(left) {
-        input.next();
-        function parse_assign_right() {
-            let right = []
-            while (!assign_right_end_condition()) {
-                if(debug()) break;
-                let result = maybe_binary(parse_atom(), 0);
-                right.push(result)
-            }
-            return right;
-        }
-        return {
-            type: 'assign',
-            left: left,
-            right: {
-                type: 'list',
-                value: parse_assign_right()
-            }
-        }
     }
 
     function parse_child(selector) {
@@ -124,7 +217,7 @@ function parse(input) {
         let expr = exp();
 
         if (is_assign()) {
-            return parse_assign(expr)
+            return parserNamespace.parse_assign(expr)
         }
 
         /**
@@ -132,7 +225,7 @@ function parse(input) {
           */
 
         // if(is_punc('#')){
-        //     // return maybe_list_key([exp]);
+        //     return maybe_var_key(expr)
         // }
 
         if (is_punc('{')) {
@@ -238,7 +331,7 @@ function parse(input) {
             testExpression = true,
             blockStatement = [];
 
-        testExpression = maybe_binary(parse_atom(),0);
+        testExpression = maybe_binary(parserNamespace.parse_atom(),0);
 
         if (!is_punc('{')){
             input.croak(`@if expect '{' but encountered '${input.next().value}'`)            
@@ -264,7 +357,7 @@ function parse(input) {
     }
 
     function parse_each(){
-        let left = parse_atom();
+        let left = parserNamespace.parse_atom();
 
         /**
          * skip "in" expression
@@ -272,7 +365,7 @@ function parse(input) {
 
         input.next();
 
-        let right = parse_atom();
+        let right = parserNamespace.parse_atom();
 
         skip_punc('{')
         let blockStatement = parse_expression()
@@ -288,7 +381,7 @@ function parse(input) {
     function parse_list(endCheck = () => !default_right_end_condition()) {
         let list = []
         while (endCheck()) {
-            list.push(parse_atom())
+            list.push(parserNamespace.parse_atom())
         }
         return {
             type:'list',
@@ -361,7 +454,7 @@ function parse(input) {
         /**
          * color: #1212; or #selector{}
           */
-        let nextToken = parse_atom();
+        let nextToken = parserNamespace.parse_atom();
 
         if(nextToken.type!=='str'){
             input.croak(`[maybe_key_var_wrapper]: expect str token but received ${nextToken.value}`)
@@ -372,63 +465,9 @@ function parse(input) {
         return expr;
     }
 
-    function parse_atom() {
-        
-        if (is_kw('@extend')) {
-            input.next()
-            return parse_extend();
-        }
-
-        if (is_kw('@mixin')) {
-            input.next()
-            return parse_mixin();
-        }
-
-        if (is_kw('@include')) {
-            input.next()
-            return parse_include();
-        }
-
-        if (is_kw('@import')) {
-            input.next()
-            return parse_import();
-        }
-
-        if (is_kw('@if')) {
-            input.next()
-            return parse_if();
-        }
-
-        if (is_kw('@each')) {
-            input.next()
-            return parse_each();
-        }
-
-        if (is_kw('@error')) {
-            input.next()
-            return parse_error();
-        }
-
-        let tok = input.peek();
-        if (tok.type === "var" || tok.type === "placeholder") {
-            return input.next();
-        }
-
-        if (tok.type === "punc"){
-            if(tok.value === "#"){
-                return maybe_key_var_wrapper(()=>input.next())
-            }
-            return input.next()
-        }
-
-        if (tok.type === "str") {
-            return parse_consecutive_str()
-        }
-    }
-
     function parse_expression() {
         return maybe_assign(function () {
-            return parse_atom()
+            return parserNamespace.parse_atom()
         })
     }
 

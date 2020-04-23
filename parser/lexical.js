@@ -20,6 +20,8 @@ function lex(input) {
         next,
         peek,
         eof,
+        getCoordination:input.getCoordination,
+        setCoordination:input.setCoordination,
         croak: input.croak
     }
 
@@ -241,14 +243,25 @@ function lex(input) {
         input.croak("Can't handle character: " + ch);
     }
 
+    /**
+     * reset coordination after peek value
+     */
+    function peek_next(){
+        let coordination = input.getCoordination()
+        let tok = read_next();
+        input.setCoordination(coordination)
+        return tok;
+    }
+
     function peek() {
-        return current || (current = read_next());
+        // return current || (current = peek_next());
+        return peek_next();
     }
     function next() {
-        let tok = current;
-        current = null;
-        tok = tok || read_next();
-        return tok;
+        // let tok = current;
+        // current = null;
+        // tok = tok || read_next();
+        return read_next();
     }
     function eof() {
         return peek() == null;
