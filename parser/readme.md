@@ -1,6 +1,6 @@
-# Parser readme
-
-# AST tree node
+# SASS AST Descriptor Syntax
+  
+This document specifies the core sass AST node types that support the sass grammar.
 
 ## Expression
 
