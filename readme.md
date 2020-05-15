@@ -1,11 +1,12 @@
-# Simple sass compiler
+# Sass Compiler
 
-This is a simplified example of all the major pieces of a compiler written in easy to read JavaScript.
+Sass compiler in javascript
 
 ## Description 
-A simple compiler that transform basic sass to css
 
-### Partially Support features:
+A compiler that compile sass to css
+
+### Features:
 
 1. Variables
 2. Nesting
@@ -14,11 +15,13 @@ A simple compiler that transform basic sass to css
 5. Mixins
 6. Modules
 
-## Target people
+### Project Target
 
 This project is for people who want to understand parser and AST(abstract syntac tree) , and how they combine to make a compiler
 
-## Tests
+[Sass AST Discriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
+
+### Example
 
 ```js
 npm run test

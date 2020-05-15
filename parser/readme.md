@@ -58,6 +58,8 @@ prog { type:"prog", selector: str, prog: [ Statement ] }
 Todos: 
 
 * add keyword @function
+* add position to more tokens
 * add '( | )' check to binary precedence
 * optimize AST Node types
 * optimize parser files organization
+* reorganize readme.md
