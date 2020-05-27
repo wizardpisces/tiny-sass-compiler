@@ -29,7 +29,7 @@ npm install -g tiny-sass-compiler
 
 ## Command Line Interface
 
-*Support .scss extension for now*
+*Support **.scss** extension for now*
 
 ### Usage
 
