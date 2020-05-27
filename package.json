@@ -1,8 +1,11 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "simple scss compiler",
   "main": "test.js",
+  "bin": {
+    "tiny-sass": "bin/tiny-sass"
+  },
   "directories": {
     "test": "test"
   },
@@ -27,5 +30,8 @@
   "homepage": "https://github.com/wizardpisces/tiny-sass-compiler#readme",
   "devDependencies": {
     "cssbeautify": "^0.3.1"
+  },
+  "dependencies": {
+    "mkdirp": "^1.0.4"
   }
 }
