@@ -29,24 +29,29 @@ npm install -g tiny-sass-compiler
 
 ## Command Line Interface
 
+*Support .scss extension for now*
+
 ### Usage
 
-**Use .scss extension for now**
 
-`tiny-sass sourceDir outputDir`
+`tiny-sass <input> [output]`
+
+The `input` and `output` must be a directory
 
 Example
 
-`tiny-sass src dist/`
+```bash
+tiny-sass src/ dist/
+```
 
-**will generate intermediate AST file in dist/ast and css file in dist/css**
+*will generate intermediate AST file in dist/ast and css file in dist/css*
 
 ## Project Snapshot Test
 
 ```bash
 npm run test
 ```
-**will generate intermediate AST file in test-dist/ast and css file in test-dist/css**
+*will generate intermediate AST file in test-dist/ast and css file in test-dist/css*
 
 ### Sample1:
 
