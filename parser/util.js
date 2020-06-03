@@ -9,6 +9,16 @@ const debug = (function () {
     }
 })()
 
+
+function is_calculate_op_char(ch) {
+    let op_chars = ' + - * / % '
+    return op_chars.indexOf(' ' + ch + ' ') >= 0;
+}
+
+function is_punc(ch) {
+    return ",;(){}#".indexOf(ch) >= 0; // support expr { #{var}:var }
+}
+
 const PRECEDENCE = {
     "=": 1,
     "||": 2,
@@ -18,6 +28,9 @@ const PRECEDENCE = {
     "*": 20, "/": 20, "%": 20,
 };
 
+function is_operator(op) {
+    return Object.keys(PRECEDENCE).includes(op)
+}
  /**
   * fill whitespace between tokens which is removed in lexical analyze
   * 
@@ -54,5 +67,8 @@ const PRECEDENCE = {
 module.exports = {
     debug,
     PRECEDENCE,
-    fillWhitespace
+    fillWhitespace,
+    is_calculate_op_char,
+    is_punc,
+    is_operator
 }

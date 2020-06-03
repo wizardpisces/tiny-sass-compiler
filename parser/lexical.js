@@ -8,11 +8,14 @@
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // + - % * / != ==
  */
+const {
+    is_calculate_op_char,
+    is_punc
+} = require('./util')
 
 function lex(input) {
     // let current = null;
-    let keywords = ' @extend @mixin @include @import @if @else @error @each ';
-    let op_chars = ' + - * / % ',
+    let keywords = ' @extend @mixin @include @import @if @else @error @each ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==','!=','>=','<=','>','<']
 
@@ -30,10 +33,6 @@ function lex(input) {
         return "/".indexOf(ch) >= 0;
     }
 
-    function is_punc(ch) {
-        return ",;(){}#".indexOf(ch) >= 0;// support expr { #{var}:var }
-    }
-
     function is_id_start(ch) {
         return /[$]/.test(ch);
     }
@@ -41,11 +40,6 @@ function lex(input) {
     function skip_comment() {
         read_while(function (ch) { return ch != "\n" });
         input.next();
-    }
-
-    function is_op_char(ch) {
-        // return "+-*/%=&|<>!".indexOf(ch) >= 0;
-        return op_chars.indexOf(' ' + ch + ' ') >= 0;
     }
 
     function is_comparison_op_char(ch) {
@@ -175,7 +169,7 @@ function lex(input) {
         }
     }
 
-    function maybe_op_token(chStr){
+    function maybe_calculate_op_token(chStr){
         if (input.peek() === ' '){
             return generate_op_token(chStr);
         }else{
@@ -237,7 +231,7 @@ function lex(input) {
             return read_punc(input.next())
         }
         if (is_keyword_start(ch)) return read_keyword();//eg: @extend .message-shared;
-        if (is_op_char(ch)) return maybe_op_token(read_while(is_op_char));
+        if (is_calculate_op_char(ch)) return maybe_calculate_op_token(read_while(is_calculate_op_char));
         if (is_comparison_op_char(ch)) return maybe_comparison_op_token(read_while(is_comparison_op_char));
         if (is_base_char(ch)) return read_string();
 

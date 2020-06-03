@@ -29,7 +29,14 @@ function run(sourceDir, outputDir = './', options = {
             normalDistPath = path.join(outputDir, sourceDirname.substr(sourceDirLength)),
             astDistPath = path.join(outputDir, 'ast', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
-            ast = parser(source);
+            ast;
+
+        try{
+            ast = parser(source, filePath)
+        }catch(e){
+            console.error('Parser Error: \n',e)
+            return;
+        }    
 
         function write_ast(cb) {
             if (!options.generateAstFile) {

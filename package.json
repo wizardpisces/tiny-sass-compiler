@@ -32,6 +32,7 @@
     "cssbeautify": "^0.3.1"
   },
   "dependencies": {
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^1.0.4",
+    "superstruct": "^0.8.3"
   }
 }
