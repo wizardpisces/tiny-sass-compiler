@@ -32,9 +32,9 @@ function run(sourceDir, outputDir = './', options = {
             ast;
 
         try{
-            ast = parser(source, filePath)
+            ast = parser(source)
         }catch(e){
-            console.error('Parser Error: \n',e)
+            console.error(`Parser Error:\n filePath: ${filePath}`,e)
             return;
         }    
 

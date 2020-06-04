@@ -18,7 +18,7 @@ const astTypeLiteralValidator = [
     'list',
     'binary',
     'identifier',
-    
+
     'body',
     'assign',
     'child',
@@ -58,19 +58,22 @@ const Statement_Types = ['body', 'assign', 'child', '@import', '@include', '@ext
 
 function constructDynamicStruct(acceptTypes = [], typePath = '') {
 
-    if (typeof acceptTypes === 'string'){
+    if (typeof acceptTypes === 'string') {
         acceptTypes = [acceptTypes]
     }
 
-    return customStruct.dynamic(({
-        type
-    }) => {
-        
-        if (!acceptTypes.includes(type)) {
-            throw new Error(`type: ${typePath} expect oneOf ${acceptTypes} but received ${type}`)
+    return customStruct.dynamic((value, branch, path) => {
+        // pure literal null
+        if (value === null && acceptTypes.includes('null')) {
+            return customStruct('null');
         }
 
-        return Type_Struct_Map[type]
+        // Expression or Statement with type
+        if (!acceptTypes.includes(value.type)) {
+            throw `\n ParentPath: ${typePath} \n Path: ${path} \n Expect oneOf ${acceptTypes} but received ${value.type}\n`
+        }
+
+        return Type_Struct_Map[value.type]
     })
 }
 
@@ -121,7 +124,7 @@ let Type_Schema_Map = {
 
     '@import': {
         type: '@import',
-        params: [constructDynamicStruct(['str'],'@import->str')]
+        params: [constructDynamicStruct(['str'], '@import->str')]
     },
 
     assign: {
@@ -197,19 +200,17 @@ const Type_Struct_Map = Object.keys(Type_Schema_Map).reduce((resultMap, type) =>
     return resultMap;
 }, {})
 
-module.exports = function error_checking(ast, filePath) {
+module.exports = function error_checking(ast) {
     try {
         Type_Struct_Map['Prog'](ast);
     } catch (e) {
-        const {
-            path,
-            value,
-            type
-        } = e
-
-        console.error(`\nfailed: \n filePath: ${filePath} \n schemaPath: ${path}\n msg: expect type ${type} but received ${value}\n`)
-
-        throw new Error(e)
+        // const {
+        //     path,
+        //     value,
+        //     type
+        // } = e
+        // console.error(`\nAST check failed: \n filePath: ${filePath} \n schemaPath: ${path}\n msg: expect type ${type} but received ${value}\n`)
+        throw e
     }
 
     return ast;

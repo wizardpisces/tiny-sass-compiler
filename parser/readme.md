@@ -2,6 +2,10 @@
   
 This document specifies the core sass AST node types that support the sass grammar.
 
+## literal
+
+null
+
 ## Expression
 
 ```js
