@@ -34,7 +34,7 @@ function run(sourceDir, outputDir = './', options = {
         try{
             ast = parser(source)
         }catch(e){
-            console.error(`Parser Error:\n filePath: ${filePath}`,e)
+            console.error(`\nParser Error:\n filePath: ${filePath}\n`,e)
             return;
         }    
 

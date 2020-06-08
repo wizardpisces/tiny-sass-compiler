@@ -14,42 +14,33 @@ function parse(input) {
 
     let assign_right_end_condition = default_right_end_condition;
 
-    function injectPositionToParser(parserNamespace){
-        function injectPosition(fnKey) {
-            let originalFn = parserNamespace[fnKey]
-            parserNamespace[fnKey] = function(){
-                let args = Array.prototype.slice.call(arguments);
-                input.eliminateWhitespace()
-                let start = input.getCoordination().pos,
-                    ast = originalFn.apply(null, args),
-                    end = input.getCoordination().pos;
+    function injectPosition(parseFn){
+        return function(...args){
+            input.eliminateWhitespace()
+            let start = input.getCoordination().pos,
+                ast = parseFn.apply(null, args),
+                end = input.getCoordination().pos;
 
-                /**
-                 * adjust start position
-                 * if arguments exist it might be an evaluated expression eg: parse_assign left param
-                 */
-                if(args && args.length > 0){
-                    if(typeof args[0].start === undefined){
-                        input.croak(`[${fnKey}]: expect expression with start property!`)
-                    }
-                     start = start > args[0].start ? args[0].start : start;
+            /**
+             * adjust start position
+             * if arguments exist it might be an evaluated expression eg: parse_assign left param
+             */
+            if (args && args.length > 0) {
+                if (typeof args[0].start === undefined) {
+                    input.croak(`[${parseFn.name}]: expect expression with start property!`)
                 }
-
-                return {
-                    start,
-                    end,
-                    ...ast
-                };
+                start = start > args[0].start ? args[0].start : start;
             }
+            return {
+                start,
+                end,
+                ...ast
+            };
         }
-    
-        Object.keys(parserNamespace).forEach(fnKey => {
-            injectPosition(fnKey)
-        })
     }
 
     let parserNamespace = {
-        parse_assign: function(left){
+        parse_assign: injectPosition(function parse_assign(left) {
 
              input.next();
 
@@ -70,9 +61,9 @@ function parse(input) {
                      value: parse_assign_right()
                  }
              }
-        },
+        }),
 
-        parse_atom: function(){
+        parse_atom: injectPosition(function parse_atom() {
 
             if (is_kw('@extend')) {
                 input.next()
@@ -124,9 +115,9 @@ function parse(input) {
             if (tok.type === "str") {
                 return parse_consecutive_str()
             }
-        },
+        }),
 
-        maybe_call: function(exp) { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
+        maybe_call: injectPosition(function maybe_call(exp) { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
             let expr = exp();
 
             if (is_punc('(')) {
@@ -136,11 +127,9 @@ function parse(input) {
                 }
             }
             return expr;
-        }
+        })
 
     }
-
-    injectPositionToParser(parserNamespace);
 /**
  * end with ';' , eg:
  * 

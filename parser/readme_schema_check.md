@@ -1,5 +1,5 @@
 
-## use superstruct to construct ast schema then use schema to check generated ast
+## use superstruct to construct ast schema then use schema to dynamic check generated ast
 
 construct struct
 

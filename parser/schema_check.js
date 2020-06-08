@@ -56,7 +56,7 @@ const baseSchema = {
  */
 const Statement_Types = ['body', 'assign', 'child', '@import', '@include', '@extend', '@mixin', '@error', 'EachStatement', 'IfStatement']
 
-function constructDynamicStruct(acceptTypes = [], typePath = '') {
+function constructDynamicStruct(acceptTypes = [], parentPath = '') {
 
     if (typeof acceptTypes === 'string') {
         acceptTypes = [acceptTypes]
@@ -70,7 +70,8 @@ function constructDynamicStruct(acceptTypes = [], typePath = '') {
 
         // Expression or Statement with type
         if (!acceptTypes.includes(value.type)) {
-            throw `\n ParentPath: ${typePath} \n Path: ${path} \n Expect oneOf ${acceptTypes} but received ${value.type}\n`
+            // console.log(branch)
+            throw `astPath ${[parentPath].concat(path).join('->')} expect oneOf ${acceptTypes} but received ${JSON.stringify(value)}\n`
         }
 
         return Type_Struct_Map[value.type]
@@ -107,37 +108,37 @@ let Type_Schema_Map = {
     list: {
         type: 'list',
         // ast tree node must contains type property {type:'str',value:'1px solid red'}
-        value: [constructDynamicStruct(['str', 'var', 'var_key', 'punc', 'binary'], 'list->value')]
+        value: [constructDynamicStruct(['str', 'var', 'var_key', 'punc', 'binary'], 'list')]
     },
     binary: {
         type: 'binary',
         operator: 'operator',
-        left: constructDynamicStruct(['str', 'var', 'binary'], 'binary->left'),
-        right: constructDynamicStruct(['str', 'var', 'binary'], 'binary-right')
+        left: constructDynamicStruct(['str', 'var', 'binary'], 'binary'),
+        right: constructDynamicStruct(['str', 'var', 'binary'], 'binary')
     },
 
     //Statement
     body: {
         type: 'body',
-        children: [constructDynamicStruct(Statement_Types, 'body->value')]
+        children: [constructDynamicStruct(Statement_Types, 'body')]
     },
 
     '@import': {
         type: '@import',
-        params: [constructDynamicStruct(['str'], '@import->str')]
+        params: [constructDynamicStruct(['str'], '@import')]
     },
 
     assign: {
         type: 'assign',
-        left: constructDynamicStruct(['str', 'var', 'var_key'], 'assign->left'),
-        right: constructDynamicStruct(['list'], 'assign->right')
+        left: constructDynamicStruct(['str', 'var', 'var_key'], 'assign'),
+        right: constructDynamicStruct(['list'], 'assign')
     },
 
     child: {
         type: 'child',
         // selector: str | placeholder | list,
-        selector: constructDynamicStruct(['str', 'placeholder', 'list'], 'child->selector'),
-        children: [constructDynamicStruct(Statement_Types, 'child->children')]
+        selector: constructDynamicStruct(['str', 'placeholder', 'list'], 'child'),
+        children: [constructDynamicStruct(Statement_Types, 'child')]
     },
 
     '@include': {
@@ -147,13 +148,13 @@ let Type_Schema_Map = {
             name: "string"
         },
         // args: [str | var | binary]
-        args: [constructDynamicStruct(['str', 'var', 'binary', 'assign'], '@include->args')]
+        args: [constructDynamicStruct(['str', 'var', 'binary', 'assign'], '@include')]
     },
 
     '@extend': {
         type: '@extend',
         // param: str | placeholder
-        param: constructDynamicStruct(['str', 'placeholder'], '@extend->param'),
+        param: constructDynamicStruct(['str', 'placeholder'], '@extend'),
     },
 
     '@mixin': {
@@ -163,33 +164,33 @@ let Type_Schema_Map = {
             name: 'string'
         },
         // params: [var | assign],
-        params: [constructDynamicStruct(['var', 'assign'], '@mixin->args')],
-        body: constructDynamicStruct(['body'], '@mixin->body')
+        params: [constructDynamicStruct(['var', 'assign'], '@mixin')],
+        body: constructDynamicStruct(['body'], '@mixin')
     },
 
     '@error': {
         type: '@error',
-        value: constructDynamicStruct(['list'], '@error->valye')
+        value: constructDynamicStruct(['list'], '@error')
     },
 
     IfStatement: {
         type: 'IfStatement',
         // test: str | var | binary | boolean,
-        test: constructDynamicStruct(['str', 'var', 'binary', 'boolean'], 'IfStatement->test'),
-        consequent: constructDynamicStruct(['body'], 'IfStatement->consequent'),
+        test: constructDynamicStruct(['str', 'var', 'binary', 'boolean'], 'IfStatement'),
+        consequent: constructDynamicStruct(['body'], 'IfStatement'),
         //alternate: IfStatement | body | null
-        alternate: constructDynamicStruct(['IfStatement', 'body', 'null'], 'IfStatement->alternate')
+        alternate: constructDynamicStruct(['IfStatement', 'body', 'null'], 'IfStatement')
     },
 
     EachStatement: {
         type: 'EachStatement',
-        left: constructDynamicStruct(['var'], 'EachStatement->left'),
-        right: constructDynamicStruct(['var'], 'EachStatement->right'),
-        body: constructDynamicStruct(['child'], 'EachStatement->body')
+        left: constructDynamicStruct(['var'], 'EachStatement'),
+        right: constructDynamicStruct(['var'], 'EachStatement'),
+        body: constructDynamicStruct(['child'], 'EachStatement')
     },
     Prog: {
         type: 'prog',
-        prog: [constructDynamicStruct(Statement_Types, 'Prog->prog')]
+        prog: [constructDynamicStruct(Statement_Types, 'Prog')]
     }
 
 };
@@ -204,12 +205,6 @@ module.exports = function error_checking(ast) {
     try {
         Type_Struct_Map['Prog'](ast);
     } catch (e) {
-        // const {
-        //     path,
-        //     value,
-        //     type
-        // } = e
-        // console.error(`\nAST check failed: \n filePath: ${filePath} \n schemaPath: ${path}\n msg: expect type ${type} but received ${value}\n`)
         throw e
     }
 

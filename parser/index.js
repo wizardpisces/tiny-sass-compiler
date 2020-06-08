@@ -1,6 +1,6 @@
 const input_stream = require('./input_stream.js')
 const lexical = require('./lexical.js')
 const parse = require('./parse.js')
-const error_checking = require('./error_checking')
+const schema_check = require('./schema_check')
 
-module.exports = parser = (scss) => error_checking(parse(lexical(input_stream(scss))))
+module.exports = parser = (scss) => schema_check(parse(lexical(input_stream(scss))))
