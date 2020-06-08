@@ -17,9 +17,9 @@ A compiler that compile sass to css ( tutorial only, not for production )
 
 ### Project Target
 
-This project is for people who want to understand parser and AST(abstract syntac tree) , and how they combine to make a compiler
+This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
 
-[Sass AST Discriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
+[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
 
 ## Setup
 
