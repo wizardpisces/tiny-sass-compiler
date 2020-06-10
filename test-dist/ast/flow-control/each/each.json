@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 6,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$sizes"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 8,
             "end": 12,
-            "type": "str",
+            "type": "TEXT",
             "value": "40px"
           },
           {
@@ -29,7 +29,7 @@
           {
             "start": 15,
             "end": 19,
-            "type": "str",
+            "type": "TEXT",
             "value": "50px"
           }
         ]
@@ -42,13 +42,13 @@
       "left": {
         "start": 28,
         "end": 33,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$size"
       },
       "right": {
         "start": 37,
         "end": 43,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$sizes"
       },
       "body": {
@@ -59,7 +59,7 @@
             {
               "start": 48,
               "end": 62,
-              "type": "str",
+              "type": "TEXT",
               "value": ".icon-#asfssd-"
             },
             {
@@ -78,7 +78,7 @@
             "left": {
               "start": 77,
               "end": 86,
-              "type": "str",
+              "type": "TEXT",
               "value": "font-size"
             },
             "right": {
@@ -87,7 +87,7 @@
                 {
                   "start": 88,
                   "end": 93,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$size"
                 }
               ]
@@ -98,7 +98,7 @@
             "selector": {
               "start": 99,
               "end": 102,
-              "type": "str",
+              "type": "TEXT",
               "value": ".ok"
             },
             "children": [
@@ -109,7 +109,7 @@
                 "left": {
                   "start": 112,
                   "end": 121,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "font-size"
                 },
                 "right": {
@@ -118,7 +118,7 @@
                     {
                       "start": 123,
                       "end": 128,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$size"
                     }
                   ]
@@ -131,7 +131,7 @@
                 "left": {
                   "start": 138,
                   "end": 144,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "border"
                 },
                 "right": {
@@ -140,13 +140,13 @@
                     {
                       "start": 146,
                       "end": 151,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$size"
                     },
                     {
                       "start": 153,
                       "end": 173,
-                      "type": "str",
+                      "type": "TEXT",
                       "value": "solid #111111"
                     }
                   ]

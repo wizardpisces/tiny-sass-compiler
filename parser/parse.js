@@ -5,6 +5,8 @@ let {
     fillWhitespace
 } = require('./util')
 
+const NodeTypes = require('./ast');
+
 /**
  * 
  * @param {lex processed stream method} input
@@ -101,7 +103,7 @@ function parse(input) {
             }
 
             let tok = input.peek();
-            if (tok.type === "var" || tok.type === "placeholder") {
+            if (tok.type === NodeTypes.VARIABLE || tok.type === "placeholder") {
                 return input.next();
             }
 
@@ -112,7 +114,7 @@ function parse(input) {
                 return input.next()
             }
 
-            if (tok.type === "str") {
+            if (tok.type === NodeTypes.TEXT) {
                 return parse_consecutive_str()
             }
         }),
@@ -357,7 +359,7 @@ function parse(input) {
             /**
              * check if it's a @else if  statement
               */
-            if (predictToken.type === 'str' && predictToken.value === 'if'){
+            if (predictToken.type === NodeTypes.TEXT && predictToken.value === 'if'){
                 input.next();
                 alternate = parse_if();
             }else{
@@ -421,10 +423,10 @@ function parse(input) {
             return tokens;
         }
 
-        let tokens = read_while(tok => tok.type === 'str')
+        let tokens = read_while(tok => tok.type === NodeTypes.TEXT)
 
         return {
-            type: 'str',
+            type: NodeTypes.TEXT,
             value: fillWhitespace(tokens).map(tok => tok.value).join('')
         }
     }
@@ -432,7 +434,7 @@ function parse(input) {
     function parse_key_var_wrapper(){
         skip_punc('{')
         let var_key = input.next();
-        if(var_key.type!=="var"){
+        if(var_key.type!==NodeTypes.VARIABLE){
             input.croak(`${var_key} should be a variable which starts with '$'`)
         }
         skip_punc('}')
@@ -454,14 +456,14 @@ function parse(input) {
             return parse_key_var_wrapper()
         }
 
-        expr.type = "str";
+        expr.type = NodeTypes.TEXT;
 
         /**
          * color: #1212; or #selector{}
           */
         let nextToken = parserNamespace.parse_atom();
 
-        if(nextToken.type!=='str'){
+        if(nextToken.type!==NodeTypes.TEXT){
             input.croak(`[maybe_key_var_wrapper]: expect str token but received ${nextToken.value}`)
         }
 

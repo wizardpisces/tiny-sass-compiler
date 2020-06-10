@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 4,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$top"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 7,
             "end": 11,
-            "type": "str",
+            "type": "TEXT",
             "value": "20px"
           }
         ]
@@ -30,7 +30,7 @@
       "left": {
         "start": 13,
         "end": 20,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$margin"
       },
       "right": {
@@ -39,7 +39,7 @@
           {
             "start": 22,
             "end": 25,
-            "type": "str",
+            "type": "TEXT",
             "value": "2px"
           }
         ]
@@ -52,7 +52,7 @@
       "left": {
         "start": 27,
         "end": 33,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$right"
       },
       "right": {
@@ -61,7 +61,7 @@
           {
             "start": 35,
             "end": 39,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$top"
           }
         ]
@@ -72,7 +72,7 @@
       "selector": {
         "start": 41,
         "end": 47,
-        "type": "str",
+        "type": "TEXT",
         "value": ".main2"
       },
       "children": [
@@ -83,7 +83,7 @@
           "left": {
             "start": 53,
             "end": 60,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$margin"
           },
           "right": {
@@ -92,7 +92,7 @@
               {
                 "start": 62,
                 "end": 65,
-                "type": "str",
+                "type": "TEXT",
                 "value": "3px"
               }
             ]
@@ -105,7 +105,7 @@
           "left": {
             "start": 71,
             "end": 77,
-            "type": "str",
+            "type": "TEXT",
             "value": "margin"
           },
           "right": {
@@ -114,7 +114,7 @@
               {
                 "start": 79,
                 "end": 86,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$margin"
               }
             ]
@@ -127,7 +127,7 @@
           "left": {
             "start": 92,
             "end": 97,
-            "type": "str",
+            "type": "TEXT",
             "value": "right"
           },
           "right": {
@@ -136,7 +136,7 @@
               {
                 "start": 99,
                 "end": 105,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$right"
               }
             ]
@@ -149,7 +149,7 @@
       "selector": {
         "start": 109,
         "end": 114,
-        "type": "str",
+        "type": "TEXT",
         "value": ".main"
       },
       "children": [
@@ -160,7 +160,7 @@
           "left": {
             "start": 121,
             "end": 124,
-            "type": "str",
+            "type": "TEXT",
             "value": "top"
           },
           "right": {
@@ -169,7 +169,7 @@
               {
                 "start": 128,
                 "end": 132,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$top"
               }
             ]
@@ -180,7 +180,7 @@
           "selector": {
             "start": 141,
             "end": 148,
-            "type": "str",
+            "type": "TEXT",
             "value": ".child1"
           },
           "children": [
@@ -191,7 +191,7 @@
               "left": {
                 "start": 158,
                 "end": 164,
-                "type": "str",
+                "type": "TEXT",
                 "value": "margin"
               },
               "right": {
@@ -200,7 +200,7 @@
                   {
                     "start": 165,
                     "end": 172,
-                    "type": "var",
+                    "type": "VARIABLE",
                     "value": "$margin"
                   }
                 ]
@@ -211,7 +211,7 @@
               "selector": {
                 "start": 182,
                 "end": 189,
-                "type": "str",
+                "type": "TEXT",
                 "value": ".child2"
               },
               "children": [
@@ -222,7 +222,7 @@
                   "left": {
                     "start": 203,
                     "end": 213,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "background"
                   },
                   "right": {
@@ -231,7 +231,7 @@
                       {
                         "start": 214,
                         "end": 219,
-                        "type": "str",
+                        "type": "TEXT",
                         "value": "green"
                       }
                     ]

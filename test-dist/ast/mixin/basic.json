@@ -20,7 +20,7 @@
             "left": {
               "start": 22,
               "end": 28,
-              "type": "str",
+              "type": "TEXT",
               "value": "margin"
             },
             "right": {
@@ -29,7 +29,7 @@
                 {
                   "start": 30,
                   "end": 31,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "0"
                 }
               ]
@@ -42,7 +42,7 @@
             "left": {
               "start": 35,
               "end": 42,
-              "type": "str",
+              "type": "TEXT",
               "value": "padding"
             },
             "right": {
@@ -51,7 +51,7 @@
                 {
                   "start": 44,
                   "end": 45,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "0"
                 }
               ]
@@ -64,7 +64,7 @@
             "left": {
               "start": 49,
               "end": 59,
-              "type": "str",
+              "type": "TEXT",
               "value": "list-style"
             },
             "right": {
@@ -73,7 +73,7 @@
                 {
                   "start": 61,
                   "end": 65,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "none"
                 }
               ]
@@ -109,7 +109,7 @@
             "selector": {
               "start": 121,
               "end": 123,
-              "type": "str",
+              "type": "TEXT",
               "value": "li"
             },
             "children": [
@@ -120,7 +120,7 @@
                 "left": {
                   "start": 130,
                   "end": 137,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "display"
                 },
                 "right": {
@@ -129,7 +129,7 @@
                     {
                       "start": 139,
                       "end": 151,
-                      "type": "str",
+                      "type": "TEXT",
                       "value": "inline-block"
                     }
                   ]
@@ -145,7 +145,7 @@
       "selector": {
         "start": 160,
         "end": 166,
-        "type": "str",
+        "type": "TEXT",
         "value": "nav ul"
       },
       "children": [

@@ -4,13 +4,14 @@
  * ast => css
  * 
  */
+const NodeTypes = require('../parser/ast');
 
 function compile_css(ast) {
 
     function compile(exp) {
         switch (exp.type) {
-            case "str": return css_str(exp);
-            case "var": return css_var(exp);
+            case NodeTypes.TEXT: return css_str(exp);
+            case NodeTypes.VARIABLE: return css_var(exp);
             case "assign": return css_assign(exp);
             case "child": return css_child(exp);
             case "empty": return '';

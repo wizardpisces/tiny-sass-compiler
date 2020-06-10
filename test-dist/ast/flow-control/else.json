@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 17,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$light-background"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 19,
             "end": 26,
-            "type": "str",
+            "type": "TEXT",
             "value": "#f2ece4"
           }
         ]
@@ -30,7 +30,7 @@
       "left": {
         "start": 28,
         "end": 39,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$light-text"
       },
       "right": {
@@ -39,7 +39,7 @@
           {
             "start": 41,
             "end": 45,
-            "type": "str",
+            "type": "TEXT",
             "value": "#036"
           }
         ]
@@ -52,7 +52,7 @@
       "left": {
         "start": 47,
         "end": 63,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$dark-background"
       },
       "right": {
@@ -61,7 +61,7 @@
           {
             "start": 65,
             "end": 72,
-            "type": "str",
+            "type": "TEXT",
             "value": "#6b717f"
           }
         ]
@@ -74,7 +74,7 @@
       "left": {
         "start": 74,
         "end": 84,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$dark-text"
       },
       "right": {
@@ -83,7 +83,7 @@
           {
             "start": 86,
             "end": 93,
-            "type": "str",
+            "type": "TEXT",
             "value": "#d2e1dd"
           }
         ]
@@ -105,7 +105,7 @@
           "left": {
             "start": 116,
             "end": 128,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$light-theme"
           },
           "right": {
@@ -114,7 +114,7 @@
               {
                 "start": 130,
                 "end": 134,
-                "type": "str",
+                "type": "TEXT",
                 "value": "true"
               }
             ]
@@ -131,7 +131,7 @@
             "test": {
               "start": 144,
               "end": 156,
-              "type": "var",
+              "type": "VARIABLE",
               "value": "$light-theme"
             },
             "consequent": {
@@ -144,7 +144,7 @@
                   "left": {
                     "start": 163,
                     "end": 179,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "background-color"
                   },
                   "right": {
@@ -153,7 +153,7 @@
                       {
                         "start": 181,
                         "end": 198,
-                        "type": "var",
+                        "type": "VARIABLE",
                         "value": "$light-background"
                       }
                     ]
@@ -166,7 +166,7 @@
                   "left": {
                     "start": 204,
                     "end": 209,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "color"
                   },
                   "right": {
@@ -175,7 +175,7 @@
                       {
                         "start": 211,
                         "end": 222,
-                        "type": "var",
+                        "type": "VARIABLE",
                         "value": "$light-text"
                       }
                     ]
@@ -193,7 +193,7 @@
                   "left": {
                     "start": 240,
                     "end": 256,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "background-color"
                   },
                   "right": {
@@ -202,7 +202,7 @@
                       {
                         "start": 258,
                         "end": 274,
-                        "type": "var",
+                        "type": "VARIABLE",
                         "value": "$dark-background"
                       }
                     ]
@@ -215,7 +215,7 @@
                   "left": {
                     "start": 280,
                     "end": 285,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "color"
                   },
                   "right": {
@@ -224,7 +224,7 @@
                       {
                         "start": 287,
                         "end": 297,
-                        "type": "var",
+                        "type": "VARIABLE",
                         "value": "$dark-text"
                       }
                     ]
@@ -241,7 +241,7 @@
       "selector": {
         "start": 306,
         "end": 313,
-        "type": "str",
+        "type": "TEXT",
         "value": ".banner"
       },
       "children": [
@@ -261,7 +261,7 @@
               "left": {
                 "start": 340,
                 "end": 352,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$light-theme"
               },
               "right": {
@@ -270,7 +270,7 @@
                   {
                     "start": 354,
                     "end": 358,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "true"
                   }
                 ]
@@ -283,7 +283,7 @@
           "selector": {
             "start": 363,
             "end": 374,
-            "type": "str",
+            "type": "TEXT",
             "value": "body.dark &"
           },
           "children": [
@@ -303,7 +303,7 @@
                   "left": {
                     "start": 403,
                     "end": 415,
-                    "type": "var",
+                    "type": "VARIABLE",
                     "value": "$light-theme"
                   },
                   "right": {
@@ -312,7 +312,7 @@
                       {
                         "start": 417,
                         "end": 422,
-                        "type": "str",
+                        "type": "TEXT",
                         "value": "false"
                       }
                     ]

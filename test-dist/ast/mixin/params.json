@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 10,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$property2"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 13,
             "end": 31,
-            "type": "str",
+            "type": "TEXT",
             "value": "skew(30deg,20deg)"
           }
         ]
@@ -35,13 +35,13 @@
         {
           "start": 50,
           "end": 59,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$property"
         },
         {
           "start": 60,
           "end": 70,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$property2"
         }
       ],
@@ -55,7 +55,7 @@
             "left": {
               "start": 76,
               "end": 93,
-              "type": "str",
+              "type": "TEXT",
               "value": "-webkit-transform"
             },
             "right": {
@@ -64,7 +64,7 @@
                 {
                   "start": 95,
                   "end": 104,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$property"
                 }
               ]
@@ -77,7 +77,7 @@
             "left": {
               "start": 108,
               "end": 121,
-              "type": "str",
+              "type": "TEXT",
               "value": "-ms-transform"
             },
             "right": {
@@ -86,7 +86,7 @@
                 {
                   "start": 123,
                   "end": 132,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$property"
                 }
               ]
@@ -99,7 +99,7 @@
             "left": {
               "start": 136,
               "end": 145,
-              "type": "str",
+              "type": "TEXT",
               "value": "transform"
             },
             "right": {
@@ -108,13 +108,13 @@
                 {
                   "start": 147,
                   "end": 156,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$property"
                 },
                 {
                   "start": 157,
                   "end": 167,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$property2"
                 }
               ]
@@ -128,7 +128,7 @@
       "selector": {
         "start": 171,
         "end": 175,
-        "type": "str",
+        "type": "TEXT",
         "value": ".box"
       },
       "children": [
@@ -144,13 +144,13 @@
             {
               "start": 200,
               "end": 213,
-              "type": "str",
+              "type": "TEXT",
               "value": "rotate(30deg)"
             },
             {
               "start": 214,
               "end": 224,
-              "type": "var",
+              "type": "VARIABLE",
               "value": "$property2"
             }
           ]
@@ -162,7 +162,7 @@
           "left": {
             "start": 230,
             "end": 234,
-            "type": "str",
+            "type": "TEXT",
             "value": "left"
           },
           "right": {
@@ -171,7 +171,7 @@
               {
                 "start": 235,
                 "end": 238,
-                "type": "str",
+                "type": "TEXT",
                 "value": "1px"
               }
             ]

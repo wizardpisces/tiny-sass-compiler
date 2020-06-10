@@ -88,7 +88,7 @@ AST
       "left": {
         "start": 0,
         "end": 11,
-        "type": "var",
+        "type": NodeTypes.VARIABLE,
         "value": "$font-stack"
       },
       "right": {
@@ -97,7 +97,7 @@ AST
           {
             "start": 16,
             "end": 25,
-            "type": "str",
+            "type": NodeTypes.TEXT,
             "value": "Helvetica"
           },
           {
@@ -109,7 +109,7 @@ AST
           {
             "start": 27,
             "end": 37,
-            "type": "str",
+            "type": NodeTypes.TEXT,
             "value": "sans-serif"
           }
         ]
@@ -122,7 +122,7 @@ AST
       "left": {
         "start": 39,
         "end": 53,
-        "type": "var",
+        "type": NodeTypes.VARIABLE,
         "value": "$primary-color"
       },
       "right": {
@@ -131,7 +131,7 @@ AST
           {
             "start": 55,
             "end": 59,
-            "type": "str",
+            "type": NodeTypes.TEXT,
             "value": "#333"
           }
         ]
@@ -142,7 +142,7 @@ AST
       "selector": {
         "start": 62,
         "end": 72,
-        "type": "str",
+        "type": NodeTypes.TEXT,
         "value": "body .test"
       },
       "children": [
@@ -153,7 +153,7 @@ AST
           "left": {
             "start": 76,
             "end": 80,
-            "type": "str",
+            "type": NodeTypes.TEXT,
             "value": "font"
           },
           "right": {
@@ -162,13 +162,13 @@ AST
               {
                 "start": 82,
                 "end": 86,
-                "type": "str",
+                "type": NodeTypes.TEXT,
                 "value": "100%"
               },
               {
                 "start": 87,
                 "end": 98,
-                "type": "var",
+                "type": NodeTypes.VARIABLE,
                 "value": "$font-stack"
               }
             ]
@@ -181,7 +181,7 @@ AST
           "left": {
             "start": 102,
             "end": 107,
-            "type": "str",
+            "type": NodeTypes.TEXT,
             "value": "color"
           },
           "right": {
@@ -190,7 +190,7 @@ AST
               {
                 "start": 109,
                 "end": 123,
-                "type": "var",
+                "type": NodeTypes.VARIABLE,
                 "value": "$primary-color"
               }
             ]

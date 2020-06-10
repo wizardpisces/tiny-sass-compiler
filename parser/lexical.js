@@ -2,8 +2,8 @@
  * 
  * @param {input_stream processed stream method} input 
  * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
- * { type: "str", value: "12px" }
- * { type: "var", value: "$height" }      // identifiers
+ * { type: NodeTypes.TEXT, value: "12px" }
+ * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
  * { type: "kw", value: "@extend"}    // keywords below
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
  * { type: "op", value: "!=" }            // + - % * / != ==
@@ -12,6 +12,8 @@ const {
     is_calculate_op_char,
     is_punc
 } = require('./util')
+
+const NodeTypes = require('./ast');
 
 function lex(input) {
     // let current = null;
@@ -109,7 +111,7 @@ function lex(input) {
     function read_ident() {
         let id = read_while(is_id_char_limit);
         return {
-            type: "var",
+            type: NodeTypes.VARIABLE,
             value: id.trim()
         };
     }
@@ -143,7 +145,7 @@ function lex(input) {
          */
         let str = read_end(/[,;{}():#\s]/);
         return {
-            type: "str",
+            type: NodeTypes.TEXT,
             value: str
         };
     }
@@ -174,7 +176,7 @@ function lex(input) {
             return generate_op_token(chStr);
         }else{
             return {
-                type : 'str',
+                type : NodeTypes.TEXT,
                 value: chStr+read_string().value
             };
         }
@@ -186,7 +188,7 @@ function lex(input) {
             return generate_op_token(chStr);
         }else{
             return {
-                type : 'str',
+                type : NodeTypes.TEXT,
                 value: chStr+read_string().value
             };
         }
@@ -204,7 +206,7 @@ function lex(input) {
             return read_punc(ch);
         }else{
             return {
-                type : 'str',
+                type : NodeTypes.TEXT,
                 value : ch+read_string().value
             };
         }

@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 5,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$font"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 10,
             "end": 19,
-            "type": "str",
+            "type": "TEXT",
             "value": "Helvetica"
           },
           {
@@ -29,7 +29,7 @@
           {
             "start": 21,
             "end": 31,
-            "type": "str",
+            "type": "TEXT",
             "value": "sans-serif"
           }
         ]
@@ -47,7 +47,7 @@
         {
           "start": 53,
           "end": 59,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$image"
         },
         {
@@ -57,7 +57,7 @@
           "left": {
             "start": 60,
             "end": 62,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$x"
           },
           "right": {
@@ -66,7 +66,7 @@
               {
                 "start": 63,
                 "end": 71,
-                "type": "str",
+                "type": "TEXT",
                 "value": "default1"
               }
             ]
@@ -79,7 +79,7 @@
           "left": {
             "start": 73,
             "end": 75,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$y"
           },
           "right": {
@@ -88,7 +88,7 @@
               {
                 "start": 76,
                 "end": 84,
-                "type": "str",
+                "type": "TEXT",
                 "value": "default2"
               }
             ]
@@ -105,7 +105,7 @@
             "left": {
               "start": 90,
               "end": 101,
-              "type": "str",
+              "type": "TEXT",
               "value": "text-indent"
             },
             "right": {
@@ -114,7 +114,7 @@
                 {
                   "start": 103,
                   "end": 111,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "-99999em"
                 }
               ]
@@ -127,7 +127,7 @@
             "left": {
               "start": 115,
               "end": 123,
-              "type": "str",
+              "type": "TEXT",
               "value": "overflow"
             },
             "right": {
@@ -136,7 +136,7 @@
                 {
                   "start": 125,
                   "end": 131,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "hidden"
                 }
               ]
@@ -149,7 +149,7 @@
             "left": {
               "start": 135,
               "end": 145,
-              "type": "str",
+              "type": "TEXT",
               "value": "text-align"
             },
             "right": {
@@ -158,7 +158,7 @@
                 {
                   "start": 147,
                   "end": 151,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "left"
                 }
               ]
@@ -169,7 +169,7 @@
             "selector": {
               "start": 156,
               "end": 166,
-              "type": "str",
+              "type": "TEXT",
               "value": "background"
             },
             "children": [
@@ -180,7 +180,7 @@
                 "left": {
                   "start": 173,
                   "end": 178,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "image"
                 },
                 "right": {
@@ -189,7 +189,7 @@
                     {
                       "start": 180,
                       "end": 186,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$image"
                     }
                   ]
@@ -202,7 +202,7 @@
                 "left": {
                   "start": 192,
                   "end": 198,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "repeat"
                 },
                 "right": {
@@ -211,7 +211,7 @@
                     {
                       "start": 200,
                       "end": 209,
-                      "type": "str",
+                      "type": "TEXT",
                       "value": "no-repeat"
                     }
                   ]
@@ -224,7 +224,7 @@
                 "left": {
                   "start": 215,
                   "end": 223,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "position"
                 },
                 "right": {
@@ -233,13 +233,13 @@
                     {
                       "start": 225,
                       "end": 227,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$x"
                     },
                     {
                       "start": 228,
                       "end": 230,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$y"
                     }
                   ]
@@ -255,7 +255,7 @@
       "selector": {
         "start": 239,
         "end": 249,
-        "type": "str",
+        "type": "TEXT",
         "value": ".mail-icon"
       },
       "children": [
@@ -271,13 +271,13 @@
             {
               "start": 276,
               "end": 299,
-              "type": "str",
+              "type": "TEXT",
               "value": "url(\"/images/mail.svg\")"
             },
             {
               "start": 300,
               "end": 305,
-              "type": "var",
+              "type": "VARIABLE",
               "value": "$font"
             }
           ]

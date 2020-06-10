@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 4,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$var"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 7,
             "end": 12,
-            "type": "str",
+            "type": "TEXT",
             "value": "600px"
           }
         ]
@@ -28,7 +28,7 @@
       "selector": {
         "start": 14,
         "end": 24,
-        "type": "str",
+        "type": "TEXT",
         "value": ".container"
       },
       "children": [
@@ -39,7 +39,7 @@
           "left": {
             "start": 29,
             "end": 34,
-            "type": "str",
+            "type": "TEXT",
             "value": "width"
           },
           "right": {
@@ -51,13 +51,13 @@
                 "left": {
                   "start": 36,
                   "end": 39,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "1px"
                 },
                 "right": {
                   "start": 42,
                   "end": 45,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "8px"
                 }
               }
@@ -71,7 +71,7 @@
       "selector": {
         "start": 50,
         "end": 70,
-        "type": "str",
+        "type": "TEXT",
         "value": "article[role=\"main\"]"
       },
       "children": [
@@ -82,7 +82,7 @@
           "left": {
             "start": 75,
             "end": 80,
-            "type": "str",
+            "type": "TEXT",
             "value": "float"
           },
           "right": {
@@ -91,7 +91,7 @@
               {
                 "start": 82,
                 "end": 86,
-                "type": "str",
+                "type": "TEXT",
                 "value": "left"
               }
             ]
@@ -104,7 +104,7 @@
           "left": {
             "start": 90,
             "end": 95,
-            "type": "str",
+            "type": "TEXT",
             "value": "width"
           },
           "right": {
@@ -119,20 +119,20 @@
                   "left": {
                     "start": 97,
                     "end": 101,
-                    "type": "var",
+                    "type": "VARIABLE",
                     "value": "$var"
                   },
                   "right": {
                     "start": 104,
                     "end": 109,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "960px"
                   }
                 },
                 "right": {
                   "start": 112,
                   "end": 116,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "100%"
                 }
               }
@@ -146,7 +146,7 @@
       "selector": {
         "start": 121,
         "end": 148,
-        "type": "str",
+        "type": "TEXT",
         "value": "aside[role=\"complementary\"]"
       },
       "children": [
@@ -157,7 +157,7 @@
           "left": {
             "start": 153,
             "end": 158,
-            "type": "str",
+            "type": "TEXT",
             "value": "float"
           },
           "right": {
@@ -166,7 +166,7 @@
               {
                 "start": 160,
                 "end": 165,
-                "type": "str",
+                "type": "TEXT",
                 "value": "right"
               }
             ]
@@ -179,7 +179,7 @@
           "left": {
             "start": 169,
             "end": 174,
-            "type": "str",
+            "type": "TEXT",
             "value": "width"
           },
           "right": {
@@ -194,20 +194,20 @@
                   "left": {
                     "start": 176,
                     "end": 181,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "300px"
                   },
                   "right": {
                     "start": 184,
                     "end": 189,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "960px"
                   }
                 },
                 "right": {
                   "start": 192,
                   "end": 196,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "100%"
                 }
               }

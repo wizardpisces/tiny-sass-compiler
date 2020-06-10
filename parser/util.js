@@ -1,3 +1,5 @@
+const NodeTypes = require('./ast');
+
 const debug = (function () {
     let isDebug = false,
         count = 0;
@@ -41,7 +43,7 @@ function is_operator(op) {
 
      let list = [],
          whitespaceToken = {
-             type: 'str',
+             type: NodeTypes.TEXT,
              value: ' '
          },
          curIndex = 0;

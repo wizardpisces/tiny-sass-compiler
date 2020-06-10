@@ -8,7 +8,7 @@
       "left": {
         "start": 0,
         "end": 11,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$font-stack"
       },
       "right": {
@@ -17,7 +17,7 @@
           {
             "start": 16,
             "end": 25,
-            "type": "str",
+            "type": "TEXT",
             "value": "Helvetica"
           },
           {
@@ -29,7 +29,7 @@
           {
             "start": 27,
             "end": 37,
-            "type": "str",
+            "type": "TEXT",
             "value": "sans-serif"
           }
         ]
@@ -42,7 +42,7 @@
       "left": {
         "start": 39,
         "end": 53,
-        "type": "var",
+        "type": "VARIABLE",
         "value": "$primary-color"
       },
       "right": {
@@ -51,7 +51,7 @@
           {
             "start": 55,
             "end": 59,
-            "type": "str",
+            "type": "TEXT",
             "value": "#333"
           }
         ]
@@ -62,7 +62,7 @@
       "selector": {
         "start": 62,
         "end": 72,
-        "type": "str",
+        "type": "TEXT",
         "value": "body .test"
       },
       "children": [
@@ -73,7 +73,7 @@
           "left": {
             "start": 76,
             "end": 80,
-            "type": "str",
+            "type": "TEXT",
             "value": "font"
           },
           "right": {
@@ -82,13 +82,13 @@
               {
                 "start": 82,
                 "end": 86,
-                "type": "str",
+                "type": "TEXT",
                 "value": "100%"
               },
               {
                 "start": 87,
                 "end": 98,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$font-stack"
               }
             ]
@@ -101,7 +101,7 @@
           "left": {
             "start": 102,
             "end": 107,
-            "type": "str",
+            "type": "TEXT",
             "value": "color"
           },
           "right": {
@@ -110,19 +110,13 @@
               {
                 "start": 109,
                 "end": 123,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$primary-color"
               }
             ]
           }
         }
       ]
-    },
-    {
-      "start": 128,
-      "end": 133,
-      "type": "str",
-      "value": ".more"
     }
   ]
 }

@@ -13,18 +13,18 @@ null
 punc { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
 op { type: "op", value: "!=" }            // + - % * / != ==
 boolean { type: "boolean", value: true | false } //treat as bool in IfStatement -> test
-str { type: "str", value: string }  // str = (str\s+ | var\s+)*
-var { type: "var", value: string } // var.value === variable's name , expression deleted after evaluation
-var_key { type: "var_key", value: string } // to solve "str-#{var}" , expression replaced after evaluation
-placeholder {type: "placeholder", value: '%str'}
+TEXT { type: TEXT, value: string }  // TEXT = (TEXT\s+ | TEXT\s+)*
+VARIABLE { type: VARIABLE, value: string } // VARIABLE.value === variable's name , expression deleted after evaluation
+var_key { type: "var_key", value: string } // to solve "TEXT-#{VARIABLE}" , expression replaced after evaluation
+placeholder {type: "placeholder", value: '%TEXT'}
 /**
  * https://sass-lang.com/documentation/values/lists
  * any expressions separated with spaces or commas count as a list;
  * iterable eg: $each value in list
   */
 
-list { type:"list",value:[ str | var | var_key | punc | binary ] }
-binary { type: "binary", operator: OPERATOR, left: str | var | binary, right: str | var | binary } // + | - | * | / | %
+list { type:"list",value:[ TEXT | VARIABLE | var_key | punc | binary ] }
+binary { type: "binary", operator: op, left: TEXT | VARIABLE | binary, right: TEXT | VARIABLE | binary } // + | - | * | / | %
 
 ```
 
@@ -34,12 +34,12 @@ binary { type: "binary", operator: OPERATOR, left: str | var | binary, right: st
 
 ```js
 body { type:"body", chidren:[ Statement ] } // difference between body and child: child contains selector
-@import { type: "@import", params:[ str ] }
-assign { type: "assign", left: str | var | var_key, right: list } // border : 1px solid red
-child { type:"child", selector: str | placeholder | list, children: [ Statement ] }
-@include { type: "@include", id:{ type:"identifier", name: string } , args: [ str | var | binary | assign ] }
-@extend { type:"@extend", param: str | placeholder }
-@mixin  { type: "@mixin", id:{ type:"identifier", name: string } , params: [ var | assign ], body: body }
+@import { type: "@import", params:[ TEXT ] }
+assign { type: "assign", left: TEXT | VARIABLE | var_key, right: list } // border : 1px solid red
+child { type:"child", selector: TEXT | placeholder | list, children: [ Statement ] }
+@include { type: "@include", id:{ type:"identifier", name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
+@extend { type:"@extend", param: TEXT | placeholder }
+@mixin  { type: "@mixin", id:{ type:"identifier", name: string } , params: [ VARIABLE | assign ], body: body }
 @error  { type: "@error", value: list }
 ```
 

@@ -6,7 +6,7 @@
       "selector": {
         "start": 0,
         "end": 15,
-        "type": "str",
+        "type": "TEXT",
         "value": ".message-shared"
       },
       "children": [
@@ -17,7 +17,7 @@
           "left": {
             "start": 22,
             "end": 28,
-            "type": "str",
+            "type": "TEXT",
             "value": "border"
           },
           "right": {
@@ -26,7 +26,7 @@
               {
                 "start": 30,
                 "end": 44,
-                "type": "str",
+                "type": "TEXT",
                 "value": "1px solid #ccc"
               }
             ]
@@ -39,7 +39,7 @@
           "left": {
             "start": 50,
             "end": 57,
-            "type": "str",
+            "type": "TEXT",
             "value": "padding"
           },
           "right": {
@@ -48,7 +48,7 @@
               {
                 "start": 59,
                 "end": 63,
-                "type": "str",
+                "type": "TEXT",
                 "value": "10px"
               }
             ]
@@ -61,7 +61,7 @@
           "left": {
             "start": 69,
             "end": 74,
-            "type": "str",
+            "type": "TEXT",
             "value": "color"
           },
           "right": {
@@ -70,7 +70,7 @@
               {
                 "start": 76,
                 "end": 80,
-                "type": "str",
+                "type": "TEXT",
                 "value": "#333"
               }
             ]
@@ -94,7 +94,7 @@
           "left": {
             "start": 105,
             "end": 111,
-            "type": "str",
+            "type": "TEXT",
             "value": "border"
           },
           "right": {
@@ -103,7 +103,7 @@
               {
                 "start": 113,
                 "end": 127,
-                "type": "str",
+                "type": "TEXT",
                 "value": "1px solid #ccc"
               }
             ]
@@ -116,7 +116,7 @@
           "left": {
             "start": 131,
             "end": 138,
-            "type": "str",
+            "type": "TEXT",
             "value": "padding"
           },
           "right": {
@@ -125,7 +125,7 @@
               {
                 "start": 140,
                 "end": 144,
-                "type": "str",
+                "type": "TEXT",
                 "value": "10px"
               }
             ]
@@ -138,7 +138,7 @@
           "left": {
             "start": 148,
             "end": 153,
-            "type": "str",
+            "type": "TEXT",
             "value": "color"
           },
           "right": {
@@ -147,7 +147,7 @@
               {
                 "start": 155,
                 "end": 159,
-                "type": "str",
+                "type": "TEXT",
                 "value": "#333"
               }
             ]
@@ -160,7 +160,7 @@
       "selector": {
         "start": 164,
         "end": 172,
-        "type": "str",
+        "type": "TEXT",
         "value": ".message"
       },
       "children": [
@@ -169,7 +169,7 @@
           "end": 202,
           "type": "@extend",
           "param": {
-            "type": "str",
+            "type": "TEXT",
             "value": ".message-shared"
           }
         }
@@ -180,7 +180,7 @@
       "selector": {
         "start": 207,
         "end": 215,
-        "type": "str",
+        "type": "TEXT",
         "value": ".success"
       },
       "children": [
@@ -189,7 +189,7 @@
           "end": 245,
           "type": "@extend",
           "param": {
-            "type": "str",
+            "type": "TEXT",
             "value": ".message-shared"
           }
         },
@@ -200,7 +200,7 @@
           "left": {
             "start": 251,
             "end": 263,
-            "type": "str",
+            "type": "TEXT",
             "value": "border-color"
           },
           "right": {
@@ -209,7 +209,7 @@
               {
                 "start": 265,
                 "end": 270,
-                "type": "str",
+                "type": "TEXT",
                 "value": "green"
               }
             ]
@@ -222,7 +222,7 @@
       "selector": {
         "start": 274,
         "end": 280,
-        "type": "str",
+        "type": "TEXT",
         "value": ".error"
       },
       "children": [
@@ -233,7 +233,7 @@
           "left": {
             "start": 286,
             "end": 291,
-            "type": "str",
+            "type": "TEXT",
             "value": "color"
           },
           "right": {
@@ -242,7 +242,7 @@
               {
                 "start": 292,
                 "end": 295,
-                "type": "str",
+                "type": "TEXT",
                 "value": "red"
               }
             ]

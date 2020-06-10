@@ -1,6 +1,7 @@
 const {
     superstruct
 } = require('superstruct')
+const NodeTypes = require('./ast');
 
 const {
     PRECEDENCE,
@@ -11,9 +12,9 @@ const {
 const astTypeLiteralValidator = [
     'punc',
     'boolean',
-    'str',
+    NodeTypes.TEXT,
     'placeholder',
-    'var',
+    NodeTypes.VARIABLE,
     'var_key',
     'list',
     'binary',
@@ -89,16 +90,16 @@ let Type_Schema_Map = {
         type: 'boolean',
         value: 'boolean'
     },
-    str: {
-        type: 'str',
+    [NodeTypes.TEXT]: {
+        type: NodeTypes.TEXT,
         value: 'string'
     },
     placeholder: {
         type: 'placeholder',
         value: 'placeholderValue'
     },
-    var: {
-        type: 'var',
+    [NodeTypes.VARIABLE]: {
+        type: NodeTypes.VARIABLE,
         value: 'string'
     },
     var_key: {
@@ -107,14 +108,14 @@ let Type_Schema_Map = {
     },
     list: {
         type: 'list',
-        // ast tree node must contains type property {type:'str',value:'1px solid red'}
-        value: [constructDynamicStruct(['str', 'var', 'var_key', 'punc', 'binary'], 'list')]
+        // ast tree node must contains type property {type:NodeTypes.TEXT,value:'1px solid red'}
+        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key', 'punc', 'binary'], 'list')]
     },
     binary: {
         type: 'binary',
         operator: 'operator',
-        left: constructDynamicStruct(['str', 'var', 'binary'], 'binary'),
-        right: constructDynamicStruct(['str', 'var', 'binary'], 'binary')
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'binary'),
+        right: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'binary')
     },
 
     //Statement
@@ -125,19 +126,19 @@ let Type_Schema_Map = {
 
     '@import': {
         type: '@import',
-        params: [constructDynamicStruct(['str'], '@import')]
+        params: [constructDynamicStruct([NodeTypes.TEXT], '@import')]
     },
 
     assign: {
         type: 'assign',
-        left: constructDynamicStruct(['str', 'var', 'var_key'], 'assign'),
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key'], 'assign'),
         right: constructDynamicStruct(['list'], 'assign')
     },
 
     child: {
         type: 'child',
         // selector: str | placeholder | list,
-        selector: constructDynamicStruct(['str', 'placeholder', 'list'], 'child'),
+        selector: constructDynamicStruct([NodeTypes.TEXT, 'placeholder', 'list'], 'child'),
         children: [constructDynamicStruct(Statement_Types, 'child')]
     },
 
@@ -148,13 +149,13 @@ let Type_Schema_Map = {
             name: "string"
         },
         // args: [str | var | binary]
-        args: [constructDynamicStruct(['str', 'var', 'binary', 'assign'], '@include')]
+        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary', 'assign'], '@include')]
     },
 
     '@extend': {
         type: '@extend',
         // param: str | placeholder
-        param: constructDynamicStruct(['str', 'placeholder'], '@extend'),
+        param: constructDynamicStruct([NodeTypes.TEXT, 'placeholder'], '@extend'),
     },
 
     '@mixin': {
@@ -164,7 +165,7 @@ let Type_Schema_Map = {
             name: 'string'
         },
         // params: [var | assign],
-        params: [constructDynamicStruct(['var', 'assign'], '@mixin')],
+        params: [constructDynamicStruct([NodeTypes.VARIABLE, 'assign'], '@mixin')],
         body: constructDynamicStruct(['body'], '@mixin')
     },
 
@@ -176,7 +177,7 @@ let Type_Schema_Map = {
     IfStatement: {
         type: 'IfStatement',
         // test: str | var | binary | boolean,
-        test: constructDynamicStruct(['str', 'var', 'binary', 'boolean'], 'IfStatement'),
+        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary', 'boolean'], 'IfStatement'),
         consequent: constructDynamicStruct(['body'], 'IfStatement'),
         //alternate: IfStatement | body | null
         alternate: constructDynamicStruct(['IfStatement', 'body', 'null'], 'IfStatement')
@@ -184,8 +185,8 @@ let Type_Schema_Map = {
 
     EachStatement: {
         type: 'EachStatement',
-        left: constructDynamicStruct(['var'], 'EachStatement'),
-        right: constructDynamicStruct(['var'], 'EachStatement'),
+        left: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
+        right: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
         body: constructDynamicStruct(['child'], 'EachStatement')
     },
     Prog: {

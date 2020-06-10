@@ -7,7 +7,7 @@
       "type": "@import",
       "params": [
         {
-          "type": "str",
+          "type": "TEXT",
           "value": "./base.scss"
         }
       ]
@@ -17,7 +17,7 @@
       "selector": {
         "start": 39,
         "end": 47,
-        "type": "str",
+        "type": "TEXT",
         "value": ".inverse"
       },
       "children": [
@@ -28,7 +28,7 @@
           "left": {
             "start": 52,
             "end": 68,
-            "type": "str",
+            "type": "TEXT",
             "value": "background-color"
           },
           "right": {
@@ -37,7 +37,7 @@
               {
                 "start": 70,
                 "end": 84,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$primary-color"
               }
             ]
@@ -50,7 +50,7 @@
           "left": {
             "start": 88,
             "end": 93,
-            "type": "str",
+            "type": "TEXT",
             "value": "color"
           },
           "right": {
@@ -59,7 +59,7 @@
               {
                 "start": 95,
                 "end": 100,
-                "type": "str",
+                "type": "TEXT",
                 "value": "white"
               }
             ]

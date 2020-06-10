@@ -3,6 +3,7 @@
  * @param {ast => ast} ast 
  * compile @extend
  */
+const NodeTypes = require('../parser/ast');
 
 module.exports =function transform_extend(ast) {
     /**
@@ -46,12 +47,12 @@ module.exports =function transform_extend(ast) {
         function transform(child) {
             if (is_placeholder(child.selector)) {
                 child.selector = {
-                    type: 'str',
+                    type: NodeTypes.TEXT,
                     value: extendSelectorPair[child.selector.value].join(',')
                 }
             } else {
                 child.selector = {
-                    type: 'str',
+                    type: NodeTypes.TEXT,
                     value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(',')
                 }
             }

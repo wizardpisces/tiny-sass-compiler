@@ -13,19 +13,19 @@
         {
           "start": 16,
           "end": 21,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$size"
         },
         {
           "start": 23,
           "end": 29,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$color"
         },
         {
           "start": 31,
           "end": 41,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$direction"
         }
       ],
@@ -39,7 +39,7 @@
             "left": {
               "start": 47,
               "end": 53,
-              "type": "str",
+              "type": "TEXT",
               "value": "height"
             },
             "right": {
@@ -48,7 +48,7 @@
                 {
                   "start": 55,
                   "end": 56,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "0"
                 }
               ]
@@ -61,7 +61,7 @@
             "left": {
               "start": 60,
               "end": 65,
-              "type": "str",
+              "type": "TEXT",
               "value": "width"
             },
             "right": {
@@ -70,7 +70,7 @@
                 {
                   "start": 67,
                   "end": 68,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "0"
                 }
               ]
@@ -83,7 +83,7 @@
             "left": {
               "start": 73,
               "end": 85,
-              "type": "str",
+              "type": "TEXT",
               "value": "border-color"
             },
             "right": {
@@ -92,7 +92,7 @@
                 {
                   "start": 87,
                   "end": 98,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "transparent"
                 }
               ]
@@ -105,7 +105,7 @@
             "left": {
               "start": 102,
               "end": 114,
-              "type": "str",
+              "type": "TEXT",
               "value": "border-style"
             },
             "right": {
@@ -114,7 +114,7 @@
                 {
                   "start": 116,
                   "end": 121,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "solid"
                 }
               ]
@@ -127,7 +127,7 @@
             "left": {
               "start": 125,
               "end": 137,
-              "type": "str",
+              "type": "TEXT",
               "value": "border-width"
             },
             "right": {
@@ -139,13 +139,13 @@
                   "left": {
                     "start": 139,
                     "end": 144,
-                    "type": "var",
+                    "type": "VARIABLE",
                     "value": "$size"
                   },
                   "right": {
                     "start": 147,
                     "end": 148,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "2"
                   }
                 }
@@ -162,13 +162,13 @@
               "left": {
                 "start": 157,
                 "end": 167,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$direction"
               },
               "right": {
                 "start": 171,
                 "end": 173,
-                "type": "str",
+                "type": "TEXT",
                 "value": "up"
               }
             },
@@ -182,7 +182,7 @@
                   "left": {
                     "start": 180,
                     "end": 199,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "border-bottom-color"
                   },
                   "right": {
@@ -191,7 +191,7 @@
                       {
                         "start": 201,
                         "end": 207,
-                        "type": "var",
+                        "type": "VARIABLE",
                         "value": "$color"
                       }
                     ]
@@ -207,13 +207,13 @@
                 "left": {
                   "start": 222,
                   "end": 232,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$direction"
                 },
                 "right": {
                   "start": 236,
                   "end": 241,
-                  "type": "str",
+                  "type": "TEXT",
                   "value": "right"
                 }
               },
@@ -227,7 +227,7 @@
                     "left": {
                       "start": 248,
                       "end": 265,
-                      "type": "str",
+                      "type": "TEXT",
                       "value": "border-left-color"
                     },
                     "right": {
@@ -236,7 +236,7 @@
                         {
                           "start": 267,
                           "end": 273,
-                          "type": "var",
+                          "type": "VARIABLE",
                           "value": "$color"
                         }
                       ]
@@ -252,13 +252,13 @@
                   "left": {
                     "start": 288,
                     "end": 298,
-                    "type": "var",
+                    "type": "VARIABLE",
                     "value": "$direction"
                   },
                   "right": {
                     "start": 302,
                     "end": 306,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "down"
                   }
                 },
@@ -272,7 +272,7 @@
                       "left": {
                         "start": 313,
                         "end": 329,
-                        "type": "str",
+                        "type": "TEXT",
                         "value": "border-top-color"
                       },
                       "right": {
@@ -281,7 +281,7 @@
                           {
                             "start": 331,
                             "end": 337,
-                            "type": "var",
+                            "type": "VARIABLE",
                             "value": "$color"
                           }
                         ]
@@ -297,13 +297,13 @@
                     "left": {
                       "start": 352,
                       "end": 362,
-                      "type": "var",
+                      "type": "VARIABLE",
                       "value": "$direction"
                     },
                     "right": {
                       "start": 366,
                       "end": 370,
-                      "type": "str",
+                      "type": "TEXT",
                       "value": "left"
                     }
                   },
@@ -317,7 +317,7 @@
                         "left": {
                           "start": 377,
                           "end": 395,
-                          "type": "str",
+                          "type": "TEXT",
                           "value": "border-right-color"
                         },
                         "right": {
@@ -326,7 +326,7 @@
                             {
                               "start": 397,
                               "end": 403,
-                              "type": "var",
+                              "type": "VARIABLE",
                               "value": "$color"
                             }
                           ]
@@ -347,7 +347,7 @@
                             {
                               "start": 428,
                               "end": 446,
-                              "type": "str",
+                              "type": "TEXT",
                               "value": "\"Unknown direction"
                             },
                             {
@@ -359,7 +359,7 @@
                             {
                               "start": 460,
                               "end": 462,
-                              "type": "str",
+                              "type": "TEXT",
                               "value": ".\""
                             }
                           ]
@@ -379,7 +379,7 @@
       "selector": {
         "start": 471,
         "end": 476,
-        "type": "str",
+        "type": "TEXT",
         "value": ".next"
       },
       "children": [
@@ -395,19 +395,19 @@
             {
               "start": 499,
               "end": 502,
-              "type": "str",
+              "type": "TEXT",
               "value": "5px"
             },
             {
               "start": 504,
               "end": 509,
-              "type": "str",
+              "type": "TEXT",
               "value": "black"
             },
             {
               "start": 511,
               "end": 516,
-              "type": "str",
+              "type": "TEXT",
               "value": "right"
             }
           ]

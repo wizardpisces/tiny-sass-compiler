@@ -1,5 +1,6 @@
 
-let {
+const NodeTypes = require('../parser/ast');
+const {
     fillWhitespace
 } = require('../parser/util')
 
@@ -68,10 +69,10 @@ module.exports = function transform_variable(ast) {
             /**
              * Expression
              */
-            case "str": return transform_str(exp);
+            case NodeTypes.TEXT: return transform_str(exp);
             case "punc": return transform_punc(exp);
             case "op": return transform_op(exp);
-            case "var": return transform_var(exp, env);
+            case NodeTypes.VARIABLE: return transform_var(exp, env);
             case "var_key": return transform_var_key(exp, env);
             case "list": return transform_list(exp, env);
 
@@ -100,7 +101,7 @@ module.exports = function transform_variable(ast) {
 
     function transform_list(exp, env){
         return {
-            type: "str",
+            type: NodeTypes.TEXT,
             value: fillWhitespace(exp.value).map(item => {
                return evaluate(item, env).value
             }).join('').trim()
@@ -115,7 +116,7 @@ module.exports = function transform_variable(ast) {
             scope = env.extend(),
             list = [];
 
-        if(right.type === "str"){
+        if(right.type === NodeTypes.TEXT){
             list = right.value.split(/,|\s+/).filter(val=>val!=='')
         }
 
@@ -138,7 +139,7 @@ module.exports = function transform_variable(ast) {
         return evaluate({
             type: 'child',
             selector:{
-                type:'str',
+                type:NodeTypes.TEXT,
                 value:''
             },
             children,
@@ -158,7 +159,7 @@ module.exports = function transform_variable(ast) {
              *  2. if true { }
             */
 
-            if (resultExp.type === 'var' || resultExp.type === 'binary'){
+            if (resultExp.type === NodeTypes.VARIABLE || resultExp.type === 'binary'){
                 resultExp = evaluate(expression, env);
             }
 
@@ -183,7 +184,7 @@ module.exports = function transform_variable(ast) {
  * $font: Helvetica, sans-serif;
  */
     function transform_punc(exp) {
-        exp.type = 'str'
+        exp.type = NodeTypes.TEXT
         return exp;
     }
 
@@ -215,7 +216,7 @@ module.exports = function transform_variable(ast) {
                     let ret = param;
                     if (param.type === 'assign') {
                         ret = {
-                            type: 'var',
+                            type: NodeTypes.VARIABLE,
                             value: param.left.value
                         }
                         evaluate(param, scope)
@@ -227,7 +228,7 @@ module.exports = function transform_variable(ast) {
             params = handle_params_default_value(params);
 
             params.forEach((param, i) => {
-                if (param.type === 'var' && arguments[i]) {
+                if (param.type === NodeTypes.VARIABLE && arguments[i]) {
                     scope.def(param.value, arguments[i])
                 }
             })
@@ -319,8 +320,8 @@ module.exports = function transform_variable(ast) {
 
             };
 
-            if (ast.type === "str") return parseFloatFn(ast.value);
-            if (ast.type === "var") return evaluate_binary(evaluate(ast, env))
+            if (ast.type === NodeTypes.TEXT) return parseFloatFn(ast.value);
+            if (ast.type === NodeTypes.VARIABLE) return evaluate_binary(evaluate(ast, env))
             if (ast.type === "binary") return opAcMap[ast.operator](evaluate_binary(ast.left),evaluate_binary(ast.right));
 
             throw new Error("Don't know how to evaluate_binary type: " + ast.type);
@@ -329,7 +330,7 @@ module.exports = function transform_variable(ast) {
         let value = evaluate_binary(exp);
 
         return {
-            type: "str",
+            type: NodeTypes.TEXT,
             value: transformVal(value)
         }
     }
@@ -339,7 +340,7 @@ module.exports = function transform_variable(ast) {
     }
 
     function transform_var(exp, env) {
-        exp.type = "str";
+        exp.type = NodeTypes.TEXT;
         exp.value = env.get(exp.value);
         return exp;
     }
@@ -356,7 +357,7 @@ module.exports = function transform_variable(ast) {
           */
 
 
-        if(exp.left.type === "var"){
+        if(exp.left.type === NodeTypes.VARIABLE){
             env.def(exp.left.value, evaluate(exp.right, env).value)
             return null;
         }

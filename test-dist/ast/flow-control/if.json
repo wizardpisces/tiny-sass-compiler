@@ -13,7 +13,7 @@
         {
           "start": 14,
           "end": 19,
-          "type": "var",
+          "type": "VARIABLE",
           "value": "$size"
         },
         {
@@ -23,7 +23,7 @@
           "left": {
             "start": 21,
             "end": 28,
-            "type": "var",
+            "type": "VARIABLE",
             "value": "$circle"
           },
           "right": {
@@ -32,7 +32,7 @@
               {
                 "start": 30,
                 "end": 35,
-                "type": "str",
+                "type": "TEXT",
                 "value": "false"
               }
             ]
@@ -49,7 +49,7 @@
             "left": {
               "start": 41,
               "end": 46,
-              "type": "str",
+              "type": "TEXT",
               "value": "width"
             },
             "right": {
@@ -58,7 +58,7 @@
                 {
                   "start": 48,
                   "end": 53,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$size"
                 }
               ]
@@ -71,7 +71,7 @@
             "left": {
               "start": 57,
               "end": 63,
-              "type": "str",
+              "type": "TEXT",
               "value": "height"
             },
             "right": {
@@ -80,7 +80,7 @@
                 {
                   "start": 65,
                   "end": 70,
-                  "type": "var",
+                  "type": "VARIABLE",
                   "value": "$size"
                 }
               ]
@@ -93,7 +93,7 @@
             "test": {
               "start": 79,
               "end": 86,
-              "type": "var",
+              "type": "VARIABLE",
               "value": "$circle"
             },
             "consequent": {
@@ -106,7 +106,7 @@
                   "left": {
                     "start": 93,
                     "end": 106,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "border-radius"
                   },
                   "right": {
@@ -118,13 +118,13 @@
                         "left": {
                           "start": 108,
                           "end": 113,
-                          "type": "var",
+                          "type": "VARIABLE",
                           "value": "$size"
                         },
                         "right": {
                           "start": 116,
                           "end": 117,
-                          "type": "str",
+                          "type": "TEXT",
                           "value": "2"
                         }
                       }
@@ -143,7 +143,7 @@
       "selector": {
         "start": 126,
         "end": 136,
-        "type": "str",
+        "type": "TEXT",
         "value": ".square-av"
       },
       "children": [
@@ -159,7 +159,7 @@
             {
               "start": 155,
               "end": 160,
-              "type": "str",
+              "type": "TEXT",
               "value": "100px"
             },
             {
@@ -169,7 +169,7 @@
               "left": {
                 "start": 162,
                 "end": 169,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$circle"
               },
               "right": {
@@ -178,7 +178,7 @@
                   {
                     "start": 171,
                     "end": 176,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "false"
                   }
                 ]
@@ -193,7 +193,7 @@
       "selector": {
         "start": 181,
         "end": 191,
-        "type": "str",
+        "type": "TEXT",
         "value": ".circle-av"
       },
       "children": [
@@ -209,7 +209,7 @@
             {
               "start": 210,
               "end": 215,
-              "type": "str",
+              "type": "TEXT",
               "value": "100px"
             },
             {
@@ -219,7 +219,7 @@
               "left": {
                 "start": 217,
                 "end": 224,
-                "type": "var",
+                "type": "VARIABLE",
                 "value": "$circle"
               },
               "right": {
@@ -228,7 +228,7 @@
                   {
                     "start": 226,
                     "end": 230,
-                    "type": "str",
+                    "type": "TEXT",
                     "value": "true"
                   }
                 ]
