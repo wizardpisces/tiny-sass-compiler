@@ -106,7 +106,7 @@ function parse(input) {
             }
 
             let tok = input.peek();
-            if (tok.type === NodeTypes.VARIABLE || tok.type === "placeholder") {
+            if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
                 return input.next();
             }
 
@@ -442,7 +442,7 @@ function parse(input) {
         }
         skip_punc('}')
         return {
-            type:'var_key',
+            type:NodeTypes.VAR_KEY,
             value:var_key.value
         };
     }

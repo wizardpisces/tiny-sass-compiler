@@ -65,7 +65,7 @@
             {
               "start": 62,
               "end": 70,
-              "type": "var_key",
+              "type": "VAR_KEY",
               "value": "$size"
             }
           ]

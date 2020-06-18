@@ -353,7 +353,7 @@
                             {
                               "start": 447,
                               "end": 460,
-                              "type": "var_key",
+                              "type": "VAR_KEY",
                               "value": "$direction"
                             },
                             {

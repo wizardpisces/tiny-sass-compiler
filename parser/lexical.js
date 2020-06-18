@@ -5,7 +5,7 @@
  * { type: NodeTypes.TEXT, value: "12px" }
  * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
  * { type: "kw", value: "@extend"}    // keywords below
- * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
+ * { type: NodeTypes.PLACEHOLDER, value: "%str" }      //  % started string contains op char '%'
  * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
  */
 const {
@@ -163,7 +163,7 @@ function lex(input) {
     function maybe_placeholder(ch) {
         if (is_base_char(input.peek())) {
             return {
-                type: 'placeholder',
+                type: NodeTypes.PLACEHOLDER,
                 value: ch + read_while(is_base_char)
             }
         } else {

@@ -76,7 +76,7 @@ module.exports = function transform_variable(ast) {
             case NodeTypes.PUNC: return transform_punc(exp);
             case NodeTypes.OPERATOR: return transform_op(exp);
             case NodeTypes.VARIABLE: return transform_var(exp, env);
-            case "var_key": return transform_var_key(exp, env);
+            case NodeTypes.VAR_KEY: return transform_var_key(exp, env);
             case "list": return transform_list(exp, env);
 
             /**
@@ -365,7 +365,7 @@ module.exports = function transform_variable(ast) {
             return null;
         }
 
-        if (exp.left.type === "var_key"){
+        if (exp.left.type === NodeTypes.VAR_KEY){
             exp.left = evaluate(exp.left, env);
         }
 

@@ -1,9 +1,12 @@
 export const enum NodeTypes {
     TEXT = 'TEXT',
     VARIABLE = 'VARIABLE',
-    LIST = 'LIST',
     PUNC = 'PUNC',
     OPERATOR = 'OPERATOR',
+    VAR_KEY = 'VAR_KEY',
+    PLACEHOLDER = 'PLACEHOLDER',
+    
+    LIST = 'LIST',
 }
 
 export type puncType = '(' | ')' | ',' | ';' | '#'
@@ -19,8 +22,16 @@ export interface Node extends SourceLocation{
     type: NodeTypes
 }
 
+// Simple Node
 export interface TextNode extends Node{
     type: NodeTypes.TEXT
+    start:number
+    end: number
+    value: string
+}
+
+export interface VarKeyNode extends Node{
+    type: NodeTypes.VAR_KEY
     start:number
     end: number
     value: string

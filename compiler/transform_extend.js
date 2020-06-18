@@ -23,7 +23,7 @@ module.exports =function transform_extend(ast) {
     let extendSelectorPair = {}
 
     function is_placeholder(exp) {
-        return exp.type === 'placeholder';
+        return exp.type === NodeTypes.PLACEHOLDER;
     }
 
     function rm_empty_child(exp) {

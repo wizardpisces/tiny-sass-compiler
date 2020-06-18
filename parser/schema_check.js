@@ -11,11 +11,10 @@ const {
 
 const astTypeLiteralValidator = [
     NodeTypes.PUNC,
-    'boolean',
     NodeTypes.TEXT,
-    'placeholder',
+    NodeTypes.PLACEHOLDER,
     NodeTypes.VARIABLE,
-    'var_key',
+    NodeTypes.VAR_KEY,
     'list',
     'binary',
     'identifier',
@@ -86,32 +85,28 @@ let Type_Schema_Map = {
         value: 'puncValue'
     },
 
-    boolean: {
-        type: 'boolean',
-        value: 'boolean'
-    },
     [NodeTypes.TEXT]: {
         type: NodeTypes.TEXT,
         value: 'string'
     },
-    placeholder: {
-        type: 'placeholder',
+    [NodeTypes.PLACEHOLDER]: {
+        type: NodeTypes.PLACEHOLDER,
         value: 'placeholderValue'
     },
     [NodeTypes.VARIABLE]: {
         type: NodeTypes.VARIABLE,
         value: 'string'
     },
-    var_key: {
-        type: 'var_key',
+    [NodeTypes.VAR_KEY]: {
+        type: NodeTypes.VAR_KEY,
         value: 'string'
     },
-    list: {
+    'list': {
         type: 'list',
         // ast tree node must contains type property {type:NodeTypes.TEXT,value:'1px solid red'}
-        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key', NodeTypes.PUNC, 'binary'], 'list')]
+        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY, NodeTypes.PUNC, 'binary'], 'list')]
     },
-    binary: {
+    'binary': {
         type: 'binary',
         operator: 'operator',
         left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'binary'),
@@ -119,7 +114,7 @@ let Type_Schema_Map = {
     },
 
     //Statement
-    body: {
+    'body': {
         type: 'body',
         children: [constructDynamicStruct(Statement_Types, 'body')]
     },
@@ -129,16 +124,16 @@ let Type_Schema_Map = {
         params: [constructDynamicStruct([NodeTypes.TEXT], '@import')]
     },
 
-    assign: {
+    'assign': {
         type: 'assign',
-        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key'], 'assign'),
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], 'assign'),
         right: constructDynamicStruct(['list'], 'assign')
     },
 
-    child: {
+    'child': {
         type: 'child',
         // selector: str | placeholder | list,
-        selector: constructDynamicStruct([NodeTypes.TEXT, 'placeholder', 'list'], 'child'),
+        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, 'list'], 'child'),
         children: [constructDynamicStruct(Statement_Types, 'child')]
     },
 
@@ -155,7 +150,7 @@ let Type_Schema_Map = {
     '@extend': {
         type: '@extend',
         // param: str | placeholder
-        param: constructDynamicStruct([NodeTypes.TEXT, 'placeholder'], '@extend'),
+        param: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER], '@extend'),
     },
 
     '@mixin': {
@@ -174,22 +169,21 @@ let Type_Schema_Map = {
         value: constructDynamicStruct(['list'], '@error')
     },
 
-    IfStatement: {
+    'IfStatement': {
         type: 'IfStatement',
-        // test: str | var | binary | boolean,
-        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary', 'boolean'], 'IfStatement'),
+        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'IfStatement'),
         consequent: constructDynamicStruct(['body'], 'IfStatement'),
         //alternate: IfStatement | body | null
         alternate: constructDynamicStruct(['IfStatement', 'body', 'null'], 'IfStatement')
     },
 
-    EachStatement: {
+    'EachStatement': {
         type: 'EachStatement',
         left: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
         right: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
         body: constructDynamicStruct(['child'], 'EachStatement')
     },
-    Prog: {
+    'Prog': {
         type: 'prog',
         prog: [constructDynamicStruct(Statement_Types, 'Prog')]
     }

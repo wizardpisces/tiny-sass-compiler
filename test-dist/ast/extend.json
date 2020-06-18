@@ -83,7 +83,7 @@
       "selector": {
         "start": 85,
         "end": 100,
-        "type": "placeholder",
+        "type": "PLACEHOLDER",
         "value": "%message-shared"
       },
       "children": [
@@ -253,7 +253,7 @@
           "end": 324,
           "type": "@extend",
           "param": {
-            "type": "placeholder",
+            "type": "PLACEHOLDER",
             "value": "%message-shared"
           }
         }

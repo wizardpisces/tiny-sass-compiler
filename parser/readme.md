@@ -10,13 +10,12 @@ null
 
 ```js
 
-NodeTypes.PUNC { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
-op { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
-boolean { type: "boolean", value: true | false } //treat as bool in IfStatement -> test
+PUNC { type: PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
+OPERATOR { type: OPERATOR, value: "!=" }            // + - % * / != ==
 TEXT { type: TEXT, value: string }  // TEXT = (TEXT\s+ | TEXT\s+)*
 VARIABLE { type: VARIABLE, value: string } // VARIABLE.value === variable's name , expression deleted after evaluation
-var_key { type: "var_key", value: string } // to solve "TEXT-#{VARIABLE}" , expression replaced after evaluation
-placeholder {type: "placeholder", value: '%TEXT'}
+VAR_KEY { type: NodeTypes.VAR_KEY, value: string } // to solve "TEXT-#{VARIABLE}" , expression replaced after evaluation
+PLACEHOLDER {type: NodeTypes.PLACEHOLDER, value: '%TEXT'}
 /**
  * https://sass-lang.com/documentation/values/lists
  * any expressions separated with spaces or commas count as a list;
