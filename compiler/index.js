@@ -7,6 +7,6 @@ const compile_css = require('./compile_css.js')
 
 let transformMiddleware = [transform_module, transform_variable, tranform_nest, transform_extend, compile_css]
 
-module.exports = compiler = (ast,sourceDir) => transformMiddleware.reduce((ast,middleware)=>{
+module.exports = (ast,sourceDir) => transformMiddleware.reduce((ast,middleware)=>{
     return middleware.call(null, ast, sourceDir)
 },ast)

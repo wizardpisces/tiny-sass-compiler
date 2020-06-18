@@ -1,7 +1,7 @@
 const {
     superstruct
 } = require('superstruct')
-const NodeTypes = require('./ast');
+import { NodeTypes }  from './ast';
 
 const {
     PRECEDENCE,
@@ -10,7 +10,7 @@ const {
 } = require('./util')
 
 const astTypeLiteralValidator = [
-    'punc',
+    NodeTypes.PUNC,
     'boolean',
     NodeTypes.TEXT,
     'placeholder',
@@ -81,8 +81,8 @@ function constructDynamicStruct(acceptTypes = [], parentPath = '') {
 
 let Type_Schema_Map = {
     // Expression
-    punc: {
-        type: 'punc',
+    [NodeTypes.PUNC]: {
+        type: NodeTypes.PUNC,
         value: 'puncValue'
     },
 
@@ -109,7 +109,7 @@ let Type_Schema_Map = {
     list: {
         type: 'list',
         // ast tree node must contains type property {type:NodeTypes.TEXT,value:'1px solid red'}
-        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key', 'punc', 'binary'], 'list')]
+        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'var_key', NodeTypes.PUNC, 'binary'], 'list')]
     },
     binary: {
         type: 'binary',

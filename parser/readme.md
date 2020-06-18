@@ -10,8 +10,8 @@ null
 
 ```js
 
-punc { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
-op { type: "op", value: "!=" }            // + - % * / != ==
+NodeTypes.PUNC { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
+op { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
 boolean { type: "boolean", value: true | false } //treat as bool in IfStatement -> test
 TEXT { type: TEXT, value: string }  // TEXT = (TEXT\s+ | TEXT\s+)*
 VARIABLE { type: VARIABLE, value: string } // VARIABLE.value === variable's name , expression deleted after evaluation
@@ -23,7 +23,7 @@ placeholder {type: "placeholder", value: '%TEXT'}
  * iterable eg: $each value in list
   */
 
-list { type:"list",value:[ TEXT | VARIABLE | var_key | punc | binary ] }
+list { type:"list",value:[ TEXT | VARIABLE | var_key | NodeTypes.PUNC | binary ] }
 binary { type: "binary", operator: op, left: TEXT | VARIABLE | binary, right: TEXT | VARIABLE | binary } // + | - | * | / | %
 
 ```
@@ -62,6 +62,7 @@ prog { type:"prog", prog: [ Statement ] }
 ```
 Todos: 
 
+* transform to ts for better documents
 * Error handling to specific position (source filepath , line ,col ,token)
 * add keyword @function
 * add position to more tokens

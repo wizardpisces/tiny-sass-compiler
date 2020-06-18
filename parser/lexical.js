@@ -1,19 +1,19 @@
 /**
  * 
  * @param {input_stream processed stream method} input 
- * { type: "punc", value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
+ * { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: NodeTypes.TEXT, value: "12px" }
  * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
  * { type: "kw", value: "@extend"}    // keywords below
  * { type: "placeholder", value: "%str" }      //  % started string contains op char '%'
- * { type: "op", value: "!=" }            // + - % * / != ==
+ * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
  */
 const {
     is_calculate_op_char,
     is_punc
 } = require('./util')
 
-const NodeTypes = require('./ast');
+import { NodeTypes } from './ast';
 
 function lex(input) {
     // let current = null;
@@ -118,7 +118,7 @@ function lex(input) {
 
     function generate_op_token(op) {
         return {
-            type: "op",
+            type: NodeTypes.OPERATOR,
             value: op
         }
     }
@@ -196,7 +196,7 @@ function lex(input) {
     
     function read_punc(ch){
         return {
-            type:'punc',
+            type:NodeTypes.PUNC,
             value: ch
         }
     }

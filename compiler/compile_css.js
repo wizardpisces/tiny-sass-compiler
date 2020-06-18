@@ -4,7 +4,9 @@
  * ast => css
  * 
  */
-const NodeTypes = require('../parser/ast');
+import {
+    NodeTypes
+} from '../parser/ast';
 
 function compile_css(ast) {
 

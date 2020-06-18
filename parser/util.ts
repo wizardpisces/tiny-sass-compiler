@@ -1,4 +1,9 @@
-const NodeTypes = require('./ast');
+import {
+    NodeTypes,
+    TextNode,
+    puncType,
+    arithmeticOperator
+} from './ast';
 
 const debug = (function () {
     let isDebug = false,
@@ -12,12 +17,12 @@ const debug = (function () {
 })()
 
 
-function is_calculate_op_char(ch) {
+function is_calculate_op_char(ch:arithmeticOperator) {
     let op_chars = ' + - * / % '
     return op_chars.indexOf(' ' + ch + ' ') >= 0;
 }
 
-function is_punc(ch) {
+function is_punc(ch: puncType) {
     return ",;(){}#".indexOf(ch) >= 0; // support expr { #{var}:var }
 }
 
@@ -30,7 +35,7 @@ const PRECEDENCE = {
     "*": 20, "/": 20, "%": 20,
 };
 
-function is_operator(op) {
+function is_operator(op:string) {
     return Object.keys(PRECEDENCE).includes(op)
 }
  /**
@@ -38,7 +43,7 @@ function is_operator(op) {
   * 
   */
 
- function fillWhitespace(tokens) {
+function fillWhitespace(tokens: TextNode[]) {
      if (tokens.length <= 1) return tokens;
 
      let list = [],

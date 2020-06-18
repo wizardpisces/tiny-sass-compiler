@@ -61,7 +61,7 @@ function run(sourceDir, outputDir = './', options = {
             try {
                 compiled = compiler(ast, sourceDirname)
             } catch (e) {
-                console.log('Error path: ', sourceDirname)
+                console.log('Error path: ', filePath)
                 console.log(e)
                 return;
             }

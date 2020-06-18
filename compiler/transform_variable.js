@@ -1,5 +1,8 @@
 
-const NodeTypes = require('../parser/ast');
+import {
+    NodeTypes
+} from '../parser/ast';
+
 const {
     fillWhitespace
 } = require('../parser/util')
@@ -70,8 +73,8 @@ module.exports = function transform_variable(ast) {
              * Expression
              */
             case NodeTypes.TEXT: return transform_str(exp);
-            case "punc": return transform_punc(exp);
-            case "op": return transform_op(exp);
+            case NodeTypes.PUNC: return transform_punc(exp);
+            case NodeTypes.OPERATOR: return transform_op(exp);
             case NodeTypes.VARIABLE: return transform_var(exp, env);
             case "var_key": return transform_var_key(exp, env);
             case "list": return transform_list(exp, env);
@@ -180,7 +183,7 @@ module.exports = function transform_variable(ast) {
     }
 
 /**
- * Solve situation, assign value with punc, eg:
+ * Solve situation, assign value with NodeTypes.PUNC, eg:
  * $font: Helvetica, sans-serif;
  */
     function transform_punc(exp) {

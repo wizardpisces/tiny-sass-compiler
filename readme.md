@@ -103,7 +103,7 @@ AST
           {
             "start": 25,
             "end": 26,
-            "type": "punc",
+            "type": NodeTypes.PUNC,
             "value": ","
           },
           {

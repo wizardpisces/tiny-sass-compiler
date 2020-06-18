@@ -5,7 +5,10 @@ let {
     fillWhitespace
 } = require('./util')
 
-const NodeTypes = require('./ast');
+import {
+    NodeTypes
+} from './ast';
+
 
 /**
  * 
@@ -107,7 +110,7 @@ function parse(input) {
                 return input.next();
             }
 
-            if (tok.type === "punc") {
+            if (tok.type === NodeTypes.PUNC) {
                 if (tok.value === "#") {
                     return maybe_key_var_wrapper(() => input.next())
                 }
@@ -156,7 +159,7 @@ function parse(input) {
 
     function is_punc(ch) {
         let tok = input.peek();
-        return tok && tok.type == "punc" && (!ch || tok.value == ch) && tok;
+        return tok && tok.type == NodeTypes.PUNC && (!ch || tok.value == ch) && tok;
     }
 
     function is_kw(kw) {
@@ -166,7 +169,7 @@ function parse(input) {
 
     function is_op(op) {
         let tok = input.peek();
-        return tok && tok.type == "op" && (!op || tok.value == op) && tok;
+        return tok && tok.type == NodeTypes.OPERATOR && (!op || tok.value == op) && tok;
     }
 
     function is_assign() {
@@ -486,7 +489,8 @@ function parse(input) {
             if (!input.eof()) skip_punc(";");
         }
         return {
-            type: "prog", prog
+            type: "prog", 
+            prog
         };
     }
 

@@ -3,7 +3,9 @@
  * @param {ast => ast} ast 
  * compile @extend
  */
-const NodeTypes = require('../parser/ast');
+import {
+    NodeTypes
+} from '../parser/ast';
 
 module.exports =function transform_extend(ast) {
     /**
