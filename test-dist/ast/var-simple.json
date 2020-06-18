@@ -12,7 +12,7 @@
         "value": "$font-stack"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 16,
@@ -46,7 +46,7 @@
         "value": "$primary-color"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 55,
@@ -77,7 +77,7 @@
             "value": "font"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 82,
@@ -105,7 +105,7 @@
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 109,

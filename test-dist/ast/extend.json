@@ -21,7 +21,7 @@
             "value": "border"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 30,
@@ -43,7 +43,7 @@
             "value": "padding"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 59,
@@ -65,7 +65,7 @@
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 76,
@@ -98,7 +98,7 @@
             "value": "border"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 113,
@@ -120,7 +120,7 @@
             "value": "padding"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 140,
@@ -142,7 +142,7 @@
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 155,
@@ -204,7 +204,7 @@
             "value": "border-color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 265,
@@ -237,7 +237,7 @@
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 292,

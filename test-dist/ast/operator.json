@@ -12,7 +12,7 @@
         "value": "$var"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 7,
@@ -43,10 +43,10 @@
             "value": "width"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
-                "type": "binary",
+                "type": "BINARY",
                 "operator": "+",
                 "left": {
                   "start": 36,
@@ -86,7 +86,7 @@
             "value": "float"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 82,
@@ -108,13 +108,13 @@
             "value": "width"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
-                "type": "binary",
+                "type": "BINARY",
                 "operator": "*",
                 "left": {
-                  "type": "binary",
+                  "type": "BINARY",
                   "operator": "/",
                   "left": {
                     "start": 97,
@@ -161,7 +161,7 @@
             "value": "float"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 160,
@@ -183,13 +183,13 @@
             "value": "width"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
-                "type": "binary",
+                "type": "BINARY",
                 "operator": "*",
                 "left": {
-                  "type": "binary",
+                  "type": "BINARY",
                   "operator": "/",
                   "left": {
                     "start": 176,

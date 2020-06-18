@@ -62,7 +62,7 @@ function parse(input) {
                  type: 'assign',
                  left: left,
                  right: {
-                     type: 'list',
+                     type: NodeTypes.LIST,
                      value: parse_assign_right()
                  }
              }
@@ -207,7 +207,7 @@ function parse(input) {
             if (PRECEDENCE[tok.value] > left_prec) {
                 input.next();//skip op
                 return maybe_binary({
-                    type: "binary",
+                    type: NodeTypes.BINARY,
                     operator: tok.value,
                     left: left,
                     right: maybe_binary(parserNamespace.parse_atom(), PRECEDENCE[tok.value])
@@ -239,8 +239,8 @@ function parse(input) {
         if(is_punc('#')){
             return maybe_assign(()=>{
                 return {
-                    type:'list',
-                    value: expr.type === 'list' ? expr.value.concat(parserNamespace.parse_atom()) : [expr].concat(parserNamespace.parse_atom())
+                    type:NodeTypes.LIST,
+                    value: expr.type === NodeTypes.LIST ? expr.value.concat(parserNamespace.parse_atom()) : [expr].concat(parserNamespace.parse_atom())
                 }
             })
         }
@@ -401,7 +401,7 @@ function parse(input) {
             list.push(parserNamespace.parse_atom())
         }
         return {
-            type:'list',
+            type:NodeTypes.LIST,
             value: list
         }
     }

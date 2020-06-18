@@ -12,7 +12,7 @@
         "value": "$sizes"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 8,
@@ -54,7 +54,7 @@
       "body": {
         "type": "child",
         "selector": {
-          "type": "list",
+          "type": "LIST",
           "value": [
             {
               "start": 48,
@@ -82,7 +82,7 @@
               "value": "font-size"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 88,
@@ -113,7 +113,7 @@
                   "value": "font-size"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 123,
@@ -135,7 +135,7 @@
                   "value": "border"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 146,

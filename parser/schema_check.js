@@ -15,8 +15,8 @@ const astTypeLiteralValidator = [
     NodeTypes.PLACEHOLDER,
     NodeTypes.VARIABLE,
     NodeTypes.VAR_KEY,
-    'list',
-    'binary',
+    NodeTypes.LIST,
+    NodeTypes.BINARY,
     'identifier',
 
     'body',
@@ -101,16 +101,16 @@ let Type_Schema_Map = {
         type: NodeTypes.VAR_KEY,
         value: 'string'
     },
-    'list': {
-        type: 'list',
+    [NodeTypes.LIST]: {
+        type: NodeTypes.LIST,
         // ast tree node must contains type property {type:NodeTypes.TEXT,value:'1px solid red'}
-        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY, NodeTypes.PUNC, 'binary'], 'list')]
+        value: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY, NodeTypes.PUNC, NodeTypes.BINARY], NodeTypes.LIST)]
     },
-    'binary': {
-        type: 'binary',
+    [NodeTypes.BINARY]: {
+        type: NodeTypes.BINARY,
         operator: 'operator',
-        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'binary'),
-        right: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'binary')
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY], NodeTypes.BINARY),
+        right: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY], NodeTypes.BINARY)
     },
 
     //Statement
@@ -127,13 +127,13 @@ let Type_Schema_Map = {
     'assign': {
         type: 'assign',
         left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], 'assign'),
-        right: constructDynamicStruct(['list'], 'assign')
+        right: constructDynamicStruct([NodeTypes.LIST], 'assign')
     },
 
     'child': {
         type: 'child',
         // selector: str | placeholder | list,
-        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, 'list'], 'child'),
+        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, NodeTypes.LIST], 'child'),
         children: [constructDynamicStruct(Statement_Types, 'child')]
     },
 
@@ -144,7 +144,7 @@ let Type_Schema_Map = {
             name: "string"
         },
         // args: [str | var | binary]
-        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary', 'assign'], '@include')]
+        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, 'assign'], '@include')]
     },
 
     '@extend': {
@@ -166,12 +166,12 @@ let Type_Schema_Map = {
 
     '@error': {
         type: '@error',
-        value: constructDynamicStruct(['list'], '@error')
+        value: constructDynamicStruct([NodeTypes.LIST], '@error')
     },
 
     'IfStatement': {
         type: 'IfStatement',
-        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, 'binary'], 'IfStatement'),
+        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY], 'IfStatement'),
         consequent: constructDynamicStruct(['body'], 'IfStatement'),
         //alternate: IfStatement | body | null
         alternate: constructDynamicStruct(['IfStatement', 'body', 'null'], 'IfStatement')

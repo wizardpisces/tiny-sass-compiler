@@ -12,7 +12,7 @@
         "value": "$font"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 10,
@@ -61,7 +61,7 @@
             "value": "$x"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 63,
@@ -83,7 +83,7 @@
             "value": "$y"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 76,
@@ -109,7 +109,7 @@
               "value": "text-indent"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 103,
@@ -131,7 +131,7 @@
               "value": "overflow"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 125,
@@ -153,7 +153,7 @@
               "value": "text-align"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 147,
@@ -184,7 +184,7 @@
                   "value": "image"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 180,
@@ -206,7 +206,7 @@
                   "value": "repeat"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 200,
@@ -228,7 +228,7 @@
                   "value": "position"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 225,

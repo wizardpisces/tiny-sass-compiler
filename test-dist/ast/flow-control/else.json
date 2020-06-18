@@ -12,7 +12,7 @@
         "value": "$light-background"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 19,
@@ -34,7 +34,7 @@
         "value": "$light-text"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 41,
@@ -56,7 +56,7 @@
         "value": "$dark-background"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 65,
@@ -78,7 +78,7 @@
         "value": "$dark-text"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 86,
@@ -109,7 +109,7 @@
             "value": "$light-theme"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 130,
@@ -148,7 +148,7 @@
                     "value": "background-color"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 181,
@@ -170,7 +170,7 @@
                     "value": "color"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 211,
@@ -197,7 +197,7 @@
                     "value": "background-color"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 258,
@@ -219,7 +219,7 @@
                     "value": "color"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 287,
@@ -265,7 +265,7 @@
                 "value": "$light-theme"
               },
               "right": {
-                "type": "list",
+                "type": "LIST",
                 "value": [
                   {
                     "start": 354,
@@ -307,7 +307,7 @@
                     "value": "$light-theme"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 417,

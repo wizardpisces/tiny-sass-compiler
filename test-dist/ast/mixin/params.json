@@ -12,7 +12,7 @@
         "value": "$property2"
       },
       "right": {
-        "type": "list",
+        "type": "LIST",
         "value": [
           {
             "start": 13,
@@ -59,7 +59,7 @@
               "value": "-webkit-transform"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 95,
@@ -81,7 +81,7 @@
               "value": "-ms-transform"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 123,
@@ -103,7 +103,7 @@
               "value": "transform"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 147,
@@ -166,7 +166,7 @@
             "value": "left"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 235,

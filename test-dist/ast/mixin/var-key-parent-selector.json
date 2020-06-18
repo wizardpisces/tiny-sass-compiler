@@ -43,7 +43,7 @@
               "value": "$property"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 64,
@@ -74,7 +74,7 @@
                   "value": "$property"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 121,

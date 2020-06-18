@@ -27,7 +27,7 @@
             "value": "$circle"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 30,
@@ -53,7 +53,7 @@
               "value": "width"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 48,
@@ -75,7 +75,7 @@
               "value": "height"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 65,
@@ -110,10 +110,10 @@
                     "value": "border-radius"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
-                        "type": "binary",
+                        "type": "BINARY",
                         "operator": "/",
                         "left": {
                           "start": 108,
@@ -173,7 +173,7 @@
                 "value": "$circle"
               },
               "right": {
-                "type": "list",
+                "type": "LIST",
                 "value": [
                   {
                     "start": 171,
@@ -223,7 +223,7 @@
                 "value": "$circle"
               },
               "right": {
-                "type": "list",
+                "type": "LIST",
                 "value": [
                   {
                     "start": 226,

@@ -24,7 +24,7 @@
               "value": "margin"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 30,
@@ -46,7 +46,7 @@
               "value": "padding"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 44,
@@ -68,7 +68,7 @@
               "value": "list-style"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 61,
@@ -124,7 +124,7 @@
                   "value": "display"
                 },
                 "right": {
-                  "type": "list",
+                  "type": "LIST",
                   "value": [
                     {
                       "start": 139,

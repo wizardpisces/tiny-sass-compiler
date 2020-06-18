@@ -92,7 +92,7 @@ AST
         "value": "$font-stack"
       },
       "right": {
-        "type": "list",
+        "type": NodeTypes.LIST,
         "value": [
           {
             "start": 16,
@@ -126,7 +126,7 @@ AST
         "value": "$primary-color"
       },
       "right": {
-        "type": "list",
+        "type": NodeTypes.LIST,
         "value": [
           {
             "start": 55,
@@ -157,7 +157,7 @@ AST
             "value": "font"
           },
           "right": {
-            "type": "list",
+            "type": NodeTypes.LIST,
             "value": [
               {
                 "start": 82,
@@ -185,7 +185,7 @@ AST
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": NodeTypes.LIST,
             "value": [
               {
                 "start": 109,

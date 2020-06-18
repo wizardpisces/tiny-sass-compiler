@@ -22,8 +22,8 @@ PLACEHOLDER {type: NodeTypes.PLACEHOLDER, value: '%TEXT'}
  * iterable eg: $each value in list
   */
 
-list { type:"list",value:[ TEXT | VARIABLE | var_key | NodeTypes.PUNC | binary ] }
-binary { type: "binary", operator: op, left: TEXT | VARIABLE | binary, right: TEXT | VARIABLE | binary } // + | - | * | / | %
+LIST { type:NodeTypes.LIST,value:[ TEXT | VARIABLE | VAR_KEY | PUNC | binary ] }
+binary { type: NodeTypes.BINARY, operator: op, left: TEXT | VARIABLE | binary, right: TEXT | VARIABLE | binary } // + | - | * | / | %
 
 ```
 

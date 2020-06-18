@@ -32,7 +32,7 @@
             "value": "background-color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 70,
@@ -54,7 +54,7 @@
             "value": "color"
           },
           "right": {
-            "type": "list",
+            "type": "LIST",
             "value": [
               {
                 "start": 95,

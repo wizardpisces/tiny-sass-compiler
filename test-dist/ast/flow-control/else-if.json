@@ -43,7 +43,7 @@
               "value": "height"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 55,
@@ -65,7 +65,7 @@
               "value": "width"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 67,
@@ -87,7 +87,7 @@
               "value": "border-color"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 87,
@@ -109,7 +109,7 @@
               "value": "border-style"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
                   "start": 116,
@@ -131,10 +131,10 @@
               "value": "border-width"
             },
             "right": {
-              "type": "list",
+              "type": "LIST",
               "value": [
                 {
-                  "type": "binary",
+                  "type": "BINARY",
                   "operator": "/",
                   "left": {
                     "start": 139,
@@ -157,7 +157,7 @@
             "end": 467,
             "type": "IfStatement",
             "test": {
-              "type": "binary",
+              "type": "BINARY",
               "operator": "==",
               "left": {
                 "start": 157,
@@ -186,7 +186,7 @@
                     "value": "border-bottom-color"
                   },
                   "right": {
-                    "type": "list",
+                    "type": "LIST",
                     "value": [
                       {
                         "start": 201,
@@ -202,7 +202,7 @@
             "alternate": {
               "type": "IfStatement",
               "test": {
-                "type": "binary",
+                "type": "BINARY",
                 "operator": "==",
                 "left": {
                   "start": 222,
@@ -231,7 +231,7 @@
                       "value": "border-left-color"
                     },
                     "right": {
-                      "type": "list",
+                      "type": "LIST",
                       "value": [
                         {
                           "start": 267,
@@ -247,7 +247,7 @@
               "alternate": {
                 "type": "IfStatement",
                 "test": {
-                  "type": "binary",
+                  "type": "BINARY",
                   "operator": "==",
                   "left": {
                     "start": 288,
@@ -276,7 +276,7 @@
                         "value": "border-top-color"
                       },
                       "right": {
-                        "type": "list",
+                        "type": "LIST",
                         "value": [
                           {
                             "start": 331,
@@ -292,7 +292,7 @@
                 "alternate": {
                   "type": "IfStatement",
                   "test": {
-                    "type": "binary",
+                    "type": "BINARY",
                     "operator": "==",
                     "left": {
                       "start": 352,
@@ -321,7 +321,7 @@
                           "value": "border-right-color"
                         },
                         "right": {
-                          "type": "list",
+                          "type": "LIST",
                           "value": [
                             {
                               "start": 397,
@@ -342,7 +342,7 @@
                         "end": 462,
                         "type": "@error",
                         "value": {
-                          "type": "list",
+                          "type": "LIST",
                           "value": [
                             {
                               "start": 428,

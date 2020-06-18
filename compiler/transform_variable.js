@@ -77,13 +77,13 @@ module.exports = function transform_variable(ast) {
             case NodeTypes.OPERATOR: return transform_op(exp);
             case NodeTypes.VARIABLE: return transform_var(exp, env);
             case NodeTypes.VAR_KEY: return transform_var_key(exp, env);
-            case "list": return transform_list(exp, env);
+            case NodeTypes.LIST: return transform_list(exp, env);
 
             /**
              * Statement
              */
             case "assign": return transform_assign(exp, env);
-            case "binary": return transform_binary(exp, env);
+            case NodeTypes.BINARY: return transform_binary(exp, env);
             case "@mixin": return transform_mixin(exp, env);
             case "@include": return transform_include(exp, env);
             case "child":
@@ -162,7 +162,7 @@ module.exports = function transform_variable(ast) {
              *  2. if true { }
             */
 
-            if (resultExp.type === NodeTypes.VARIABLE || resultExp.type === 'binary'){
+            if (resultExp.type === NodeTypes.VARIABLE || resultExp.type === NodeTypes.BINARY){
                 resultExp = evaluate(expression, env);
             }
 
@@ -325,7 +325,7 @@ module.exports = function transform_variable(ast) {
 
             if (ast.type === NodeTypes.TEXT) return parseFloatFn(ast.value);
             if (ast.type === NodeTypes.VARIABLE) return evaluate_binary(evaluate(ast, env))
-            if (ast.type === "binary") return opAcMap[ast.operator](evaluate_binary(ast.left),evaluate_binary(ast.right));
+            if (ast.type === NodeTypes.BINARY) return opAcMap[ast.operator](evaluate_binary(ast.left),evaluate_binary(ast.right));
 
             throw new Error("Don't know how to evaluate_binary type: " + ast.type);
         };
@@ -391,7 +391,7 @@ module.exports = function transform_variable(ast) {
         let scope = env.extend();
 
         exp.children = exp.children.map(child => evaluate(child, scope)).filter(exp => exp !== null);
-        if(exp.selector && exp.selector.type === 'list'){
+        if(exp.selector && exp.selector.type === NodeTypes.LIST){
             exp.selector = evaluate(exp.selector,scope)
         }
         /**
