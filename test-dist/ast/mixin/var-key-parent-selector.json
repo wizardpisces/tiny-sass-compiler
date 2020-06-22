@@ -2,8 +2,18 @@
   "type": "prog",
   "prog": [
     {
-      "start": 0,
-      "end": 138,
+      "loc": {
+        "start": {
+          "offset": 0,
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "offset": 138,
+          "line": 7,
+          "column": 1
+        }
+      },
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -11,34 +21,84 @@
       },
       "params": [
         {
-          "start": 11,
-          "end": 20,
+          "loc": {
+            "start": {
+              "offset": 11,
+              "line": 1,
+              "column": 11
+            },
+            "end": {
+              "offset": 20,
+              "line": 1,
+              "column": 20
+            }
+          },
           "type": "VARIABLE",
           "value": "$property"
         },
         {
-          "start": 22,
-          "end": 32,
+          "loc": {
+            "start": {
+              "offset": 22,
+              "line": 1,
+              "column": 22
+            },
+            "end": {
+              "offset": 32,
+              "line": 1,
+              "column": 32
+            }
+          },
           "type": "VARIABLE",
           "value": "$ltr-value"
         },
         {
-          "start": 34,
-          "end": 44,
+          "loc": {
+            "start": {
+              "offset": 34,
+              "line": 1,
+              "column": 34
+            },
+            "end": {
+              "offset": 44,
+              "line": 1,
+              "column": 44
+            }
+          },
           "type": "VARIABLE",
           "value": "$rtl-value"
         }
       ],
       "body": {
-        "type": "body",
+        "type": "BODY",
         "children": [
           {
-            "start": 50,
-            "end": 74,
+            "loc": {
+              "start": {
+                "offset": 62,
+                "line": 2,
+                "column": 14
+              },
+              "end": {
+                "offset": 74,
+                "line": 2,
+                "column": 26
+              }
+            },
             "type": "assign",
             "left": {
-              "start": 50,
-              "end": 62,
+              "loc": {
+                "start": {
+                  "offset": 50,
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "offset": 62,
+                  "line": 2,
+                  "column": 14
+                }
+              },
               "type": "VAR_KEY",
               "value": "$property"
             },
@@ -46,8 +106,18 @@
               "type": "LIST",
               "value": [
                 {
-                  "start": 64,
-                  "end": 74,
+                  "loc": {
+                    "start": {
+                      "offset": 64,
+                      "line": 2,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 74,
+                      "line": 2,
+                      "column": 26
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$ltr-value"
                 }
@@ -57,19 +127,49 @@
           {
             "type": "child",
             "selector": {
-              "start": 80,
-              "end": 98,
+              "loc": {
+                "start": {
+                  "offset": 80,
+                  "line": 4,
+                  "column": 3
+                },
+                "end": {
+                  "offset": 98,
+                  "line": 4,
+                  "column": 21
+                }
+              },
               "type": "TEXT",
               "value": "[dir=rtl] &.second"
             },
             "children": [
               {
-                "start": 105,
-                "end": 131,
+                "loc": {
+                  "start": {
+                    "offset": 119,
+                    "line": 5,
+                    "column": 18
+                  },
+                  "end": {
+                    "offset": 131,
+                    "line": 5,
+                    "column": 30
+                  }
+                },
                 "type": "assign",
                 "left": {
-                  "start": 105,
-                  "end": 119,
+                  "loc": {
+                    "start": {
+                      "offset": 105,
+                      "line": 5,
+                      "column": 4
+                    },
+                    "end": {
+                      "offset": 119,
+                      "line": 5,
+                      "column": 18
+                    }
+                  },
                   "type": "VAR_KEY",
                   "value": "$property"
                 },
@@ -77,8 +177,18 @@
                   "type": "LIST",
                   "value": [
                     {
-                      "start": 121,
-                      "end": 131,
+                      "loc": {
+                        "start": {
+                          "offset": 121,
+                          "line": 5,
+                          "column": 20
+                        },
+                        "end": {
+                          "offset": 131,
+                          "line": 5,
+                          "column": 30
+                        }
+                      },
                       "type": "VARIABLE",
                       "value": "$rtl-value"
                     }
@@ -93,15 +203,35 @@
     {
       "type": "child",
       "selector": {
-        "start": 140,
-        "end": 148,
+        "loc": {
+          "start": {
+            "offset": 140,
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "offset": 148,
+            "line": 9,
+            "column": 8
+          }
+        },
         "type": "TEXT",
         "value": ".sidebar"
       },
       "children": [
         {
-          "start": 153,
-          "end": 185,
+          "loc": {
+            "start": {
+              "offset": 153,
+              "line": 10,
+              "column": 2
+            },
+            "end": {
+              "offset": 185,
+              "line": 10,
+              "column": 34
+            }
+          },
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -109,20 +239,50 @@
           },
           "args": [
             {
-              "start": 166,
-              "end": 171,
+              "loc": {
+                "start": {
+                  "offset": 166,
+                  "line": 10,
+                  "column": 15
+                },
+                "end": {
+                  "offset": 171,
+                  "line": 10,
+                  "column": 20
+                }
+              },
               "type": "TEXT",
               "value": "float"
             },
             {
-              "start": 173,
-              "end": 177,
+              "loc": {
+                "start": {
+                  "offset": 173,
+                  "line": 10,
+                  "column": 22
+                },
+                "end": {
+                  "offset": 177,
+                  "line": 10,
+                  "column": 26
+                }
+              },
               "type": "TEXT",
               "value": "left"
             },
             {
-              "start": 179,
-              "end": 184,
+              "loc": {
+                "start": {
+                  "offset": 179,
+                  "line": 10,
+                  "column": 28
+                },
+                "end": {
+                  "offset": 184,
+                  "line": 10,
+                  "column": 33
+                }
+              },
               "type": "TEXT",
               "value": "right"
             }

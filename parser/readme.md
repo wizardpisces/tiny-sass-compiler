@@ -32,8 +32,8 @@ binary { type: NodeTypes.BINARY, operator: op, left: TEXT | VARIABLE | binary, r
 ### Normal
 
 ```js
-body { type:"body", chidren:[ Statement ] } // difference between body and child: child contains selector
-@import { type: "@import", params:[ TEXT ] }
+body { type:NodeTypes.BODY, chidren:[ Statement ] } // difference between body and child: child contains selector
+@import { type: NodeTypes.IMPORT, params:[ TEXT ] }
 assign { type: "assign", left: TEXT | VARIABLE | var_key, right: list } // border : 1px solid red
 child { type:"child", selector: TEXT | placeholder | list, children: [ Statement ] }
 @include { type: "@include", id:{ type:"identifier", name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
@@ -62,7 +62,7 @@ prog { type:"prog", prog: [ Statement ] }
 Todos: 
 
 * transform to ts for better documents
-* Error handling to specific position (source filepath , line ,col ,token)
+* tranform (start,end) to location(line,column,offset)，Error handling to specific position (source filepath , line ,col ,token)
 * add keyword @function
 * add position to more tokens
 * add '( | )' check to binary precedence

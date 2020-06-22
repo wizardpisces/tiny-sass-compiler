@@ -2,12 +2,32 @@
   "type": "prog",
   "prog": [
     {
-      "start": 0,
-      "end": 31,
+      "loc": {
+        "start": {
+          "offset": 11,
+          "line": 1,
+          "column": 11
+        },
+        "end": {
+          "offset": 31,
+          "line": 1,
+          "column": 31
+        }
+      },
       "type": "assign",
       "left": {
-        "start": 0,
-        "end": 10,
+        "loc": {
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "offset": 10,
+            "line": 1,
+            "column": 10
+          }
+        },
         "type": "VARIABLE",
         "value": "$property2"
       },
@@ -15,8 +35,18 @@
         "type": "LIST",
         "value": [
           {
-            "start": 13,
-            "end": 31,
+            "loc": {
+              "start": {
+                "offset": 13,
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "offset": 31,
+                "line": 1,
+                "column": 31
+              }
+            },
             "type": "TEXT",
             "value": "skew(30deg,20deg)"
           }
@@ -24,8 +54,18 @@
       }
     },
     {
-      "start": 33,
-      "end": 170,
+      "loc": {
+        "start": {
+          "offset": 33,
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "offset": 170,
+          "line": 6,
+          "column": 1
+        }
+      },
       "type": "@mixin",
       "id": {
         "type": "identifier",
@@ -33,28 +73,68 @@
       },
       "params": [
         {
-          "start": 50,
-          "end": 59,
+          "loc": {
+            "start": {
+              "offset": 50,
+              "line": 2,
+              "column": 17
+            },
+            "end": {
+              "offset": 59,
+              "line": 2,
+              "column": 26
+            }
+          },
           "type": "VARIABLE",
           "value": "$property"
         },
         {
-          "start": 60,
-          "end": 70,
+          "loc": {
+            "start": {
+              "offset": 60,
+              "line": 2,
+              "column": 27
+            },
+            "end": {
+              "offset": 70,
+              "line": 2,
+              "column": 37
+            }
+          },
           "type": "VARIABLE",
           "value": "$property2"
         }
       ],
       "body": {
-        "type": "body",
+        "type": "BODY",
         "children": [
           {
-            "start": 76,
-            "end": 104,
+            "loc": {
+              "start": {
+                "offset": 93,
+                "line": 3,
+                "column": 19
+              },
+              "end": {
+                "offset": 104,
+                "line": 3,
+                "column": 30
+              }
+            },
             "type": "assign",
             "left": {
-              "start": 76,
-              "end": 93,
+              "loc": {
+                "start": {
+                  "offset": 76,
+                  "line": 3,
+                  "column": 2
+                },
+                "end": {
+                  "offset": 93,
+                  "line": 3,
+                  "column": 19
+                }
+              },
               "type": "TEXT",
               "value": "-webkit-transform"
             },
@@ -62,8 +142,18 @@
               "type": "LIST",
               "value": [
                 {
-                  "start": 95,
-                  "end": 104,
+                  "loc": {
+                    "start": {
+                      "offset": 95,
+                      "line": 3,
+                      "column": 21
+                    },
+                    "end": {
+                      "offset": 104,
+                      "line": 3,
+                      "column": 30
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$property"
                 }
@@ -71,12 +161,32 @@
             }
           },
           {
-            "start": 108,
-            "end": 132,
+            "loc": {
+              "start": {
+                "offset": 121,
+                "line": 4,
+                "column": 15
+              },
+              "end": {
+                "offset": 132,
+                "line": 4,
+                "column": 26
+              }
+            },
             "type": "assign",
             "left": {
-              "start": 108,
-              "end": 121,
+              "loc": {
+                "start": {
+                  "offset": 108,
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "offset": 121,
+                  "line": 4,
+                  "column": 15
+                }
+              },
               "type": "TEXT",
               "value": "-ms-transform"
             },
@@ -84,8 +194,18 @@
               "type": "LIST",
               "value": [
                 {
-                  "start": 123,
-                  "end": 132,
+                  "loc": {
+                    "start": {
+                      "offset": 123,
+                      "line": 4,
+                      "column": 17
+                    },
+                    "end": {
+                      "offset": 132,
+                      "line": 4,
+                      "column": 26
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$property"
                 }
@@ -93,12 +213,32 @@
             }
           },
           {
-            "start": 136,
-            "end": 167,
+            "loc": {
+              "start": {
+                "offset": 145,
+                "line": 5,
+                "column": 11
+              },
+              "end": {
+                "offset": 167,
+                "line": 5,
+                "column": 33
+              }
+            },
             "type": "assign",
             "left": {
-              "start": 136,
-              "end": 145,
+              "loc": {
+                "start": {
+                  "offset": 136,
+                  "line": 5,
+                  "column": 2
+                },
+                "end": {
+                  "offset": 145,
+                  "line": 5,
+                  "column": 11
+                }
+              },
               "type": "TEXT",
               "value": "transform"
             },
@@ -106,14 +246,34 @@
               "type": "LIST",
               "value": [
                 {
-                  "start": 147,
-                  "end": 156,
+                  "loc": {
+                    "start": {
+                      "offset": 147,
+                      "line": 5,
+                      "column": 13
+                    },
+                    "end": {
+                      "offset": 156,
+                      "line": 5,
+                      "column": 22
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$property"
                 },
                 {
-                  "start": 157,
-                  "end": 167,
+                  "loc": {
+                    "start": {
+                      "offset": 157,
+                      "line": 5,
+                      "column": 23
+                    },
+                    "end": {
+                      "offset": 167,
+                      "line": 5,
+                      "column": 33
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$property2"
                 }
@@ -126,15 +286,35 @@
     {
       "type": "child",
       "selector": {
-        "start": 171,
-        "end": 175,
+        "loc": {
+          "start": {
+            "offset": 171,
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "offset": 175,
+            "line": 7,
+            "column": 4
+          }
+        },
         "type": "TEXT",
         "value": ".box"
       },
       "children": [
         {
-          "start": 181,
-          "end": 225,
+          "loc": {
+            "start": {
+              "offset": 181,
+              "line": 8,
+              "column": 2
+            },
+            "end": {
+              "offset": 225,
+              "line": 8,
+              "column": 46
+            }
+          },
           "type": "@include",
           "id": {
             "type": "identifier",
@@ -142,26 +322,66 @@
           },
           "args": [
             {
-              "start": 200,
-              "end": 213,
+              "loc": {
+                "start": {
+                  "offset": 200,
+                  "line": 8,
+                  "column": 21
+                },
+                "end": {
+                  "offset": 213,
+                  "line": 8,
+                  "column": 34
+                }
+              },
               "type": "TEXT",
               "value": "rotate(30deg)"
             },
             {
-              "start": 214,
-              "end": 224,
+              "loc": {
+                "start": {
+                  "offset": 214,
+                  "line": 8,
+                  "column": 35
+                },
+                "end": {
+                  "offset": 224,
+                  "line": 8,
+                  "column": 45
+                }
+              },
               "type": "VARIABLE",
               "value": "$property2"
             }
           ]
         },
         {
-          "start": 230,
-          "end": 238,
+          "loc": {
+            "start": {
+              "offset": 234,
+              "line": 9,
+              "column": 6
+            },
+            "end": {
+              "offset": 238,
+              "line": 9,
+              "column": 10
+            }
+          },
           "type": "assign",
           "left": {
-            "start": 230,
-            "end": 234,
+            "loc": {
+              "start": {
+                "offset": 230,
+                "line": 9,
+                "column": 2
+              },
+              "end": {
+                "offset": 234,
+                "line": 9,
+                "column": 6
+              }
+            },
             "type": "TEXT",
             "value": "left"
           },
@@ -169,8 +389,18 @@
             "type": "LIST",
             "value": [
               {
-                "start": 235,
-                "end": 238,
+                "loc": {
+                  "start": {
+                    "offset": 235,
+                    "line": 9,
+                    "column": 7
+                  },
+                  "end": {
+                    "offset": 238,
+                    "line": 9,
+                    "column": 10
+                  }
+                },
                 "type": "TEXT",
                 "value": "1px"
               }

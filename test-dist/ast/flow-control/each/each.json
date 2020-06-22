@@ -2,12 +2,32 @@
   "type": "prog",
   "prog": [
     {
-      "start": 0,
-      "end": 19,
+      "loc": {
+        "start": {
+          "offset": 6,
+          "line": 1,
+          "column": 6
+        },
+        "end": {
+          "offset": 19,
+          "line": 1,
+          "column": 19
+        }
+      },
       "type": "assign",
       "left": {
-        "start": 0,
-        "end": 6,
+        "loc": {
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "offset": 6,
+            "line": 1,
+            "column": 6
+          }
+        },
         "type": "VARIABLE",
         "value": "$sizes"
       },
@@ -15,20 +35,50 @@
         "type": "LIST",
         "value": [
           {
-            "start": 8,
-            "end": 12,
+            "loc": {
+              "start": {
+                "offset": 8,
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "offset": 12,
+                "line": 1,
+                "column": 12
+              }
+            },
             "type": "TEXT",
             "value": "40px"
           },
           {
-            "start": 12,
-            "end": 13,
+            "loc": {
+              "start": {
+                "offset": 12,
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "offset": 13,
+                "line": 1,
+                "column": 13
+              }
+            },
             "type": "PUNC",
             "value": ","
           },
           {
-            "start": 15,
-            "end": 19,
+            "loc": {
+              "start": {
+                "offset": 15,
+                "line": 1,
+                "column": 15
+              },
+              "end": {
+                "offset": 19,
+                "line": 1,
+                "column": 19
+              }
+            },
             "type": "TEXT",
             "value": "50px"
           }
@@ -36,18 +86,48 @@
       }
     },
     {
-      "start": 22,
-      "end": 186,
+      "loc": {
+        "start": {
+          "offset": 22,
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "offset": 186,
+          "line": 11,
+          "column": 1
+        }
+      },
       "type": "EachStatement",
       "left": {
-        "start": 28,
-        "end": 33,
+        "loc": {
+          "start": {
+            "offset": 28,
+            "line": 3,
+            "column": 6
+          },
+          "end": {
+            "offset": 33,
+            "line": 3,
+            "column": 11
+          }
+        },
         "type": "VARIABLE",
         "value": "$size"
       },
       "right": {
-        "start": 37,
-        "end": 43,
+        "loc": {
+          "start": {
+            "offset": 37,
+            "line": 3,
+            "column": 15
+          },
+          "end": {
+            "offset": 43,
+            "line": 3,
+            "column": 21
+          }
+        },
         "type": "VARIABLE",
         "value": "$sizes"
       },
@@ -57,14 +137,34 @@
           "type": "LIST",
           "value": [
             {
-              "start": 48,
-              "end": 62,
+              "loc": {
+                "start": {
+                  "offset": 48,
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "offset": 62,
+                  "line": 4,
+                  "column": 16
+                }
+              },
               "type": "TEXT",
               "value": ".icon-#asfssd-"
             },
             {
-              "start": 62,
-              "end": 70,
+              "loc": {
+                "start": {
+                  "offset": 62,
+                  "line": 4,
+                  "column": 16
+                },
+                "end": {
+                  "offset": 70,
+                  "line": 4,
+                  "column": 24
+                }
+              },
               "type": "VAR_KEY",
               "value": "$size"
             }
@@ -72,12 +172,32 @@
         },
         "children": [
           {
-            "start": 77,
-            "end": 93,
+            "loc": {
+              "start": {
+                "offset": 86,
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "offset": 93,
+                "line": 5,
+                "column": 20
+              }
+            },
             "type": "assign",
             "left": {
-              "start": 77,
-              "end": 86,
+              "loc": {
+                "start": {
+                  "offset": 77,
+                  "line": 5,
+                  "column": 4
+                },
+                "end": {
+                  "offset": 86,
+                  "line": 5,
+                  "column": 13
+                }
+              },
               "type": "TEXT",
               "value": "font-size"
             },
@@ -85,8 +205,18 @@
               "type": "LIST",
               "value": [
                 {
-                  "start": 88,
-                  "end": 93,
+                  "loc": {
+                    "start": {
+                      "offset": 88,
+                      "line": 5,
+                      "column": 15
+                    },
+                    "end": {
+                      "offset": 93,
+                      "line": 5,
+                      "column": 20
+                    }
+                  },
                   "type": "VARIABLE",
                   "value": "$size"
                 }
@@ -96,19 +226,49 @@
           {
             "type": "child",
             "selector": {
-              "start": 99,
-              "end": 102,
+              "loc": {
+                "start": {
+                  "offset": 99,
+                  "line": 6,
+                  "column": 4
+                },
+                "end": {
+                  "offset": 102,
+                  "line": 6,
+                  "column": 7
+                }
+              },
               "type": "TEXT",
               "value": ".ok"
             },
             "children": [
               {
-                "start": 112,
-                "end": 128,
+                "loc": {
+                  "start": {
+                    "offset": 121,
+                    "line": 7,
+                    "column": 17
+                  },
+                  "end": {
+                    "offset": 128,
+                    "line": 7,
+                    "column": 24
+                  }
+                },
                 "type": "assign",
                 "left": {
-                  "start": 112,
-                  "end": 121,
+                  "loc": {
+                    "start": {
+                      "offset": 112,
+                      "line": 7,
+                      "column": 8
+                    },
+                    "end": {
+                      "offset": 121,
+                      "line": 7,
+                      "column": 17
+                    }
+                  },
                   "type": "TEXT",
                   "value": "font-size"
                 },
@@ -116,8 +276,18 @@
                   "type": "LIST",
                   "value": [
                     {
-                      "start": 123,
-                      "end": 128,
+                      "loc": {
+                        "start": {
+                          "offset": 123,
+                          "line": 7,
+                          "column": 19
+                        },
+                        "end": {
+                          "offset": 128,
+                          "line": 7,
+                          "column": 24
+                        }
+                      },
                       "type": "VARIABLE",
                       "value": "$size"
                     }
@@ -125,12 +295,32 @@
                 }
               },
               {
-                "start": 138,
-                "end": 173,
+                "loc": {
+                  "start": {
+                    "offset": 144,
+                    "line": 8,
+                    "column": 14
+                  },
+                  "end": {
+                    "offset": 173,
+                    "line": 8,
+                    "column": 43
+                  }
+                },
                 "type": "assign",
                 "left": {
-                  "start": 138,
-                  "end": 144,
+                  "loc": {
+                    "start": {
+                      "offset": 138,
+                      "line": 8,
+                      "column": 8
+                    },
+                    "end": {
+                      "offset": 144,
+                      "line": 8,
+                      "column": 14
+                    }
+                  },
                   "type": "TEXT",
                   "value": "border"
                 },
@@ -138,14 +328,34 @@
                   "type": "LIST",
                   "value": [
                     {
-                      "start": 146,
-                      "end": 151,
+                      "loc": {
+                        "start": {
+                          "offset": 146,
+                          "line": 8,
+                          "column": 16
+                        },
+                        "end": {
+                          "offset": 151,
+                          "line": 8,
+                          "column": 21
+                        }
+                      },
                       "type": "VARIABLE",
                       "value": "$size"
                     },
                     {
-                      "start": 153,
-                      "end": 173,
+                      "loc": {
+                        "start": {
+                          "offset": 153,
+                          "line": 8,
+                          "column": 23
+                        },
+                        "end": {
+                          "offset": 173,
+                          "line": 8,
+                          "column": 43
+                        }
+                      },
                       "type": "TEXT",
                       "value": "solid #111111"
                     }

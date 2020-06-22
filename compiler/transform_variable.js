@@ -87,7 +87,7 @@ module.exports = function transform_variable(ast) {
             case "@mixin": return transform_mixin(exp, env);
             case "@include": return transform_include(exp, env);
             case "child":
-            case "body":
+            case NodeTypes.BODY:
                 return transform_child_or_body(exp, env);
 
             case "@extend": return exp;
@@ -379,7 +379,7 @@ module.exports = function transform_variable(ast) {
         function flatten_included_body(children){
             let arr = []
             children.forEach(child=>{
-                if(child.type === 'body'){
+                if(child.type === NodeTypes.BODY){
                     arr = arr.concat(flatten_included_body(child.children))
                 }else{
                     arr.push(child)

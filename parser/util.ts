@@ -2,7 +2,7 @@ import {
     NodeTypes,
     TextNode,
     puncType,
-    arithmeticOperator
+    arithmeticOperator,
 } from './ast';
 
 const debug = (function () {
@@ -51,14 +51,18 @@ function fillWhitespace(tokens: TextNode[]) {
              type: NodeTypes.TEXT,
              value: ' '
          },
-         curIndex = 0;
+         curIndex = 0,
+         curToken = null,
+         nextToken = null;
 
      while (curIndex < tokens.length - 1) {
-         list.push(tokens[curIndex])
-         if (tokens[curIndex + 1].start > tokens[curIndex].end) {
+         curToken = tokens[curIndex];
+         nextToken = tokens[curIndex + 1];
+         list.push(curToken)
+         if (nextToken.loc.start.offset > curToken.loc.end.offset) {
              list.push({
-                 start: tokens[curIndex].end + 1,
-                 end: tokens[curIndex].end + 2,
+                 start: curToken.loc.end.offset+ 1,
+                 end: curToken.loc.end.offset + 2,
                  ...whitespaceToken
              })
          }

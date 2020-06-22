@@ -2,9 +2,19 @@
   "type": "prog",
   "prog": [
     {
-      "start": 0,
-      "end": 36,
-      "type": "@import",
+      "loc": {
+        "start": {
+          "offset": 0,
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "offset": 36,
+          "line": 2,
+          "column": 21
+        }
+      },
+      "type": "IMPORT",
       "params": [
         {
           "type": "TEXT",
@@ -15,19 +25,49 @@
     {
       "type": "child",
       "selector": {
-        "start": 39,
-        "end": 47,
+        "loc": {
+          "start": {
+            "offset": 39,
+            "line": 4,
+            "column": 0
+          },
+          "end": {
+            "offset": 47,
+            "line": 4,
+            "column": 8
+          }
+        },
         "type": "TEXT",
         "value": ".inverse"
       },
       "children": [
         {
-          "start": 52,
-          "end": 84,
+          "loc": {
+            "start": {
+              "offset": 68,
+              "line": 5,
+              "column": 18
+            },
+            "end": {
+              "offset": 84,
+              "line": 5,
+              "column": 34
+            }
+          },
           "type": "assign",
           "left": {
-            "start": 52,
-            "end": 68,
+            "loc": {
+              "start": {
+                "offset": 52,
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "offset": 68,
+                "line": 5,
+                "column": 18
+              }
+            },
             "type": "TEXT",
             "value": "background-color"
           },
@@ -35,8 +75,18 @@
             "type": "LIST",
             "value": [
               {
-                "start": 70,
-                "end": 84,
+                "loc": {
+                  "start": {
+                    "offset": 70,
+                    "line": 5,
+                    "column": 20
+                  },
+                  "end": {
+                    "offset": 84,
+                    "line": 5,
+                    "column": 34
+                  }
+                },
                 "type": "VARIABLE",
                 "value": "$primary-color"
               }
@@ -44,12 +94,32 @@
           }
         },
         {
-          "start": 88,
-          "end": 100,
+          "loc": {
+            "start": {
+              "offset": 93,
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "offset": 100,
+              "line": 6,
+              "column": 14
+            }
+          },
           "type": "assign",
           "left": {
-            "start": 88,
-            "end": 93,
+            "loc": {
+              "start": {
+                "offset": 88,
+                "line": 6,
+                "column": 2
+              },
+              "end": {
+                "offset": 93,
+                "line": 6,
+                "column": 7
+              }
+            },
             "type": "TEXT",
             "value": "color"
           },
@@ -57,8 +127,18 @@
             "type": "LIST",
             "value": [
               {
-                "start": 95,
-                "end": 100,
+                "loc": {
+                  "start": {
+                    "offset": 95,
+                    "line": 6,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 100,
+                    "line": 6,
+                    "column": 14
+                  }
+                },
                 "type": "TEXT",
                 "value": "white"
               }

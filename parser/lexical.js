@@ -4,7 +4,7 @@
  * { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: NodeTypes.TEXT, value: "12px" }
  * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
- * { type: "kw", value: "@extend"}    // keywords below
+ * { type: NodeTypes.KEYWORD, value: "@extend"}    // keywords below
  * { type: NodeTypes.PLACEHOLDER, value: "%str" }      //  % started string contains op char '%'
  * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
  */
@@ -96,7 +96,7 @@ function lex(input) {
             return input.croak(`Unknown keyword ${kw}`)
         }
         return {
-            type: 'kw',
+            type: NodeTypes.KEYWORD,
             value: kw
         };
     }

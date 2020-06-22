@@ -8,6 +8,9 @@
 const fs = require('fs')
 const parser = require('../parser')
 const path = require('path');
+import {
+    NodeTypes
+} from '../parser/ast';
 const EXTNAME_GLOBAL = '.scss'
 module.exports = function transform_module(ast,context = './') {
     let importedAstList = [],
@@ -18,7 +21,7 @@ module.exports = function transform_module(ast,context = './') {
       */
 
     ast.prog = ast.prog.map(exp=>{
-        if(exp.type === '@import'){
+        if(exp.type === NodeTypes.IMPORT){
             importedAstList = importedAstList.concat(exp.params.map(exp=>{
                 let filename = exp.value,
                     extname = path.extname(filename),

@@ -1,5 +1,5 @@
 function input_stream(input) {
-    let pos = 0, line = 1, col = 0;
+    let offset = 0, line = 1, column = 0;
     return {
         next,
         peek,
@@ -10,36 +10,36 @@ function input_stream(input) {
     };
 
     function next() {
-        let ch = input.charAt(pos++);
+        let ch = input.charAt(offset++);
         
-        if (ch == "\n") line++ , col = 0; else col++;
+        if (ch == "\n") line++ , column = 0; else column++;
         
         return ch;
     }
 
     function setCoordination(coordination) {
-        pos = coordination.pos;
+        offset = coordination.offset;
         line = coordination.line;
-        col = coordination.col;
+        column = coordination.column;
     }
 
     function getCoordination(){
         return {
-            pos,
+            offset,
             line,
-            col
+            column
         }
     }
 
     function peek() {
-        return input.charAt(pos);
+        return input.charAt(offset);
     }
 
     function eof() {
         return peek() == "";
     }
     function croak(msg) {
-        throw new Error(msg + " (" + line + ":" + col + ")");
+        throw new Error(msg + " (" + line + ":" + column + ")");
     }
 }
 

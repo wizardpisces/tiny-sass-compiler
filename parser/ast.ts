@@ -5,6 +5,7 @@ export const enum NodeTypes {
     OPERATOR = 'OPERATOR',   // arithmeticOperator | comparisonOperator
     VAR_KEY = 'VAR_KEY', // to solve "TEXT-#{VARIABLE}" , expression replaced after evaluation
     PLACEHOLDER = 'PLACEHOLDER', // %TEXT
+    KEYWORD = 'KEYWORD', // keywordType
     /**
      * https://sass-lang.com/documentation/values/lists
      * any expressions separated with spaces or commas count as a list;
@@ -12,22 +13,41 @@ export const enum NodeTypes {
     */
     LIST = 'LIST',
     BINARY = 'BINARY',
+
+    //statement
+    BODY = 'BODY',
+    IMPORT = 'IMPORT',
 }
 
+export type keywordType = '@extend' | '@mixin' | '@include' | '@import' | '@if' | '@else' | '@error' | '@each'
 export type puncType = '(' | ')' | ',' | ';' | '#'
 export type arithmeticOperator = '+' | '-' | '*' | '/' | '%'
 export type comparisonOperator = '>' | '<' | '>=' | '<=' | '==' | '!='
 
 export interface SourceLocation {
-    start?: number
-    end?: number
+    start: Position
+    end: Position
+    // source: string
 }
 
-export interface Node extends SourceLocation{
+export interface Position {
+    offset: number // from start of file
+    line: number
+    column: number
+}
+
+export interface Node{
     type: NodeTypes
+    loc: SourceLocation
 }
 
 // Simple Node
+
+export interface KeywordNode extends Node { // exists only in lexical
+    type: NodeTypes.KEYWORD
+    value: string
+}
+
 export interface TextNode extends Node{
     type: NodeTypes.TEXT
     start:number
@@ -55,6 +75,7 @@ export interface OperatorNode extends Node{
     value: arithmeticOperator | comparisonOperator
 }
 
+// combined node
 export interface BinaryNode extends Node{
     type: NodeTypes.BINARY 
     operator: OperatorNode // + | - | * | / | %
@@ -65,6 +86,21 @@ export interface BinaryNode extends Node{
 export interface ListNode extends Node{
     type: NodeTypes.LIST
     value: [TextNode | VariableNode | VarKeyNode | PuncNode | BinaryNode]
+}
+
+// statement
+
+export type Statement = BodyStatement
+
+export interface BodyStatement extends Node {
+    type: NodeTypes.BODY
+    value: [Statement]
+}
+
+// keywords
+export interface ImportStatement extends Node {
+    type: NodeTypes.IMPORT
+    params: [TextNode]
 }
 
 

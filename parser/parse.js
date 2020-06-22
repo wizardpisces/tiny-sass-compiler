@@ -1,14 +1,17 @@
+import {
+    onError,
+    ErrorCodes
+} from './errors';
+
+import {
+    NodeTypes
+} from './ast';
 
 let {
     debug,
     PRECEDENCE,
     fillWhitespace
 } = require('./util')
-
-import {
-    NodeTypes
-} from './ast';
-
 
 /**
  * 
@@ -22,9 +25,9 @@ function parse(input) {
     function injectPosition(parseFn){
         return function(...args){
             input.eliminateWhitespace()
-            let start = input.getCoordination().pos,
+            let start = input.getCoordination(),
                 ast = parseFn.apply(null, args),
-                end = input.getCoordination().pos;
+                end = input.getCoordination();
 
             /**
              * adjust start position
@@ -37,8 +40,10 @@ function parse(input) {
                 start = start > args[0].start ? args[0].start : start;
             }
             return {
-                start,
-                end,
+                loc:{
+                    start,
+                    end,
+                },
                 ...ast
             };
         }
@@ -120,6 +125,12 @@ function parse(input) {
             if (tok.type === NodeTypes.TEXT) {
                 return parse_consecutive_str()
             }
+
+            onError({
+                code: ErrorCodes.UNKNONWN_TOKEN_TYPE,
+                loc: input.getCoordination(),
+                tok
+            })
         }),
 
         maybe_call: injectPosition(function maybe_call(exp) { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
@@ -164,7 +175,7 @@ function parse(input) {
 
     function is_kw(kw) {
         let tok = input.peek();
-        return tok && tok.type == "kw" && (!kw || tok.value == kw) && tok;
+        return tok && tok.type == NodeTypes.KEYWORD && (!kw || tok.value == kw) && tok;
     }
 
     function is_op(op) {
@@ -261,7 +272,7 @@ function parse(input) {
 
     function parse_block_statement() {
         let children = delimited("{", "}", ";", parse_expression);
-        return { type: "body", children };
+        return { type: NodeTypes.BODY, children };
     }
 
     /**
@@ -277,7 +288,7 @@ function parse(input) {
         
         if(!is_punc('{')){
             /**
-             * Support default params
+             * Support default params, which contains assign ':' symbol; which will be processed in parse_assign
              * @mixin replace-text($image,$x:default1, $y:default2) {
               */
             set_call_params_args_assign_right_end_condition()
@@ -338,7 +349,7 @@ function parse(input) {
         }
 
         return {
-            type: "@import",
+            type: NodeTypes.IMPORT,
             params
         }
     }
