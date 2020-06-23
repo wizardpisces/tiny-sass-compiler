@@ -8,14 +8,14 @@
  * { type: NodeTypes.PLACEHOLDER, value: "%str" }      //  % started string contains op char '%'
  * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
  */
-const {
+import {
     is_calculate_op_char,
     is_punc
-} = require('./util')
+} from './util'
 
 import { NodeTypes } from './ast';
 
-function lex(input) {
+export default function lex(input) {
     // let current = null;
     let keywords = ' @extend @mixin @include @import @if @else @error @each ',
         comparison_op_chars = '!=><',
@@ -270,5 +270,3 @@ function lex(input) {
     }
 
 }
-
-module.exports = lex;

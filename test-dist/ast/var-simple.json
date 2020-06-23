@@ -232,9 +232,9 @@
               "column": 7
             },
             "end": {
-              "offset": 123,
-              "line": 6,
-              "column": 23
+              "offset": 126,
+              "line": 7,
+              "column": 16
             }
           },
           "type": "ASSIGN",
@@ -260,14 +260,14 @@
               {
                 "loc": {
                   "start": {
-                    "offset": 109,
-                    "line": 6,
-                    "column": 9
+                    "offset": 112,
+                    "line": 7,
+                    "column": 2
                   },
                   "end": {
-                    "offset": 123,
-                    "line": 6,
-                    "column": 23
+                    "offset": 126,
+                    "line": 7,
+                    "column": 16
                   }
                 },
                 "type": "VARIABLE",

@@ -1,4 +1,4 @@
-const run = require('./index')
+import run from './index'
 
 /**
  * Todos:

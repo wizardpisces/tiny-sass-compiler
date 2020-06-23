@@ -5,9 +5,9 @@
  */
 import {
     NodeTypes
-} from '../parser/ast';
+} from '../parse/ast';
 
-module.exports =function transform_extend(ast) {
+export default function transform_extend(ast) {
     /**
      * transform
      * 

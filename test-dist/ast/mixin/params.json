@@ -68,7 +68,7 @@
       },
       "type": "MIXIN",
       "id": {
-        "type": "identifier",
+        "type": "IDENTIFIER",
         "name": "transform"
       },
       "params": [
@@ -317,7 +317,7 @@
           },
           "type": "INCLUDE",
           "id": {
-            "type": "identifier",
+            "type": "IDENTIFIER",
             "name": "transform"
           },
           "args": [

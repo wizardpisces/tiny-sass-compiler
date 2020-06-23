@@ -1,9 +1,10 @@
-const cssbeautify = require('cssbeautify');
-const parser = require('./parser')
-const compiler = require('./compiler')
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp');
+import cssbeautify from 'cssbeautify'
+import compile, {
+    parse
+} from './src'
+import fs from 'fs';
+import path from 'path'
+import mkdirp from 'mkdirp'
 
 function require_css(path) {
     return fs.readFileSync(path, 'utf8')
@@ -32,7 +33,7 @@ function run(sourceDir, outputDir = './', options = {
             ast;
 
         try{
-            ast = parser(source)
+            ast = parse(source)
         }catch(e){
             console.error(`\nParser Error:\n filePath: ${filePath}\n`,e)
             return;
@@ -59,7 +60,7 @@ function run(sourceDir, outputDir = './', options = {
                 outputDir;
                 
             try {
-                compiled = compiler(ast, sourceDirname)
+                compiled = compile(source, sourceDirname)
             } catch (e) {
                 console.log('Error path: ', filePath)
                 console.log(e)

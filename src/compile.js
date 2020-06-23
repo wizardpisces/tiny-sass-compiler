@@ -1,22 +1,27 @@
-
+import parse from './parse'
+import transform from './transform'
+import {
+    NodeTypes
+} from './parse/ast';
 /**
  * 
  * ast => css
  * 
  */
-import {
-    NodeTypes
-} from '../parser/ast';
-
 function compile_css(ast) {
 
     function compile(exp) {
         switch (exp.type) {
-            case NodeTypes.TEXT: return css_str(exp);
-            case NodeTypes.VARIABLE: return css_var(exp);
-            case NodeTypes.ASSIGN: return css_assign(exp);
-            case NodeTypes.CHILD: return css_child(exp);
-            case "empty": return '';
+            case NodeTypes.TEXT:
+                return css_str(exp);
+            case NodeTypes.VARIABLE:
+                return css_var(exp);
+            case NodeTypes.ASSIGN:
+                return css_assign(exp);
+            case NodeTypes.CHILD:
+                return css_child(exp);
+            case NodeTypes.EMPTY:
+                return '';
 
             default:
                 throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
@@ -46,4 +51,4 @@ function compile_css(ast) {
     return toplevel(ast);
 }
 
-module.exports = compile_css
+export default (scss, sourceDir) => compile_css( transform( parse(scss), sourceDir ) )

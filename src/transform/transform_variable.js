@@ -1,11 +1,11 @@
 
 import {
     NodeTypes
-} from '../parser/ast';
+} from '../parse/ast';
 
-const {
+import {
     fillWhitespace
-} = require('../parser/util')
+} from '../parse/util'
 
 /**
  * use Enviroment to maintain a scope to interprete variable scope
@@ -59,12 +59,12 @@ function deep_clone(obj){
 
 /**
  * 
- * @param {refer to parser result,eg: ast-example} ast 
+ * @param {refer to parse result,eg: ast-example} ast 
  * ast => ast
  * transform variable to real value based on scope
  */
 
-module.exports = function transform_variable(ast) {
+export default function transform_variable(ast) {
     let env = new Environment();
 
     function evaluate(exp, env) {
@@ -136,7 +136,7 @@ module.exports = function transform_variable(ast) {
         })
 
         /**
-         * return a created an empty child whose children will be flattened in transform_nest
+         * return a created an NodeTypes.EMPTY child whose children will be flattened in transform_nest
          */
 
         return evaluate({

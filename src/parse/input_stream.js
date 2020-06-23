@@ -1,4 +1,5 @@
 function input_stream(input) {
+
     let offset = 0, line = 1, column = 0;
     return {
         next,
@@ -43,4 +44,4 @@ function input_stream(input) {
     }
 }
 
-module.exports = input_stream;
+export default input_stream;

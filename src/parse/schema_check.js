@@ -1,13 +1,13 @@
-const {
+import {
     superstruct
-} = require('superstruct')
+} from 'superstruct'
 import { NodeTypes }  from './ast';
 
-const {
+import {
     PRECEDENCE,
     is_operator,
     is_punc
-} = require('./util')
+} from './util'
 
 const astTypeLiteralValidator = [
     NodeTypes.PUNC,
@@ -17,7 +17,7 @@ const astTypeLiteralValidator = [
     NodeTypes.VAR_KEY,
     NodeTypes.LIST,
     NodeTypes.BINARY,
-    'identifier',
+    NodeTypes.IDENTIFIER,
 
     NodeTypes.BODY,
     NodeTypes.ASSIGN,
@@ -66,7 +66,18 @@ const baseSchema = {
  * acceptTypes: string[]
  * typePath: string
  */
-const Statement_Types = [NodeTypes.BODY, NodeTypes.ASSIGN, NodeTypes.CHILD, NodeTypes.IMPORT, NodeTypes.INCLUDE, NodeTypes.EXTEND, NodeTypes.MIXIN, NodeTypes.ERROR, NodeTypes.EACHSTATEMENT, NodeTypes.IFSTATEMENT]
+const Statement_Types = [
+    NodeTypes.BODY, 
+    NodeTypes.ASSIGN, 
+    NodeTypes.CHILD, 
+    NodeTypes.IMPORT, 
+    NodeTypes.INCLUDE, 
+    NodeTypes.EXTEND, 
+    NodeTypes.MIXIN, 
+    NodeTypes.ERROR, 
+    NodeTypes.EACHSTATEMENT, 
+    NodeTypes.IFSTATEMENT
+]
 
 function constructDynamicStruct(acceptTypes = [], parentPath = '') {
 
@@ -152,7 +163,7 @@ let Type_Schema_Map = {
     [NodeTypes.INCLUDE]: {
         type: NodeTypes.INCLUDE,
         id: {
-            type: "identifier",
+            type: NodeTypes.IDENTIFIER,
             name: "string"
         },
         args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, NodeTypes.ASSIGN], NodeTypes.INCLUDE)]
@@ -166,7 +177,7 @@ let Type_Schema_Map = {
     [NodeTypes.MIXIN]: {
         type: NodeTypes.MIXIN,
         id: {
-            type: "identifier",
+            type: NodeTypes.IDENTIFIER,
             name: 'string'
         },
         // params: [var | assign],
@@ -206,7 +217,7 @@ const Type_Struct_Map = Object.keys(Type_Schema_Map).reduce((resultMap, type) =>
     return resultMap;
 }, {})
 
-module.exports = function error_checking(ast) {
+export default function error_checking(ast) {
     try {
         Type_Struct_Map[NodeTypes.PROGRAM](ast);
     } catch (e) {

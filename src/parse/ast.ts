@@ -7,6 +7,7 @@ export const enum NodeTypes {
     PLACEHOLDER = 'PLACEHOLDER', // %TEXT
     KEYWORD = 'KEYWORD', // keywordType
     IDENTIFIER = 'IDENTIFIER', // keywordType
+    EMPTY = 'EMPTY', // keywordType
     /**
      * https://sass-lang.com/documentation/values/lists
      * any expressions separated with spaces or commas count as a list;
@@ -74,6 +75,9 @@ export interface TextNode extends Node {
     start: number
     end: number
     value: string
+}
+export interface EmptyNode extends Node {
+    type: NodeTypes.EMPTY
 }
 
 export interface VariableNode extends Node {

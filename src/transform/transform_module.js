@@ -5,14 +5,14 @@
  * replace @import to real ast
  * 
  */
-const fs = require('fs')
-const parser = require('../parser')
-const path = require('path');
+import fs from 'fs'
+import parse from '../parse'
+import path from 'path'
 import {
     NodeTypes
-} from '../parser/ast';
+} from '../parse/ast';
 const EXTNAME_GLOBAL = '.scss'
-module.exports = function transform_module(ast,context = './') {
+export default function transform_module(ast, context = './') {
     let importedAstList = [],
         newProg = [];
     /**
@@ -29,7 +29,7 @@ module.exports = function transform_module(ast,context = './') {
                     dirname = path.dirname(filename),
                     filePath = path.join(context, dirname, '_' + basename + (extname ? '' : EXTNAME_GLOBAL) );
 
-                return parser(fs.readFileSync(filePath,'utf8'))
+                return parse(fs.readFileSync(filePath,'utf8'))
             }))
             return null
         }

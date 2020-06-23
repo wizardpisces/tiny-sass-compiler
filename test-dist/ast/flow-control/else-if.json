@@ -16,7 +16,7 @@
       },
       "type": "MIXIN",
       "id": {
-        "type": "identifier",
+        "type": "IDENTIFIER",
         "name": "triangle"
       },
       "params": [
@@ -858,7 +858,7 @@
           },
           "type": "INCLUDE",
           "id": {
-            "type": "identifier",
+            "type": "IDENTIFIER",
             "name": "triangle"
           },
           "args": [

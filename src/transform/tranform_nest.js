@@ -7,9 +7,9 @@
  */
 import {
     NodeTypes
-} from '../parser/ast';
+} from '../parse/ast';
 
-module.exports = function tranform_nest(ast) {
+export default function tranform_nest(ast) {
     function flatten_child(child, arr = []) {
 
         function flatten(child, parentSelector = '') {
@@ -40,7 +40,7 @@ module.exports = function tranform_nest(ast) {
               */
             child.children.forEach((exp, index) => {
                 if (exp.type === NodeTypes.CHILD) {
-                    child.children.splice(index, 1,{type:'empty'})
+                    child.children.splice(index, 1,{type:NodeTypes.EMPTY})
                     flatten(exp, child.selector.value)
                 }
             });

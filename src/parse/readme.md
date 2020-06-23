@@ -2,7 +2,7 @@
   
 This document specifies the core sass AST node types that support the sass grammar.
 
-[AST Typescript Descriptor](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/ast.ts)
+[AST Typescript Descriptor](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
 
 ## literal
 
@@ -38,9 +38,9 @@ body { type:NodeTypes.BODY, chidren:[ Statement ] } // difference between body a
 assign { type: NodeTypes.ASSIGN, left: TEXT | VARIABLE | var_key, right: list } // border : 1px solid red
 child { type:NodeTypes.CHILD, selector: TEXT | placeholder | list, children: [ Statement ] }
 @import { type: NodeTypes.IMPORT, params:[ TEXT ] }
-@include { type: NodeTypes.INCLUDE, id:{ type:"identifier", name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
+@include { type: NodeTypes.INCLUDE, id:{ type:NodeTypes.IDENTIFIER, name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
 @extend { type:NodeTypes.EXTEND, param: TEXT | placeholder }
-@mixin  { type: NodeTypes.MIXIN, id:{ type:"identifier", name: string } , params: [ VARIABLE | assign ], body: body }
+@mixin  { type: NodeTypes.MIXIN, id:{ type:NodeTypes.IDENTIFIER, name: string } , params: [ VARIABLE | assign ], body: body }
 @error  { type: NodeTypes.ERROR, value: list }
 ```
 

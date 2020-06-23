@@ -7,18 +7,18 @@ import {
     NodeTypes
 } from './ast';
 
-let {
+import {
     debug,
     PRECEDENCE,
     fillWhitespace
-} = require('./util')
+} from './util'
 
 /**
  * 
  * @param {lex processed stream method} input
  */
 
-function parse(input) {
+export default function parse(input) {
 
     let assign_right_end_condition = default_right_end_condition;
 
@@ -280,7 +280,7 @@ function parse(input) {
      */
     function parse_mixin() {
         let id = {
-            type: "identifier",
+            type: NodeTypes.IDENTIFIER,
             name: input.next().value
         },
         params = [];
@@ -308,7 +308,7 @@ function parse(input) {
 
     function parse_include() {
         let id = {
-            type: "identifier",
+            type: NodeTypes.IDENTIFIER,
             name: input.next().value
         },
         args = [];// @include mixin1;
@@ -511,5 +511,3 @@ function parse(input) {
 
     return parse_toplevel()
 }
-
-module.exports = parse;
