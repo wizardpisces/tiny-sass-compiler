@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 37
         }
       },
-      "type": "assign",
+      "type": "ASSIGN",
       "left": {
         "loc": {
           "start": {
@@ -98,7 +98,7 @@
           "column": 20
         }
       },
-      "type": "assign",
+      "type": "ASSIGN",
       "left": {
         "loc": {
           "start": {
@@ -138,7 +138,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -169,7 +169,7 @@
               "column": 24
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -237,7 +237,7 @@
               "column": 23
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {

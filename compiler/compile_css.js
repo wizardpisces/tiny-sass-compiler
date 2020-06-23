@@ -14,8 +14,8 @@ function compile_css(ast) {
         switch (exp.type) {
             case NodeTypes.TEXT: return css_str(exp);
             case NodeTypes.VARIABLE: return css_var(exp);
-            case "assign": return css_assign(exp);
-            case "child": return css_child(exp);
+            case NodeTypes.ASSIGN: return css_assign(exp);
+            case NodeTypes.CHILD: return css_child(exp);
             case "empty": return '';
 
             default:

@@ -79,12 +79,12 @@ body .test {
 AST
 ```json
 {
-  "type": "prog",
-  "prog": [
+  "type": NodeTypes.PROGRAM,
+  NodeTypes.PROGRAM: [
     {
       "start": 0,
       "end": 37,
-      "type": "assign",
+      "type": NodeTypes.ASSIGN,
       "left": {
         "start": 0,
         "end": 11,
@@ -118,7 +118,7 @@ AST
     {
       "start": 39,
       "end": 59,
-      "type": "assign",
+      "type": NodeTypes.ASSIGN,
       "left": {
         "start": 39,
         "end": 53,
@@ -138,7 +138,7 @@ AST
       }
     },
     {
-      "type": "child",
+      "type": NodeTypes.CHILD,
       "selector": {
         "start": 62,
         "end": 72,
@@ -149,7 +149,7 @@ AST
         {
           "start": 76,
           "end": 98,
-          "type": "assign",
+          "type": NodeTypes.ASSIGN,
           "left": {
             "start": 76,
             "end": 80,
@@ -177,7 +177,7 @@ AST
         {
           "start": 102,
           "end": 123,
-          "type": "assign",
+          "type": NodeTypes.ASSIGN,
           "left": {
             "start": 102,
             "end": 107,

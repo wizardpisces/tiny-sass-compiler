@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "triangle"
@@ -85,7 +85,7 @@
                 "column": 11
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -137,7 +137,7 @@
                 "column": 10
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -189,7 +189,7 @@
                 "column": 27
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -241,7 +241,7 @@
                 "column": 21
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -293,7 +293,7 @@
                 "column": 25
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -365,7 +365,7 @@
                 "column": 3
               }
             },
-            "type": "IfStatement",
+            "type": "IFSTATEMENT",
             "test": {
               "type": "BINARY",
               "operator": "==",
@@ -418,7 +418,7 @@
                       "column": 31
                     }
                   },
-                  "type": "assign",
+                  "type": "ASSIGN",
                   "left": {
                     "loc": {
                       "start": {
@@ -460,7 +460,7 @@
               ]
             },
             "alternate": {
-              "type": "IfStatement",
+              "type": "IFSTATEMENT",
               "test": {
                 "type": "BINARY",
                 "operator": "==",
@@ -513,7 +513,7 @@
                         "column": 29
                       }
                     },
-                    "type": "assign",
+                    "type": "ASSIGN",
                     "left": {
                       "loc": {
                         "start": {
@@ -555,7 +555,7 @@
                 ]
               },
               "alternate": {
-                "type": "IfStatement",
+                "type": "IFSTATEMENT",
                 "test": {
                   "type": "BINARY",
                   "operator": "==",
@@ -608,7 +608,7 @@
                           "column": 28
                         }
                       },
-                      "type": "assign",
+                      "type": "ASSIGN",
                       "left": {
                         "loc": {
                           "start": {
@@ -650,7 +650,7 @@
                   ]
                 },
                 "alternate": {
-                  "type": "IfStatement",
+                  "type": "IFSTATEMENT",
                   "test": {
                     "type": "BINARY",
                     "operator": "==",
@@ -703,7 +703,7 @@
                             "column": 30
                           }
                         },
-                        "type": "assign",
+                        "type": "ASSIGN",
                         "left": {
                           "loc": {
                             "start": {
@@ -760,7 +760,7 @@
                             "column": 45
                           }
                         },
-                        "type": "@error",
+                        "type": "ERROR",
                         "value": {
                           "type": "LIST",
                           "value": [
@@ -825,7 +825,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -856,7 +856,7 @@
               "column": 38
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "triangle"

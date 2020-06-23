@@ -20,17 +20,17 @@ const astTypeLiteralValidator = [
     'identifier',
 
     NodeTypes.BODY,
-    'assign',
-    'child',
+    NodeTypes.ASSIGN,
+    NodeTypes.CHILD,
     NodeTypes.IMPORT,
-    '@include',
-    '@extend',
-    '@mixin',
-    '@error',
-    'IfStatement',
-    'EachStatement',
+    NodeTypes.INCLUDE,
+    NodeTypes.EXTEND,
+    NodeTypes.MIXIN,
+    NodeTypes.ERROR,
+    NodeTypes.IFSTATEMENT,
+    NodeTypes.EACHSTATEMENT,
 
-    'prog'
+    NodeTypes.PROGRAM
 ].reduce((typeObj, type) => {
     typeObj[type] = (val) => val === type;
     return typeObj;
@@ -66,7 +66,7 @@ const baseSchema = {
  * acceptTypes: string[]
  * typePath: string
  */
-const Statement_Types = [NodeTypes.BODY, 'assign', 'child', NodeTypes.IMPORT, '@include', '@extend', '@mixin', '@error', 'EachStatement', 'IfStatement']
+const Statement_Types = [NodeTypes.BODY, NodeTypes.ASSIGN, NodeTypes.CHILD, NodeTypes.IMPORT, NodeTypes.INCLUDE, NodeTypes.EXTEND, NodeTypes.MIXIN, NodeTypes.ERROR, NodeTypes.EACHSTATEMENT, NodeTypes.IFSTATEMENT]
 
 function constructDynamicStruct(acceptTypes = [], parentPath = '') {
 
@@ -131,73 +131,71 @@ let Type_Schema_Map = {
         children: [constructDynamicStruct(Statement_Types, NodeTypes.BODY)]
     },
 
+    [NodeTypes.ASSIGN]: {
+        type: NodeTypes.ASSIGN,
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], NodeTypes.ASSIGN),
+        right: constructDynamicStruct([NodeTypes.LIST], NodeTypes.ASSIGN)
+    },
+
+    [NodeTypes.CHILD]: {
+        type: NodeTypes.CHILD,
+        // selector: str | placeholder | list,
+        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, NodeTypes.LIST], NodeTypes.CHILD),
+        children: [constructDynamicStruct(Statement_Types, NodeTypes.CHILD)]
+    },
+
     [NodeTypes.IMPORT]: {
         type: NodeTypes.IMPORT,
         params: [constructDynamicStruct([NodeTypes.TEXT], NodeTypes.IMPORT)]
     },
 
-    'assign': {
-        type: 'assign',
-        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], 'assign'),
-        right: constructDynamicStruct([NodeTypes.LIST], 'assign')
-    },
-
-    'child': {
-        type: 'child',
-        // selector: str | placeholder | list,
-        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, NodeTypes.LIST], 'child'),
-        children: [constructDynamicStruct(Statement_Types, 'child')]
-    },
-
-    '@include': {
-        type: '@include',
+    [NodeTypes.INCLUDE]: {
+        type: NodeTypes.INCLUDE,
         id: {
             type: "identifier",
             name: "string"
         },
-        // args: [str | var | binary]
-        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, 'assign'], '@include')]
+        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, NodeTypes.ASSIGN], NodeTypes.INCLUDE)]
     },
 
-    '@extend': {
-        type: '@extend',
-        // param: str | placeholder
-        param: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER], '@extend'),
+    [NodeTypes.EXTEND]: {
+        type: NodeTypes.EXTEND,
+        param: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER], NodeTypes.EXTEND),
     },
 
-    '@mixin': {
-        type: '@mixin',
+    [NodeTypes.MIXIN]: {
+        type: NodeTypes.MIXIN,
         id: {
             type: "identifier",
             name: 'string'
         },
         // params: [var | assign],
-        params: [constructDynamicStruct([NodeTypes.VARIABLE, 'assign'], '@mixin')],
-        body: constructDynamicStruct([NodeTypes.BODY], '@mixin')
+        params: [constructDynamicStruct([NodeTypes.VARIABLE, NodeTypes.ASSIGN], NodeTypes.MIXIN)],
+        body: constructDynamicStruct([NodeTypes.BODY], NodeTypes.MIXIN)
     },
 
-    '@error': {
-        type: '@error',
-        value: constructDynamicStruct([NodeTypes.LIST], '@error')
+    [NodeTypes.ERROR] : {
+        type: NodeTypes.ERROR,
+        value: constructDynamicStruct([NodeTypes.LIST], NodeTypes.ERROR)
     },
 
-    'IfStatement': {
-        type: 'IfStatement',
-        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY], 'IfStatement'),
-        consequent: constructDynamicStruct([NodeTypes.BODY], 'IfStatement'),
+    [NodeTypes.IFSTATEMENT]: {
+        type: NodeTypes.IFSTATEMENT,
+        test: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY], NodeTypes.IFSTATEMENT),
+        consequent: constructDynamicStruct([NodeTypes.BODY], NodeTypes.IFSTATEMENT),
         //alternate: IfStatement | body | null
-        alternate: constructDynamicStruct(['IfStatement', NodeTypes.BODY, 'null'], 'IfStatement')
+        alternate: constructDynamicStruct([NodeTypes.IFSTATEMENT, NodeTypes.BODY, 'null'], NodeTypes.IFSTATEMENT)
     },
 
-    'EachStatement': {
-        type: 'EachStatement',
-        left: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
-        right: constructDynamicStruct([NodeTypes.VARIABLE], 'EachStatement'),
-        body: constructDynamicStruct(['child'], 'EachStatement')
+    [NodeTypes.EACHSTATEMENT]: {
+        type: NodeTypes.EACHSTATEMENT,
+        left: constructDynamicStruct([NodeTypes.VARIABLE], NodeTypes.EACHSTATEMENT),
+        right: constructDynamicStruct([NodeTypes.VARIABLE], NodeTypes.EACHSTATEMENT),
+        body: constructDynamicStruct([NodeTypes.CHILD], NodeTypes.EACHSTATEMENT)
     },
-    'Prog': {
-        type: 'prog',
-        prog: [constructDynamicStruct(Statement_Types, 'Prog')]
+    [NodeTypes.PROGRAM]: {
+        type: NodeTypes.PROGRAM,
+        prog: [constructDynamicStruct(Statement_Types, NodeTypes.PROGRAM)]
     }
 
 };
@@ -210,7 +208,7 @@ const Type_Struct_Map = Object.keys(Type_Schema_Map).reduce((resultMap, type) =>
 
 module.exports = function error_checking(ast) {
     try {
-        Type_Struct_Map['Prog'](ast);
+        Type_Struct_Map[NodeTypes.PROGRAM](ast);
     } catch (e) {
         throw e
     }

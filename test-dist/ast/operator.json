@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 12
         }
       },
-      "type": "assign",
+      "type": "ASSIGN",
       "left": {
         "loc": {
           "start": {
@@ -54,7 +54,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -85,7 +85,7 @@
               "column": 18
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -178,7 +178,7 @@
               "column": 13
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -230,7 +230,7 @@
               "column": 28
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -343,7 +343,7 @@
               "column": 14
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -395,7 +395,7 @@
               "column": 29
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {

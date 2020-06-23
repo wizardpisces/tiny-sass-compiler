@@ -1,8 +1,8 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -33,7 +33,7 @@
               "column": 26
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -85,7 +85,7 @@
               "column": 17
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -137,7 +137,7 @@
               "column": 15
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -210,7 +210,7 @@
               "column": 24
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -262,7 +262,7 @@
               "column": 15
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -314,7 +314,7 @@
               "column": 13
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -387,7 +387,7 @@
               "column": 27
             }
           },
-          "type": "@extend",
+          "type": "EXTEND",
           "param": {
             "type": "TEXT",
             "value": ".message-shared"
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -427,7 +427,7 @@
               "column": 27
             }
           },
-          "type": "@extend",
+          "type": "EXTEND",
           "param": {
             "type": "TEXT",
             "value": ".message-shared"
@@ -446,7 +446,7 @@
               "column": 23
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -488,7 +488,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -519,7 +519,7 @@
               "column": 13
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -571,7 +571,7 @@
               "column": 27
             }
           },
-          "type": "@extend",
+          "type": "EXTEND",
           "param": {
             "type": "PLACEHOLDER",
             "value": "%message-shared"

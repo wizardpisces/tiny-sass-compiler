@@ -4,7 +4,7 @@
  * { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
  * { type: NodeTypes.TEXT, value: "12px" }
  * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
- * { type: NodeTypes.KEYWORD, value: "@extend"}    // keywords below
+ * { type: NodeTypes.KEYWORD, value: NodeTypes.INCLUDE}    // keywords below
  * { type: NodeTypes.PLACEHOLDER, value: "%str" }      //  % started string contains op char '%'
  * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
  */
@@ -103,7 +103,7 @@ function lex(input) {
 
     function read_assign_char() {
         return {
-            type: "assign",
+            type: NodeTypes.ASSIGN,
             value: input.next()
         }
     }

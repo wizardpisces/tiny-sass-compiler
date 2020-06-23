@@ -5,6 +5,9 @@
  * transform nested sass ast to flattened css ast
  * 
  */
+import {
+    NodeTypes
+} from '../parser/ast';
 
 module.exports = function tranform_nest(ast) {
     function flatten_child(child, arr = []) {
@@ -36,7 +39,7 @@ module.exports = function tranform_nest(ast) {
              * 
               */
             child.children.forEach((exp, index) => {
-                if (exp.type === 'child') {
+                if (exp.type === NodeTypes.CHILD) {
                     child.children.splice(index, 1,{type:'empty'})
                     flatten(exp, child.selector.value)
                 }
@@ -52,7 +55,7 @@ module.exports = function tranform_nest(ast) {
         let prog = [];
 
         ast.prog.forEach(exp => {
-            if (exp.type === 'child') {
+            if (exp.type === NodeTypes.CHILD) {
                 prog = prog.concat(...flatten_child(exp))
             } else {
                 prog.push(exp)

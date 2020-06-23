@@ -2,6 +2,8 @@
   
 This document specifies the core sass AST node types that support the sass grammar.
 
+[AST Typescript Descriptor](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/ast.ts)
+
 ## literal
 
 null
@@ -33,31 +35,31 @@ binary { type: NodeTypes.BINARY, operator: op, left: TEXT | VARIABLE | binary, r
 
 ```js
 body { type:NodeTypes.BODY, chidren:[ Statement ] } // difference between body and child: child contains selector
+assign { type: NodeTypes.ASSIGN, left: TEXT | VARIABLE | var_key, right: list } // border : 1px solid red
+child { type:NodeTypes.CHILD, selector: TEXT | placeholder | list, children: [ Statement ] }
 @import { type: NodeTypes.IMPORT, params:[ TEXT ] }
-assign { type: "assign", left: TEXT | VARIABLE | var_key, right: list } // border : 1px solid red
-child { type:"child", selector: TEXT | placeholder | list, children: [ Statement ] }
-@include { type: "@include", id:{ type:"identifier", name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
-@extend { type:"@extend", param: TEXT | placeholder }
-@mixin  { type: "@mixin", id:{ type:"identifier", name: string } , params: [ VARIABLE | assign ], body: body }
-@error  { type: "@error", value: list }
+@include { type: NodeTypes.INCLUDE, id:{ type:"identifier", name: string } , args: [ TEXT | VARIABLE | binary | assign ] }
+@extend { type:NodeTypes.EXTEND, param: TEXT | placeholder }
+@mixin  { type: NodeTypes.MIXIN, id:{ type:"identifier", name: string } , params: [ VARIABLE | assign ], body: body }
+@error  { type: NodeTypes.ERROR, value: list }
 ```
 
 ### Choice
 
 ```js
-@if { type:"IfStatement", test: Expression, consequent: body, alternate: IfStatement | body | null }
+@if { type:NodeTypes.IFSTATEMENT, test: Expression, consequent: body, alternate: IfStatement | body | null }
 
 ```
 
 ### Loops
 
 ```js
-@each { type:"EachStatement", left: Expression, right: Expression, body:child }
+@each { type:NodeTypes.EACHSTATEMENT, left: Expression, right: Expression, body:child }
 ```
 ## Program
 
 ```js
-prog { type:"prog", prog: [ Statement ] }
+prog { type:NodeTypes.PROGRAM, prog: [ Statement ] }
 ```
 Todos: 
 

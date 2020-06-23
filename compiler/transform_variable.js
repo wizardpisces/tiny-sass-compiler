@@ -82,19 +82,19 @@ module.exports = function transform_variable(ast) {
             /**
              * Statement
              */
-            case "assign": return transform_assign(exp, env);
+            case NodeTypes.ASSIGN: return transform_assign(exp, env);
             case NodeTypes.BINARY: return transform_binary(exp, env);
-            case "@mixin": return transform_mixin(exp, env);
-            case "@include": return transform_include(exp, env);
-            case "child":
+            case NodeTypes.MIXIN: return transform_mixin(exp, env);
+            case NodeTypes.INCLUDE: return transform_include(exp, env);
+            case NodeTypes.CHILD:
             case NodeTypes.BODY:
                 return transform_child_or_body(exp, env);
 
-            case "@extend": return exp;
-            case "IfStatement": return transform_if(exp, env);
-            case "EachStatement": return transform_each(exp, env);
+            case NodeTypes.EXTEND: return exp;
+            case NodeTypes.IFSTATEMENT: return transform_if(exp, env);
+            case NodeTypes.EACHSTATEMENT: return transform_each(exp, env);
 
-            case "@error": 
+            case NodeTypes.ERROR: 
                 throw new Error(transform_list(exp.value, env).value) 
 
             default:
@@ -140,7 +140,7 @@ module.exports = function transform_variable(ast) {
          */
 
         return evaluate({
-            type: 'child',
+            type: NodeTypes.CHILD,
             selector:{
                 type:NodeTypes.TEXT,
                 value:''
@@ -217,7 +217,7 @@ module.exports = function transform_variable(ast) {
             function handle_params_default_value(params){
                 return params.map((param) => {
                     let ret = param;
-                    if (param.type === 'assign') {
+                    if (param.type === NodeTypes.ASSIGN) {
                         ret = {
                             type: NodeTypes.VARIABLE,
                             value: param.left.value
@@ -251,7 +251,7 @@ module.exports = function transform_variable(ast) {
             /**
              * @include avatar(100px, $circle: false);
              */
-            if (arg.type === 'assign') {
+            if (arg.type === NodeTypes.ASSIGN) {
                 return evaluate(arg.right, env).value
             }
 

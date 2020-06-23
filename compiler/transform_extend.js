@@ -27,13 +27,13 @@ module.exports =function transform_extend(ast) {
     }
 
     function rm_empty_child(exp) {
-        return exp.type === 'child' && (is_placeholder(exp.selector) || exp.children.length === 0) ? null : exp
+        return exp.type === NodeTypes.CHILD && (is_placeholder(exp.selector) || exp.children.length === 0) ? null : exp
     }
 
     function collect_extend(exp) {
         function collect(child) {
             child.children = child.children.map(exp => {
-                if (exp.type === '@extend') {
+                if (exp.type === NodeTypes.EXTEND) {
                     extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(child.selector.value)
                     return null;
                 }
@@ -42,7 +42,7 @@ module.exports =function transform_extend(ast) {
 
             return child;
         }
-        return exp.type === 'child' ? collect(exp) : exp;
+        return exp.type === NodeTypes.CHILD ? collect(exp) : exp;
     }
 
     function transform_extend(exp) {
@@ -60,7 +60,7 @@ module.exports =function transform_extend(ast) {
             }
             return child;
         }
-        return exp.type === 'child' && extendSelectorPair[exp.selector.value] ? transform(exp) : exp;
+        return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value] ? transform(exp) : exp;
     }
 
     function toplevel(ast) {

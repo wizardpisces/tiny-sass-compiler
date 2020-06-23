@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "avatar"
@@ -49,7 +49,7 @@
               "column": 35
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -105,7 +105,7 @@
                 "column": 14
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -157,7 +157,7 @@
                 "column": 15
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -209,7 +209,7 @@
                 "column": 3
               }
             },
-            "type": "IfStatement",
+            "type": "IFSTATEMENT",
             "test": {
               "loc": {
                 "start": {
@@ -242,7 +242,7 @@
                       "column": 28
                     }
                   },
-                  "type": "assign",
+                  "type": "ASSIGN",
                   "left": {
                     "loc": {
                       "start": {
@@ -309,7 +309,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -340,7 +340,7 @@
               "column": 51
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "avatar"
@@ -375,7 +375,7 @@
                   "column": 50
                 }
               },
-              "type": "assign",
+              "type": "ASSIGN",
               "left": {
                 "loc": {
                   "start": {
@@ -419,7 +419,7 @@
       ]
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -450,7 +450,7 @@
               "column": 50
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "avatar"
@@ -485,7 +485,7 @@
                   "column": 49
                 }
               },
-              "type": "assign",
+              "type": "ASSIGN",
               "left": {
                 "loc": {
                   "start": {

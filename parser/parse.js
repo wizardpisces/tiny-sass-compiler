@@ -64,7 +64,7 @@ function parse(input) {
                  return right;
              }
              return {
-                 type: 'assign',
+                 type: NodeTypes.ASSIGN,
                  left: left,
                  right: {
                      type: NodeTypes.LIST,
@@ -185,7 +185,7 @@ function parse(input) {
 
     function is_assign() {
         let tok = input.peek()
-        return tok && tok.type === "assign";
+        return tok && tok.type === NodeTypes.ASSIGN;
     }
 
     function skip_punc(ch) {
@@ -232,7 +232,7 @@ function parse(input) {
         let children = delimited("{", "}", ";", parse_expression);
         // if (children.length == 0) return FALSE;
         // if (block.length == 1) return block[0];
-        return { type: "child", selector, children };
+        return { type: NodeTypes.CHILD, selector, children };
     }
 
     function maybe_assign(exp) {
@@ -265,7 +265,7 @@ function parse(input) {
 
     function parse_extend() {
         return {
-            type: '@extend',
+            type: NodeTypes.EXTEND,
             param: input.next()
         }
     }
@@ -299,7 +299,7 @@ function parse(input) {
         reset_assign_right_end_condition()
 
         return {
-            type: "@mixin",
+            type: NodeTypes.MIXIN,
             id,
             params, // %extend like expr or func expr
             body: parse_block_statement()
@@ -321,7 +321,7 @@ function parse(input) {
         reset_assign_right_end_condition()
 
         return {
-            type: "@include",
+            type: NodeTypes.INCLUDE,
             id,
             args,
         }
@@ -381,7 +381,7 @@ function parse(input) {
             }
         }
 
-        return { type: "IfStatement", test: testExpression, consequent: blockStatement, alternate: alternate }
+        return { type: NodeTypes.IFSTATEMENT, test: testExpression, consequent: blockStatement, alternate: alternate }
     }
 
     function parse_each(){
@@ -399,7 +399,7 @@ function parse(input) {
         let blockStatement = parse_expression()
         skip_punc('}')
         return {
-            type: "EachStatement",
+            type: NodeTypes.EACHSTATEMENT,
             left,
             right,
             body: blockStatement
@@ -419,7 +419,7 @@ function parse(input) {
 
     function parse_error(){
         return {
-            type:"@error",
+            type:NodeTypes.ERROR,
             value: parse_list()
         }
     }
@@ -500,7 +500,7 @@ function parse(input) {
             if (!input.eof()) skip_punc(";");
         }
         return {
-            type: "prog", 
+            type: NodeTypes.PROGRAM, 
             prog
         };
     }

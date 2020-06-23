@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 31
         }
       },
-      "type": "assign",
+      "type": "ASSIGN",
       "left": {
         "loc": {
           "start": {
@@ -66,7 +66,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "transform"
@@ -121,7 +121,7 @@
                 "column": 30
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -173,7 +173,7 @@
                 "column": 26
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -225,7 +225,7 @@
                 "column": 33
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -284,7 +284,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -315,7 +315,7 @@
               "column": 46
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "transform"
@@ -368,7 +368,7 @@
               "column": 10
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {

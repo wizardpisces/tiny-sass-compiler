@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 31
         }
       },
-      "type": "assign",
+      "type": "ASSIGN",
       "left": {
         "loc": {
           "start": {
@@ -98,7 +98,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "replace-text"
@@ -133,7 +133,7 @@
               "column": 38
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -185,7 +185,7 @@
               "column": 51
             }
           },
-          "type": "assign",
+          "type": "ASSIGN",
           "left": {
             "loc": {
               "start": {
@@ -241,7 +241,7 @@
                 "column": 23
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -293,7 +293,7 @@
                 "column": 18
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -345,7 +345,7 @@
                 "column": 18
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -385,7 +385,7 @@
             }
           },
           {
-            "type": "child",
+            "type": "CHILD",
             "selector": {
               "loc": {
                 "start": {
@@ -416,7 +416,7 @@
                     "column": 17
                   }
                 },
-                "type": "assign",
+                "type": "ASSIGN",
                 "left": {
                   "loc": {
                     "start": {
@@ -468,7 +468,7 @@
                     "column": 21
                   }
                 },
-                "type": "assign",
+                "type": "ASSIGN",
                 "left": {
                   "loc": {
                     "start": {
@@ -520,7 +520,7 @@
                     "column": 19
                   }
                 },
-                "type": "assign",
+                "type": "ASSIGN",
                 "left": {
                   "loc": {
                     "start": {
@@ -581,7 +581,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -612,7 +612,7 @@
               "column": 54
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "replace-text"

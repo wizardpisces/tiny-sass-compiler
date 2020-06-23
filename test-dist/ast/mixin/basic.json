@@ -1,5 +1,5 @@
 {
-  "type": "prog",
+  "type": "PROGRAM",
   "prog": [
     {
       "loc": {
@@ -14,7 +14,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "reset-list"
@@ -36,7 +36,7 @@
                 "column": 11
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -88,7 +88,7 @@
                 "column": 12
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -140,7 +140,7 @@
                 "column": 18
               }
             },
-            "type": "assign",
+            "type": "ASSIGN",
             "left": {
               "loc": {
                 "start": {
@@ -195,7 +195,7 @@
           "column": 1
         }
       },
-      "type": "@mixin",
+      "type": "MIXIN",
       "id": {
         "type": "identifier",
         "name": "horizontal-list"
@@ -217,7 +217,7 @@
                 "column": 21
               }
             },
-            "type": "@include",
+            "type": "INCLUDE",
             "id": {
               "type": "identifier",
               "name": "reset-list"
@@ -225,7 +225,7 @@
             "args": []
           },
           {
-            "type": "child",
+            "type": "CHILD",
             "selector": {
               "loc": {
                 "start": {
@@ -256,7 +256,7 @@
                     "column": 25
                   }
                 },
-                "type": "assign",
+                "type": "ASSIGN",
                 "left": {
                   "loc": {
                     "start": {
@@ -301,7 +301,7 @@
       }
     },
     {
-      "type": "child",
+      "type": "CHILD",
       "selector": {
         "loc": {
           "start": {
@@ -332,7 +332,7 @@
               "column": 26
             }
           },
-          "type": "@include",
+          "type": "INCLUDE",
           "id": {
             "type": "identifier",
             "name": "horizontal-list"
