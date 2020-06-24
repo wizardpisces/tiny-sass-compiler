@@ -60,7 +60,7 @@ function run(sourceDir, outputDir = './', options = {
                 outputDir;
                 
             try {
-                compiled = compile(source, sourceDirname)
+                compiled = compile(source, sourceDirname).code
             } catch (e) {
                 console.log('Error path: ', filePath)
                 console.log(e)

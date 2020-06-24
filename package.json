@@ -1,6 +1,6 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "simple scss compiler",
   "main": "test.js",
   "bin": {
@@ -23,7 +23,7 @@
     "ast"
   ],
   "author": "wizardpisces@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wizardpisces/tiny-sass-compiler/issues"
   },

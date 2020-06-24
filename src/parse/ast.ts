@@ -59,6 +59,7 @@ export interface Position {
 }
 
 export interface Node {
+    [key:string]:any
     type: NodeTypes
     loc: SourceLocation
 }
@@ -143,13 +144,13 @@ export interface BodyStatement extends Node {
 export interface ChildStatement extends Node {
     type: NodeTypes.CHILD
     selector: TextNode | PlaceholderNode | ListNode
-    children: [Statement]
+    children: [Statement | AfterTransformProgNode]
 }
 
 export interface AssignStatement extends Node {
     type: NodeTypes.ASSIGN
     left: VariableNode | TextNode | VarKeyNode
-    right: NodeTypes.LIST
+    right: ListNode | TextNode // ListNode before transform , TextNode after transform
 }
 
 // keyword statement
@@ -196,11 +197,12 @@ export interface EachStatement extends Node {
     body: ChildStatement
 }
 
+export type AfterTransformProgNode = TextNode | AssignStatement | ChildStatement | EmptyNode;
 
 export interface Program extends Node {
     type: NodeTypes.PROGRAM
-    prog: [Statement]
+    prog: [Statement | AfterTransformProgNode]
 }
 
-
+export type RootNode = Program
 

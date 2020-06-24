@@ -63,12 +63,13 @@ prog { type:NodeTypes.PROGRAM, prog: [ Statement ] }
 ```
 Todos: 
 
-* transform to ts for better documents
-* tranform (start,end) to location(line,column,offset)，Error handling to specific position (source filepath , line ,col ,token)
+* ~~transform to ts for better documents~~
+* ~~tranform (start,end) to location(line,column,offset)，Error handling to specific position (source filepath , line ,col ,token)~~
+* make transform plug-in ( doing )
+* code gen sourceMap
 * add keyword @function
 * add position to more tokens
 * add '( | )' check to binary precedence
-* optimize AST Node types
-* optimize parser files organization
-* reorganize readme.md
+* ~~optimize AST Node types~~
+* ~~optimize parser files organization~~
 * Error recovery
