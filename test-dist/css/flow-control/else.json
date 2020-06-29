@@ -1,0 +1,190 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 306,
+            "line": 16,
+            "column": 0
+          },
+          "end": {
+            "offset": 313,
+            "line": 16,
+            "column": 7
+          }
+        },
+        "type": "TEXT",
+        "value": ".banner"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 179,
+              "line": 8,
+              "column": 20
+            },
+            "end": {
+              "offset": 198,
+              "line": 8,
+              "column": 39
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 163,
+                "line": 8,
+                "column": 4
+              },
+              "end": {
+                "offset": 179,
+                "line": 8,
+                "column": 20
+              }
+            },
+            "type": "TEXT",
+            "value": "background-color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#f2ece4"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 209,
+              "line": 9,
+              "column": 9
+            },
+            "end": {
+              "offset": 222,
+              "line": 9,
+              "column": 22
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 204,
+                "line": 9,
+                "column": 4
+              },
+              "end": {
+                "offset": 209,
+                "line": 9,
+                "column": 9
+              }
+            },
+            "type": "TEXT",
+            "value": "color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#036"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 363,
+            "line": 18,
+            "column": 2
+          },
+          "end": {
+            "offset": 374,
+            "line": 18,
+            "column": 13
+          }
+        },
+        "type": "TEXT",
+        "value": "body.dark .banner"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 256,
+              "line": 11,
+              "column": 20
+            },
+            "end": {
+              "offset": 274,
+              "line": 11,
+              "column": 38
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 240,
+                "line": 11,
+                "column": 4
+              },
+              "end": {
+                "offset": 256,
+                "line": 11,
+                "column": 20
+              }
+            },
+            "type": "TEXT",
+            "value": "background-color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#6b717f"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 285,
+              "line": 12,
+              "column": 9
+            },
+            "end": {
+              "offset": 297,
+              "line": 12,
+              "column": 21
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 280,
+                "line": 12,
+                "column": 4
+              },
+              "end": {
+                "offset": 285,
+                "line": 12,
+                "column": 9
+              }
+            },
+            "type": "TEXT",
+            "value": "color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#d2e1dd"
+          }
+        }
+      ]
+    }
+  ]
+}

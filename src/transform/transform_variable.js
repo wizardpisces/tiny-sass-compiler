@@ -407,7 +407,7 @@ export default function transform_variable(ast) {
 
     function toplevel(ast, env) {
         // console.log(JSON.stringify(ast))
-        ast.prog = ast.prog.map(exp => evaluate(exp, env)).filter(exp => exp !== null)
+        ast.children = ast.children.map(exp => evaluate(exp, env)).filter(exp => exp !== null)
         // console.log(JSON.stringify(ast))
 
         return ast;

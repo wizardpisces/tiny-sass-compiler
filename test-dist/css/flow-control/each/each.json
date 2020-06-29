@@ -1,0 +1,281 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "type": "TEXT",
+        "value": ".icon-#asfssd-40px"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 86,
+              "line": 5,
+              "column": 13
+            },
+            "end": {
+              "offset": 93,
+              "line": 5,
+              "column": 20
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 77,
+                "line": 5,
+                "column": 4
+              },
+              "end": {
+                "offset": 86,
+                "line": 5,
+                "column": 13
+              }
+            },
+            "type": "TEXT",
+            "value": "font-size"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "40px"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 99,
+            "line": 6,
+            "column": 4
+          },
+          "end": {
+            "offset": 102,
+            "line": 6,
+            "column": 7
+          }
+        },
+        "type": "TEXT",
+        "value": ".icon-#asfssd-40px .ok"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 121,
+              "line": 7,
+              "column": 17
+            },
+            "end": {
+              "offset": 128,
+              "line": 7,
+              "column": 24
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 112,
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "offset": 121,
+                "line": 7,
+                "column": 17
+              }
+            },
+            "type": "TEXT",
+            "value": "font-size"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "40px"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 144,
+              "line": 8,
+              "column": 14
+            },
+            "end": {
+              "offset": 173,
+              "line": 8,
+              "column": 43
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 138,
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "offset": 144,
+                "line": 8,
+                "column": 14
+              }
+            },
+            "type": "TEXT",
+            "value": "border"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "40px solid #111111"
+          }
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "type": "TEXT",
+        "value": ".icon-#asfssd-50px"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 86,
+              "line": 5,
+              "column": 13
+            },
+            "end": {
+              "offset": 93,
+              "line": 5,
+              "column": 20
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 77,
+                "line": 5,
+                "column": 4
+              },
+              "end": {
+                "offset": 86,
+                "line": 5,
+                "column": 13
+              }
+            },
+            "type": "TEXT",
+            "value": "font-size"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "50px"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 99,
+            "line": 6,
+            "column": 4
+          },
+          "end": {
+            "offset": 102,
+            "line": 6,
+            "column": 7
+          }
+        },
+        "type": "TEXT",
+        "value": ".icon-#asfssd-50px .ok"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 121,
+              "line": 7,
+              "column": 17
+            },
+            "end": {
+              "offset": 128,
+              "line": 7,
+              "column": 24
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 112,
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "offset": 121,
+                "line": 7,
+                "column": 17
+              }
+            },
+            "type": "TEXT",
+            "value": "font-size"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "50px"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 144,
+              "line": 8,
+              "column": 14
+            },
+            "end": {
+              "offset": 173,
+              "line": 8,
+              "column": 43
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 138,
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "offset": 144,
+                "line": 8,
+                "column": 14
+              }
+            },
+            "type": "TEXT",
+            "value": "border"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "50px solid #111111"
+          }
+        }
+      ]
+    }
+  ]
+}

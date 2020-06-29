@@ -4,7 +4,8 @@ import {
     TextNode,
     AssignStatement,
     ChildStatement,
-    AfterTransformProgNode,
+    ChildCodeGenNode,
+    ProgCodeGenNode
 } from './parse/ast';
 import { CodegenOptions } from './options'
 
@@ -40,7 +41,7 @@ function createCodegenContext(
 export function generate(ast: RootNode, options: CodegenOptions = {}): CodegenResult {
     const context = createCodegenContext(ast, options)
 
-    function compile(exp: AfterTransformProgNode): string {
+    function compile(exp: ChildCodeGenNode): string {
         switch (exp.type) {
             case NodeTypes.TEXT:
                 return css_str(exp as TextNode);
@@ -64,13 +65,13 @@ export function generate(ast: RootNode, options: CodegenOptions = {}): CodegenRe
         return compile(exp.left as TextNode) + ':' + compile(exp.right as TextNode) + ';';
     }
 
-    function css_child(exp: AfterTransformProgNode): string {
-        return exp.selector.value + '{' + ( exp.children as AfterTransformProgNode[] ).map((child: AfterTransformProgNode): string => compile(child)).join('') + '}';
+    function css_child(exp: ChildCodeGenNode): string {
+        return exp.selector.value + '{' + ( exp.children as ChildCodeGenNode[] ).map((child: ChildCodeGenNode): string => compile(child)).join('') + '}';
     }
 
     function toplevel(ast: RootNode, context: CodegenContext): CodegenResult {
         const { push } = context;
-        push( ( ast.prog as AfterTransformProgNode[] ).map((exp: AfterTransformProgNode): string => compile(exp)).join(''));
+        push( ( ast.children as ProgCodeGenNode[] ).map((exp: ProgCodeGenNode): string => compile(exp)).join(''));
 
         return {
             ast,

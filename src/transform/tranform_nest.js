@@ -52,17 +52,17 @@ export default function tranform_nest(ast) {
 
     function toplevel(ast) {
 
-        let prog = [];
+        let children = [];
 
-        ast.prog.forEach(exp => {
+        ast.children.forEach(exp => {
             if (exp.type === NodeTypes.CHILD) {
-                prog = prog.concat(...flatten_child(exp))
+                children = children.concat(...flatten_child(exp))
             } else {
-                prog.push(exp)
+                children.push(exp)
             }
         });
 
-        ast.prog = prog;
+        ast.children = children;
 
         return ast;
     }

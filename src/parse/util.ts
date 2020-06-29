@@ -5,6 +5,8 @@ import {
     arithmeticOperator,
 } from './ast';
 
+export const isArray = Array.isArray
+
 const debug = (function () {
     let isDebug = false,
         count = 0;

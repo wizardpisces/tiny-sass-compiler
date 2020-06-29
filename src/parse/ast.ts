@@ -144,7 +144,7 @@ export interface BodyStatement extends Node {
 export interface ChildStatement extends Node {
     type: NodeTypes.CHILD
     selector: TextNode | PlaceholderNode | ListNode
-    children: [Statement | AfterTransformProgNode]
+    children: [Statement | ChildCodeGenNode]
 }
 
 export interface AssignStatement extends Node {
@@ -197,11 +197,17 @@ export interface EachStatement extends Node {
     body: ChildStatement
 }
 
-export type AfterTransformProgNode = TextNode | AssignStatement | ChildStatement | EmptyNode;
+/* codeGenNode means ast tree that is transformed  */
+
+export type ChildCodeGenNode = TextNode | ProgCodeGenNode
+
+export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode;
+
+export type ParentNode = RootNode | BodyStatement | ChildStatement
 
 export interface Program extends Node {
     type: NodeTypes.PROGRAM
-    prog: [Statement | AfterTransformProgNode]
+    children: [Statement | ProgCodeGenNode]
 }
 
 export type RootNode = Program

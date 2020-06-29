@@ -6,7 +6,7 @@ export interface CompilerError extends SyntaxError {
     position?: Position
 }
 
-export function onError(error: CompilerError) {
+export function defaultOnError(error: CompilerError) {
     throw error
 }
 

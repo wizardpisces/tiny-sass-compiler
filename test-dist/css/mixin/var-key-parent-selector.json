@@ -1,0 +1,120 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 140,
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "offset": 148,
+            "line": 9,
+            "column": 8
+          }
+        },
+        "type": "TEXT",
+        "value": ".sidebar"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 62,
+              "line": 2,
+              "column": 14
+            },
+            "end": {
+              "offset": 74,
+              "line": 2,
+              "column": 26
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 50,
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "offset": 62,
+                "line": 2,
+                "column": 14
+              }
+            },
+            "type": "TEXT",
+            "value": "float"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "left"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 80,
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "offset": 98,
+            "line": 4,
+            "column": 21
+          }
+        },
+        "type": "TEXT",
+        "value": "[dir=rtl] .sidebar.second"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 119,
+              "line": 5,
+              "column": 18
+            },
+            "end": {
+              "offset": 131,
+              "line": 5,
+              "column": 30
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 105,
+                "line": 5,
+                "column": 4
+              },
+              "end": {
+                "offset": 119,
+                "line": 5,
+                "column": 18
+              }
+            },
+            "type": "TEXT",
+            "value": "float"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

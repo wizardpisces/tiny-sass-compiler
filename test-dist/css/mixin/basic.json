@@ -1,0 +1,190 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 160,
+            "line": 15,
+            "column": 0
+          },
+          "end": {
+            "offset": 166,
+            "line": 15,
+            "column": 6
+          }
+        },
+        "type": "TEXT",
+        "value": "nav ul"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 28,
+              "line": 2,
+              "column": 8
+            },
+            "end": {
+              "offset": 31,
+              "line": 2,
+              "column": 11
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 22,
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "offset": 28,
+                "line": 2,
+                "column": 8
+              }
+            },
+            "type": "TEXT",
+            "value": "margin"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "0"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 42,
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "offset": 45,
+              "line": 3,
+              "column": 12
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 35,
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "offset": 42,
+                "line": 3,
+                "column": 9
+              }
+            },
+            "type": "TEXT",
+            "value": "padding"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "0"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 59,
+              "line": 4,
+              "column": 12
+            },
+            "end": {
+              "offset": 65,
+              "line": 4,
+              "column": 18
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 49,
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "offset": 59,
+                "line": 4,
+                "column": 12
+              }
+            },
+            "type": "TEXT",
+            "value": "list-style"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "none"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 121,
+            "line": 10,
+            "column": 2
+          },
+          "end": {
+            "offset": 123,
+            "line": 10,
+            "column": 4
+          }
+        },
+        "type": "TEXT",
+        "value": "nav ul li"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 137,
+              "line": 11,
+              "column": 11
+            },
+            "end": {
+              "offset": 151,
+              "line": 11,
+              "column": 25
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 130,
+                "line": 11,
+                "column": 4
+              },
+              "end": {
+                "offset": 137,
+                "line": 11,
+                "column": 11
+              }
+            },
+            "type": "TEXT",
+            "value": "display"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "inline-block"
+          }
+        }
+      ]
+    }
+  ]
+}

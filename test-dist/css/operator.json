@@ -1,0 +1,243 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 14,
+            "line": 2,
+            "column": 0
+          },
+          "end": {
+            "offset": 24,
+            "line": 2,
+            "column": 10
+          }
+        },
+        "type": "TEXT",
+        "value": ".container"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 34,
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "offset": 45,
+              "line": 3,
+              "column": 18
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 29,
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "offset": 34,
+                "line": 3,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "width"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "9px"
+          }
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 50,
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "offset": 70,
+            "line": 6,
+            "column": 20
+          }
+        },
+        "type": "TEXT",
+        "value": "article[role=\"main\"]"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 80,
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "offset": 86,
+              "line": 7,
+              "column": 13
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 75,
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "offset": 80,
+                "line": 7,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "float"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "left"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 95,
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "offset": 116,
+              "line": 8,
+              "column": 28
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 90,
+                "line": 8,
+                "column": 2
+              },
+              "end": {
+                "offset": 95,
+                "line": 8,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "width"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "62.5%"
+          }
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 121,
+            "line": 11,
+            "column": 0
+          },
+          "end": {
+            "offset": 148,
+            "line": 11,
+            "column": 27
+          }
+        },
+        "type": "TEXT",
+        "value": "aside[role=\"complementary\"]"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 158,
+              "line": 12,
+              "column": 7
+            },
+            "end": {
+              "offset": 165,
+              "line": 12,
+              "column": 14
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 153,
+                "line": 12,
+                "column": 2
+              },
+              "end": {
+                "offset": 158,
+                "line": 12,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "float"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "right"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 174,
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "offset": 196,
+              "line": 13,
+              "column": 29
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 169,
+                "line": 13,
+                "column": 2
+              },
+              "end": {
+                "offset": 174,
+                "line": 13,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "width"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "31.25%"
+          }
+        }
+      ]
+    }
+  ]
+}

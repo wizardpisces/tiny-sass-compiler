@@ -1,0 +1,260 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 239,
+            "line": 14,
+            "column": 0
+          },
+          "end": {
+            "offset": 249,
+            "line": 14,
+            "column": 10
+          }
+        },
+        "type": "TEXT",
+        "value": ".mail-icon"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 101,
+              "line": 3,
+              "column": 13
+            },
+            "end": {
+              "offset": 111,
+              "line": 3,
+              "column": 23
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 90,
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "offset": 101,
+                "line": 3,
+                "column": 13
+              }
+            },
+            "type": "TEXT",
+            "value": "text-indent"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "-99999em"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 123,
+              "line": 4,
+              "column": 10
+            },
+            "end": {
+              "offset": 131,
+              "line": 4,
+              "column": 18
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 115,
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "offset": 123,
+                "line": 4,
+                "column": 10
+              }
+            },
+            "type": "TEXT",
+            "value": "overflow"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "hidden"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 145,
+              "line": 5,
+              "column": 12
+            },
+            "end": {
+              "offset": 151,
+              "line": 5,
+              "column": 18
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 135,
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "offset": 145,
+                "line": 5,
+                "column": 12
+              }
+            },
+            "type": "TEXT",
+            "value": "text-align"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "left"
+          }
+        },
+        {
+          "type": "EMPTY"
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 156,
+            "line": 7,
+            "column": 2
+          },
+          "end": {
+            "offset": 166,
+            "line": 7,
+            "column": 12
+          }
+        },
+        "type": "TEXT",
+        "value": ".mail-icon background"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 178,
+              "line": 8,
+              "column": 9
+            },
+            "end": {
+              "offset": 186,
+              "line": 8,
+              "column": 17
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 173,
+                "line": 8,
+                "column": 4
+              },
+              "end": {
+                "offset": 178,
+                "line": 8,
+                "column": 9
+              }
+            },
+            "type": "TEXT",
+            "value": "image"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "url(\"/images/mail.svg\")"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 198,
+              "line": 9,
+              "column": 10
+            },
+            "end": {
+              "offset": 209,
+              "line": 9,
+              "column": 21
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 192,
+                "line": 9,
+                "column": 4
+              },
+              "end": {
+                "offset": 198,
+                "line": 9,
+                "column": 10
+              }
+            },
+            "type": "TEXT",
+            "value": "repeat"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "no-repeat"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 223,
+              "line": 10,
+              "column": 12
+            },
+            "end": {
+              "offset": 230,
+              "line": 10,
+              "column": 19
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 215,
+                "line": 10,
+                "column": 4
+              },
+              "end": {
+                "offset": 223,
+                "line": 10,
+                "column": 12
+              }
+            },
+            "type": "TEXT",
+            "value": "position"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "Helvetica, sans-serif default2"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "type": "PROGRAM",
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 76,
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "offset": 80,
+            "line": 5,
+            "column": 4
+          }
+        },
+        "type": "TEXT",
+        "value": "body"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 89,
+              "line": 6,
+              "column": 6
+            },
+            "end": {
+              "offset": 107,
+              "line": 6,
+              "column": 24
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 85,
+                "line": 6,
+                "column": 2
+              },
+              "end": {
+                "offset": 89,
+                "line": 6,
+                "column": 6
+              }
+            },
+            "type": "TEXT",
+            "value": "font"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "100% Helvetica, sans-serif"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 116,
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "offset": 132,
+              "line": 7,
+              "column": 23
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 111,
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "offset": 116,
+                "line": 7,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#333"
+          }
+        }
+      ]
+    },
+    {
+      "type": "CHILD",
+      "selector": {
+        "loc": {
+          "start": {
+            "offset": 39,
+            "line": 4,
+            "column": 0
+          },
+          "end": {
+            "offset": 47,
+            "line": 4,
+            "column": 8
+          }
+        },
+        "type": "TEXT",
+        "value": ".inverse"
+      },
+      "children": [
+        {
+          "loc": {
+            "start": {
+              "offset": 68,
+              "line": 5,
+              "column": 18
+            },
+            "end": {
+              "offset": 84,
+              "line": 5,
+              "column": 34
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 52,
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "offset": 68,
+                "line": 5,
+                "column": 18
+              }
+            },
+            "type": "TEXT",
+            "value": "background-color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "#333"
+          }
+        },
+        {
+          "loc": {
+            "start": {
+              "offset": 93,
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "offset": 100,
+              "line": 6,
+              "column": 14
+            }
+          },
+          "type": "ASSIGN",
+          "left": {
+            "loc": {
+              "start": {
+                "offset": 88,
+                "line": 6,
+                "column": 2
+              },
+              "end": {
+                "offset": 93,
+                "line": 6,
+                "column": 7
+              }
+            },
+            "type": "TEXT",
+            "value": "color"
+          },
+          "right": {
+            "type": "TEXT",
+            "value": "white"
+          }
+        }
+      ]
+    }
+  ]
+}

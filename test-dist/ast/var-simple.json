@@ -1,6 +1,6 @@
 {
   "type": "PROGRAM",
-  "prog": [
+  "children": [
     {
       "loc": {
         "start": {

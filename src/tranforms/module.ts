@@ -8,11 +8,15 @@
 import fs from 'fs'
 import parse from '../parse'
 import path from 'path'
+import { CompilerOptions } from '../options'
+
 import {
-    NodeTypes
+    NodeTypes,
+    Node,
+
 } from '../parse/ast';
 const EXTNAME_GLOBAL = '.scss'
-export default function transform_module(ast, context = './') {
+export default function module(node: Node, context: CompilerOptions) {
     let importedAstList = [],
         newProg = [];
     /**
@@ -20,23 +24,23 @@ export default function transform_module(ast, context = './') {
      * only support @import in the head lines for now
       */
 
-    ast.children = ast.children.map(exp=>{
-        if(exp.type === NodeTypes.IMPORT){
-            importedAstList = importedAstList.concat(exp.params.map(exp=>{
+    ast.children = ast.children.map(exp => {
+        if (exp.type === NodeTypes.IMPORT) {
+            importedAstList = importedAstList.concat(exp.params.map(exp => {
                 let filename = exp.value,
                     extname = path.extname(filename),
                     basename = path.basename(filename),
                     dirname = path.dirname(filename),
-                    filePath = path.join(context, dirname, '_' + basename + (extname ? '' : EXTNAME_GLOBAL) );
+                    filePath = path.join(context.sourceDir, dirname, '_' + basename + (extname ? '' : EXTNAME_GLOBAL));
 
-                return parse(fs.readFileSync(filePath,'utf8'))
+                return parse(fs.readFileSync(filePath, 'utf8'))
             }))
             return null
         }
         return exp;
-    }).filter(exp=>exp!==null)
+    }).filter(exp => exp !== null)
 
-    importedAstList.forEach(ast=>{
+    importedAstList.forEach(ast => {
         newProg = newProg.concat(ast.children)
     })
 

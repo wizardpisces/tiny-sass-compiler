@@ -206,7 +206,7 @@ let Type_Schema_Map = {
     },
     [NodeTypes.PROGRAM]: {
         type: NodeTypes.PROGRAM,
-        prog: [constructDynamicStruct(Statement_Types, NodeTypes.PROGRAM)]
+        children: [constructDynamicStruct(Statement_Types, NodeTypes.PROGRAM)]
     }
 
 };

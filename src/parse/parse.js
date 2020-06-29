@@ -1,5 +1,5 @@
 import {
-    onError,
+    defaultOnError,
     ErrorCodes
 } from './errors';
 
@@ -126,7 +126,7 @@ export default function parse(input) {
                 return parse_consecutive_str()
             }
 
-            onError({
+            defaultOnError({
                 code: ErrorCodes.UNKNONWN_TOKEN_TYPE,
                 loc: input.getCoordination(),
                 tok
@@ -493,15 +493,15 @@ export default function parse(input) {
     }
 
     function parse_prog(){
-        let prog = [];
+        let children = [];
         while (!input.eof()) {
             let result = parse_expression()
-            prog.push(result);
+            children.push(result);
             if (!input.eof()) skip_punc(";");
         }
         return {
             type: NodeTypes.PROGRAM, 
-            prog
+            children
         };
     }
 

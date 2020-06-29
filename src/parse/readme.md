@@ -59,7 +59,7 @@ child { type:NodeTypes.CHILD, selector: TEXT | placeholder | list, children: [ S
 ## Program
 
 ```js
-prog { type:NodeTypes.PROGRAM, prog: [ Statement ] }
+children { type:NodeTypes.PROGRAM, children: [ Statement ] }
 ```
 Todos: 
 

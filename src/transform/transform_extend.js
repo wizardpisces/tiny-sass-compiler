@@ -65,9 +65,9 @@ export default function transform_extend(ast) {
 
     function toplevel(ast) {
 
-        ast.prog = ast.prog.map(exp => collect_extend(exp))
-        ast.prog = ast.prog.map(exp => transform_extend(exp))
-        ast.prog = ast.prog.map(exp => rm_empty_child(exp)).filter(exp => exp !== null)
+        ast.children = ast.children.map(exp => collect_extend(exp))
+        ast.children = ast.children.map(exp => transform_extend(exp))
+        ast.children = ast.children.map(exp => rm_empty_child(exp)).filter(exp => exp !== null)
         return ast;
     }
 

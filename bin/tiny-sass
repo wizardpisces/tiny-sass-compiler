@@ -21,4 +21,6 @@ const [node_env, bin_path, ...args] = process.argv;
 
 // console.log(`this is the arguments: ${node_env},${bin_path},${args}`)
 
+// tiny - sass < input > [output]
+
 run(args[0], args[1],{generateAstFile:true})

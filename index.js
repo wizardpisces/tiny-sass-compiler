@@ -60,7 +60,9 @@ function run(sourceDir, outputDir = './', options = {
                 outputDir;
                 
             try {
-                compiled = compile(source, sourceDirname).code
+                compiled = compile(source, {
+                    sourceDir:sourceDirname
+                })
             } catch (e) {
                 console.log('Error path: ', filePath)
                 console.log(e)
@@ -79,12 +81,25 @@ function run(sourceDir, outputDir = './', options = {
                 outputDir = cssDistPath
             }
 
-            fs.writeFile(path.join(outputDir, basename + '.css'), cssbeautify(compiled), function (err) {
-                if (err) {
-                    return console.error(`compile failed ${basename}`);
-                }
-                console.log(`compile success ${basename}`)
-            })
+            function writeResultAst(cb){
+                fs.writeFile(path.join(outputDir, basename + '.json'), JSON.stringify(compiled.ast, null, 2), function (err) {
+                    if (err) {
+                        return console.error(`write transformed ast failed ${basename}`);
+                    }
+                    cb()
+                })
+            }
+
+            function writeResultCode(){  
+                fs.writeFile(path.join(outputDir, basename + '.css'), cssbeautify(compiled.code), function (err) {
+                    if (err) {
+                        return console.error(`write css failed ${basename}`);
+                    }
+                    console.log(`compile success ${basename}`)
+                })
+            }
+
+            writeResultAst(writeResultCode)
         }
 
         write_ast(() => {
