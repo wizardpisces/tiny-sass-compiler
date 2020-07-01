@@ -1,22 +1,28 @@
 import { CompilerOptions } from './options'
 import baseParse from './parse'
-// import module from './transforms/module'
 // transformChain will be slowly replaced by transform plugins
 import transformChain from './transform/index'
 import { generate } from './codegen'
 import { transform } from './transform'
+import transform_import from './transform/transform_module'
+import {Environment} from './parse/util'
 
-export default function baseCompile(scss: string, options: CompilerOptions = {}) {
+import {transformStatement} from './tranforms/transformStatement'
+
+export default function baseCompile(scss: string, options: CompilerOptions = { env : new Environment(null)}) {
     let ast = baseParse(scss)
 
     // transformChain will be slowly replaced by transform plugins
-    ast = transformChain(ast, options.sourceDir)
+    ast = transform_import(ast, options.sourceDir)
 
     transform(ast, {
-        nodeTransforms: [],
+        nodeTransforms: [transformStatement],
         ...options
     })
+    
+    // console.log('ast',ast)
 
+    ast = transformChain(ast, options.sourceDir)
 
     return generate(ast)
 }

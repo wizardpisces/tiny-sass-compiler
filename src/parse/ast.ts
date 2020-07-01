@@ -73,8 +73,6 @@ export interface KeywordNode extends Node { // exists only in lexical
 
 export interface TextNode extends Node {
     type: NodeTypes.TEXT
-    start: number
-    end: number
     value: string
 }
 export interface EmptyNode extends Node {
@@ -122,6 +120,8 @@ export interface ListNode extends Node {
     value: [TextNode | VariableNode | VarKeyNode | PuncNode | BinaryNode]
 }
 
+export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode
+
 /* Statement */
 
 export type Statement = 
@@ -138,13 +138,13 @@ export type Statement =
 
 export interface BodyStatement extends Node {
     type: NodeTypes.BODY
-    children: [Statement]
+    children: Statement[]
 }
 
 export interface ChildStatement extends Node {
     type: NodeTypes.CHILD
     selector: TextNode | PlaceholderNode | ListNode
-    children: [Statement | ChildCodeGenNode]
+    children: (Statement | ChildCodeGenNode)[]
 }
 
 export interface AssignStatement extends Node {

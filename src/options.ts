@@ -1,5 +1,6 @@
 import { NodeTransform} from './transform'
 import { CompilerError} from './parse/errors'
+import {Environment} from './parse/util'
 export interface TransformOptions {
     /**
      * An array of node trasnforms to be applied to every AST node.
@@ -9,6 +10,9 @@ export interface TransformOptions {
     // resolve @import
     sourceDir?: string
     
+    // scope chain dynamically evaluate variables / function / expressions when transform ast
+    env: Environment
+
     onError?: (error: CompilerError) => void
 }
 
