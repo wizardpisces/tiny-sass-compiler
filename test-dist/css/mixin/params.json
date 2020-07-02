@@ -2,32 +2,6 @@
   "type": "PROGRAM",
   "children": [
     {
-      "type": "EMPTY",
-      "start": {
-        "offset": 0,
-        "column": 0,
-        "line": 0
-      },
-      "end": {
-        "offset": 0,
-        "column": 0,
-        "line": 0
-      }
-    },
-    {
-      "type": "EMPTY",
-      "start": {
-        "offset": 0,
-        "column": 0,
-        "line": 0
-      },
-      "end": {
-        "offset": 0,
-        "column": 0,
-        "line": 0
-      }
-    },
-    {
       "type": "CHILD",
       "selector": {
         "loc": {

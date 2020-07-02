@@ -207,7 +207,7 @@ export type ParentNode = RootNode | BodyStatement | ChildStatement
 
 export interface Program extends Node {
     type: NodeTypes.PROGRAM
-    children: [Statement | ProgCodeGenNode]
+    children: (Statement | ProgCodeGenNode)[]
 }
 
 export type RootNode = Program

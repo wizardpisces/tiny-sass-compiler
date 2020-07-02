@@ -1,7 +1,13 @@
-import { NodeTypes, Node, RootNode, ParentNode } from './parse/ast'
+import { NodeTypes, Node, RootNode, ParentNode, ChildCodeGenNode } from './parse/ast'
 import { TransformOptions } from './options'
 import { defaultOnError } from './parse/errors'
-import { isArray, Environment, createEmptyNode} from './parse/util'
+import { 
+    isArray, 
+    Environment
+} from './parse/util'
+import transformChain from './transform/index'
+import transform_import from './transform/transform_module'
+
 // - NodeTransform:
 //   Transforms that operate directly on a ChildNode. NodeTransforms may mutate,
 //   replace or remove the node being processed.
@@ -15,7 +21,7 @@ export interface TransformContext extends Required<TransformOptions>{
     currentNode: Node | null,
     parent:Node | null,
     childIndex:number,
-    removeNode(node?: Node): void
+    // removeNode(node?: Node): void
     replaceNode(node?: Node): void
     onNodeRemoved(): void
 }
@@ -39,35 +45,34 @@ export function createTransformContext(
         currentNode : root,
         childIndex:0,
         onNodeRemoved:()=>{},
-        removeNode(node:Node) {
-            return context.replaceNode(createEmptyNode())
-            // if (!context.parent) {
-            //     throw new Error(`Cannot remove root node.`)
-            // }
-            // const list = context.parent!.children
-            // const removalIndex = node
-            //     ? list.indexOf(node)
-            //     : context.currentNode
-            //         ? context.childIndex
-            //         : -1
-            // /* istanbul ignore if */
-            // if (removalIndex < 0) {
-            //     throw new Error(`node being removed is not a child of current parent`)
-            // }
-            // if (!node || node === context.currentNode) {
-            //     // current node removed
-            //     context.currentNode = null
-            //     context.onNodeRemoved()
-            // } else {
-            //     // sibling node removed
-            //     if (context.childIndex > removalIndex) {
-            //         context.childIndex--
-            //         context.onNodeRemoved()
-            //     }
-            // }
-            // context.parent!.children.splice(removalIndex, 1)
-
-        },
+        // removeNode(node:Node) {
+        //     return context.replaceNode(createEmptyNode())
+        //     // if (!context.parent) {
+        //     //     throw new Error(`Cannot remove root node.`)
+        //     // }
+        //     // const list = context.parent!.children
+        //     // const removalIndex = node
+        //     //     ? list.indexOf(node)
+        //     //     : context.currentNode
+        //     //         ? context.childIndex
+        //     //         : -1
+        //     // /* istanbul ignore if */
+        //     // if (removalIndex < 0) {
+        //     //     throw new Error(`node being removed is not a child of current parent`)
+        //     // }
+        //     // if (!node || node === context.currentNode) {
+        //     //     // current node removed
+        //     //     context.currentNode = null
+        //     //     context.onNodeRemoved()
+        //     // } else {
+        //     //     // sibling node removed
+        //     //     if (context.childIndex > removalIndex) {
+        //     //         context.childIndex--
+        //     //         context.onNodeRemoved()
+        //     //     }
+        //     // }
+        //     // context.parent!.children.splice(removalIndex, 1)
+        // },
         replaceNode(node: Node) {
 
             if (!context.parent) {
@@ -85,7 +90,13 @@ export function createTransformContext(
 
 export function transform(root: RootNode, options: TransformOptions) {
     const context = createTransformContext(root, options)
+
+    root = transform_import(root, options.sourceDir)
+
     traverseNode(root, context)
+
+    // transformChain will be slowly replaced by transform plugins
+    root = transformChain(root, options.sourceDir)
 }
 
 export function traverseChildren(
@@ -105,9 +116,16 @@ export function traverseChildren(
         
         traverseNode(child, context)
     }
-}
 
-// only traverse top level
+    parent.children = (parent.children as ChildCodeGenNode[]).filter((node:ChildCodeGenNode) => node.type !== NodeTypes.EMPTY)
+
+}
+/*
+only traverse top level for now
+this sass compiler combined evaluate and compiling to direct target code so it needs to construct executing env while compiling
+so it will be difficult for pure transform plugins
+different from compile to target code which is evaluatable 
+  */
 export function traverseNode(
     node: Node,
     context: TransformContext
@@ -126,13 +144,13 @@ export function traverseNode(
                     exitFns.push(onExit)
                 }
             }
-            if (!context.currentNode) {
-                // node was removed
-                return
-            } else {
-                // node may have been replaced
-                node = context.currentNode
-            }
+            // if (!context.currentNode) {
+            //     // node was removed
+            //     return
+            // } else {
+            //     // node may have been replaced
+            //     node = context.currentNode
+            // }
         }
     }
 
@@ -141,7 +159,6 @@ export function traverseNode(
             traverseChildren(node as ParentNode, context)
             break
     }
-
     // exit transforms
     // let i = exitFns.length
     // while (i--) {
