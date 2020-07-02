@@ -13,7 +13,6 @@ export const processAssign = (node:AssignStatement, context:TransformContext) =>
 
     if (node.left.type === NodeTypes.VARIABLE) {
         context.env.def(node.left.value, processExpression(node.right, context).value)
-        // context.removeNode(node)
         return createEmptyNode();
     }
 

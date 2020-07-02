@@ -79,36 +79,86 @@ body .test {
 AST
 ```json
 {
-  "type": NodeTypes.PROGRAM,
-  NodeTypes.PROGRAM: [
+  "type": "PROGRAM",
+  "children": [
     {
-      "start": 0,
-      "end": 37,
-      "type": NodeTypes.ASSIGN,
+      "loc": {
+        "start": {
+          "offset": 11,
+          "line": 1,
+          "column": 11
+        },
+        "end": {
+          "offset": 37,
+          "line": 1,
+          "column": 37
+        }
+      },
+      "type": "ASSIGN",
       "left": {
-        "start": 0,
-        "end": 11,
+        "loc": {
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "offset": 11,
+            "line": 1,
+            "column": 11
+          }
+        },
         "type": "VARIABLE",
         "value": "$font-stack"
       },
       "right": {
-        "type": NodeTypes.LIST,
+        "type": "LIST",
         "value": [
           {
-            "start": 16,
-            "end": 25,
+            "loc": {
+              "start": {
+                "offset": 16,
+                "line": 1,
+                "column": 16
+              },
+              "end": {
+                "offset": 25,
+                "line": 1,
+                "column": 25
+              }
+            },
             "type": "TEXT",
             "value": "Helvetica"
           },
           {
-            "start": 25,
-            "end": 26,
+            "loc": {
+              "start": {
+                "offset": 25,
+                "line": 1,
+                "column": 25
+              },
+              "end": {
+                "offset": 26,
+                "line": 1,
+                "column": 26
+              }
+            },
             "type": "PUNC",
             "value": ","
           },
           {
-            "start": 27,
-            "end": 37,
+            "loc": {
+              "start": {
+                "offset": 27,
+                "line": 1,
+                "column": 27
+              },
+              "end": {
+                "offset": 37,
+                "line": 1,
+                "column": 37
+              }
+            },
             "type": "TEXT",
             "value": "sans-serif"
           }
@@ -116,21 +166,51 @@ AST
       }
     },
     {
-      "start": 39,
-      "end": 59,
-      "type": NodeTypes.ASSIGN,
+      "loc": {
+        "start": {
+          "offset": 53,
+          "line": 2,
+          "column": 14
+        },
+        "end": {
+          "offset": 59,
+          "line": 2,
+          "column": 20
+        }
+      },
+      "type": "ASSIGN",
       "left": {
-        "start": 39,
-        "end": 53,
+        "loc": {
+          "start": {
+            "offset": 39,
+            "line": 2,
+            "column": 0
+          },
+          "end": {
+            "offset": 53,
+            "line": 2,
+            "column": 14
+          }
+        },
         "type": "VARIABLE",
         "value": "$primary-color"
       },
       "right": {
-        "type": NodeTypes.LIST,
+        "type": "LIST",
         "value": [
           {
-            "start": 55,
-            "end": 59,
+            "loc": {
+              "start": {
+                "offset": 55,
+                "line": 2,
+                "column": 16
+              },
+              "end": {
+                "offset": 59,
+                "line": 2,
+                "column": 20
+              }
+            },
             "type": "TEXT",
             "value": "#333"
           }
@@ -138,36 +218,86 @@ AST
       }
     },
     {
-      "type": NodeTypes.CHILD,
+      "type": "CHILD",
       "selector": {
-        "start": 62,
-        "end": 72,
+        "loc": {
+          "start": {
+            "offset": 62,
+            "line": 4,
+            "column": 0
+          },
+          "end": {
+            "offset": 72,
+            "line": 4,
+            "column": 10
+          }
+        },
         "type": "TEXT",
         "value": "body .test"
       },
       "children": [
         {
-          "start": 76,
-          "end": 98,
-          "type": NodeTypes.ASSIGN,
+          "loc": {
+            "start": {
+              "offset": 80,
+              "line": 5,
+              "column": 6
+            },
+            "end": {
+              "offset": 98,
+              "line": 5,
+              "column": 24
+            }
+          },
+          "type": "ASSIGN",
           "left": {
-            "start": 76,
-            "end": 80,
+            "loc": {
+              "start": {
+                "offset": 76,
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "offset": 80,
+                "line": 5,
+                "column": 6
+              }
+            },
             "type": "TEXT",
             "value": "font"
           },
           "right": {
-            "type": NodeTypes.LIST,
+            "type": "LIST",
             "value": [
               {
-                "start": 82,
-                "end": 86,
+                "loc": {
+                  "start": {
+                    "offset": 82,
+                    "line": 5,
+                    "column": 8
+                  },
+                  "end": {
+                    "offset": 86,
+                    "line": 5,
+                    "column": 12
+                  }
+                },
                 "type": "TEXT",
                 "value": "100%"
               },
               {
-                "start": 87,
-                "end": 98,
+                "loc": {
+                  "start": {
+                    "offset": 87,
+                    "line": 5,
+                    "column": 13
+                  },
+                  "end": {
+                    "offset": 98,
+                    "line": 5,
+                    "column": 24
+                  }
+                },
                 "type": "VARIABLE",
                 "value": "$font-stack"
               }
@@ -175,21 +305,51 @@ AST
           }
         },
         {
-          "start": 102,
-          "end": 123,
-          "type": NodeTypes.ASSIGN,
+          "loc": {
+            "start": {
+              "offset": 107,
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "offset": 126,
+              "line": 7,
+              "column": 16
+            }
+          },
+          "type": "ASSIGN",
           "left": {
-            "start": 102,
-            "end": 107,
+            "loc": {
+              "start": {
+                "offset": 102,
+                "line": 6,
+                "column": 2
+              },
+              "end": {
+                "offset": 107,
+                "line": 6,
+                "column": 7
+              }
+            },
             "type": "TEXT",
             "value": "color"
           },
           "right": {
-            "type": NodeTypes.LIST,
+            "type": "LIST",
             "value": [
               {
-                "start": 109,
-                "end": 123,
+                "loc": {
+                  "start": {
+                    "offset": 112,
+                    "line": 7,
+                    "column": 2
+                  },
+                  "end": {
+                    "offset": 126,
+                    "line": 7,
+                    "column": 16
+                  }
+                },
                 "type": "VARIABLE",
                 "value": "$primary-color"
               }
