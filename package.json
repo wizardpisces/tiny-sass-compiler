@@ -1,6 +1,6 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "simple scss compiler",
   "main": "test.js",
   "bin": {
