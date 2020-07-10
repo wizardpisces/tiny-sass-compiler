@@ -1,6 +1,12 @@
-# Sass Compiler
+# Project Target (Tutorial only)
 
-Sass compiler in javascript
+This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
+
+[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
+
+## Sass Compiler
+
+A tutorial Sass compiler in typescript for people familiar with javascript and want to know something about compiler
 
 ## Description 
 
@@ -14,12 +20,6 @@ A compiler that compile sass to css ( tutorial only, not for production )
 4. Operators
 5. Mixins
 6. Modules
-
-### Project Target
-
-This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
-
-[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
 
 ## Setup
 
