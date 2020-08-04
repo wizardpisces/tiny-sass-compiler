@@ -23,9 +23,9 @@
         {
           "loc": {
             "start": {
-              "offset": 93,
+              "offset": 76,
               "line": 3,
-              "column": 19
+              "column": 2
             },
             "end": {
               "offset": 104,
@@ -52,15 +52,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 95,
+                "line": 3,
+                "column": 21
+              },
+              "end": {
+                "offset": 104,
+                "line": 3,
+                "column": 30
+              }
+            },
             "value": "rotate(30deg)"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 121,
+              "offset": 108,
               "line": 4,
-              "column": 15
+              "column": 2
             },
             "end": {
               "offset": 132,
@@ -87,15 +99,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 123,
+                "line": 4,
+                "column": 17
+              },
+              "end": {
+                "offset": 132,
+                "line": 4,
+                "column": 26
+              }
+            },
             "value": "rotate(30deg)"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 145,
+              "offset": 136,
               "line": 5,
-              "column": 11
+              "column": 2
             },
             "end": {
               "offset": 167,
@@ -122,15 +146,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 147,
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "offset": 167,
+                "line": 5,
+                "column": 33
+              }
+            },
             "value": "rotate(30deg) skew(30deg,20deg)"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 234,
+              "offset": 230,
               "line": 9,
-              "column": 6
+              "column": 2
             },
             "end": {
               "offset": 238,
@@ -157,6 +193,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 235,
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "offset": 238,
+                "line": 9,
+                "column": 10
+              }
+            },
             "value": "1px"
           }
         }

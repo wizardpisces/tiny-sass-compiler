@@ -15,5 +15,5 @@ export default function baseCompile(scss: string, options: CompilerOptions = { e
         ...options
     })
 
-    return generate(ast)
+    return generate(ast,options)
 }

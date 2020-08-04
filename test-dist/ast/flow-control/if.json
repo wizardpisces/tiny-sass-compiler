@@ -39,9 +39,9 @@
         {
           "loc": {
             "start": {
-              "offset": 28,
+              "offset": 21,
               "line": 1,
-              "column": 28
+              "column": 21
             },
             "end": {
               "offset": 35,
@@ -95,9 +95,9 @@
           {
             "loc": {
               "start": {
-                "offset": 46,
+                "offset": 41,
                 "line": 2,
-                "column": 7
+                "column": 2
               },
               "end": {
                 "offset": 53,
@@ -147,9 +147,9 @@
           {
             "loc": {
               "start": {
-                "offset": 63,
+                "offset": 57,
                 "line": 3,
-                "column": 8
+                "column": 2
               },
               "end": {
                 "offset": 70,
@@ -232,9 +232,9 @@
                 {
                   "loc": {
                     "start": {
-                      "offset": 106,
+                      "offset": 93,
                       "line": 6,
-                      "column": 17
+                      "column": 4
                     },
                     "end": {
                       "offset": 117,
@@ -263,6 +263,18 @@
                     "type": "LIST",
                     "value": [
                       {
+                        "loc": {
+                          "start": {
+                            "offset": 108,
+                            "line": 6,
+                            "column": 19
+                          },
+                          "end": {
+                            "offset": 117,
+                            "line": 6,
+                            "column": 28
+                          }
+                        },
                         "type": "BINARY",
                         "operator": "/",
                         "left": {
@@ -365,9 +377,9 @@
             {
               "loc": {
                 "start": {
-                  "offset": 169,
+                  "offset": 162,
                   "line": 10,
-                  "column": 43
+                  "column": 36
                 },
                 "end": {
                   "offset": 176,
@@ -475,9 +487,9 @@
             {
               "loc": {
                 "start": {
-                  "offset": 224,
+                  "offset": 217,
                   "line": 11,
-                  "column": 43
+                  "column": 36
                 },
                 "end": {
                   "offset": 230,

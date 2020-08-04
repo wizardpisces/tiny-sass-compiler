@@ -44,9 +44,9 @@
         {
           "loc": {
             "start": {
-              "offset": 68,
+              "offset": 52,
               "line": 5,
-              "column": 18
+              "column": 2
             },
             "end": {
               "offset": 84,
@@ -96,9 +96,9 @@
         {
           "loc": {
             "start": {
-              "offset": 93,
+              "offset": 88,
               "line": 6,
-              "column": 7
+              "column": 2
             },
             "end": {
               "offset": 100,

@@ -75,9 +75,9 @@
           {
             "loc": {
               "start": {
-                "offset": 53,
+                "offset": 47,
                 "line": 2,
-                "column": 8
+                "column": 2
               },
               "end": {
                 "offset": 56,
@@ -127,9 +127,9 @@
           {
             "loc": {
               "start": {
-                "offset": 65,
+                "offset": 60,
                 "line": 3,
-                "column": 7
+                "column": 2
               },
               "end": {
                 "offset": 68,
@@ -179,9 +179,9 @@
           {
             "loc": {
               "start": {
-                "offset": 85,
+                "offset": 73,
                 "line": 5,
-                "column": 14
+                "column": 2
               },
               "end": {
                 "offset": 98,
@@ -231,9 +231,9 @@
           {
             "loc": {
               "start": {
-                "offset": 114,
+                "offset": 102,
                 "line": 6,
-                "column": 14
+                "column": 2
               },
               "end": {
                 "offset": 121,
@@ -283,9 +283,9 @@
           {
             "loc": {
               "start": {
-                "offset": 137,
+                "offset": 125,
                 "line": 7,
-                "column": 14
+                "column": 2
               },
               "end": {
                 "offset": 148,
@@ -314,6 +314,18 @@
               "type": "LIST",
               "value": [
                 {
+                  "loc": {
+                    "start": {
+                      "offset": 139,
+                      "line": 7,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 148,
+                      "line": 7,
+                      "column": 25
+                    }
+                  },
                   "type": "BINARY",
                   "operator": "/",
                   "left": {
@@ -367,6 +379,18 @@
             },
             "type": "IFSTATEMENT",
             "test": {
+              "loc": {
+                "start": {
+                  "offset": 157,
+                  "line": 9,
+                  "column": 6
+                },
+                "end": {
+                  "offset": 174,
+                  "line": 9,
+                  "column": 23
+                }
+              },
               "type": "BINARY",
               "operator": "==",
               "left": {
@@ -408,9 +432,9 @@
                 {
                   "loc": {
                     "start": {
-                      "offset": 199,
+                      "offset": 180,
                       "line": 10,
-                      "column": 23
+                      "column": 4
                     },
                     "end": {
                       "offset": 207,
@@ -462,6 +486,18 @@
             "alternate": {
               "type": "IFSTATEMENT",
               "test": {
+                "loc": {
+                  "start": {
+                    "offset": 222,
+                    "line": 11,
+                    "column": 13
+                  },
+                  "end": {
+                    "offset": 242,
+                    "line": 11,
+                    "column": 33
+                  }
+                },
                 "type": "BINARY",
                 "operator": "==",
                 "left": {
@@ -503,9 +539,9 @@
                   {
                     "loc": {
                       "start": {
-                        "offset": 265,
+                        "offset": 248,
                         "line": 12,
-                        "column": 21
+                        "column": 4
                       },
                       "end": {
                         "offset": 273,
@@ -557,6 +593,18 @@
               "alternate": {
                 "type": "IFSTATEMENT",
                 "test": {
+                  "loc": {
+                    "start": {
+                      "offset": 288,
+                      "line": 13,
+                      "column": 13
+                    },
+                    "end": {
+                      "offset": 307,
+                      "line": 13,
+                      "column": 32
+                    }
+                  },
                   "type": "BINARY",
                   "operator": "==",
                   "left": {
@@ -598,9 +646,9 @@
                     {
                       "loc": {
                         "start": {
-                          "offset": 329,
+                          "offset": 313,
                           "line": 14,
-                          "column": 20
+                          "column": 4
                         },
                         "end": {
                           "offset": 337,
@@ -652,6 +700,18 @@
                 "alternate": {
                   "type": "IFSTATEMENT",
                   "test": {
+                    "loc": {
+                      "start": {
+                        "offset": 352,
+                        "line": 15,
+                        "column": 13
+                      },
+                      "end": {
+                        "offset": 371,
+                        "line": 15,
+                        "column": 32
+                      }
+                    },
                     "type": "BINARY",
                     "operator": "==",
                     "left": {
@@ -693,9 +753,9 @@
                       {
                         "loc": {
                           "start": {
-                            "offset": 395,
+                            "offset": 377,
                             "line": 16,
-                            "column": 22
+                            "column": 4
                           },
                           "end": {
                             "offset": 403,

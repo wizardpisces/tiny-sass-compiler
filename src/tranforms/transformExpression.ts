@@ -60,9 +60,14 @@ export function processExpression(
     }
 
     function transformList(node, context) {
+        let list = node.value
         return {
             type: NodeTypes.TEXT,
-            value: fillWhitespace(node.value).map(item => {
+            loc:{
+                start:list[0].loc.start,
+                end:list[list.length-1].loc.end
+            },
+            value: fillWhitespace(list).map(item => {
                 return dispatchExpression(item, context).value
             }).join('').trim()
         }

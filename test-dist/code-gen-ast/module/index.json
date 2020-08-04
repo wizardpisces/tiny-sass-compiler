@@ -23,9 +23,9 @@
         {
           "loc": {
             "start": {
-              "offset": 89,
+              "offset": 85,
               "line": 6,
-              "column": 6
+              "column": 2
             },
             "end": {
               "offset": 107,
@@ -52,15 +52,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 91,
+                "line": 6,
+                "column": 8
+              },
+              "end": {
+                "offset": 107,
+                "line": 6,
+                "column": 24
+              }
+            },
             "value": "100% Helvetica, sans-serif"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 116,
+              "offset": 111,
               "line": 7,
-              "column": 7
+              "column": 2
             },
             "end": {
               "offset": 132,
@@ -87,6 +99,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 118,
+                "line": 7,
+                "column": 9
+              },
+              "end": {
+                "offset": 132,
+                "line": 7,
+                "column": 23
+              }
+            },
             "value": "#333"
           }
         }
@@ -114,9 +138,9 @@
         {
           "loc": {
             "start": {
-              "offset": 68,
+              "offset": 52,
               "line": 5,
-              "column": 18
+              "column": 2
             },
             "end": {
               "offset": 84,
@@ -143,15 +167,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 70,
+                "line": 5,
+                "column": 20
+              },
+              "end": {
+                "offset": 84,
+                "line": 5,
+                "column": 34
+              }
+            },
             "value": "#333"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 93,
+              "offset": 88,
               "line": 6,
-              "column": 7
+              "column": 2
             },
             "end": {
               "offset": 100,
@@ -178,6 +214,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 95,
+                "line": 6,
+                "column": 9
+              },
+              "end": {
+                "offset": 100,
+                "line": 6,
+                "column": 14
+              }
+            },
             "value": "white"
           }
         }

@@ -1,4 +1,4 @@
-import { NodeTypes, Node, RootNode, ParentNode, ChildCodeGenNode } from './parse/ast'
+import { NodeTypes, Node, RootNode, ParentNode, CodegenNode } from './parse/ast'
 import { TransformOptions } from './options'
 import { defaultOnError } from './parse/errors'
 import { 
@@ -117,7 +117,7 @@ export function traverseChildren(
         traverseNode(child, context)
     }
 
-    parent.children = (parent.children as ChildCodeGenNode[]).filter((node:ChildCodeGenNode) => node.type !== NodeTypes.EMPTY)
+    parent.children = (parent.children as CodegenNode[]).filter((node:CodegenNode) => node.type !== NodeTypes.EMPTY)
 
 }
 /*

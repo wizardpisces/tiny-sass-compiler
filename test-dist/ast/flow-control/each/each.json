@@ -4,9 +4,9 @@
     {
       "loc": {
         "start": {
-          "offset": 6,
+          "offset": 0,
           "line": 1,
-          "column": 6
+          "column": 0
         },
         "end": {
           "offset": 19,
@@ -174,9 +174,9 @@
           {
             "loc": {
               "start": {
-                "offset": 86,
+                "offset": 77,
                 "line": 5,
-                "column": 13
+                "column": 4
               },
               "end": {
                 "offset": 93,
@@ -245,9 +245,9 @@
               {
                 "loc": {
                   "start": {
-                    "offset": 121,
+                    "offset": 112,
                     "line": 7,
-                    "column": 17
+                    "column": 8
                   },
                   "end": {
                     "offset": 128,
@@ -297,9 +297,9 @@
               {
                 "loc": {
                   "start": {
-                    "offset": 144,
+                    "offset": 138,
                     "line": 8,
-                    "column": 14
+                    "column": 8
                   },
                   "end": {
                     "offset": 173,

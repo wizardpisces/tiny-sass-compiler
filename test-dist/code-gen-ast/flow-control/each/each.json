@@ -5,15 +5,27 @@
       "type": "CHILD",
       "selector": {
         "type": "TEXT",
+        "loc": {
+          "start": {
+            "offset": 48,
+            "line": 4,
+            "column": 2
+          },
+          "end": {
+            "offset": 70,
+            "line": 4,
+            "column": 24
+          }
+        },
         "value": ".icon-#asfssd-40px"
       },
       "children": [
         {
           "loc": {
             "start": {
-              "offset": 86,
+              "offset": 77,
               "line": 5,
-              "column": 13
+              "column": 4
             },
             "end": {
               "offset": 93,
@@ -40,6 +52,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 88,
+                "line": 5,
+                "column": 15
+              },
+              "end": {
+                "offset": 93,
+                "line": 5,
+                "column": 20
+              }
+            },
             "value": "40px"
           }
         },
@@ -70,9 +94,9 @@
         {
           "loc": {
             "start": {
-              "offset": 121,
+              "offset": 112,
               "line": 7,
-              "column": 17
+              "column": 8
             },
             "end": {
               "offset": 128,
@@ -99,15 +123,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 123,
+                "line": 7,
+                "column": 19
+              },
+              "end": {
+                "offset": 128,
+                "line": 7,
+                "column": 24
+              }
+            },
             "value": "40px"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 144,
+              "offset": 138,
               "line": 8,
-              "column": 14
+              "column": 8
             },
             "end": {
               "offset": 173,
@@ -134,6 +170,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 146,
+                "line": 8,
+                "column": 16
+              },
+              "end": {
+                "offset": 173,
+                "line": 8,
+                "column": 43
+              }
+            },
             "value": "40px solid #111111"
           }
         }
@@ -143,15 +191,27 @@
       "type": "CHILD",
       "selector": {
         "type": "TEXT",
+        "loc": {
+          "start": {
+            "offset": 48,
+            "line": 4,
+            "column": 2
+          },
+          "end": {
+            "offset": 70,
+            "line": 4,
+            "column": 24
+          }
+        },
         "value": ".icon-#asfssd-50px"
       },
       "children": [
         {
           "loc": {
             "start": {
-              "offset": 86,
+              "offset": 77,
               "line": 5,
-              "column": 13
+              "column": 4
             },
             "end": {
               "offset": 93,
@@ -178,6 +238,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 88,
+                "line": 5,
+                "column": 15
+              },
+              "end": {
+                "offset": 93,
+                "line": 5,
+                "column": 20
+              }
+            },
             "value": "50px"
           }
         },
@@ -208,9 +280,9 @@
         {
           "loc": {
             "start": {
-              "offset": 121,
+              "offset": 112,
               "line": 7,
-              "column": 17
+              "column": 8
             },
             "end": {
               "offset": 128,
@@ -237,15 +309,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 123,
+                "line": 7,
+                "column": 19
+              },
+              "end": {
+                "offset": 128,
+                "line": 7,
+                "column": 24
+              }
+            },
             "value": "50px"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 144,
+              "offset": 138,
               "line": 8,
-              "column": 14
+              "column": 8
             },
             "end": {
               "offset": 173,
@@ -272,6 +356,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 146,
+                "line": 8,
+                "column": 16
+              },
+              "end": {
+                "offset": 173,
+                "line": 8,
+                "column": 43
+              }
+            },
             "value": "50px solid #111111"
           }
         }

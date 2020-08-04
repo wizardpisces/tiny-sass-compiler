@@ -4,80 +4,143 @@ import {
     TextNode,
     AssignStatement,
     ChildStatement,
-    ChildCodeGenNode,
-    ProgCodeGenNode
+    CodegenNode,
+    ProgCodeGenNode,
+    Position
 } from './parse/ast';
 import { CodegenOptions } from './options'
+import { SourceMapGenerator, RawSourceMap } from 'source-map'
+
+// todos complete CodegenNode type
 
 export interface CodegenResult {
     code: string
     ast: RootNode
-    // todos source-map.ts
-    // map?: RawSourceMap
+    map?: RawSourceMap
 }
 
 export interface CodegenContext extends Required<CodegenOptions> {
+    source: string
     code: string
-    push(code: string): void
+    line: number
+    column: number
+    offset: number
+    map?: SourceMapGenerator
+    push(code: string, node?: CodegenNode): void
 }
 
 function createCodegenContext(
     ast: RootNode,
     {
         sourceMap = false,
+        filename = 'template.scss'
     }: CodegenOptions
 ): CodegenContext {
     const context: CodegenContext = {
-        code: ``,
+        code: '',
         sourceMap,
-        push(code: string) {
+        filename,
+        column: 1,
+        line: 1,
+        offset: 0,
+        //Todos source: ast.loc.source,
+        source: 'Todos: source code example which needs to be replaced to real source code(ast.loc.source)',
+        push(code: string, node) {
             context.code += code
+            if (context.map) {
+                if (node) {
+                    addMapping(node.loc.start)
+                }
+            }
         }
     }
 
-    return context;
+    function addMapping(loc: Position, name?: string) {
+        context.map!.addMapping({
+            name,
+            source: context.filename,
+            original: {
+                line: loc.line,
+                column: loc.column - 1 // source-map column is 0 based
+            },
+            generated: {
+                line: context.line,
+                column: context.column - 1
+            }
+        })
+    }
+
+    if (sourceMap) {
+        context.map = new SourceMapGenerator()
+        context.map!.setSourceContent(filename, context.source)
+    }
+
+    return context
 }
 
-export function generate(ast: RootNode, options: CodegenOptions = {}): CodegenResult {
-    const context = createCodegenContext(ast, options)
+export function generate(
+    ast: RootNode,
+    options: CodegenOptions = {}
+): CodegenResult {
+    const context = createCodegenContext(ast, options);
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context));
 
-    function compile(exp: ChildCodeGenNode): string {
-        switch (exp.type) {
-            case NodeTypes.TEXT:
-                return css_str(exp as TextNode);
-            case NodeTypes.ASSIGN:
-                return css_assign(exp as AssignStatement);
-            case NodeTypes.CHILD:
-                return css_child(exp as ChildStatement);
-            case NodeTypes.EMPTY:
-                return '';
-
-            default:
-                throw new Error("Don't know how to compile expression for " + JSON.stringify(exp));
-        }
+    return {
+        ast,
+        code: context.code,
+        // SourceMapGenerator does have toJSON() method but it's not in the types
+        map: context.map ? (context.map as any).toJSON() : undefined
     }
+}
 
-    function css_str(exp: TextNode): string {
-        return exp.value;
+function genNode(
+    node: CodegenNode, 
+    context: CodegenContext
+) {
+    if(!node){
+        console.log('node',node,'context',context)
+        return;
     }
+    switch (node.type) {
+        case NodeTypes.TEXT:
+            genText(node as TextNode, context);
+            break;
+        case NodeTypes.ASSIGN:
+            genAssign(node as AssignStatement, context);
+            break;
+        case NodeTypes.CHILD:
+            genChild(node as ChildStatement, context);
+            break;
+        case NodeTypes.EMPTY:
+            break;
 
-    function css_assign(exp: AssignStatement): string {
-        return compile(exp.left as TextNode) + ':' + compile(exp.right as TextNode) + ';';
+        default:
+            throw new Error("Don't know how to genNode for " + JSON.stringify(node));
     }
+}
 
-    function css_child(exp: ChildCodeGenNode): string {
-        return exp.selector.value + '{' + ( exp.children as ChildCodeGenNode[] ).map((child: ChildCodeGenNode): string => compile(child)).join('') + '}';
-    }
+function genText(
+    node: TextNode,
+    context: CodegenContext
+) {
+    context.push(node.value, node)
+}
 
-    function toplevel(ast: RootNode, context: CodegenContext): CodegenResult {
-        const { push } = context;
-        push( ( ast.children as ProgCodeGenNode[] ).map((exp: ProgCodeGenNode): string => compile(exp)).join(''));
+function genAssign(
+    node: AssignStatement,
+    context: CodegenContext
+) {
+    genNode(node.left as TextNode, context)
+    context.push(':')
+    genNode(node.right as TextNode, context)
+    context.push(';');
+}
 
-        return {
-            ast,
-            code: context.code,
-        }
-    }
-
-    return toplevel(ast, context);
+function genChild(
+    node: CodegenNode,
+    context: CodegenContext
+) {
+    context.push(node.selector.value + '{');
+    (node.children as CodegenNode[]).forEach((node: CodegenNode) => genNode(node, context));
+    context.push('}');
 }

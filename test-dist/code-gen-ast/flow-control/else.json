@@ -23,9 +23,9 @@
         {
           "loc": {
             "start": {
-              "offset": 179,
+              "offset": 163,
               "line": 8,
-              "column": 20
+              "column": 4
             },
             "end": {
               "offset": 198,
@@ -52,15 +52,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 181,
+                "line": 8,
+                "column": 22
+              },
+              "end": {
+                "offset": 198,
+                "line": 8,
+                "column": 39
+              }
+            },
             "value": "#f2ece4"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 209,
+              "offset": 204,
               "line": 9,
-              "column": 9
+              "column": 4
             },
             "end": {
               "offset": 222,
@@ -87,6 +99,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 211,
+                "line": 9,
+                "column": 11
+              },
+              "end": {
+                "offset": 222,
+                "line": 9,
+                "column": 22
+              }
+            },
             "value": "#036"
           }
         },
@@ -117,9 +141,9 @@
         {
           "loc": {
             "start": {
-              "offset": 256,
+              "offset": 240,
               "line": 11,
-              "column": 20
+              "column": 4
             },
             "end": {
               "offset": 274,
@@ -146,15 +170,27 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 258,
+                "line": 11,
+                "column": 22
+              },
+              "end": {
+                "offset": 274,
+                "line": 11,
+                "column": 38
+              }
+            },
             "value": "#6b717f"
           }
         },
         {
           "loc": {
             "start": {
-              "offset": 285,
+              "offset": 280,
               "line": 12,
-              "column": 9
+              "column": 4
             },
             "end": {
               "offset": 297,
@@ -181,6 +217,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 287,
+                "line": 12,
+                "column": 11
+              },
+              "end": {
+                "offset": 297,
+                "line": 12,
+                "column": 21
+              }
+            },
             "value": "#d2e1dd"
           }
         }

@@ -23,9 +23,9 @@
         {
           "loc": {
             "start": {
-              "offset": 62,
+              "offset": 50,
               "line": 2,
-              "column": 14
+              "column": 2
             },
             "end": {
               "offset": 74,
@@ -52,6 +52,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 64,
+                "line": 2,
+                "column": 16
+              },
+              "end": {
+                "offset": 74,
+                "line": 2,
+                "column": 26
+              }
+            },
             "value": "left"
           }
         },
@@ -82,9 +94,9 @@
         {
           "loc": {
             "start": {
-              "offset": 119,
+              "offset": 105,
               "line": 5,
-              "column": 18
+              "column": 4
             },
             "end": {
               "offset": 131,
@@ -111,6 +123,18 @@
           },
           "right": {
             "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 121,
+                "line": 5,
+                "column": 20
+              },
+              "end": {
+                "offset": 131,
+                "line": 5,
+                "column": 30
+              }
+            },
             "value": "right"
           }
         }

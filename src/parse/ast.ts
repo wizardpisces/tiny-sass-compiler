@@ -144,7 +144,7 @@ export interface BodyStatement extends Node {
 export interface ChildStatement extends Node {
     type: NodeTypes.CHILD
     selector: TextNode | PlaceholderNode | ListNode
-    children: (Statement | ChildCodeGenNode)[]
+    children: (Statement | CodegenNode)[]
 }
 
 export interface AssignStatement extends Node {
@@ -199,7 +199,7 @@ export interface EachStatement extends Node {
 
 /* codeGenNode means ast tree that is transformed  */
 
-export type ChildCodeGenNode = TextNode | ProgCodeGenNode
+export type CodegenNode = TextNode | ProgCodeGenNode
 
 export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode;
 

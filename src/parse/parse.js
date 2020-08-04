@@ -30,7 +30,7 @@ export default function parse(input) {
                 end = input.getCoordination();
 
             /**
-             * adjust start position
+             * patch ASSIGN position
              * if arguments exist it might be an evaluated expression eg: parse_assign left param
              */
             if (args && args.length > 0) {
@@ -39,6 +39,19 @@ export default function parse(input) {
                 }
                 start = start > args[0].start ? args[0].start : start;
             }
+            /**
+             * path ASSIGN , make left node start as start position
+             * patch BINARY node position, make binary left most node start as binary node start position
+             * */
+            
+            if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
+                let left  = args[0]
+                while (left.type === NodeTypes.BINARY){
+                    left = left.left
+                }
+                start = left.loc.start;
+            }
+            
             return {
                 loc:{
                     start,
@@ -58,7 +71,7 @@ export default function parse(input) {
                  let right = []
                  while (!assign_right_end_condition()) {
                      if (debug()) break;
-                     let result = maybe_binary(parserNamespace.parse_atom(), 0);
+                     let result = parserNamespace.maybe_binary(parserNamespace.parse_atom(), 0);
                      right.push(result)
                  }
                  return right;
@@ -143,6 +156,22 @@ export default function parse(input) {
                 }
             }
             return expr;
+        }),
+
+        maybe_binary: injectPosition(function(left, left_prec) {
+            let tok = is_op()
+            if (tok) {
+                if (PRECEDENCE[tok.value] > left_prec) {
+                    input.next(); //skip op
+                    return parserNamespace.maybe_binary({
+                        type: NodeTypes.BINARY,
+                        operator: tok.value,
+                        left: left,
+                        right: parserNamespace.maybe_binary(parserNamespace.parse_atom(), PRECEDENCE[tok.value])
+                    }, left_prec)
+                }
+            }
+            return left;
         })
 
     }
@@ -210,22 +239,6 @@ export default function parse(input) {
         }
         skip_punc(stop);
         return a;
-    }
-
-    function maybe_binary(left, left_prec) {
-        let tok = is_op()
-        if (tok) {
-            if (PRECEDENCE[tok.value] > left_prec) {
-                input.next();//skip op
-                return maybe_binary({
-                    type: NodeTypes.BINARY,
-                    operator: tok.value,
-                    left: left,
-                    right: maybe_binary(parserNamespace.parse_atom(), PRECEDENCE[tok.value])
-                }, left_prec)
-            }
-        }
-        return left;
     }
 
     function parse_child(selector) {
@@ -359,7 +372,7 @@ export default function parse(input) {
             testExpression = true,
             blockStatement = [];
 
-        testExpression = maybe_binary(parserNamespace.parse_atom(),0);
+        testExpression = parserNamespace.maybe_binary(parserNamespace.parse_atom(),0);
 
         if (!is_punc('{')){
             input.croak(`@if expect '{' but encountered '${input.next().value}'`)            

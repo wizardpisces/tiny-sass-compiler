@@ -75,9 +75,9 @@
           {
             "loc": {
               "start": {
-                "offset": 62,
+                "offset": 50,
                 "line": 2,
-                "column": 14
+                "column": 2
               },
               "end": {
                 "offset": 74,
@@ -146,9 +146,9 @@
               {
                 "loc": {
                   "start": {
-                    "offset": 119,
+                    "offset": 105,
                     "line": 5,
-                    "column": 18
+                    "column": 4
                   },
                   "end": {
                     "offset": 131,

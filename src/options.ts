@@ -22,6 +22,12 @@ export interface CodegenOptions {
      * @default false
      */
     sourceMap?: boolean
+
+    /**
+   * Filename for source map generation.
+   * @default 'template.scss'
+   */
+    filename?: string
 }
 
 export interface ParserOptions {

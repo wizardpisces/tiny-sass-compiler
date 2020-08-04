@@ -11,7 +11,8 @@ function require_css(path) {
 }
 
 function run(sourceDir, outputDir = './', options = {
-    generateAstFile: false
+    generateAstFile: false,
+    sourceMap:false
 }) {
 
     let sourceDirLength = path.basename(sourceDir).length;
@@ -29,6 +30,7 @@ function run(sourceDir, outputDir = './', options = {
             sourceDirname = path.dirname(filePath),
             normalDistPath = path.join(outputDir, sourceDirname.substr(sourceDirLength)),
             astDistPath = path.join(outputDir, 'ast', sourceDirname.substr(sourceDirLength)),
+            codeGenAstDistPath = path.join(outputDir, 'code-gen-ast', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
             ast;
 
@@ -61,10 +63,11 @@ function run(sourceDir, outputDir = './', options = {
                 
             try {
                 compiled = compile(source, {
-                    sourceDir:sourceDirname
+                    sourceDir:sourceDirname,
+                    sourceMap:options.sourceMap
                 })
             } catch (e) {
-                console.log('Error path: ', filePath)
+                console.log('Error source code path: ', filePath)
                 console.log(e)
                 return;
             }
@@ -81,10 +84,15 @@ function run(sourceDir, outputDir = './', options = {
                 outputDir = cssDistPath
             }
 
-            function writeResultAst(cb){
-                fs.writeFile(path.join(outputDir, basename + '.json'), JSON.stringify(compiled.ast, null, 2), function (err) {
+            function writeCodegenAst(cb){
+
+                if (!fs.existsSync(codeGenAstDistPath)) {
+                    mkdirp.sync(codeGenAstDistPath)
+                }
+
+                fs.writeFile(path.join(codeGenAstDistPath, basename + '.json'), JSON.stringify(compiled.ast, null, 2), function (err) {
                     if (err) {
-                        return console.error(`write transformed ast failed ${basename}`);
+                        return console.error(`write transformed ast failed ${basename},\nError:${err}`);
                     }
                     cb()
                 })
@@ -99,7 +107,7 @@ function run(sourceDir, outputDir = './', options = {
                 })
             }
 
-            writeResultAst(writeResultCode)
+            writeCodegenAst(writeResultCode)
         }
 
         write_ast(() => {
