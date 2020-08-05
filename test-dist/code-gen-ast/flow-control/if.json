@@ -278,5 +278,6 @@
         }
       ]
     }
-  ]
+  ],
+  "source": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
 }

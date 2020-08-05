@@ -11,7 +11,7 @@ export interface TransformOptions {
     sourceDir?: string
     
     // scope chain dynamically evaluate variables / function / expressions when transform ast
-    env: Environment
+    env?: Environment
 
     onError?: (error: CompilerError) => void
 }

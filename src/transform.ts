@@ -5,8 +5,7 @@ import {
     isArray, 
     Environment
 } from './parse/util'
-import transformChain from './transform/index'
-import transform_import from './transform/transform_module'
+import transformChain, { transform_module as transform_import} from './transform-middleware/index'
 
 // - NodeTransform:
 //   Transforms that operate directly on a ChildNode. NodeTransforms may mutate,
@@ -95,7 +94,7 @@ export function transform(root: RootNode, options: TransformOptions) {
 
     traverseNode(root, context)
 
-    // transformChain will be slowly replaced by transform plugins
+    // transformChain will be slowly replaced by transform plugins if possible
     root = transformChain(root, options.sourceDir)
 }
 

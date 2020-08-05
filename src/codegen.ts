@@ -43,8 +43,8 @@ function createCodegenContext(
         column: 1,
         line: 1,
         offset: 0,
-        //Todos source: ast.loc.source,
-        source: 'Todos: source code example which needs to be replaced to real source code(ast.loc.source)',
+        source: ast.source,
+        // source: 'Todos: source code example which needs to be replaced to real source code(ast.loc.source)',
         push(code: string, node) {
             context.code += code
             if (context.map) {

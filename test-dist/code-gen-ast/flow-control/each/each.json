@@ -373,5 +373,6 @@
         }
       ]
     }
-  ]
+  ],
+  "source": "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
 }

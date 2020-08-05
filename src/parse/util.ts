@@ -154,6 +154,19 @@ function isEmptyNode(node: Node):boolean{
     return node.type === NodeTypes.EMPTY
 }
 
+// function createPromiseCallback() {
+//     var resolve, reject;
+//     var promise = new Promise(function (_resolve, _reject) {
+//         resolve = _resolve;
+//         reject = _reject;
+//     });
+//     var cb = function (err, res) {
+//         if (err) { return reject(err) }
+//         resolve(res || '');
+//     };
+//     return { promise: promise, cb: cb }
+// }
+
 export {
     debug,
     PRECEDENCE,

@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "template.scss"
+  ],
+  "names": [],
+  "mappings": "AAIC,AAAM,AACN,AACA",
+  "sourcesContent": [
+    "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
+  ]
+}

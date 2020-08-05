@@ -30,17 +30,7 @@ export default function parse(input) {
                 end = input.getCoordination();
 
             /**
-             * patch ASSIGN position
-             * if arguments exist it might be an evaluated expression eg: parse_assign left param
-             */
-            if (args && args.length > 0) {
-                if (typeof args[0].start === undefined) {
-                    input.croak(`[${parseFn.name}]: expect expression with start property!`)
-                }
-                start = start > args[0].start ? args[0].start : start;
-            }
-            /**
-             * path ASSIGN , make left node start as start position
+             * patch ASSIGN , make left node start as start position
              * patch BINARY node position, make binary left most node start as binary node start position
              * */
             

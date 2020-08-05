@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "template.scss"
+  ],
+  "names": [],
+  "mappings": "AAEC,AAAmB,AACnB,AAAe,AACf,AAAW,AAIX,AAAK",
+  "sourcesContent": [
+    "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
+  ]
+}

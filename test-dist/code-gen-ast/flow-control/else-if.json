@@ -304,5 +304,6 @@
         }
       ]
     }
-  ]
+  ],
+  "source": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
 }

@@ -11,7 +11,7 @@ function require_css(path) {
 }
 
 function run(sourceDir, outputDir = './', options = {
-    generateAstFile: false,
+    genOtherInfo: false,
     sourceMap:false
 }) {
 
@@ -28,26 +28,42 @@ function run(sourceDir, outputDir = './', options = {
         let source = require_css(filePath),
             basename = path.basename(filePath, '.scss'),
             sourceDirname = path.dirname(filePath),
+            
             normalDistPath = path.join(outputDir, sourceDirname.substr(sourceDirLength)),
             astDistPath = path.join(outputDir, 'ast', sourceDirname.substr(sourceDirLength)),
             codeGenAstDistPath = path.join(outputDir, 'code-gen-ast', sourceDirname.substr(sourceDirLength)),
+            sourceMapDistPath = path.join(outputDir, 'source-map', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
             ast;
-
-        try{
-            ast = parse(source)
-        }catch(e){
-            console.error(`\nParser Error:\n filePath: ${filePath}\n`,e)
-            return;
-        }    
-
-        function write_ast(cb) {
-            if (!options.generateAstFile) {
-                return cb()
+        
+        if (!options.genOtherInfo) {
+            if (!fs.existsSync(normalDistPath)) {
+                mkdirp.sync(normalDistPath)
+            }
+            cssDistPath = normalDistPath
+        } else {
+            if (!fs.existsSync(cssDistPath)) {
+                mkdirp.sync(cssDistPath)
+            }
+            if (!fs.existsSync(codeGenAstDistPath)) {
+                mkdirp.sync(codeGenAstDistPath)
             }
             if (!fs.existsSync(astDistPath)) {
                 mkdirp.sync(astDistPath)
             }
+            if (!fs.existsSync(sourceMapDistPath)) {
+                mkdirp.sync(sourceMapDistPath)
+            }
+        }
+
+        try {
+            ast = parse(source)
+        } catch (e) {
+            console.error(`\nParser Error:\n filePath: ${filePath}\n`, e)
+            return;
+        }
+
+        function write_parsed_ast(cb) {
             fs.writeFile(path.join(astDistPath, basename + '.json'), JSON.stringify(ast, null, 2), function (err) {
                 if (err) {
                     console.error(err)
@@ -58,8 +74,7 @@ function run(sourceDir, outputDir = './', options = {
         }
 
         function write_compiled() {
-            let compiled = null,
-                outputDir;
+            let compiled = null;
                 
             try {
                 compiled = compile(source, {
@@ -72,47 +87,52 @@ function run(sourceDir, outputDir = './', options = {
                 return;
             }
 
-            if (!options.generateAstFile) {
-                if (!fs.existsSync(normalDistPath)) {
-                    mkdirp.sync(normalDistPath)
-                }
-                outputDir = normalDistPath
-            } else {
-                if (!fs.existsSync(cssDistPath)) {
-                    mkdirp.sync(cssDistPath)
-                }
-                outputDir = cssDistPath
+            const {ast ,map , code} = compiled;
+
+            function writeResultCode(cb){  
+                fs.writeFile(path.join(cssDistPath, basename + '.css'), cssbeautify(code), function (err) {
+                    if (err) {
+                        return console.error(`write css failed ${basename}`);
+                    }
+                    cb()
+                })
             }
 
             function writeCodegenAst(cb){
-
-                if (!fs.existsSync(codeGenAstDistPath)) {
-                    mkdirp.sync(codeGenAstDistPath)
-                }
-
-                fs.writeFile(path.join(codeGenAstDistPath, basename + '.json'), JSON.stringify(compiled.ast, null, 2), function (err) {
+                fs.writeFile(path.join(codeGenAstDistPath, basename + '.json'), JSON.stringify(ast, null, 2), function (err) {
                     if (err) {
                         return console.error(`write transformed ast failed ${basename},\nError:${err}`);
                     }
                     cb()
                 })
             }
-
-            function writeResultCode(){  
-                fs.writeFile(path.join(outputDir, basename + '.css'), cssbeautify(compiled.code), function (err) {
+            
+            function writeSourceMap(){  
+                fs.writeFile(path.join(sourceMapDistPath, basename + '.map'), JSON.stringify(map, null, 2), function (err) {
                     if (err) {
-                        return console.error(`write css failed ${basename}`);
+                        return console.error(`write source map failed ${basename}`);
                     }
                     console.log(`compile success ${basename}`)
                 })
             }
 
-            writeCodegenAst(writeResultCode)
+            writeResultCode(() => {
+                if (!options.genOtherInfo) {
+                    return;
+                }
+                writeCodegenAst(() => {
+                    writeSourceMap()
+                })
+            })
         }
 
-        write_ast(() => {
+        if (!options.genOtherInfo) {
             write_compiled()
-        })
+        }else{
+            write_parsed_ast(() => {
+                write_compiled()
+            })
+        }
     }
 
     function renderDir(sourceDir) {

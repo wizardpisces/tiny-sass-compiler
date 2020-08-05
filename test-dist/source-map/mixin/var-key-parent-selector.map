@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "template.scss"
+  ],
+  "names": [],
+  "mappings": "AACC,AAAc,AAGZ,AAAgB",
+  "sourcesContent": [
+    "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+  ]
+}

@@ -234,5 +234,6 @@
         }
       ]
     }
-  ]
+  ],
+  "source": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
 }

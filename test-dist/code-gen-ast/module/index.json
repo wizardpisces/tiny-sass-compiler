@@ -231,5 +231,6 @@
         }
       ]
     }
-  ]
+  ],
+  "source": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
 }

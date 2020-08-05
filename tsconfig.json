@@ -10,19 +10,27 @@
         "strict": true,
         "noUnusedLocals": true,
         "noImplicitAny": false,
-        "experimentalDecorators": true,
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "removeComments": false,
         "jsx": "preserve",
         "lib": ["esnext", "dom"],
-        "types": ["jest", "puppeteer", "node"],
+        "types": [
+            "jest"
+        ],
         "rootDir": ".",
         "paths": {
-            "@parser/*": ["parser/*"]
+            "@/*": [
+                "./src/*"
+            ],
+            "~": [
+                "/"
+            ]
         }
     },
-    "include": [
-        "parser/ast.ts"
+    "exclude": [
+        "node_modules"
     ]
 }

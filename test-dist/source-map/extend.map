@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "template.scss"
+  ],
+  "names": [],
+  "mappings": "AACG,AAAQ,AACR,AAAS,AACT,AAAO,AAIT,AAAQ,AACR,AAAS,AACT,AAAO,AASL,AAAc,AAGd,AAAM",
+  "sourcesContent": [
+    ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
+  ]
+}

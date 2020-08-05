@@ -2,15 +2,16 @@
   "name": "tiny-sass-compiler",
   "version": "0.6.3",
   "description": "simple scss compiler",
-  "main": "test.js",
+  "main": "index.js",
   "bin": {
     "tiny-sass": "bin/tiny-sass"
   },
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "ts-node test.js"
+    "test": "ts-node scripts/test.js",
+    "jest": "jest"
+  },
+  "engines": {
+    "node": ">=8.x"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,11 @@
   },
   "homepage": "https://github.com/wizardpisces/tiny-sass-compiler#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.0",
     "cssbeautify": "^0.3.1",
+    "jest": "^25.5.4",
+    "ts-jest": "^26.1.0",
+    "tslib": "^2.0.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {

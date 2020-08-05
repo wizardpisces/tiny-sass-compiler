@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "template.scss"
+  ],
+  "names": [],
+  "mappings": "AAEC,AAAa,AACb,AAAU,AACV,AAAY,AAGV,AAAO,AACP,AAAQ,AACR,AAAU",
+  "sourcesContent": [
+    "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
+  ]
+}
