@@ -1,12 +1,12 @@
-# Project Target (Tutorial only)
+# Project Target
 
 This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
 
-[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
+[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
 
 ## Sass Compiler
 
-A tutorial Sass compiler in typescript for people familiar with javascript and want to know something about compiler
+A tiny Sass compiler in javascript for people familiar with javascript and want to know more about compiler
 
 ## Description 
 
