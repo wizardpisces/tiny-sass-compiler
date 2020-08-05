@@ -1,4 +1,4 @@
-# Project Target (Tutorial only)
+# Project Target
 
 This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
 
