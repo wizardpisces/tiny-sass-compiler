@@ -9,6 +9,7 @@ import {
     Position
 } from './parse/ast';
 import { CodegenOptions } from './options'
+import { advancePositionWithMutation} from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
 
 // todos complete CodegenNode type
@@ -40,16 +41,21 @@ function createCodegenContext(
         code: '',
         sourceMap,
         filename,
-        column: 1,
+        column: 0,// source-map column is 0 based
         line: 1,
         offset: 0,
         source: ast.source,
-        // source: 'Todos: source code example which needs to be replaced to real source code(ast.loc.source)',
         push(code: string, node) {
             context.code += code
             if (context.map) {
                 if (node) {
-                    addMapping(node.loc.start)
+                    addMapping(node.loc.start,node.value)
+                }
+                
+                advancePositionWithMutation(context, code)
+
+                if(node) {
+                    addMapping(node.loc.end)
                 }
             }
         }
@@ -61,11 +67,11 @@ function createCodegenContext(
             source: context.filename,
             original: {
                 line: loc.line,
-                column: loc.column - 1 // source-map column is 0 based
+                column: loc.column
             },
             generated: {
                 line: context.line,
-                column: context.column - 1
+                column: context.column
             }
         })
     }
@@ -140,7 +146,8 @@ function genChild(
     node: CodegenNode,
     context: CodegenContext
 ) {
-    context.push(node.selector.value + '{');
+    genNode(node.selector,context);
+    context.push('{');
     (node.children as CodegenNode[]).forEach((node: CodegenNode) => genNode(node, context));
     context.push('}');
 }

@@ -3,8 +3,17 @@
   "sources": [
     "template.scss"
   ],
-  "names": [],
-  "mappings": "AAKC,AAAM,AACN,AAAO,AAFP,AAAkB,AAClB,AAAO",
+  "names": [
+    "body",
+    "font",
+    "100% Helvetica, sans-serif",
+    "color",
+    "#333",
+    ".inverse",
+    "background-color",
+    "white"
+  ],
+  "mappings": "AAIAA,IAAI,CACFC,IAAI,CAAEC,0BAAgB,CACtBC,KAAK,CAAEC,IAAc,EAHvBC,QAAQ,CACNC,gBAAgB,CAAEF,IAAc,CAChCD,KAAK,CAAEI,KAAK",
   "sourcesContent": [
     "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   ]

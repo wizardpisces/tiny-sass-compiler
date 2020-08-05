@@ -4,12 +4,13 @@ import {
     puncType,
     arithmeticOperator,
     EmptyNode,
-    Node
+    Node,
+    Position
 } from './ast';
 
 export const isArray = Array.isArray
 
-const debug = (function () {
+export const debug = (function () {
     let isDebug = false,
         count = 0;
     return () => {
@@ -21,16 +22,16 @@ const debug = (function () {
 })()
 
 
-function is_calculate_op_char(ch:arithmeticOperator) {
+export function is_calculate_op_char(ch:arithmeticOperator) {
     let op_chars = ' + - * / % '
     return op_chars.indexOf(' ' + ch + ' ') >= 0;
 }
 
-function is_punc(ch: puncType) {
+export function is_punc(ch: puncType) {
     return ",;(){}#".indexOf(ch) >= 0; // support expr { #{var}:var }
 }
 
-const PRECEDENCE = {
+export const PRECEDENCE = {
     "=": 1,
     "||": 2,
     "&&": 3,
@@ -39,7 +40,7 @@ const PRECEDENCE = {
     "*": 20, "/": 20, "%": 20,
 };
 
-function is_operator(op:string) {
+export function is_operator(op:string) {
     return Object.keys(PRECEDENCE).includes(op)
 }
  /**
@@ -47,7 +48,7 @@ function is_operator(op:string) {
   * 
   */
 
-function fillWhitespace(tokens: TextNode[]) {
+export function fillWhitespace(tokens: TextNode[]) {
      if (tokens.length <= 1) return tokens;
 
      let list:TextNode[] = [],
@@ -86,7 +87,7 @@ function fillWhitespace(tokens: TextNode[]) {
      return list;
  }
 
-class Environment  {
+export class Environment  {
     vars : { [name:string] :any}
     parent: Environment | null
 
@@ -126,31 +127,33 @@ class Environment  {
 /**
  * todos: optimize deep_clone
  */
-function deepClone(obj:object) {
+export function deepClone(obj:object) {
     return JSON.parse(JSON.stringify(obj))
 }
 
-function addNodeEmptyLocation(node){
+export function addNodeEmptyLocation(node){
     return Object.assign({}, node, {
-        start: {
-            offset: 0,
-            column: 0,
-            line: 0
-        },
-        end: {
-            offset: 0,
-            column: 0,
-            line: 0
+        loc: {
+            start: {
+                offset: 0,
+                column: 0,
+                line: 0
+            },
+            end: {
+                offset: 0,
+                column: 0,
+                line: 0
+            }
         }
     })
 }
-function createEmptyNode(): EmptyNode {
+export function createEmptyNode(): EmptyNode {
     return addNodeEmptyLocation({
         type: NodeTypes.EMPTY,
     })
 }
 
-function isEmptyNode(node: Node):boolean{
+export function isEmptyNode(node: Node):boolean{
     return node.type === NodeTypes.EMPTY
 }
 
@@ -167,16 +170,28 @@ function isEmptyNode(node: Node):boolean{
 //     return { promise: promise, cb: cb }
 // }
 
-export {
-    debug,
-    PRECEDENCE,
-    fillWhitespace,
-    is_calculate_op_char,
-    is_punc,
-    is_operator,
-    Environment,
-    deepClone,
-    createEmptyNode,
-    isEmptyNode,
-    addNodeEmptyLocation
+// advance by mutation without cloning (for performance reasons), since this
+// gets called a lot in the parser
+export function advancePositionWithMutation(
+    pos: Position,
+    source: string,
+    numberOfCharacters: number = source.length
+): Position {
+    let linesCount = 0
+    let lastNewLinePos = -1
+    for (let i = 0; i < numberOfCharacters; i++) {
+        if (source.charCodeAt(i) === 10 /* newline char code */) {
+            linesCount++
+            lastNewLinePos = i
+        }
+    }
+
+    pos.offset += numberOfCharacters
+    pos.line += linesCount
+    pos.column =
+        lastNewLinePos === -1
+            ? pos.column + numberOfCharacters
+            : numberOfCharacters - lastNewLinePos
+
+    return pos
 }

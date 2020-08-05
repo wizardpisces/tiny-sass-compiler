@@ -3,8 +3,16 @@
   "sources": [
     "template.scss"
   ],
-  "names": [],
-  "mappings": "AACC,AAAO,AACP,AAAQ,AADR,AAAO,AACP,AAAQ,AAGN,AAAe",
+  "names": [
+    ".square-av",
+    "width",
+    "100px",
+    "height",
+    ".circle-av",
+    "border-radius",
+    "50px"
+  ],
+  "mappings": "AASAA,UAAU,CARRC,KAAK,CAAEC,KAAK,CACZC,MAAM,CAAED,KAAK,EAQfE,UAAU,CATRH,KAAK,CAAEC,KAAK,CACZC,MAAM,CAAED,KAAK,CAGXG,aAAa,CAAEC,IAAS",
   "sourcesContent": [
     "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
   ]

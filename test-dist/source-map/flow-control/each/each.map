@@ -3,8 +3,19 @@
   "sources": [
     "template.scss"
   ],
-  "names": [],
-  "mappings": "AAIG,AAAW,AAEP,AAAW,AACX,AAAQ,AAHZ,AAAW,AAEP,AAAW,AACX,AAAQ",
+  "names": [
+    ".icon-#asfssd-40px",
+    "font-size",
+    "40px",
+    ".icon-#asfssd-40px .ok",
+    "border",
+    "40px solid #111111",
+    ".icon-#asfssd-50px",
+    "50px",
+    ".icon-#asfssd-50px .ok",
+    "50px solid #111111"
+  ],
+  "mappings": "AAGEA,kBAAsB,CACpBC,SAAS,CAAEC,IAAK,EAChBC,sBAAG,CACCF,SAAS,CAAEC,IAAK,CAChBE,MAAM,CAAEC,kBAA2B,EAJzCC,kBAAsB,CACpBL,SAAS,CAAEM,IAAK,EAChBC,sBAAG,CACCP,SAAS,CAAEM,IAAK,CAChBH,MAAM,CAAEK,kBAA2B",
   "sourcesContent": [
     "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
   ]

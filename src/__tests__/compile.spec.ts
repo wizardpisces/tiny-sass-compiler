@@ -3,13 +3,12 @@ import { SourceMapConsumer, RawSourceMap } from 'source-map'
 
 describe('compiler: integration tests', () => {
     const source = `
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+$stack:    Helvetica, sans-serif;
+$primary: #333;
 
 body .test{
-  font: 100% $font-stack;
-  color: 
-  $primary-color;
+  font: 100% $stack;
+  color: $primary;
 }`.trim()
     interface Pos {
         line: number
@@ -56,11 +55,19 @@ body .test{
 
         const consumer = new SourceMapConsumer(map as RawSourceMap)
         
-        console.log(getPositionInCode(code, `test`))
-        console.log(consumer.originalPositionFor(getPositionInCode(code, `test`)))
-        console.log(getPositionInCode(source, `test`))
+        console.log('generated position',getPositionInCode(code, `body .test`))
+        console.log('recovered from generated:',consumer.originalPositionFor(getPositionInCode(code, `body .test`)))
+        console.log('source position:',getPositionInCode(source, `body .test`))
         expect(
-            consumer.originalPositionFor(getPositionInCode(code, `test`))
-        ).toMatchObject(getPositionInCode(source, `test`))
+            consumer.originalPositionFor(getPositionInCode(code, `body .test`))
+        ).toMatchObject(getPositionInCode(source, `body .test`))
+
+        expect(
+            consumer.originalPositionFor(getPositionInCode(code, `font`))
+        ).toMatchObject(getPositionInCode(source, `font`))
+
+        expect(
+            consumer.originalPositionFor(getPositionInCode(code, `color`))
+        ).toMatchObject(getPositionInCode(source, `color`))
     })
 })

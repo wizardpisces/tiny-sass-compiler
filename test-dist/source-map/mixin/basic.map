@@ -3,8 +3,18 @@
   "sources": [
     "template.scss"
   ],
-  "names": [],
-  "mappings": "AACC,AAAQ,AACR,AAAS,AACT,AAAY,AAOV,AAAS",
+  "names": [
+    "nav ul",
+    "margin",
+    "0",
+    "padding",
+    "list-style",
+    "none",
+    "nav ul li",
+    "display",
+    "inline-block"
+  ],
+  "mappings": "AAcAA,MAAM,CAbJC,MAAM,CAAEC,CAAC,CACTC,OAAO,CAAED,CAAC,CACVE,UAAU,CAAEC,IAAI,EAMhBC,SAAE,CACAC,OAAO,CAAEC,YAAY",
   "sourcesContent": [
     "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
   ]

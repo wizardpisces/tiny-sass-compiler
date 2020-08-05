@@ -7,6 +7,10 @@ import {
     NodeTypes
 } from '../parse/ast';
 
+import {
+    addNodeEmptyLocation
+} from '../parse/util'
+
 export default function transform_extend(ast) {
     /**
      * transform
@@ -48,15 +52,15 @@ export default function transform_extend(ast) {
     function transform_extend(exp) {
         function transform(child) {
             if (is_placeholder(child.selector)) {
-                child.selector = {
+                child.selector = addNodeEmptyLocation({
                     type: NodeTypes.TEXT,
                     value: extendSelectorPair[child.selector.value].join(',')
-                }
+                })
             } else {
-                child.selector = {
+                child.selector = addNodeEmptyLocation({
                     type: NodeTypes.TEXT,
                     value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(',')
-                }
+                })
             }
             return child;
         }

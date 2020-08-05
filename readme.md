@@ -205,12 +205,20 @@ Before code generation AST
 
 ## Todos: 
 
+### feat
+
 * code gen sourceMap, generate source for module(import)? ( doing )
-* update scripts/release.sh (reference vue-next)
-* ~~tranform (start,end) to location(line,column,offset)，Error handling to specific position (source filepath , line ,col ,token)~~
-* make transform plug-in ( doing )
 * add keyword @function
-* add position to more tokens (doing)
+* replace @import with @use
 * add '( | )' check to binary precedence
-* Error recovery
+* add position to more tokens (doing)
+
+### refactor
+
+* make transform plug-in ( doing )
+* update scripts/release.sh (reference vue-next)
+
+### other
+
 * complete test cases
+* Error recovery

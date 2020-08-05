@@ -7,9 +7,8 @@
         "name": "tiny-sass",
         "type": "node",
         "request": "launch",
-        "program": "${workspaceFolder}/test.js",
+        "program": "${workspaceFolder}/scripts/test.js",
         "stopOnEntry": false,
-        "args": ["${fileBasename}", "--runInBand", "--detectOpenHandles"],
         "cwd": "${workspaceFolder}",
         "runtimeArgs": [
             "-r",
@@ -22,5 +21,13 @@
         },
         "console": "integratedTerminal",
         "sourceMaps": true
+    }, {
+        "name": "Debug Jest Tests",
+        "type": "node",
+        "request": "launch",
+        // "program": "${workspaceFolder}/scripts/jest.js",
+        "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/node_modules/.bin/jest", "--runInBand", "--coverage", "false"],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
     }]
 }
