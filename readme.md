@@ -2,7 +2,7 @@
 
 This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
 
-[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/parser/readme.md)
+[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parser/ast.ts)
 
 ## Sass Compiler
 
