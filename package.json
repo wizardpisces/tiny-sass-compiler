@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "ts-node scripts/test.js",
-    "jest": "jest"
+    "jest": "jest",
+    "release":"sh scripts/release.sh"
   },
   "engines": {
     "node": ">=8.x"
