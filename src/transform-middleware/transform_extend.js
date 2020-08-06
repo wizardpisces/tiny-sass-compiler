@@ -52,16 +52,19 @@ export default function transform_extend(ast) {
     function transform_extend(exp) {
         function transform(child) {
             if (is_placeholder(child.selector)) {
-                child.selector = addNodeEmptyLocation({
+                child.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value].join(',')
-                })
+                    value: extendSelectorPair[child.selector.value].join(','),
+                    loc: child.selector.loc
+                }
             } else {
-                child.selector = addNodeEmptyLocation({
+                child.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(',')
-                })
+                    value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(','),
+                    loc: child.selector.loc
+                }
             }
+            console.log(child.selector.loc)
             return child;
         }
         return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value] ? transform(exp) : exp;

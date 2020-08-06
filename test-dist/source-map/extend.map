@@ -4,17 +4,20 @@
     "template.scss"
   ],
   "names": [
+    ".message,.success,.message-shared",
     "border",
     "1px solid #ccc",
     "padding",
     "10px",
     "color",
     "#333",
+    ".error",
+    ".success",
     "border-color",
     "green",
     "red"
   ],
-  "mappings": "kCACIA,MAAM,CAAEC,cAAc,CACtBC,OAAO,CAAEC,IAAI,CACbC,KAAK,CAAEC,IAAI,SAIbL,MAAM,CAAEC,cAAc,CACtBC,OAAO,CAAEC,IAAI,CACbC,KAAK,CAAEC,IAAI,WASTC,YAAY,CAAEC,KAAK,SAGnBH,KAAK,CAACI,GAAG",
+  "mappings": "AAAAA,iCAAe,CACXC,MAAM,CAAEC,cAAc,CACtBC,OAAO,CAAEC,IAAI,CACbC,KAAK,CAAEC,IAAI,EAGfC,MAAe,CACbN,MAAM,CAAEC,cAAc,CACtBC,OAAO,CAAEC,IAAI,CACbC,KAAK,CAAEC,IAAI,EAObE,QAAQ,CAEJC,YAAY,CAAEC,KAAK,EAEvBH,MAAM,CACFF,KAAK,CAACM,GAAG",
   "sourcesContent": [
     ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
   ]
