@@ -8,12 +8,12 @@
           "start": {
             "offset": 160,
             "line": 15,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 166,
             "line": 15,
-            "column": 6
+            "column": 7
           }
         },
         "type": "TEXT",
@@ -25,12 +25,12 @@
             "start": {
               "offset": 22,
               "line": 2,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 31,
               "line": 2,
-              "column": 11
+              "column": 12
             }
           },
           "type": "ASSIGN",
@@ -39,12 +39,12 @@
               "start": {
                 "offset": 22,
                 "line": 2,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 28,
                 "line": 2,
-                "column": 8
+                "column": 9
               }
             },
             "type": "TEXT",
@@ -56,12 +56,12 @@
               "start": {
                 "offset": 30,
                 "line": 2,
-                "column": 10
+                "column": 11
               },
               "end": {
                 "offset": 31,
                 "line": 2,
-                "column": 11
+                "column": 12
               }
             },
             "value": "0"
@@ -72,12 +72,12 @@
             "start": {
               "offset": 35,
               "line": 3,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 45,
               "line": 3,
-              "column": 12
+              "column": 13
             }
           },
           "type": "ASSIGN",
@@ -86,12 +86,12 @@
               "start": {
                 "offset": 35,
                 "line": 3,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 42,
                 "line": 3,
-                "column": 9
+                "column": 10
               }
             },
             "type": "TEXT",
@@ -103,12 +103,12 @@
               "start": {
                 "offset": 44,
                 "line": 3,
-                "column": 11
+                "column": 12
               },
               "end": {
                 "offset": 45,
                 "line": 3,
-                "column": 12
+                "column": 13
               }
             },
             "value": "0"
@@ -119,12 +119,12 @@
             "start": {
               "offset": 49,
               "line": 4,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 65,
               "line": 4,
-              "column": 18
+              "column": 19
             }
           },
           "type": "ASSIGN",
@@ -133,12 +133,12 @@
               "start": {
                 "offset": 49,
                 "line": 4,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 59,
                 "line": 4,
-                "column": 12
+                "column": 13
               }
             },
             "type": "TEXT",
@@ -150,12 +150,12 @@
               "start": {
                 "offset": 61,
                 "line": 4,
-                "column": 14
+                "column": 15
               },
               "end": {
                 "offset": 65,
                 "line": 4,
-                "column": 18
+                "column": 19
               }
             },
             "value": "none"
@@ -173,12 +173,12 @@
           "start": {
             "offset": 121,
             "line": 10,
-            "column": 2
+            "column": 3
           },
           "end": {
             "offset": 123,
             "line": 10,
-            "column": 4
+            "column": 5
           }
         },
         "type": "TEXT",
@@ -190,12 +190,12 @@
             "start": {
               "offset": 130,
               "line": 11,
-              "column": 4
+              "column": 5
             },
             "end": {
               "offset": 151,
               "line": 11,
-              "column": 25
+              "column": 26
             }
           },
           "type": "ASSIGN",
@@ -204,12 +204,12 @@
               "start": {
                 "offset": 130,
                 "line": 11,
-                "column": 4
+                "column": 5
               },
               "end": {
                 "offset": 137,
                 "line": 11,
-                "column": 11
+                "column": 12
               }
             },
             "type": "TEXT",
@@ -221,12 +221,12 @@
               "start": {
                 "offset": 139,
                 "line": 11,
-                "column": 13
+                "column": 14
               },
               "end": {
                 "offset": 151,
                 "line": 11,
-                "column": 25
+                "column": 26
               }
             },
             "value": "inline-block"

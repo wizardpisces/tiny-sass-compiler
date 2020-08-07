@@ -9,7 +9,8 @@
   "scripts": {
     "test": "ts-node scripts/test.js",
     "jest": "jest",
-    "release":"sh scripts/release.sh"
+    "release": "sh scripts/release.sh",
+    "sass-test": "sass ./test/extend.scss ./test/extend.css"
   },
   "engines": {
     "node": ">=8.x"
@@ -32,8 +33,8 @@
   "homepage": "https://github.com/wizardpisces/tiny-sass-compiler#readme",
   "devDependencies": {
     "@types/jest": "^26.0.0",
-    "cssbeautify": "^0.3.1",
     "jest": "^25.5.4",
+    "sass": "^1.26.10",
     "ts-jest": "^26.1.0",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5"

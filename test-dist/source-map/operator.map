@@ -15,7 +15,7 @@
     "right",
     "31.25%"
   ],
-  "mappings": "AACAA,UAAU,CACRC,KAAK,CAAEC,GAAS,EAGlBC,oBAAoB,CAClBC,KAAK,CAAEC,IAAI,CACXJ,KAAK,CAAEK,KAAmB,EAG5BC,2BAA2B,CACzBH,KAAK,CAAEI,KAAK,CACZP,KAAK,CAAEQ,MAAoB",
+  "mappings": "AACAA,UAAU;EACRC,KAAK,CAAEC,GAAS;;AAGlBC,oBAAoB;EAClBC,KAAK,CAAEC,IAAI;EACXJ,KAAK,CAAEK,KAAmB;;AAG5BC,2BAA2B;EACzBH,KAAK,CAAEI,KAAK;EACZP,KAAK,CAAEQ,MAAoB",
   "sourcesContent": [
     "$var : 600px;\n.container {\n  width: 1px + 8px;\n}\n\narticle[role=\"main\"] {\n  float: left;\n  width: $var / 960px * 100%;\n}\n\naside[role=\"complementary\"] {\n  float: right;\n  width: 300px / 960px * 100%;\n}"
   ]

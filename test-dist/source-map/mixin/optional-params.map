@@ -19,7 +19,7 @@
     "position",
     "Helvetica, sans-serif default2"
   ],
-  "mappings": "AAaAA,UAAU,CAXRC,WAAW,CAAEC,QAAQ,CACrBC,QAAQ,CAAEC,MAAM,CAChBC,UAAU,CAAEC,IAAI,EAEhBC,qBAAU,CACRC,KAAK,CAAEC,uBAAM,CACbC,MAAM,CAAEC,SAAS,CACjBC,QAAQ,CAAEC,8BAAK",
+  "mappings": "AAaAA,UAAU;EAXRC,WAAW,CAAEC,QAAQ;EACrBC,QAAQ,CAAEC,MAAM;EAChBC,UAAU,CAAEC,IAAI;;;AAEhBC,qBAAU;EACRC,KAAK,CAAEC,uBAAM;EACbC,MAAM,CAAEC,SAAS;EACjBC,QAAQ,CAAEC,8BAAK",
   "sourcesContent": [
     "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
   ]

@@ -6,12 +6,12 @@
         "start": {
           "offset": 0,
           "line": 1,
-          "column": 0
+          "column": 1
         },
         "end": {
           "offset": 19,
           "line": 1,
-          "column": 19
+          "column": 20
         }
       },
       "type": "ASSIGN",
@@ -20,12 +20,12 @@
           "start": {
             "offset": 0,
             "line": 1,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 6,
             "line": 1,
-            "column": 6
+            "column": 7
           }
         },
         "type": "VARIABLE",
@@ -39,12 +39,12 @@
               "start": {
                 "offset": 8,
                 "line": 1,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "offset": 12,
                 "line": 1,
-                "column": 12
+                "column": 13
               }
             },
             "type": "TEXT",
@@ -55,12 +55,12 @@
               "start": {
                 "offset": 12,
                 "line": 1,
-                "column": 12
+                "column": 13
               },
               "end": {
                 "offset": 13,
                 "line": 1,
-                "column": 13
+                "column": 14
               }
             },
             "type": "PUNC",
@@ -71,12 +71,12 @@
               "start": {
                 "offset": 15,
                 "line": 1,
-                "column": 15
+                "column": 16
               },
               "end": {
                 "offset": 19,
                 "line": 1,
-                "column": 19
+                "column": 20
               }
             },
             "type": "TEXT",
@@ -90,12 +90,12 @@
         "start": {
           "offset": 22,
           "line": 3,
-          "column": 0
+          "column": 1
         },
         "end": {
           "offset": 186,
           "line": 11,
-          "column": 1
+          "column": 2
         }
       },
       "type": "EACHSTATEMENT",
@@ -104,12 +104,12 @@
           "start": {
             "offset": 28,
             "line": 3,
-            "column": 6
+            "column": 7
           },
           "end": {
             "offset": 33,
             "line": 3,
-            "column": 11
+            "column": 12
           }
         },
         "type": "VARIABLE",
@@ -120,12 +120,12 @@
           "start": {
             "offset": 37,
             "line": 3,
-            "column": 15
+            "column": 16
           },
           "end": {
             "offset": 43,
             "line": 3,
-            "column": 21
+            "column": 22
           }
         },
         "type": "VARIABLE",
@@ -141,12 +141,12 @@
                 "start": {
                   "offset": 48,
                   "line": 4,
-                  "column": 2
+                  "column": 3
                 },
                 "end": {
                   "offset": 62,
                   "line": 4,
-                  "column": 16
+                  "column": 17
                 }
               },
               "type": "TEXT",
@@ -157,12 +157,12 @@
                 "start": {
                   "offset": 62,
                   "line": 4,
-                  "column": 16
+                  "column": 17
                 },
                 "end": {
                   "offset": 70,
                   "line": 4,
-                  "column": 24
+                  "column": 25
                 }
               },
               "type": "VAR_KEY",
@@ -176,12 +176,12 @@
               "start": {
                 "offset": 77,
                 "line": 5,
-                "column": 4
+                "column": 5
               },
               "end": {
                 "offset": 93,
                 "line": 5,
-                "column": 20
+                "column": 21
               }
             },
             "type": "ASSIGN",
@@ -190,12 +190,12 @@
                 "start": {
                   "offset": 77,
                   "line": 5,
-                  "column": 4
+                  "column": 5
                 },
                 "end": {
                   "offset": 86,
                   "line": 5,
-                  "column": 13
+                  "column": 14
                 }
               },
               "type": "TEXT",
@@ -209,12 +209,12 @@
                     "start": {
                       "offset": 88,
                       "line": 5,
-                      "column": 15
+                      "column": 16
                     },
                     "end": {
                       "offset": 93,
                       "line": 5,
-                      "column": 20
+                      "column": 21
                     }
                   },
                   "type": "VARIABLE",
@@ -230,12 +230,12 @@
                 "start": {
                   "offset": 99,
                   "line": 6,
-                  "column": 4
+                  "column": 5
                 },
                 "end": {
                   "offset": 102,
                   "line": 6,
-                  "column": 7
+                  "column": 8
                 }
               },
               "type": "TEXT",
@@ -247,12 +247,12 @@
                   "start": {
                     "offset": 112,
                     "line": 7,
-                    "column": 8
+                    "column": 9
                   },
                   "end": {
                     "offset": 128,
                     "line": 7,
-                    "column": 24
+                    "column": 25
                   }
                 },
                 "type": "ASSIGN",
@@ -261,12 +261,12 @@
                     "start": {
                       "offset": 112,
                       "line": 7,
-                      "column": 8
+                      "column": 9
                     },
                     "end": {
                       "offset": 121,
                       "line": 7,
-                      "column": 17
+                      "column": 18
                     }
                   },
                   "type": "TEXT",
@@ -280,12 +280,12 @@
                         "start": {
                           "offset": 123,
                           "line": 7,
-                          "column": 19
+                          "column": 20
                         },
                         "end": {
                           "offset": 128,
                           "line": 7,
-                          "column": 24
+                          "column": 25
                         }
                       },
                       "type": "VARIABLE",
@@ -299,12 +299,12 @@
                   "start": {
                     "offset": 138,
                     "line": 8,
-                    "column": 8
+                    "column": 9
                   },
                   "end": {
                     "offset": 173,
                     "line": 8,
-                    "column": 43
+                    "column": 44
                   }
                 },
                 "type": "ASSIGN",
@@ -313,12 +313,12 @@
                     "start": {
                       "offset": 138,
                       "line": 8,
-                      "column": 8
+                      "column": 9
                     },
                     "end": {
                       "offset": 144,
                       "line": 8,
-                      "column": 14
+                      "column": 15
                     }
                   },
                   "type": "TEXT",
@@ -332,12 +332,12 @@
                         "start": {
                           "offset": 146,
                           "line": 8,
-                          "column": 16
+                          "column": 17
                         },
                         "end": {
                           "offset": 151,
                           "line": 8,
-                          "column": 21
+                          "column": 22
                         }
                       },
                       "type": "VARIABLE",
@@ -348,12 +348,12 @@
                         "start": {
                           "offset": 153,
                           "line": 8,
-                          "column": 23
+                          "column": 24
                         },
                         "end": {
                           "offset": 173,
                           "line": 8,
-                          "column": 43
+                          "column": 44
                         }
                       },
                       "type": "TEXT",

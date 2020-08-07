@@ -23,11 +23,15 @@ export interface CodegenResult {
 export interface CodegenContext extends Required<CodegenOptions> {
     source: string
     code: string
+    indentLevel: number
     line: number
     column: number
     offset: number
     map?: SourceMapGenerator
     push(code: string, node?: CodegenNode): void
+    indent(): void
+    deindent(withoutNewLine?: boolean): void
+    newline(): void
 }
 
 function createCodegenContext(
@@ -41,9 +45,10 @@ function createCodegenContext(
         code: '',
         sourceMap,
         filename,
-        column: 0,// source-map column is 0 based
+        column: 1,// source-map column is 0 based
         line: 1,
         offset: 0,
+        indentLevel: 0,
         source: ast.source,
         push(code: string, node) {
             context.code += code
@@ -58,7 +63,24 @@ function createCodegenContext(
                     addMapping(node.loc.end)
                 }
             }
+        },
+        indent() {
+            newline(++context.indentLevel)
+        },
+        deindent(withoutNewLine = false) {
+            if (withoutNewLine) {
+                --context.indentLevel
+            } else {
+                newline(--context.indentLevel)
+            }
+        },
+        newline() {
+            newline(context.indentLevel)
         }
+    }
+
+    function newline(n: number) {
+        context.push('\n' + `  `.repeat(n))
     }
 
     function addMapping(loc: Position, name?: string) {
@@ -67,11 +89,11 @@ function createCodegenContext(
             source: context.filename,
             original: {
                 line: loc.line,
-                column: loc.column
+                column: loc.column - 1
             },
             generated: {
                 line: context.line,
-                column: context.column
+                column: context.column - 1
             }
         })
     }
@@ -136,18 +158,31 @@ function genAssign(
     node: AssignStatement,
     context: CodegenContext
 ) {
+    const { push } = context;
+
     genNode(node.left as TextNode, context)
-    context.push(':')
+    push(':')
     genNode(node.right as TextNode, context)
-    context.push(';');
+    push(';');
 }
 
 function genChild(
     node: CodegenNode,
     context: CodegenContext
 ) {
+    const { push, deindent, indent, newline} = context;
     genNode(node.selector,context);
-    context.push('{');
-    (node.children as CodegenNode[]).forEach((node: CodegenNode) => genNode(node, context));
-    context.push('}');
+    push('{');
+    indent();
+
+    (node.children as CodegenNode[]).forEach((node: CodegenNode,index:number) => {
+        if(index){
+            newline()
+        }
+        genNode(node, context);
+    })
+
+    deindent();
+    push('}');
+    newline();
 }

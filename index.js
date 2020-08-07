@@ -1,4 +1,3 @@
-import cssbeautify from 'cssbeautify'
 import compile, {
     parse
 } from './src'
@@ -90,7 +89,7 @@ function run(sourceDir, outputDir = './', options = {
             const {ast ,map , code} = compiled;
 
             function writeResultCode(cb){  
-                fs.writeFile(path.join(cssDistPath, basename + '.css'), cssbeautify(code), function (err) {
+                fs.writeFile(path.join(cssDistPath, basename + '.css'), (code), function (err) {
                     if (err) {
                         return console.error(`write css failed ${basename}`);
                     }

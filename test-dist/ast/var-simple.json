@@ -6,12 +6,12 @@
         "start": {
           "offset": 0,
           "line": 1,
-          "column": 0
+          "column": 1
         },
         "end": {
           "offset": 37,
           "line": 1,
-          "column": 37
+          "column": 38
         }
       },
       "type": "ASSIGN",
@@ -20,12 +20,12 @@
           "start": {
             "offset": 0,
             "line": 1,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 11,
             "line": 1,
-            "column": 11
+            "column": 12
           }
         },
         "type": "VARIABLE",
@@ -39,12 +39,12 @@
               "start": {
                 "offset": 16,
                 "line": 1,
-                "column": 16
+                "column": 17
               },
               "end": {
                 "offset": 25,
                 "line": 1,
-                "column": 25
+                "column": 26
               }
             },
             "type": "TEXT",
@@ -55,12 +55,12 @@
               "start": {
                 "offset": 25,
                 "line": 1,
-                "column": 25
+                "column": 26
               },
               "end": {
                 "offset": 26,
                 "line": 1,
-                "column": 26
+                "column": 27
               }
             },
             "type": "PUNC",
@@ -71,12 +71,12 @@
               "start": {
                 "offset": 27,
                 "line": 1,
-                "column": 27
+                "column": 28
               },
               "end": {
                 "offset": 37,
                 "line": 1,
-                "column": 37
+                "column": 38
               }
             },
             "type": "TEXT",
@@ -90,12 +90,12 @@
         "start": {
           "offset": 39,
           "line": 2,
-          "column": 0
+          "column": 1
         },
         "end": {
           "offset": 59,
           "line": 2,
-          "column": 20
+          "column": 21
         }
       },
       "type": "ASSIGN",
@@ -104,12 +104,12 @@
           "start": {
             "offset": 39,
             "line": 2,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 53,
             "line": 2,
-            "column": 14
+            "column": 15
           }
         },
         "type": "VARIABLE",
@@ -123,12 +123,12 @@
               "start": {
                 "offset": 55,
                 "line": 2,
-                "column": 16
+                "column": 17
               },
               "end": {
                 "offset": 59,
                 "line": 2,
-                "column": 20
+                "column": 21
               }
             },
             "type": "TEXT",
@@ -144,12 +144,12 @@
           "start": {
             "offset": 62,
             "line": 4,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 72,
             "line": 4,
-            "column": 10
+            "column": 11
           }
         },
         "type": "TEXT",
@@ -161,12 +161,12 @@
             "start": {
               "offset": 76,
               "line": 5,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 98,
               "line": 5,
-              "column": 24
+              "column": 25
             }
           },
           "type": "ASSIGN",
@@ -175,12 +175,12 @@
               "start": {
                 "offset": 76,
                 "line": 5,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 80,
                 "line": 5,
-                "column": 6
+                "column": 7
               }
             },
             "type": "TEXT",
@@ -194,12 +194,12 @@
                   "start": {
                     "offset": 82,
                     "line": 5,
-                    "column": 8
+                    "column": 9
                   },
                   "end": {
                     "offset": 86,
                     "line": 5,
-                    "column": 12
+                    "column": 13
                   }
                 },
                 "type": "TEXT",
@@ -210,12 +210,12 @@
                   "start": {
                     "offset": 87,
                     "line": 5,
-                    "column": 13
+                    "column": 14
                   },
                   "end": {
                     "offset": 98,
                     "line": 5,
-                    "column": 24
+                    "column": 25
                   }
                 },
                 "type": "VARIABLE",
@@ -229,12 +229,12 @@
             "start": {
               "offset": 102,
               "line": 6,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 126,
               "line": 7,
-              "column": 16
+              "column": 17
             }
           },
           "type": "ASSIGN",
@@ -243,12 +243,12 @@
               "start": {
                 "offset": 102,
                 "line": 6,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 107,
                 "line": 6,
-                "column": 7
+                "column": 8
               }
             },
             "type": "TEXT",
@@ -262,12 +262,12 @@
                   "start": {
                     "offset": 112,
                     "line": 7,
-                    "column": 2
+                    "column": 3
                   },
                   "end": {
                     "offset": 126,
                     "line": 7,
-                    "column": 16
+                    "column": 17
                   }
                 },
                 "type": "VARIABLE",

@@ -12,7 +12,7 @@
     "border-radius",
     "50px"
   ],
-  "mappings": "AASAA,UAAU,CARRC,KAAK,CAAEC,KAAK,CACZC,MAAM,CAAED,KAAK,EAQfE,UAAU,CATRH,KAAK,CAAEC,KAAK,CACZC,MAAM,CAAED,KAAK,CAGXG,aAAa,CAAEC,IAAS",
+  "mappings": "AASAA,UAAU;EARRC,KAAK,CAAEC,KAAK;EACZC,MAAM,CAAED,KAAK;;AAQfE,UAAU;EATRH,KAAK,CAAEC,KAAK;EACZC,MAAM,CAAED,KAAK;EAGXG,aAAa,CAAEC,IAAS",
   "sourcesContent": [
     "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
   ]

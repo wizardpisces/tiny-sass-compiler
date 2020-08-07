@@ -10,7 +10,7 @@
     "color",
     "#333"
   ],
-  "mappings": "AAGAA,UAAU,CACRC,IAAI,CAAEC,0BAAgB,CACtBC,KAAK,CACLC,IAAc",
+  "mappings": "AAGAA,UAAU;EACRC,IAAI,CAAEC,0BAAgB;EACtBC,KAAK,CACLC,IAAc",
   "sourcesContent": [
     "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
   ]

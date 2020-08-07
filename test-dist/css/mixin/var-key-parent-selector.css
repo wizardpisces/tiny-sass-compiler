@@ -1,7 +1,7 @@
-.sidebar {
-    float: left;
+.sidebar{
+  float:left;
+  
 }
-
-[dir=rtl] .sidebar.second {
-    float: right;
+[dir=rtl] .sidebar.second{
+  float:right;
 }

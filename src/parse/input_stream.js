@@ -1,6 +1,6 @@
 function input_stream(input) {
 
-    let offset = 0, line = 1, column = 0;
+    let offset = 0, line = 1, column = 1;
     return {
         next,
         peek,
@@ -13,7 +13,7 @@ function input_stream(input) {
     function next() {
         let ch = input.charAt(offset++);
         
-        if (ch == "\n") line++ , column = 0; else column++;
+        if (ch == "\n") line++ , column = 1; else column++;
         
         return ch;
     }

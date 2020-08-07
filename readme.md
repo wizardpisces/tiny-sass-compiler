@@ -208,6 +208,7 @@ Before code generation AST
 ### feat
 
 * code gen sourceMap, generate source for module(import)? ( doing )
+* souce-map size compression (reference https://sokra.github.io/source-map-visualization generated map)
 * add keyword @function
 * replace @import with @use
 * add '( | )' check to binary precedence
@@ -220,5 +221,5 @@ Before code generation AST
 
 ### other
 
-* complete test cases
-* Error recovery
+* complete test cases (doing)
+* make API more flexible (reference  [esprima](https://www.npmjs.com/package/esprima) / [ast-types](https://www.npmjs.com/package/ast-types) / [escodegen](https://www.npmjs.com/package/escodegen))

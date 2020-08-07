@@ -13,7 +13,7 @@
     "background-color",
     "white"
   ],
-  "mappings": "AAIAA,IAAI,CACFC,IAAI,CAAEC,0BAAgB,CACtBC,KAAK,CAAEC,IAAc,EAHvBC,QAAQ,CACNC,gBAAgB,CAAEF,IAAc,CAChCD,KAAK,CAAEI,KAAK",
+  "mappings": "AAIAA,IAAI;EACFC,IAAI,CAAEC,0BAAgB;EACtBC,KAAK,CAAEC,IAAc;;AAHvBC,QAAQ;EACNC,gBAAgB,CAAEF,IAAc;EAChCD,KAAK,CAAEI,KAAK",
   "sourcesContent": [
     "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   ]

@@ -6,12 +6,12 @@
         "start": {
           "offset": 0,
           "line": 1,
-          "column": 0
+          "column": 1
         },
         "end": {
           "offset": 36,
           "line": 2,
-          "column": 21
+          "column": 22
         }
       },
       "type": "IMPORT",
@@ -29,12 +29,12 @@
           "start": {
             "offset": 39,
             "line": 4,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 47,
             "line": 4,
-            "column": 8
+            "column": 9
           }
         },
         "type": "TEXT",
@@ -46,12 +46,12 @@
             "start": {
               "offset": 52,
               "line": 5,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 84,
               "line": 5,
-              "column": 34
+              "column": 35
             }
           },
           "type": "ASSIGN",
@@ -60,12 +60,12 @@
               "start": {
                 "offset": 52,
                 "line": 5,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 68,
                 "line": 5,
-                "column": 18
+                "column": 19
               }
             },
             "type": "TEXT",
@@ -79,12 +79,12 @@
                   "start": {
                     "offset": 70,
                     "line": 5,
-                    "column": 20
+                    "column": 21
                   },
                   "end": {
                     "offset": 84,
                     "line": 5,
-                    "column": 34
+                    "column": 35
                   }
                 },
                 "type": "VARIABLE",
@@ -98,12 +98,12 @@
             "start": {
               "offset": 88,
               "line": 6,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 100,
               "line": 6,
-              "column": 14
+              "column": 15
             }
           },
           "type": "ASSIGN",
@@ -112,12 +112,12 @@
               "start": {
                 "offset": 88,
                 "line": 6,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 93,
                 "line": 6,
-                "column": 7
+                "column": 8
               }
             },
             "type": "TEXT",
@@ -131,12 +131,12 @@
                   "start": {
                     "offset": 95,
                     "line": 6,
-                    "column": 9
+                    "column": 10
                   },
                   "end": {
                     "offset": 100,
                     "line": 6,
-                    "column": 14
+                    "column": 15
                   }
                 },
                 "type": "TEXT",

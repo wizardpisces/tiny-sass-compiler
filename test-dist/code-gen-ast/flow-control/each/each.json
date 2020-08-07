@@ -9,12 +9,12 @@
           "start": {
             "offset": 48,
             "line": 4,
-            "column": 2
+            "column": 3
           },
           "end": {
             "offset": 70,
             "line": 4,
-            "column": 24
+            "column": 25
           }
         },
         "value": ".icon-#asfssd-40px"
@@ -25,12 +25,12 @@
             "start": {
               "offset": 77,
               "line": 5,
-              "column": 4
+              "column": 5
             },
             "end": {
               "offset": 93,
               "line": 5,
-              "column": 20
+              "column": 21
             }
           },
           "type": "ASSIGN",
@@ -39,12 +39,12 @@
               "start": {
                 "offset": 77,
                 "line": 5,
-                "column": 4
+                "column": 5
               },
               "end": {
                 "offset": 86,
                 "line": 5,
-                "column": 13
+                "column": 14
               }
             },
             "type": "TEXT",
@@ -56,12 +56,12 @@
               "start": {
                 "offset": 88,
                 "line": 5,
-                "column": 15
+                "column": 16
               },
               "end": {
                 "offset": 93,
                 "line": 5,
-                "column": 20
+                "column": 21
               }
             },
             "value": "40px"
@@ -79,12 +79,12 @@
           "start": {
             "offset": 99,
             "line": 6,
-            "column": 4
+            "column": 5
           },
           "end": {
             "offset": 102,
             "line": 6,
-            "column": 7
+            "column": 8
           }
         },
         "type": "TEXT",
@@ -96,12 +96,12 @@
             "start": {
               "offset": 112,
               "line": 7,
-              "column": 8
+              "column": 9
             },
             "end": {
               "offset": 128,
               "line": 7,
-              "column": 24
+              "column": 25
             }
           },
           "type": "ASSIGN",
@@ -110,12 +110,12 @@
               "start": {
                 "offset": 112,
                 "line": 7,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "offset": 121,
                 "line": 7,
-                "column": 17
+                "column": 18
               }
             },
             "type": "TEXT",
@@ -127,12 +127,12 @@
               "start": {
                 "offset": 123,
                 "line": 7,
-                "column": 19
+                "column": 20
               },
               "end": {
                 "offset": 128,
                 "line": 7,
-                "column": 24
+                "column": 25
               }
             },
             "value": "40px"
@@ -143,12 +143,12 @@
             "start": {
               "offset": 138,
               "line": 8,
-              "column": 8
+              "column": 9
             },
             "end": {
               "offset": 173,
               "line": 8,
-              "column": 43
+              "column": 44
             }
           },
           "type": "ASSIGN",
@@ -157,12 +157,12 @@
               "start": {
                 "offset": 138,
                 "line": 8,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "offset": 144,
                 "line": 8,
-                "column": 14
+                "column": 15
               }
             },
             "type": "TEXT",
@@ -174,12 +174,12 @@
               "start": {
                 "offset": 146,
                 "line": 8,
-                "column": 16
+                "column": 17
               },
               "end": {
                 "offset": 173,
                 "line": 8,
-                "column": 43
+                "column": 44
               }
             },
             "value": "40px solid #111111"
@@ -195,12 +195,12 @@
           "start": {
             "offset": 48,
             "line": 4,
-            "column": 2
+            "column": 3
           },
           "end": {
             "offset": 70,
             "line": 4,
-            "column": 24
+            "column": 25
           }
         },
         "value": ".icon-#asfssd-50px"
@@ -211,12 +211,12 @@
             "start": {
               "offset": 77,
               "line": 5,
-              "column": 4
+              "column": 5
             },
             "end": {
               "offset": 93,
               "line": 5,
-              "column": 20
+              "column": 21
             }
           },
           "type": "ASSIGN",
@@ -225,12 +225,12 @@
               "start": {
                 "offset": 77,
                 "line": 5,
-                "column": 4
+                "column": 5
               },
               "end": {
                 "offset": 86,
                 "line": 5,
-                "column": 13
+                "column": 14
               }
             },
             "type": "TEXT",
@@ -242,12 +242,12 @@
               "start": {
                 "offset": 88,
                 "line": 5,
-                "column": 15
+                "column": 16
               },
               "end": {
                 "offset": 93,
                 "line": 5,
-                "column": 20
+                "column": 21
               }
             },
             "value": "50px"
@@ -265,12 +265,12 @@
           "start": {
             "offset": 99,
             "line": 6,
-            "column": 4
+            "column": 5
           },
           "end": {
             "offset": 102,
             "line": 6,
-            "column": 7
+            "column": 8
           }
         },
         "type": "TEXT",
@@ -282,12 +282,12 @@
             "start": {
               "offset": 112,
               "line": 7,
-              "column": 8
+              "column": 9
             },
             "end": {
               "offset": 128,
               "line": 7,
-              "column": 24
+              "column": 25
             }
           },
           "type": "ASSIGN",
@@ -296,12 +296,12 @@
               "start": {
                 "offset": 112,
                 "line": 7,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "offset": 121,
                 "line": 7,
-                "column": 17
+                "column": 18
               }
             },
             "type": "TEXT",
@@ -313,12 +313,12 @@
               "start": {
                 "offset": 123,
                 "line": 7,
-                "column": 19
+                "column": 20
               },
               "end": {
                 "offset": 128,
                 "line": 7,
-                "column": 24
+                "column": 25
               }
             },
             "value": "50px"
@@ -329,12 +329,12 @@
             "start": {
               "offset": 138,
               "line": 8,
-              "column": 8
+              "column": 9
             },
             "end": {
               "offset": 173,
               "line": 8,
-              "column": 43
+              "column": 44
             }
           },
           "type": "ASSIGN",
@@ -343,12 +343,12 @@
               "start": {
                 "offset": 138,
                 "line": 8,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "offset": 144,
                 "line": 8,
-                "column": 14
+                "column": 15
               }
             },
             "type": "TEXT",
@@ -360,12 +360,12 @@
               "start": {
                 "offset": 146,
                 "line": 8,
-                "column": 16
+                "column": 17
               },
               "end": {
                 "offset": 173,
                 "line": 8,
-                "column": 43
+                "column": 44
               }
             },
             "value": "50px solid #111111"

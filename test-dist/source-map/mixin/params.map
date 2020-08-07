@@ -13,7 +13,7 @@
     "left",
     "1px"
   ],
-  "mappings": "AAMAA,IAAI,CAJFC,iBAAiB,CAAEC,aAAS,CAC5BC,aAAa,CAAED,aAAS,CACxBE,SAAS,CAAEC,+BAAoB,CAI/BC,IAAI,CAACC,GAAG",
+  "mappings": "AAMAA,IAAI;EAJFC,iBAAiB,CAAEC,aAAS;EAC5BC,aAAa,CAAED,aAAS;EACxBE,SAAS,CAAEC,+BAAoB;EAI/BC,IAAI,CAACC,GAAG",
   "sourcesContent": [
     "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
   ]

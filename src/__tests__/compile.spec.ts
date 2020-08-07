@@ -110,6 +110,10 @@ body .test{
             consumer.originalPositionFor(getPositionInCode(code, `.message,.success,.message-shared`))
         ).toMatchObject(getPositionInCode(source, `.message-shared`))
 
+        expect(
+            consumer.originalPositionFor(getPositionInCode(code, `border-color`))
+        ).toMatchObject(getPositionInCode(source, `border-color`))
+
         // Todos  @import @mixin @if ...
     })
 })

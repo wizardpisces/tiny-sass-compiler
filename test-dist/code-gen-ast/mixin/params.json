@@ -8,12 +8,12 @@
           "start": {
             "offset": 171,
             "line": 7,
-            "column": 0
+            "column": 1
           },
           "end": {
             "offset": 175,
             "line": 7,
-            "column": 4
+            "column": 5
           }
         },
         "type": "TEXT",
@@ -25,12 +25,12 @@
             "start": {
               "offset": 76,
               "line": 3,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 104,
               "line": 3,
-              "column": 30
+              "column": 31
             }
           },
           "type": "ASSIGN",
@@ -39,12 +39,12 @@
               "start": {
                 "offset": 76,
                 "line": 3,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 93,
                 "line": 3,
-                "column": 19
+                "column": 20
               }
             },
             "type": "TEXT",
@@ -56,12 +56,12 @@
               "start": {
                 "offset": 95,
                 "line": 3,
-                "column": 21
+                "column": 22
               },
               "end": {
                 "offset": 104,
                 "line": 3,
-                "column": 30
+                "column": 31
               }
             },
             "value": "rotate(30deg)"
@@ -72,12 +72,12 @@
             "start": {
               "offset": 108,
               "line": 4,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 132,
               "line": 4,
-              "column": 26
+              "column": 27
             }
           },
           "type": "ASSIGN",
@@ -86,12 +86,12 @@
               "start": {
                 "offset": 108,
                 "line": 4,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 121,
                 "line": 4,
-                "column": 15
+                "column": 16
               }
             },
             "type": "TEXT",
@@ -103,12 +103,12 @@
               "start": {
                 "offset": 123,
                 "line": 4,
-                "column": 17
+                "column": 18
               },
               "end": {
                 "offset": 132,
                 "line": 4,
-                "column": 26
+                "column": 27
               }
             },
             "value": "rotate(30deg)"
@@ -119,12 +119,12 @@
             "start": {
               "offset": 136,
               "line": 5,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 167,
               "line": 5,
-              "column": 33
+              "column": 34
             }
           },
           "type": "ASSIGN",
@@ -133,12 +133,12 @@
               "start": {
                 "offset": 136,
                 "line": 5,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 145,
                 "line": 5,
-                "column": 11
+                "column": 12
               }
             },
             "type": "TEXT",
@@ -150,12 +150,12 @@
               "start": {
                 "offset": 147,
                 "line": 5,
-                "column": 13
+                "column": 14
               },
               "end": {
                 "offset": 167,
                 "line": 5,
-                "column": 33
+                "column": 34
               }
             },
             "value": "rotate(30deg) skew(30deg,20deg)"
@@ -166,12 +166,12 @@
             "start": {
               "offset": 230,
               "line": 9,
-              "column": 2
+              "column": 3
             },
             "end": {
               "offset": 238,
               "line": 9,
-              "column": 10
+              "column": 11
             }
           },
           "type": "ASSIGN",
@@ -180,12 +180,12 @@
               "start": {
                 "offset": 230,
                 "line": 9,
-                "column": 2
+                "column": 3
               },
               "end": {
                 "offset": 234,
                 "line": 9,
-                "column": 6
+                "column": 7
               }
             },
             "type": "TEXT",
@@ -197,12 +197,12 @@
               "start": {
                 "offset": 235,
                 "line": 9,
-                "column": 7
+                "column": 8
               },
               "end": {
                 "offset": 238,
                 "line": 9,
-                "column": 10
+                "column": 11
               }
             },
             "value": "1px"
