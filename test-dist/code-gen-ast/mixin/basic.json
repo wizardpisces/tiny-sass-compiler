@@ -1,9 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": "nav ul",
         "loc": {
           "start": {
             "offset": 160,
@@ -14,27 +19,16 @@
             "offset": 166,
             "line": 15,
             "column": 7
-          }
-        },
-        "type": "TEXT",
-        "value": "nav ul"
+          },
+          "filename": "basic.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 22,
-              "line": 2,
-              "column": 3
-            },
-            "end": {
-              "offset": 31,
-              "line": 2,
-              "column": 12
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "margin",
             "loc": {
               "start": {
                 "offset": 22,
@@ -45,43 +39,46 @@
                 "offset": 28,
                 "line": 2,
                 "column": 9
-              }
-            },
-            "type": "TEXT",
-            "value": "margin"
+              },
+              "filename": "basic.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 30,
+                "offset": 31,
                 "line": 2,
-                "column": 11
+                "column": 12
               },
               "end": {
                 "offset": 31,
                 "line": 2,
                 "column": 12
-              }
+              },
+              "filename": "basic.scss"
             },
             "value": "0"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 35,
-              "line": 3,
+              "offset": 22,
+              "line": 2,
               "column": 3
             },
             "end": {
-              "offset": 45,
-              "line": 3,
-              "column": 13
-            }
-          },
+              "offset": 31,
+              "line": 2,
+              "column": 12
+            },
+            "filename": "basic.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "padding",
             "loc": {
               "start": {
                 "offset": 35,
@@ -92,43 +89,46 @@
                 "offset": 42,
                 "line": 3,
                 "column": 10
-              }
-            },
-            "type": "TEXT",
-            "value": "padding"
+              },
+              "filename": "basic.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 44,
+                "offset": 45,
                 "line": 3,
-                "column": 12
+                "column": 13
               },
               "end": {
                 "offset": 45,
                 "line": 3,
                 "column": 13
-              }
+              },
+              "filename": "basic.scss"
             },
             "value": "0"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 49,
-              "line": 4,
+              "offset": 35,
+              "line": 3,
               "column": 3
             },
             "end": {
-              "offset": 65,
-              "line": 4,
-              "column": 19
-            }
-          },
+              "offset": 45,
+              "line": 3,
+              "column": 13
+            },
+            "filename": "basic.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "list-style",
             "loc": {
               "start": {
                 "offset": 49,
@@ -139,36 +139,64 @@
                 "offset": 59,
                 "line": 4,
                 "column": 13
-              }
-            },
-            "type": "TEXT",
-            "value": "list-style"
+              },
+              "filename": "basic.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 61,
+                "offset": 65,
                 "line": 4,
-                "column": 15
+                "column": 19
               },
               "end": {
                 "offset": 65,
                 "line": 4,
                 "column": 19
-              }
+              },
+              "filename": "basic.scss"
             },
             "value": "none"
+          },
+          "loc": {
+            "start": {
+              "offset": 49,
+              "line": 4,
+              "column": 3
+            },
+            "end": {
+              "offset": 65,
+              "line": 4,
+              "column": 19
+            },
+            "filename": "basic.scss"
           }
         },
         {
           "type": "EMPTY"
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     },
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": "nav ul li",
         "loc": {
           "start": {
             "offset": 121,
@@ -179,27 +207,16 @@
             "offset": 123,
             "line": 10,
             "column": 5
-          }
-        },
-        "type": "TEXT",
-        "value": "nav ul li"
+          },
+          "filename": "basic.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 130,
-              "line": 11,
-              "column": 5
-            },
-            "end": {
-              "offset": 151,
-              "line": 11,
-              "column": 26
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "display",
             "loc": {
               "start": {
                 "offset": 130,
@@ -210,30 +227,68 @@
                 "offset": 137,
                 "line": 11,
                 "column": 12
-              }
-            },
-            "type": "TEXT",
-            "value": "display"
+              },
+              "filename": "basic.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 139,
+                "offset": 151,
                 "line": 11,
-                "column": 14
+                "column": 26
               },
               "end": {
                 "offset": 151,
                 "line": 11,
                 "column": 26
-              }
+              },
+              "filename": "basic.scss"
             },
             "value": "inline-block"
+          },
+          "loc": {
+            "start": {
+              "offset": 130,
+              "line": 11,
+              "column": 5
+            },
+            "end": {
+              "offset": 151,
+              "line": 11,
+              "column": 26
+            },
+            "filename": "basic.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

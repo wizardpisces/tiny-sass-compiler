@@ -1,20 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "basic.scss"
   ],
-  "names": [
-    "nav ul",
-    "margin",
-    "0",
-    "padding",
-    "list-style",
-    "none",
-    "nav ul li",
-    "display",
-    "inline-block"
-  ],
-  "mappings": "AAcAA,MAAM;EAbJC,MAAM,CAAEC,CAAC;EACTC,OAAO,CAAED,CAAC;EACVE,UAAU,CAAEC,IAAI;;;AAMhBC,SAAE;EACAC,OAAO,CAAEC,YAAY",
+  "names": [],
+  "mappings": "AAcA;EAbE,OAAS;EACT,QAAU;EACV,WAAgB;;;AAMhB;EACE,QAAqB",
   "sourcesContent": [
     "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
   ]

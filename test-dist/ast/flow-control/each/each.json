@@ -1,21 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "each.scss": "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
+  },
   "children": [
     {
-      "loc": {
-        "start": {
-          "offset": 0,
-          "line": 1,
-          "column": 1
-        },
-        "end": {
-          "offset": 19,
-          "line": 1,
-          "column": 20
-        }
-      },
       "type": "ASSIGN",
       "left": {
+        "type": "VARIABLE",
+        "value": "$sizes",
         "loc": {
           "start": {
             "offset": 0,
@@ -26,31 +19,16 @@
             "offset": 6,
             "line": 1,
             "column": 7
-          }
-        },
-        "type": "VARIABLE",
-        "value": "$sizes"
+          },
+          "filename": "each.scss"
+        }
       },
       "right": {
         "type": "LIST",
         "value": [
           {
-            "loc": {
-              "start": {
-                "offset": 8,
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "offset": 12,
-                "line": 1,
-                "column": 13
-              }
-            },
             "type": "TEXT",
-            "value": "40px"
-          },
-          {
+            "value": "40px",
             "loc": {
               "start": {
                 "offset": 12,
@@ -58,15 +36,16 @@
                 "column": 13
               },
               "end": {
-                "offset": 13,
+                "offset": 12,
                 "line": 1,
-                "column": 14
-              }
-            },
-            "type": "PUNC",
-            "value": ","
+                "column": 13
+              },
+              "filename": "each.scss"
+            }
           },
           {
+            "type": "PUNC",
+            "value": ",",
             "loc": {
               "start": {
                 "offset": 15,
@@ -74,32 +53,64 @@
                 "column": 16
               },
               "end": {
+                "offset": 15,
+                "line": 1,
+                "column": 16
+              },
+              "filename": "each.scss"
+            }
+          },
+          {
+            "type": "TEXT",
+            "value": "50px",
+            "loc": {
+              "start": {
                 "offset": 19,
                 "line": 1,
                 "column": 20
-              }
-            },
-            "type": "TEXT",
-            "value": "50px"
+              },
+              "end": {
+                "offset": 19,
+                "line": 1,
+                "column": 20
+              },
+              "filename": "each.scss"
+            }
           }
-        ]
-      }
-    },
-    {
+        ],
+        "loc": {
+          "start": {
+            "offset": 12,
+            "line": 1,
+            "column": 13
+          },
+          "end": {
+            "offset": 19,
+            "line": 1,
+            "column": 20
+          },
+          "filename": "each.scss"
+        }
+      },
       "loc": {
         "start": {
-          "offset": 22,
-          "line": 3,
+          "offset": 0,
+          "line": 1,
           "column": 1
         },
         "end": {
-          "offset": 186,
-          "line": 11,
-          "column": 2
-        }
-      },
+          "offset": 19,
+          "line": 1,
+          "column": 20
+        },
+        "filename": "each.scss"
+      }
+    },
+    {
       "type": "EACHSTATEMENT",
       "left": {
+        "type": "VARIABLE",
+        "value": "$size",
         "loc": {
           "start": {
             "offset": 28,
@@ -110,12 +121,13 @@
             "offset": 33,
             "line": 3,
             "column": 12
-          }
-        },
-        "type": "VARIABLE",
-        "value": "$size"
+          },
+          "filename": "each.scss"
+        }
       },
       "right": {
+        "type": "VARIABLE",
+        "value": "$sizes",
         "loc": {
           "start": {
             "offset": 37,
@@ -126,10 +138,9 @@
             "offset": 43,
             "line": 3,
             "column": 22
-          }
-        },
-        "type": "VARIABLE",
-        "value": "$sizes"
+          },
+          "filename": "each.scss"
+        }
       },
       "body": {
         "type": "CHILD",
@@ -137,6 +148,8 @@
           "type": "LIST",
           "value": [
             {
+              "type": "TEXT",
+              "value": ".icon-#asfssd-",
               "loc": {
                 "start": {
                   "offset": 48,
@@ -147,12 +160,13 @@
                   "offset": 62,
                   "line": 4,
                   "column": 17
-                }
-              },
-              "type": "TEXT",
-              "value": ".icon-#asfssd-"
+                },
+                "filename": "each.scss"
+              }
             },
             {
+              "type": "VAR_KEY",
+              "value": "$size",
               "loc": {
                 "start": {
                   "offset": 62,
@@ -163,29 +177,31 @@
                   "offset": 70,
                   "line": 4,
                   "column": 25
-                }
-              },
-              "type": "VAR_KEY",
-              "value": "$size"
+                },
+                "filename": "each.scss"
+              }
             }
-          ]
+          ],
+          "loc": {
+            "start": {
+              "offset": 48,
+              "line": 4,
+              "column": 3
+            },
+            "end": {
+              "offset": 70,
+              "line": 4,
+              "column": 25
+            },
+            "filename": "each.scss"
+          }
         },
         "children": [
           {
-            "loc": {
-              "start": {
-                "offset": 77,
-                "line": 5,
-                "column": 5
-              },
-              "end": {
-                "offset": 93,
-                "line": 5,
-                "column": 21
-              }
-            },
             "type": "ASSIGN",
             "left": {
+              "type": "TEXT",
+              "value": "font-size",
               "loc": {
                 "start": {
                   "offset": 77,
@@ -196,36 +212,64 @@
                   "offset": 86,
                   "line": 5,
                   "column": 14
-                }
-              },
-              "type": "TEXT",
-              "value": "font-size"
+                },
+                "filename": "each.scss"
+              }
             },
             "right": {
               "type": "LIST",
               "value": [
                 {
+                  "type": "VARIABLE",
+                  "value": "$size",
                   "loc": {
                     "start": {
-                      "offset": 88,
+                      "offset": 93,
                       "line": 5,
-                      "column": 16
+                      "column": 21
                     },
                     "end": {
                       "offset": 93,
                       "line": 5,
                       "column": 21
-                    }
-                  },
-                  "type": "VARIABLE",
-                  "value": "$size"
+                    },
+                    "filename": "each.scss"
+                  }
                 }
-              ]
+              ],
+              "loc": {
+                "start": {
+                  "offset": 93,
+                  "line": 5,
+                  "column": 21
+                },
+                "end": {
+                  "offset": 93,
+                  "line": 5,
+                  "column": 21
+                },
+                "filename": "each.scss"
+              }
+            },
+            "loc": {
+              "start": {
+                "offset": 77,
+                "line": 5,
+                "column": 5
+              },
+              "end": {
+                "offset": 93,
+                "line": 5,
+                "column": 21
+              },
+              "filename": "each.scss"
             }
           },
           {
             "type": "CHILD",
             "selector": {
+              "type": "TEXT",
+              "value": ".ok",
               "loc": {
                 "start": {
                   "offset": 99,
@@ -236,27 +280,16 @@
                   "offset": 102,
                   "line": 6,
                   "column": 8
-                }
-              },
-              "type": "TEXT",
-              "value": ".ok"
+                },
+                "filename": "each.scss"
+              }
             },
             "children": [
               {
-                "loc": {
-                  "start": {
-                    "offset": 112,
-                    "line": 7,
-                    "column": 9
-                  },
-                  "end": {
-                    "offset": 128,
-                    "line": 7,
-                    "column": 25
-                  }
-                },
                 "type": "ASSIGN",
                 "left": {
+                  "type": "TEXT",
+                  "value": "font-size",
                   "loc": {
                     "start": {
                       "offset": 112,
@@ -267,48 +300,64 @@
                       "offset": 121,
                       "line": 7,
                       "column": 18
-                    }
-                  },
-                  "type": "TEXT",
-                  "value": "font-size"
+                    },
+                    "filename": "each.scss"
+                  }
                 },
                 "right": {
                   "type": "LIST",
                   "value": [
                     {
+                      "type": "VARIABLE",
+                      "value": "$size",
                       "loc": {
                         "start": {
-                          "offset": 123,
+                          "offset": 128,
                           "line": 7,
-                          "column": 20
+                          "column": 25
                         },
                         "end": {
                           "offset": 128,
                           "line": 7,
                           "column": 25
-                        }
-                      },
-                      "type": "VARIABLE",
-                      "value": "$size"
+                        },
+                        "filename": "each.scss"
+                      }
                     }
-                  ]
-                }
-              },
-              {
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 128,
+                      "line": 7,
+                      "column": 25
+                    },
+                    "end": {
+                      "offset": 128,
+                      "line": 7,
+                      "column": 25
+                    },
+                    "filename": "each.scss"
+                  }
+                },
                 "loc": {
                   "start": {
-                    "offset": 138,
-                    "line": 8,
+                    "offset": 112,
+                    "line": 7,
                     "column": 9
                   },
                   "end": {
-                    "offset": 173,
-                    "line": 8,
-                    "column": 44
-                  }
-                },
+                    "offset": 128,
+                    "line": 7,
+                    "column": 25
+                  },
+                  "filename": "each.scss"
+                }
+              },
+              {
                 "type": "ASSIGN",
                 "left": {
+                  "type": "TEXT",
+                  "value": "border",
                   "loc": {
                     "start": {
                       "offset": 138,
@@ -319,31 +368,16 @@
                       "offset": 144,
                       "line": 8,
                       "column": 15
-                    }
-                  },
-                  "type": "TEXT",
-                  "value": "border"
+                    },
+                    "filename": "each.scss"
+                  }
                 },
                 "right": {
                   "type": "LIST",
                   "value": [
                     {
-                      "loc": {
-                        "start": {
-                          "offset": 146,
-                          "line": 8,
-                          "column": 17
-                        },
-                        "end": {
-                          "offset": 151,
-                          "line": 8,
-                          "column": 22
-                        }
-                      },
                       "type": "VARIABLE",
-                      "value": "$size"
-                    },
-                    {
+                      "value": "$size",
                       "loc": {
                         "start": {
                           "offset": 153,
@@ -351,21 +385,115 @@
                           "column": 24
                         },
                         "end": {
+                          "offset": 153,
+                          "line": 8,
+                          "column": 24
+                        },
+                        "filename": "each.scss"
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "value": "solid #111111",
+                      "loc": {
+                        "start": {
                           "offset": 173,
                           "line": 8,
                           "column": 44
-                        }
-                      },
-                      "type": "TEXT",
-                      "value": "solid #111111"
+                        },
+                        "end": {
+                          "offset": 173,
+                          "line": 8,
+                          "column": 44
+                        },
+                        "filename": "each.scss"
+                      }
                     }
-                  ]
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 153,
+                      "line": 8,
+                      "column": 24
+                    },
+                    "end": {
+                      "offset": 173,
+                      "line": 8,
+                      "column": 44
+                    },
+                    "filename": "each.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 138,
+                    "line": 8,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 173,
+                    "line": 8,
+                    "column": 44
+                  },
+                  "filename": "each.scss"
                 }
               }
-            ]
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
           }
-        ]
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "loc": {
+        "start": {
+          "offset": 22,
+          "line": 3,
+          "column": 1
+        },
+        "end": {
+          "offset": 186,
+          "line": 11,
+          "column": 2
+        },
+        "filename": "each.scss"
       }
     }
-  ]
+  ],
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

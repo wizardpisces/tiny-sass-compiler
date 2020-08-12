@@ -1,21 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "operator.scss"
   ],
-  "names": [
-    ".container",
-    "width",
-    "9px",
-    "article[role=\"main\"]",
-    "float",
-    "left",
-    "62.5%",
-    "aside[role=\"complementary\"]",
-    "right",
-    "31.25%"
-  ],
-  "mappings": "AACAA,UAAU;EACRC,KAAK,CAAEC,GAAS;;AAGlBC,oBAAoB;EAClBC,KAAK,CAAEC,IAAI;EACXJ,KAAK,CAAEK,KAAmB;;AAG5BC,2BAA2B;EACzBH,KAAK,CAAEI,KAAK;EACZP,KAAK,CAAEQ,MAAoB",
+  "names": [],
+  "mappings": "AACA;EACE,MAAO;;AAGT;EACE,MAAW;EACX,MAAO;;AAGT;EACE,MAAY;EACZ,MAAO",
   "sourcesContent": [
     "$var : 600px;\n.container {\n  width: 1px + 8px;\n}\n\narticle[role=\"main\"] {\n  float: left;\n  width: $var / 960px * 100%;\n}\n\naside[role=\"complementary\"] {\n  float: right;\n  width: 300px / 960px * 100%;\n}"
   ]

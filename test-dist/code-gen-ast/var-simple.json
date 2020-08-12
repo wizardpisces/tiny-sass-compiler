@@ -1,9 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "var-simple.scss": "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": "body .test",
         "loc": {
           "start": {
             "offset": 62,
@@ -14,27 +19,16 @@
             "offset": 72,
             "line": 4,
             "column": 11
-          }
-        },
-        "type": "TEXT",
-        "value": "body .test"
+          },
+          "filename": "var-simple.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 76,
-              "line": 5,
-              "column": 3
-            },
-            "end": {
-              "offset": 98,
-              "line": 5,
-              "column": 25
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "font",
             "loc": {
               "start": {
                 "offset": 76,
@@ -45,43 +39,46 @@
                 "offset": 80,
                 "line": 5,
                 "column": 7
-              }
-            },
-            "type": "TEXT",
-            "value": "font"
+              },
+              "filename": "var-simple.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 82,
+                "offset": 87,
                 "line": 5,
-                "column": 9
+                "column": 14
               },
               "end": {
                 "offset": 98,
                 "line": 5,
                 "column": 25
-              }
+              },
+              "filename": "var-simple.scss"
             },
-            "value": "100% Helvetica, sans-serif"
-          }
-        },
-        {
+            "value": "100% Helvetica , sans-serif"
+          },
           "loc": {
             "start": {
-              "offset": 102,
-              "line": 6,
+              "offset": 76,
+              "line": 5,
               "column": 3
             },
             "end": {
-              "offset": 126,
-              "line": 7,
-              "column": 17
-            }
-          },
+              "offset": 98,
+              "line": 5,
+              "column": 25
+            },
+            "filename": "var-simple.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "color",
             "loc": {
               "start": {
                 "offset": 102,
@@ -92,30 +89,68 @@
                 "offset": 107,
                 "line": 6,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "color"
+              },
+              "filename": "var-simple.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 112,
+                "offset": 126,
                 "line": 7,
-                "column": 3
+                "column": 17
               },
               "end": {
                 "offset": 126,
                 "line": 7,
                 "column": 17
-              }
+              },
+              "filename": "var-simple.scss"
             },
             "value": "#333"
+          },
+          "loc": {
+            "start": {
+              "offset": 102,
+              "line": 6,
+              "column": 3
+            },
+            "end": {
+              "offset": 126,
+              "line": 7,
+              "column": 17
+            },
+            "filename": "var-simple.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

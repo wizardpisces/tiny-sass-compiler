@@ -21,7 +21,7 @@ export interface CodegenResult {
 }
 
 export interface CodegenContext extends Required<CodegenOptions> {
-    source: string
+    // source: string
     code: string
     indentLevel: number
     line: number
@@ -37,31 +37,34 @@ export interface CodegenContext extends Required<CodegenOptions> {
 function createCodegenContext(
     ast: RootNode,
     {
-        sourceMap = false,
-        filename = 'template.scss'
+        sourceMap = false
     }: CodegenOptions
 ): CodegenContext {
     const context: CodegenContext = {
         code: '',
         sourceMap,
-        filename,
         column: 1,// source-map column is 0 based
         line: 1,
         offset: 0,
         indentLevel: 0,
-        source: ast.source,
+        // source: ast.source,
         push(code: string, node) {
             context.code += code
             if (context.map) {
                 if (node) {
-                    addMapping(node.loc.start,node.value)
+                    // addMapping(node.loc.start,node.value)
+                    if(typeof node.loc.filename === 'undefined'){
+                        debugger
+                    }
+                    addMapping(node.loc.start,node.loc.filename)
                 }
                 
                 advancePositionWithMutation(context, code)
 
-                if(node) {
-                    addMapping(node.loc.end)
-                }
+                // end info is not needed for now ,which could compress source-map size
+                // if(node) {
+                //     addMapping(node.loc.end)
+                // }
             }
         },
         indent() {
@@ -83,10 +86,10 @@ function createCodegenContext(
         context.push('\n' + `  `.repeat(n))
     }
 
-    function addMapping(loc: Position, name?: string) {
+    function addMapping(loc: Position, filename:string, name?: string) {
         context.map!.addMapping({
             name,
-            source: context.filename,
+            source: filename,
             original: {
                 line: loc.line,
                 column: loc.column - 1
@@ -100,7 +103,7 @@ function createCodegenContext(
 
     if (sourceMap) {
         context.map = new SourceMapGenerator()
-        context.map!.setSourceContent(filename, context.source)
+        Object.keys(ast.fileSourceMap).forEach(filename => context.map!.setSourceContent(filename, ast.fileSourceMap[filename]))
     }
 
     return context
@@ -126,7 +129,7 @@ function genNode(
     context: CodegenContext
 ) {
     if(!node){
-        console.log('node',node,'context',context)
+        console.error('node',node,'context',context)
         return;
     }
     switch (node.type) {

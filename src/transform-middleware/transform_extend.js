@@ -7,10 +7,6 @@ import {
     NodeTypes
 } from '../parse/ast';
 
-import {
-    addNodeEmptyLocation
-} from '../parse/util'
-
 export default function transform_extend(ast) {
     /**
      * transform
@@ -64,7 +60,6 @@ export default function transform_extend(ast) {
                     loc: child.selector.loc
                 }
             }
-            console.log(child.selector.loc)
             return child;
         }
         return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value] ? transform(exp) : exp;

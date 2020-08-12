@@ -5,7 +5,9 @@ import {
     arithmeticOperator,
     EmptyNode,
     Node,
-    Position
+    Position,
+    SimpleExpressionNode,
+    locStub
 } from './ast';
 
 export const isArray = Array.isArray
@@ -48,26 +50,14 @@ export function is_operator(op:string) {
   * 
   */
 
-export function fillWhitespace(tokens: TextNode[]) {
+export function fillWhitespace(tokens: SimpleExpressionNode[]) {
      if (tokens.length <= 1) return tokens;
 
-     let list:TextNode[] = [],
-         whitespaceToken:TextNode = {
+    let list: SimpleExpressionNode[] = [],
+         whitespaceToken:TextNode = addNodeEmptyLocation({
              type: NodeTypes.TEXT,
-             value: ' ',
-             loc:{
-                 start:{
-                     offset:0,
-                     column:0,
-                     line:0
-                 },
-                 end:{
-                     offset: 0,
-                     column: 0,
-                     line:0
-                 }
-             }
-         },
+             value: ' '
+         }),
          curIndex = 0,
          curToken,
          nextToken;
@@ -131,21 +121,11 @@ export function deepClone(obj:object) {
     return JSON.parse(JSON.stringify(obj))
 }
 
+// Some expressions, e.g. sequence and conditional expressions, are never
+// associated with generated code, so their source locations are just a empty.
 export function addNodeEmptyLocation(node){
-    return Object.assign({}, node, {
-        loc: {
-            start: {
-                offset: 0,
-                column: 0,
-                line: 0
-            },
-            end: {
-                offset: 0,
-                column: 0,
-                line: 0
-            }
-        }
-    })
+    node.loc = locStub;
+    return node;
 }
 export function createEmptyNode(): EmptyNode {
     return addNodeEmptyLocation({

@@ -1,9 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "else-if.scss": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": ".next",
         "loc": {
           "start": {
             "offset": 471,
@@ -14,27 +19,16 @@
             "offset": 476,
             "line": 22,
             "column": 6
-          }
-        },
-        "type": "TEXT",
-        "value": ".next"
+          },
+          "filename": "else-if.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 47,
-              "line": 2,
-              "column": 3
-            },
-            "end": {
-              "offset": 56,
-              "line": 2,
-              "column": 12
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "height",
             "loc": {
               "start": {
                 "offset": 47,
@@ -45,43 +39,46 @@
                 "offset": 53,
                 "line": 2,
                 "column": 9
-              }
-            },
-            "type": "TEXT",
-            "value": "height"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 55,
+                "offset": 56,
                 "line": 2,
-                "column": 11
+                "column": 12
               },
               "end": {
                 "offset": 56,
                 "line": 2,
                 "column": 12
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "0"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 60,
-              "line": 3,
+              "offset": 47,
+              "line": 2,
               "column": 3
             },
             "end": {
-              "offset": 68,
-              "line": 3,
-              "column": 11
-            }
-          },
+              "offset": 56,
+              "line": 2,
+              "column": 12
+            },
+            "filename": "else-if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "width",
             "loc": {
               "start": {
                 "offset": 60,
@@ -92,43 +89,46 @@
                 "offset": 65,
                 "line": 3,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "width"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 67,
+                "offset": 68,
                 "line": 3,
-                "column": 10
+                "column": 11
               },
               "end": {
                 "offset": 68,
                 "line": 3,
                 "column": 11
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "0"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 73,
-              "line": 5,
+              "offset": 60,
+              "line": 3,
               "column": 3
             },
             "end": {
-              "offset": 98,
-              "line": 5,
-              "column": 28
-            }
-          },
+              "offset": 68,
+              "line": 3,
+              "column": 11
+            },
+            "filename": "else-if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "border-color",
             "loc": {
               "start": {
                 "offset": 73,
@@ -139,43 +139,46 @@
                 "offset": 85,
                 "line": 5,
                 "column": 15
-              }
-            },
-            "type": "TEXT",
-            "value": "border-color"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 87,
+                "offset": 98,
                 "line": 5,
-                "column": 17
+                "column": 28
               },
               "end": {
                 "offset": 98,
                 "line": 5,
                 "column": 28
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "transparent"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 102,
-              "line": 6,
+              "offset": 73,
+              "line": 5,
               "column": 3
             },
             "end": {
-              "offset": 121,
-              "line": 6,
-              "column": 22
-            }
-          },
+              "offset": 98,
+              "line": 5,
+              "column": 28
+            },
+            "filename": "else-if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "border-style",
             "loc": {
               "start": {
                 "offset": 102,
@@ -186,43 +189,46 @@
                 "offset": 114,
                 "line": 6,
                 "column": 15
-              }
-            },
-            "type": "TEXT",
-            "value": "border-style"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 116,
+                "offset": 121,
                 "line": 6,
-                "column": 17
+                "column": 22
               },
               "end": {
                 "offset": 121,
                 "line": 6,
                 "column": 22
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "solid"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 125,
-              "line": 7,
+              "offset": 102,
+              "line": 6,
               "column": 3
             },
             "end": {
-              "offset": 148,
-              "line": 7,
-              "column": 26
-            }
-          },
+              "offset": 121,
+              "line": 6,
+              "column": 22
+            },
+            "filename": "else-if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "border-width",
             "loc": {
               "start": {
                 "offset": 125,
@@ -233,10 +239,9 @@
                 "offset": 137,
                 "line": 7,
                 "column": 15
-              }
-            },
-            "type": "TEXT",
-            "value": "border-width"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
@@ -250,26 +255,30 @@
                 "offset": 148,
                 "line": 7,
                 "column": 26
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "2.5px"
+          },
+          "loc": {
+            "start": {
+              "offset": 125,
+              "line": 7,
+              "column": 3
+            },
+            "end": {
+              "offset": 148,
+              "line": 7,
+              "column": 26
+            },
+            "filename": "else-if.scss"
           }
         },
         {
-          "loc": {
-            "start": {
-              "offset": 248,
-              "line": 12,
-              "column": 5
-            },
-            "end": {
-              "offset": 273,
-              "line": 12,
-              "column": 30
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "border-left-color",
             "loc": {
               "start": {
                 "offset": 248,
@@ -280,30 +289,68 @@
                 "offset": 265,
                 "line": 12,
                 "column": 22
-              }
-            },
-            "type": "TEXT",
-            "value": "border-left-color"
+              },
+              "filename": "else-if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 267,
+                "offset": 273,
                 "line": 12,
-                "column": 24
+                "column": 30
               },
               "end": {
                 "offset": 273,
                 "line": 12,
                 "column": 30
-              }
+              },
+              "filename": "else-if.scss"
             },
             "value": "black"
+          },
+          "loc": {
+            "start": {
+              "offset": 248,
+              "line": 12,
+              "column": 5
+            },
+            "end": {
+              "offset": 273,
+              "line": 12,
+              "column": 30
+            },
+            "filename": "else-if.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

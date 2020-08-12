@@ -1,5 +1,5 @@
 import {
-    superstruct
+    superstruct,object,string
 } from 'superstruct'
 import { NodeTypes }  from './ast';
 
@@ -39,7 +39,7 @@ const astTypeLiteralValidator = [
 const customStruct = superstruct({
     types: Object.assign({
         operation: (val) => Object.keys(PRECEDENCE).indexOf(val) > 0,
-        operator: (val) => is_operator(val),
+        operator: (val) => val.type === NodeTypes.OPERATOR && is_operator(val.value),
         puncValue: (val) => is_punc(val),
         placeholderValue: (val) => /^%.+$/.test(val)
     }, astTypeLiteralValidator)
@@ -49,6 +49,7 @@ const baseSchema = {
     // start: 'number?',
     // end: 'number?',
     loc: customStruct.optional({
+        filename: 'string',
         start:{
             line:'number',
             column:'number',
@@ -206,6 +207,7 @@ let Type_Schema_Map = {
     },
     [NodeTypes.PROGRAM]: {
         type: NodeTypes.PROGRAM,
+        fileSourceMap: {},
         children: [constructDynamicStruct(Statement_Types, NodeTypes.PROGRAM)]
     }
 

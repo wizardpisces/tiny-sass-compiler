@@ -13,7 +13,7 @@ export function processStatement(
     context: TransformContext,
 ) {
 
-    function dispatchStatement(node:Statement, context) {
+    function dispatchStatement(node: Statement, context: TransformContext) {
 
         // console.log(context.env.parent)
 
@@ -43,7 +43,7 @@ export function processStatement(
     /**
      * any expressions separated with spaces or commas count as a list
      */
-    function transform_each(node:EachStatement, context) {
+    function transform_each(node: EachStatement, context: TransformContext) {
         let restoredContext = deepClone(node),
             right = processExpression(restoredContext.right, context),
             scope = context.env.extend(),
@@ -83,9 +83,9 @@ export function processStatement(
     /**
      * context will be restored with function 
      */
-    function transform_if(node:IfStatement, context) {
+    function transform_if(node: IfStatement, context: TransformContext) {
 
-        function is_true_exp(expression, context) {
+        function is_true_exp(expression, context: TransformContext) {
 
             let resultExp = expression;
             /**
@@ -116,7 +116,7 @@ export function processStatement(
     /**
      * transform @mixin -> set to env -> delete @mixin ast
      */
-    function transform_mixin(node:MixinStatement, context) {
+    function transform_mixin(node: MixinStatement, context: TransformContext) {
 
         function make_function() {
 
@@ -153,13 +153,13 @@ export function processStatement(
             return dispatchStatement(restoredContext.body, { ...context, env: scope });
         }
 
-        context.env.def(node.id.name, make_function)
+        context.env.def(node.id.value, make_function)
 
         return createEmptyNode();
     }
 
-    function transform_include(node: IncludeStatement, context) {
-        let func = context.env.get(node.id.name);
+    function transform_include(node: IncludeStatement, context: TransformContext) {
+        let func = context.env.get(node.id.value);
         return func.apply(null, node.args.map(arg => {
 
             /**

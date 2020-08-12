@@ -5,7 +5,7 @@ import {
     isArray, 
     Environment
 } from './parse/util'
-import transformChain, { transform_module as transform_import} from './transform-middleware/index'
+import transformChain, { transform_module as transformModule} from './transform-middleware/index'
 
 // - NodeTransform:
 //   Transforms that operate directly on a ChildNode. NodeTransforms may mutate,
@@ -20,6 +20,7 @@ export interface TransformContext extends Required<TransformOptions>{
     currentNode: Node | null,
     parent:Node | null,
     childIndex:number,
+    env: Environment,
     // removeNode(node?: Node): void
     replaceNode(node?: Node): void
     onNodeRemoved(): void
@@ -30,7 +31,6 @@ export function createTransformContext(
     {
         nodeTransforms = [],
         onError = defaultOnError,
-        env = new Environment(null),
         sourceDir = './'
     }: TransformOptions
 ): TransformContext {
@@ -39,39 +39,11 @@ export function createTransformContext(
         nodeTransforms,
         root,
         sourceDir,
-        env,
+        env: new Environment(null),
         parent : null,
         currentNode : root,
         childIndex:0,
         onNodeRemoved:()=>{},
-        // removeNode(node:Node) {
-        //     return context.replaceNode(createEmptyNode())
-        //     // if (!context.parent) {
-        //     //     throw new Error(`Cannot remove root node.`)
-        //     // }
-        //     // const list = context.parent!.children
-        //     // const removalIndex = node
-        //     //     ? list.indexOf(node)
-        //     //     : context.currentNode
-        //     //         ? context.childIndex
-        //     //         : -1
-        //     // /* istanbul ignore if */
-        //     // if (removalIndex < 0) {
-        //     //     throw new Error(`node being removed is not a child of current parent`)
-        //     // }
-        //     // if (!node || node === context.currentNode) {
-        //     //     // current node removed
-        //     //     context.currentNode = null
-        //     //     context.onNodeRemoved()
-        //     // } else {
-        //     //     // sibling node removed
-        //     //     if (context.childIndex > removalIndex) {
-        //     //         context.childIndex--
-        //     //         context.onNodeRemoved()
-        //     //     }
-        //     // }
-        //     // context.parent!.children.splice(removalIndex, 1)
-        // },
         replaceNode(node: Node) {
 
             if (!context.parent) {
@@ -90,12 +62,12 @@ export function createTransformContext(
 export function transform(root: RootNode, options: TransformOptions) {
     const context = createTransformContext(root, options)
 
-    root = transform_import(root, options.sourceDir)
+    root = transformModule(root, options)
 
     traverseNode(root, context)
 
     // transformChain will be slowly replaced by transform plugins if possible
-    root = transformChain(root, options.sourceDir)
+    root = transformChain(root)
 }
 
 export function traverseChildren(
@@ -133,7 +105,7 @@ export function traverseNode(
     // apply transform plugins
     const { nodeTransforms } = context
     const exitFns:Function[] = []
-    if (node.type !== NodeTypes.PROGRAM){
+    if (node.type !== NodeTypes.RootNode){
         for (let i = 0; i < nodeTransforms.length; i++) {
             const onExit = nodeTransforms[i](node, context)
             if (onExit) {
@@ -154,7 +126,7 @@ export function traverseNode(
     }
 
     switch (node.type) {
-        case NodeTypes.PROGRAM:
+        case NodeTypes.RootNode:
             traverseChildren(node as ParentNode, context)
             break
     }

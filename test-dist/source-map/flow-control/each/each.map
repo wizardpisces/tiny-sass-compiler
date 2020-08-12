@@ -1,21 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "each.scss"
   ],
-  "names": [
-    ".icon-#asfssd-40px",
-    "font-size",
-    "40px",
-    ".icon-#asfssd-40px .ok",
-    "border",
-    "40px solid #111111",
-    ".icon-#asfssd-50px",
-    "50px",
-    ".icon-#asfssd-50px .ok",
-    "50px solid #111111"
-  ],
-  "mappings": "AAGEA,kBAAsB;EACpBC,SAAS,CAAEC,IAAK;;;AAChBC,sBAAG;EACCF,SAAS,CAAEC,IAAK;EAChBE,MAAM,CAAEC,kBAA2B;;AAJzCC,kBAAsB;EACpBL,SAAS,CAAEM,IAAK;;;AAChBC,sBAAG;EACCP,SAAS,CAAEM,IAAK;EAChBH,MAAM,CAAEK,kBAA2B",
+  "names": [],
+  "mappings": "AAGE;EACE,UAAgB;;;AAChB;EACI,UAAgB;EAChB,OAAe;;AAJrB;EACE,UAAgB;;;AAChB;EACI,UAAgB;EAChB,OAAe",
   "sourcesContent": [
     "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
   ]

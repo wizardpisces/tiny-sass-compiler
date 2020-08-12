@@ -1,5 +1,5 @@
-import { NodeTransform, TransformContext } from '../transform'
-import { NodeTypes, SimpleExpressionNode, TextNode } from '../parse/ast'
+import { NodeTransform , TransformContext} from '../transform'
+import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode} from '../parse/ast'
 import { fillWhitespace} from '../parse/util'
 export const transformExpression: NodeTransform = (node, context) => {
 
@@ -9,8 +9,7 @@ export function processExpression(
     node: SimpleExpressionNode,
     context: TransformContext,
 ): TextNode {
-
-    function dispatchExpression(node:SimpleExpressionNode, context) {
+    function dispatchExpression(node: SimpleExpressionNode, context: TransformContext) {
         switch (node.type) {
             /**
              * Expression
@@ -32,42 +31,42 @@ export function processExpression(
      * Solve situation, assign value with NodeTypes.PUNC, eg:
      * $font: Helvetica, sans-serif;
      */
-    function transformPunc(node) {
-        node.type = NodeTypes.TEXT
-        return node;
+    function transformPunc(node:PuncNode | OperatorNode): TextNode {
+        return {
+            ...node,
+            type: NodeTypes.TEXT
+        };
     }
 
     /**
      * Solve situation, selector with operators, eg:
      * .a > b{}
      */
-    function transformOp(node) {
+    function transformOp(node:OperatorNode): TextNode {
         return transformPunc(node);
     }
 
-    function transformText(node) {
+    function transformText(node:TextNode): TextNode {
         return node;
     }
 
-    function transformVar(node, context) {
-        node.type = NodeTypes.TEXT;
-        node.value = context.env.get(node.value);
-        return node;
+    function transformVar(node: VariableNode | VarKeyNode, context: TransformContext):TextNode {
+        return {
+            ...node,
+            type:NodeTypes.TEXT,
+            value: context.env.get(node.value)
+        };
     }
 
-    function transformVarKey(node, context) {
+    function transformVarKey(node: VarKeyNode, context: TransformContext) {
         return transformVar(node, context);
     }
 
-    function transformList(node, context) {
-        let list = node.value
+    function transformList(node:ListNode, context: TransformContext):TextNode {
         return {
             type: NodeTypes.TEXT,
-            loc:{
-                start:list[0].loc.start,
-                end:list[list.length-1].loc.end
-            },
-            value: fillWhitespace(list).map(item => {
+            loc: node.loc,
+            value: fillWhitespace(node.value).map((item) => {
                 return dispatchExpression(item, context).value
             }).join('').trim()
         }
@@ -78,13 +77,13 @@ export function processExpression(
      * Todos:add more unit type eg: pt px etc
      * 
      */
-    function transformBinary(node, context) {
+    function transformBinary(node:BinaryNode, context: TransformContext): TextNode {
 
         let hasPercent = false,
             unitExtracted = false,
             unit = "";
 
-        function parseFloatFn(str) {
+        function parseFloatFn(str:string): number | string {
 
             if (isNaN(parseFloat(str))) {
                 return str;
@@ -107,7 +106,7 @@ export function processExpression(
             return parseFloat(str)
         }
 
-        function transformVal(str) {
+        function transformVal(str:string | number):string {
             function transformPercent(str) {
                 return parseFloat(str) * 100 + "%";
             }
@@ -117,7 +116,7 @@ export function processExpression(
             return hasPercent ? transformPercent(str) : addUnit(str)
         }
 
-        function evaluateBinary(ast) {
+        function evaluateBinary(node:TextNode | VariableNode | BinaryNode): number | string {
 
             const opAcMap = {
                 // '=': (left, right) => left = right,
@@ -137,23 +136,25 @@ export function processExpression(
 
             };
 
-            if (ast.type === NodeTypes.TEXT) return parseFloatFn(ast.value);
-            if (ast.type === NodeTypes.VARIABLE) return evaluateBinary({
+            if (node.type === NodeTypes.TEXT) return parseFloatFn(node.value);
+            if (node.type === NodeTypes.VARIABLE) return evaluateBinary({
+                ...node,
                 type: NodeTypes.TEXT,
-                value: context.env.get(ast.value)
+                value: context.env.get(node.value),
             })
-            if (ast.type === NodeTypes.BINARY) return opAcMap[ast.operator](evaluateBinary(ast.left), evaluateBinary(ast.right));
+            if (node.type === NodeTypes.BINARY) return opAcMap[node.operator.value](evaluateBinary(node.left), evaluateBinary(node.right));
 
-            throw new Error("Don't know how to evaluateBinary type: " + ast.type);
+            throw new Error("Don't know how to evaluateBinary type: " + (node as Node).type);
         };
 
         let value = evaluateBinary(node);
 
         return {
+            ...node,
             type: NodeTypes.TEXT,
-            value: transformVal(value)
+            value: transformVal(value),
         }
     }
 
-    return dispatchExpression(node,context)
+    return dispatchExpression(node, context)
 }

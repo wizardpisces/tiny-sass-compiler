@@ -1,19 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "params.scss"
   ],
-  "names": [
-    ".box",
-    "-webkit-transform",
-    "rotate(30deg)",
-    "-ms-transform",
-    "transform",
-    "rotate(30deg) skew(30deg,20deg)",
-    "left",
-    "1px"
-  ],
-  "mappings": "AAMAA,IAAI;EAJFC,iBAAiB,CAAEC,aAAS;EAC5BC,aAAa,CAAED,aAAS;EACxBE,SAAS,CAAEC,+BAAoB;EAI/BC,IAAI,CAACC,GAAG",
+  "names": [],
+  "mappings": "AAMA;EAJE,kBAA4B;EAC5B,cAAwB;EACxB,UAAqB;EAIrB,KAAQ",
   "sourcesContent": [
     "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
   ]

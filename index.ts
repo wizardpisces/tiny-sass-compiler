@@ -1,12 +1,17 @@
 import compile, {
     parse
 } from './src'
+
 import fs from 'fs';
 import path from 'path'
 import mkdirp from 'mkdirp'
+import { CodegenResult } from '@/codegen';
 
-function require_css(path) {
-    return fs.readFileSync(path, 'utf8')
+function require_css(scssPath) {
+    return {
+        source : fs.readFileSync(scssPath, 'utf8'),
+        filename: path.basename(scssPath)
+    }
 }
 
 function run(sourceDir, outputDir = './', options = {
@@ -24,7 +29,7 @@ function run(sourceDir, outputDir = './', options = {
 
         if (path.extname(filePath) !== '.scss') return;
 
-        let source = require_css(filePath),
+        let requireCss = require_css(filePath),
             basename = path.basename(filePath, '.scss'),
             sourceDirname = path.dirname(filePath),
             
@@ -56,7 +61,7 @@ function run(sourceDir, outputDir = './', options = {
         }
 
         try {
-            ast = parse(source)
+            ast = parse(requireCss.source, requireCss)
         } catch (e) {
             console.error(`\nParser Error:\n filePath: ${filePath}\n`, e)
             return;
@@ -73,10 +78,11 @@ function run(sourceDir, outputDir = './', options = {
         }
 
         function write_compiled() {
-            let compiled = null;
+            let compiled: CodegenResult;
                 
             try {
-                compiled = compile(source, {
+                compiled = compile(requireCss.source, {
+                    ...requireCss,
                     sourceDir:sourceDirname,
                     sourceMap:options.sourceMap
                 })

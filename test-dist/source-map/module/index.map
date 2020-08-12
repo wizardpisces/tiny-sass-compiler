@@ -1,20 +1,13 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "./base.scss",
+    "index.scss"
   ],
-  "names": [
-    "body",
-    "font",
-    "100% Helvetica, sans-serif",
-    "color",
-    "#333",
-    ".inverse",
-    "background-color",
-    "white"
-  ],
-  "mappings": "AAIAA,IAAI;EACFC,IAAI,CAAEC,0BAAgB;EACtBC,KAAK,CAAEC,IAAc;;AAHvBC,QAAQ;EACNC,gBAAgB,CAAEF,IAAc;EAChCD,KAAK,CAAEI,KAAK",
+  "names": [],
+  "mappings": "AAIA;EACE,KAAW;EACX,MAAqB;;ACHvB;EACE,iBAAgC;EAChC,MAAY",
   "sourcesContent": [
+    "// _base.scss\n$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
     "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   ]
 }

@@ -1,9 +1,15 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "index.scss": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}",
+    "./base.scss": "// _base.scss\n$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": "body",
         "loc": {
           "start": {
             "offset": 76,
@@ -14,27 +20,16 @@
             "offset": 80,
             "line": 5,
             "column": 5
-          }
-        },
-        "type": "TEXT",
-        "value": "body"
+          },
+          "filename": "./base.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 85,
-              "line": 6,
-              "column": 3
-            },
-            "end": {
-              "offset": 107,
-              "line": 6,
-              "column": 25
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "font",
             "loc": {
               "start": {
                 "offset": 85,
@@ -45,43 +40,46 @@
                 "offset": 89,
                 "line": 6,
                 "column": 7
-              }
-            },
-            "type": "TEXT",
-            "value": "font"
+              },
+              "filename": "./base.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 91,
+                "offset": 96,
                 "line": 6,
-                "column": 9
+                "column": 14
               },
               "end": {
                 "offset": 107,
                 "line": 6,
                 "column": 25
-              }
+              },
+              "filename": "./base.scss"
             },
-            "value": "100% Helvetica, sans-serif"
-          }
-        },
-        {
+            "value": "100% Helvetica , sans-serif"
+          },
           "loc": {
             "start": {
-              "offset": 111,
-              "line": 7,
+              "offset": 85,
+              "line": 6,
               "column": 3
             },
             "end": {
-              "offset": 132,
-              "line": 7,
-              "column": 24
-            }
-          },
+              "offset": 107,
+              "line": 6,
+              "column": 25
+            },
+            "filename": "./base.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "color",
             "loc": {
               "start": {
                 "offset": 111,
@@ -92,33 +90,61 @@
                 "offset": 116,
                 "line": 7,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "color"
+              },
+              "filename": "./base.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 118,
+                "offset": 132,
                 "line": 7,
-                "column": 10
+                "column": 24
               },
               "end": {
                 "offset": 132,
                 "line": 7,
                 "column": 24
-              }
+              },
+              "filename": "./base.scss"
             },
             "value": "#333"
+          },
+          "loc": {
+            "start": {
+              "offset": 111,
+              "line": 7,
+              "column": 3
+            },
+            "end": {
+              "offset": 132,
+              "line": 7,
+              "column": 24
+            },
+            "filename": "./base.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     },
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": ".inverse",
         "loc": {
           "start": {
             "offset": 39,
@@ -129,27 +155,16 @@
             "offset": 47,
             "line": 4,
             "column": 9
-          }
-        },
-        "type": "TEXT",
-        "value": ".inverse"
+          },
+          "filename": "index.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 52,
-              "line": 5,
-              "column": 3
-            },
-            "end": {
-              "offset": 84,
-              "line": 5,
-              "column": 35
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "background-color",
             "loc": {
               "start": {
                 "offset": 52,
@@ -160,43 +175,46 @@
                 "offset": 68,
                 "line": 5,
                 "column": 19
-              }
-            },
-            "type": "TEXT",
-            "value": "background-color"
+              },
+              "filename": "index.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 70,
+                "offset": 84,
                 "line": 5,
-                "column": 21
+                "column": 35
               },
               "end": {
                 "offset": 84,
                 "line": 5,
                 "column": 35
-              }
+              },
+              "filename": "index.scss"
             },
             "value": "#333"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 88,
-              "line": 6,
+              "offset": 52,
+              "line": 5,
               "column": 3
             },
             "end": {
-              "offset": 100,
-              "line": 6,
-              "column": 15
-            }
-          },
+              "offset": 84,
+              "line": 5,
+              "column": 35
+            },
+            "filename": "index.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "color",
             "loc": {
               "start": {
                 "offset": 88,
@@ -207,30 +225,68 @@
                 "offset": 93,
                 "line": 6,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "color"
+              },
+              "filename": "index.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 95,
+                "offset": 100,
                 "line": 6,
-                "column": 10
+                "column": 15
               },
               "end": {
                 "offset": 100,
                 "line": 6,
                 "column": 15
-              }
+              },
+              "filename": "index.scss"
             },
             "value": "white"
+          },
+          "loc": {
+            "start": {
+              "offset": 88,
+              "line": 6,
+              "column": 3
+            },
+            "end": {
+              "offset": 100,
+              "line": 6,
+              "column": 15
+            },
+            "filename": "index.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

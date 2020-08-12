@@ -1,23 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "var-nested.scss"
   ],
-  "names": [
-    ".main2",
-    "margin",
-    "3px",
-    "right",
-    "20px",
-    ".main",
-    "top",
-    ".main .child1",
-    "2px",
-    ".main .child1 .child2",
-    "background",
-    "green"
-  ],
-  "mappings": "AAGAA,MAAM;EAEFC,MAAM,CAAEC,GAAO;EACfC,KAAK,CAAEC,IAAM;;AAEjBC,KAAK;EACDC,GAAG,CAAIF,IAAI;;;AACXG,aAAO;EACHN,MAAM,CAACO,GAAO;;;AACdC,qBAAO;EACHC,UAAU,CAACC,KAAK",
+  "names": [],
+  "mappings": "AAGA;EAEI,OAAe;EACf,MAAa;;AAEjB;EACI,IAAW;;;AACX;EACI,OAAc;;;AACd;EACI,WAAgB",
   "sourcesContent": [
     "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        margin:$margin;\n        .child2{\n            background:green;\n        }\n    }\n}\n"
   ]

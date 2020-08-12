@@ -1,16 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "var-simple.scss"
   ],
-  "names": [
-    "body .test",
-    "font",
-    "100% Helvetica, sans-serif",
-    "color",
-    "#333"
-  ],
-  "mappings": "AAGAA,UAAU;EACRC,IAAI,CAAEC,0BAAgB;EACtBC,KAAK,CACLC,IAAc",
+  "names": [],
+  "mappings": "AAGA;EACE,KAAW;EACX,MACc",
   "sourcesContent": [
     "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
   ]

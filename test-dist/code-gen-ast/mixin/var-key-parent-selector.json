@@ -1,9 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": ".sidebar",
         "loc": {
           "start": {
             "offset": 140,
@@ -14,27 +19,16 @@
             "offset": 148,
             "line": 9,
             "column": 9
-          }
-        },
-        "type": "TEXT",
-        "value": ".sidebar"
+          },
+          "filename": "var-key-parent-selector.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 50,
-              "line": 2,
-              "column": 3
-            },
-            "end": {
-              "offset": 74,
-              "line": 2,
-              "column": 27
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "float",
             "loc": {
               "start": {
                 "offset": 50,
@@ -45,36 +39,64 @@
                 "offset": 62,
                 "line": 2,
                 "column": 15
-              }
-            },
-            "type": "TEXT",
-            "value": "float"
+              },
+              "filename": "var-key-parent-selector.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 64,
+                "offset": 74,
                 "line": 2,
-                "column": 17
+                "column": 27
               },
               "end": {
                 "offset": 74,
                 "line": 2,
                 "column": 27
-              }
+              },
+              "filename": "var-key-parent-selector.scss"
             },
             "value": "left"
+          },
+          "loc": {
+            "start": {
+              "offset": 50,
+              "line": 2,
+              "column": 3
+            },
+            "end": {
+              "offset": 74,
+              "line": 2,
+              "column": 27
+            },
+            "filename": "var-key-parent-selector.scss"
           }
         },
         {
           "type": "EMPTY"
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     },
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": "[dir=rtl] .sidebar.second",
         "loc": {
           "start": {
             "offset": 80,
@@ -85,27 +107,16 @@
             "offset": 98,
             "line": 4,
             "column": 22
-          }
-        },
-        "type": "TEXT",
-        "value": "[dir=rtl] .sidebar.second"
+          },
+          "filename": "var-key-parent-selector.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 105,
-              "line": 5,
-              "column": 5
-            },
-            "end": {
-              "offset": 131,
-              "line": 5,
-              "column": 31
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "float",
             "loc": {
               "start": {
                 "offset": 105,
@@ -116,30 +127,68 @@
                 "offset": 119,
                 "line": 5,
                 "column": 19
-              }
-            },
-            "type": "TEXT",
-            "value": "float"
+              },
+              "filename": "var-key-parent-selector.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 121,
+                "offset": 131,
                 "line": 5,
-                "column": 21
+                "column": 31
               },
               "end": {
                 "offset": 131,
                 "line": 5,
                 "column": 31
-              }
+              },
+              "filename": "var-key-parent-selector.scss"
             },
             "value": "right"
+          },
+          "loc": {
+            "start": {
+              "offset": 105,
+              "line": 5,
+              "column": 5
+            },
+            "end": {
+              "offset": 131,
+              "line": 5,
+              "column": 31
+            },
+            "filename": "var-key-parent-selector.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

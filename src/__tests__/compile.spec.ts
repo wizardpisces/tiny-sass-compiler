@@ -72,7 +72,8 @@ body .test{
     test('Source Map', () => {
         const { code, map } = compile(source, {
             sourceMap: true,
-            filename: `foo.scss`
+            filename: `foo.scss`,
+            source
         })
 
         expect(code).toMatchSnapshot()

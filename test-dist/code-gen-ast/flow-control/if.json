@@ -1,9 +1,14 @@
 {
-  "type": "PROGRAM",
+  "type": "RootNode",
+  "fileSourceMap": {
+    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
+  },
   "children": [
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": ".square-av",
         "loc": {
           "start": {
             "offset": 126,
@@ -14,27 +19,16 @@
             "offset": 136,
             "line": 10,
             "column": 11
-          }
-        },
-        "type": "TEXT",
-        "value": ".square-av"
+          },
+          "filename": "if.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 41,
-              "line": 2,
-              "column": 3
-            },
-            "end": {
-              "offset": 53,
-              "line": 2,
-              "column": 15
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "width",
             "loc": {
               "start": {
                 "offset": 41,
@@ -45,43 +39,46 @@
                 "offset": 46,
                 "line": 2,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "width"
+              },
+              "filename": "if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 48,
+                "offset": 53,
                 "line": 2,
-                "column": 10
+                "column": 15
               },
               "end": {
                 "offset": 53,
                 "line": 2,
                 "column": 15
-              }
+              },
+              "filename": "if.scss"
             },
             "value": "100px"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 57,
-              "line": 3,
+              "offset": 41,
+              "line": 2,
               "column": 3
             },
             "end": {
-              "offset": 70,
-              "line": 3,
-              "column": 16
-            }
-          },
+              "offset": 53,
+              "line": 2,
+              "column": 15
+            },
+            "filename": "if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "height",
             "loc": {
               "start": {
                 "offset": 57,
@@ -92,33 +89,61 @@
                 "offset": 63,
                 "line": 3,
                 "column": 9
-              }
-            },
-            "type": "TEXT",
-            "value": "height"
+              },
+              "filename": "if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 65,
+                "offset": 70,
                 "line": 3,
-                "column": 11
+                "column": 16
               },
               "end": {
                 "offset": 70,
                 "line": 3,
                 "column": 16
-              }
+              },
+              "filename": "if.scss"
             },
             "value": "100px"
+          },
+          "loc": {
+            "start": {
+              "offset": 57,
+              "line": 3,
+              "column": 3
+            },
+            "end": {
+              "offset": 70,
+              "line": 3,
+              "column": 16
+            },
+            "filename": "if.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     },
     {
       "type": "CHILD",
       "selector": {
+        "type": "TEXT",
+        "value": ".circle-av",
         "loc": {
           "start": {
             "offset": 181,
@@ -129,27 +154,16 @@
             "offset": 191,
             "line": 11,
             "column": 11
-          }
-        },
-        "type": "TEXT",
-        "value": ".circle-av"
+          },
+          "filename": "if.scss"
+        }
       },
       "children": [
         {
-          "loc": {
-            "start": {
-              "offset": 41,
-              "line": 2,
-              "column": 3
-            },
-            "end": {
-              "offset": 53,
-              "line": 2,
-              "column": 15
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "width",
             "loc": {
               "start": {
                 "offset": 41,
@@ -160,43 +174,46 @@
                 "offset": 46,
                 "line": 2,
                 "column": 8
-              }
-            },
-            "type": "TEXT",
-            "value": "width"
+              },
+              "filename": "if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 48,
+                "offset": 53,
                 "line": 2,
-                "column": 10
+                "column": 15
               },
               "end": {
                 "offset": 53,
                 "line": 2,
                 "column": 15
-              }
+              },
+              "filename": "if.scss"
             },
             "value": "100px"
-          }
-        },
-        {
+          },
           "loc": {
             "start": {
-              "offset": 57,
-              "line": 3,
+              "offset": 41,
+              "line": 2,
               "column": 3
             },
             "end": {
-              "offset": 70,
-              "line": 3,
-              "column": 16
-            }
-          },
+              "offset": 53,
+              "line": 2,
+              "column": 15
+            },
+            "filename": "if.scss"
+          }
+        },
+        {
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "height",
             "loc": {
               "start": {
                 "offset": 57,
@@ -207,43 +224,46 @@
                 "offset": 63,
                 "line": 3,
                 "column": 9
-              }
-            },
-            "type": "TEXT",
-            "value": "height"
+              },
+              "filename": "if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 65,
+                "offset": 70,
                 "line": 3,
-                "column": 11
+                "column": 16
               },
               "end": {
                 "offset": 70,
                 "line": 3,
                 "column": 16
-              }
+              },
+              "filename": "if.scss"
             },
             "value": "100px"
+          },
+          "loc": {
+            "start": {
+              "offset": 57,
+              "line": 3,
+              "column": 3
+            },
+            "end": {
+              "offset": 70,
+              "line": 3,
+              "column": 16
+            },
+            "filename": "if.scss"
           }
         },
         {
-          "loc": {
-            "start": {
-              "offset": 93,
-              "line": 6,
-              "column": 5
-            },
-            "end": {
-              "offset": 117,
-              "line": 6,
-              "column": 29
-            }
-          },
           "type": "ASSIGN",
           "left": {
+            "type": "TEXT",
+            "value": "border-radius",
             "loc": {
               "start": {
                 "offset": 93,
@@ -254,10 +274,9 @@
                 "offset": 106,
                 "line": 6,
                 "column": 18
-              }
-            },
-            "type": "TEXT",
-            "value": "border-radius"
+              },
+              "filename": "if.scss"
+            }
           },
           "right": {
             "type": "TEXT",
@@ -271,13 +290,52 @@
                 "offset": 117,
                 "line": 6,
                 "column": 29
-              }
+              },
+              "filename": "if.scss"
             },
             "value": "50px"
+          },
+          "loc": {
+            "start": {
+              "offset": 93,
+              "line": 6,
+              "column": 5
+            },
+            "end": {
+              "offset": 117,
+              "line": 6,
+              "column": 29
+            },
+            "filename": "if.scss"
           }
         }
-      ]
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
-  "source": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
 }

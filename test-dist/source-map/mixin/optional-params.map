@@ -1,25 +1,10 @@
 {
   "version": 3,
   "sources": [
-    "template.scss"
+    "optional-params.scss"
   ],
-  "names": [
-    ".mail-icon",
-    "text-indent",
-    "-99999em",
-    "overflow",
-    "hidden",
-    "text-align",
-    "left",
-    ".mail-icon background",
-    "image",
-    "url(\"/images/mail.svg\")",
-    "repeat",
-    "no-repeat",
-    "position",
-    "Helvetica, sans-serif default2"
-  ],
-  "mappings": "AAaAA,UAAU;EAXRC,WAAW,CAAEC,QAAQ;EACrBC,QAAQ,CAAEC,MAAM;EAChBC,UAAU,CAAEC,IAAI;;;AAEhBC,qBAAU;EACRC,KAAK,CAAEC,uBAAM;EACbC,MAAM,CAAEC,SAAS;EACjBC,QAAQ,CAAEC,8BAAK",
+  "names": [],
+  "mappings": "AAaA;EAXE,YAAqB;EACrB,SAAgB;EAChB,WAAgB;;;AAEhB;EACE,MAAa;EACb,OAAiB;EACjB,SAAa",
   "sourcesContent": [
     "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
   ]

@@ -35,9 +35,8 @@ export const enum NodeTypes {
 
     //Loops
     EACHSTATEMENT = 'EACHSTATEMENT',
-
-    //
-    PROGRAM = 'PROGRAM',
+    
+    RootNode = 'RootNode',
 
 }
 
@@ -46,16 +45,23 @@ export type puncType = '(' | ')' | ',' | ';' | '#'
 export type arithmeticOperator = '+' | '-' | '*' | '/' | '%'
 export type comparisonOperator = '>' | '<' | '>=' | '<=' | '==' | '!='
 
-export interface SourceLocation {
-    start: Position
-    end: Position
-    // source: string
+export const locStub: SourceLocation = {
+    filename: '',
+    start: { line: 1, column: 1, offset: 0 },
+    end: { line: 1, column: 1, offset: 0 }
 }
 
 export interface Position {
     offset: number // from start of file
     line: number
     column: number
+}
+
+export interface SourceLocation {
+    filename: string
+    start: Position
+    end: Position
+    // source: string
 }
 
 export interface Node {
@@ -117,7 +123,7 @@ export interface BinaryNode extends Node {
 
 export interface ListNode extends Node {
     type: NodeTypes.LIST
-    value: [TextNode | VariableNode | VarKeyNode | PuncNode | BinaryNode]
+    value: SimpleExpressionNode[]
 }
 
 export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode
@@ -156,13 +162,13 @@ export interface AssignStatement extends Node {
 // keyword statement
 export interface ImportStatement extends Node {
     type: NodeTypes.IMPORT
-    params: [TextNode]
+    params: TextNode[]
 }
 
 export interface IncludeStatement extends Node {
     type: NodeTypes.INCLUDE
     id: IdentifierNode,
-    args: [TextNode | VariableNode | BinaryNode | AssignStatement]
+    args: (TextNode | VariableNode | BinaryNode | AssignStatement)[]
 }
 
 export interface ExtendStatement extends Node {
@@ -173,7 +179,7 @@ export interface ExtendStatement extends Node {
 export interface MixinStatement extends Node {
     type: NodeTypes.MIXIN
     id: IdentifierNode
-    params: [VariableNode | AssignStatement]
+    params: (VariableNode | AssignStatement)[]
     body: BodyStatement
 }
 
@@ -185,7 +191,7 @@ export interface ErrorStatement extends Node {
 // choice statement
 export interface IfStatement extends Node {
     type: NodeTypes.IFSTATEMENT
-    test: BinaryNode
+    test: BinaryNode | Boolean
     consequent: BodyStatement
     alternate: IfStatement | BodyStatement | null
 }
@@ -205,11 +211,15 @@ export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode;
 
 export type ParentNode = RootNode | BodyStatement | ChildStatement
 
-export interface Program extends Node {
-    type: NodeTypes.PROGRAM
-    source:string
+export type FileSourceMap = {
+    [key: string] : string
+}
+export interface RootNode extends Node {
+    type: NodeTypes.RootNode
+
+    // codeGenNode ,use it to generate source map between files
+    fileSourceMap: FileSourceMap
+
     children: (Statement | ProgCodeGenNode)[]
 }
-
-export type RootNode = Program
 

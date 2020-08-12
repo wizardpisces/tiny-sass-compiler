@@ -18,7 +18,8 @@
         "jsx": "preserve",
         "lib": ["esnext", "dom"],
         "types": [
-            "jest"
+            "jest",
+            "node"
         ],
         "rootDir": ".",
         "paths": {
