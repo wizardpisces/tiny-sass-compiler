@@ -91,9 +91,9 @@
                   "column": 3
                 },
                 "end": {
-                  "offset": 62,
+                  "offset": 61,
                   "line": 2,
-                  "column": 15
+                  "column": 14
                 },
                 "filename": "var-key-parent-selector.scss"
               }
@@ -106,9 +106,9 @@
                   "value": "$ltr-value",
                   "loc": {
                     "start": {
-                      "offset": 74,
+                      "offset": 64,
                       "line": 2,
-                      "column": 27
+                      "column": 17
                     },
                     "end": {
                       "offset": 74,
@@ -121,9 +121,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 74,
+                  "offset": 64,
                   "line": 2,
-                  "column": 27
+                  "column": 17
                 },
                 "end": {
                   "offset": 74,
@@ -134,17 +134,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 50,
-                "line": 2,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 74,
-                "line": 2,
-                "column": 27
-              },
-              "filename": "var-key-parent-selector.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -179,9 +179,9 @@
                       "column": 5
                     },
                     "end": {
-                      "offset": 119,
+                      "offset": 117,
                       "line": 5,
-                      "column": 19
+                      "column": 17
                     },
                     "filename": "var-key-parent-selector.scss"
                   }
@@ -194,9 +194,9 @@
                       "value": "$rtl-value",
                       "loc": {
                         "start": {
-                          "offset": 131,
+                          "offset": 121,
                           "line": 5,
-                          "column": 31
+                          "column": 21
                         },
                         "end": {
                           "offset": 131,
@@ -209,9 +209,9 @@
                   ],
                   "loc": {
                     "start": {
-                      "offset": 131,
+                      "offset": 121,
                       "line": 5,
-                      "column": 31
+                      "column": 21
                     },
                     "end": {
                       "offset": 131,
@@ -222,17 +222,17 @@
                   }
                 },
                 "loc": {
+                  "filename": "",
                   "start": {
-                    "offset": 105,
-                    "line": 5,
-                    "column": 5
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
                   },
                   "end": {
-                    "offset": 131,
-                    "line": 5,
-                    "column": 31
-                  },
-                  "filename": "var-key-parent-selector.scss"
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  }
                 }
               }
             ],
@@ -266,17 +266,17 @@
         }
       },
       "loc": {
+        "filename": "",
         "start": {
-          "offset": 0,
           "line": 1,
-          "column": 1
+          "column": 1,
+          "offset": 0
         },
         "end": {
-          "offset": 138,
-          "line": 7,
-          "column": 2
-        },
-        "filename": "var-key-parent-selector.scss"
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
       }
     },
     {
@@ -372,17 +372,17 @@
             }
           ],
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 153,
-              "line": 10,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 185,
-              "line": 10,
-              "column": 35
-            },
-            "filename": "var-key-parent-selector.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

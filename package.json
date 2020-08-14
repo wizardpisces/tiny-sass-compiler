@@ -10,7 +10,7 @@
     "test": "ts-node scripts/test.js",
     "jest": "jest",
     "release": "sh scripts/release.sh",
-    "sass-test": "sass ./test/module/index.scss ./test/module/index.css"
+    "sass-test": "sass ./test/:./test-sass-dist/"
   },
   "engines": {
     "node": ">=8.x"

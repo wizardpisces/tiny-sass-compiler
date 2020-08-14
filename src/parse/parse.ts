@@ -19,13 +19,16 @@ import {
     VariableNode,
     AssignStatement,
     IncludeStatement,
-    Position,
     OperatorNode,
     ChildStatement,
     ExtendStatement,
     BinaryNode,
     EachStatement,
-    ListNode
+    ListNode,
+    SourceLocation,
+    createListNode,
+    createAssignStatement,
+    VarKeyNode
 } from './ast';
 
 import {
@@ -40,182 +43,22 @@ import { ParserOptions } from '@/options';
  * @param {lex processed stream method} input
  */
 
-export default function parse(input, options:ParserOptions) {
+export default function parse(input, options: ParserOptions) {
     const { filename, source } = options;
 
     function emitError(
         code: ErrorCodes,
-        offset?: number,
-        loc: Position = input.getCoordination()
-    ): void {
-        if (offset) {
-            loc.offset += offset
-            loc.column += offset
+        loc: SourceLocation = {
+            start: input.getCoordination(),
+            end: input.getCoordination(),
+            filename
         }
+    ): void {
         defaultOnError(
-            createCompilerError(code, {
-                start: loc,
-                end: loc,
-                filename
-            })
+            createCompilerError(code, loc)
         )
     }
 
-    function createListNode(list: SimpleExpressionNode[]):ListNode {
-        return {
-            type: NodeTypes.LIST,
-            value: list,
-            loc: {
-                start: list[0].loc.start,
-                end: list[list.length - 1].loc.end,
-                filename: list[0].loc.filename
-            }
-        }
-    }
-
-    let assign_right_end_condition = default_right_end_condition;
-
-    function injectLoc(parseFn) {
-        return function (...args) {
-            input.eliminateWhitespace()
-            let start = input.getCoordination(),
-                ast = parseFn.apply(null, args),
-                end = input.getCoordination();
-
-            /**
-             * patch ASSIGN , make left node start as start position
-             * patch BINARY node position, make binary left most node start as binary node start position
-             * */
-
-            if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
-                let left = args[0]
-                while (left.type === NodeTypes.BINARY) {
-                    left = left.left
-                }
-                start = left.loc.start;
-            }
-
-            return {
-                ...ast,
-                loc: {
-                    start,
-                    end,
-                    filename
-                }
-            };
-        }
-    }
-
-    let parserNamespace = {
-        parse_assign: injectLoc(function parse_assign(left) {
-
-            input.next();
-
-            function parse_assign_right() {
-                let right: SimpleExpressionNode[] = []
-                while (!assign_right_end_condition()) {
-                    if (debug()) break;
-                    let result: SimpleExpressionNode = parserNamespace.maybe_binary(parserNamespace.parse_atom(), 0);
-                    right.push(result)
-                }
-                return right;
-            }
-
-
-            let list: SimpleExpressionNode[] = parse_assign_right()
-
-            return {
-                type: NodeTypes.ASSIGN,
-                left: left,
-                right: createListNode(list)
-            }
-        }),
-
-        parse_atom: injectLoc(function parse_atom() {
-
-            if (is_kw('@extend')) {
-                input.next()
-                return parse_extend();
-            }
-
-            if (is_kw('@mixin')) {
-                input.next()
-                return parse_mixin();
-            }
-
-            if (is_kw('@include')) {
-                input.next()
-                return parse_include();
-            }
-
-            if (is_kw('@import')) {
-                input.next()
-                return parse_import();
-            }
-
-            if (is_kw('@if')) {
-                input.next()
-                return parse_if();
-            }
-
-            if (is_kw('@each')) {
-                input.next()
-                return parse_each();
-            }
-
-            if (is_kw('@error')) {
-                input.next()
-                return parse_error();
-            }
-
-            let tok = input.peek();
-            if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
-                return input.next();
-            }
-
-            if (tok.type === NodeTypes.PUNC) {
-                if (tok.value === "#") {
-                    return maybe_key_var_wrapper(() => input.next())
-                }
-                return input.next()
-            }
-
-            if (tok.type === NodeTypes.TEXT) {
-                return parse_consecutive_str()
-            }
-
-            emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE)
-        }),
-
-        maybe_call: injectLoc(function maybe_call(exp) { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
-            let expr = exp();
-
-            if (is_punc('(')) {
-                return {
-                    type: expr.type,
-                    value: expr.value + '(' + delimited('(', ')', ',', parse_expression).map(expr => expr.value).join(',') + ')'
-                }
-            }
-            return expr;
-        }),
-
-        maybe_binary: injectLoc(function (left, left_prec) {
-            let tok: OperatorNode = is_op()
-            if (tok) {
-                if (PRECEDENCE[tok.value] > left_prec) {
-                    input.next(); //skip op
-                    return parserNamespace.maybe_binary({
-                        type: NodeTypes.BINARY,
-                        operator: tok,
-                        left: left,
-                        right: parserNamespace.maybe_binary(parserNamespace.parse_atom(), PRECEDENCE[tok.value])
-                    }, left_prec)
-                }
-            }
-            return left;
-        })
-
-    }
     /**
      * end with ';' , eg:
      * 
@@ -283,10 +126,180 @@ export default function parse(input, options:ParserOptions) {
         return a;
     }
 
-    function parse_child(selector): ChildStatement {
-        let children = delimited("{", "}", ";", parse_expression);
-        // if (children.length == 0) return FALSE;
-        // if (block.length == 1) return block[0];
+    let assign_right_end_condition = default_right_end_condition;
+
+    // type parseFunctionType = <T extends Node>(...args:any[]) => T
+
+    function injectLoc(parseFn) {
+        return function injectLocInner(...args) {
+            input.eliminateWhitespace()
+            let start = input.getCoordination(),
+                ast = parseFn.apply(null, args),
+                end = input.getCoordination();
+
+            /**
+             *  to resolve stacked injectLoc executed which will lead to  start equal end position 
+             * */
+            // if(ast.loc && ast.loc!==locStub && ast.loc.end.offset>0){
+            //     return ast;
+            // }
+            /**
+             * patch ASSIGN , make left node start as start position
+             * patch BINARY node position, make binary left most node start as binary node start position
+             * */
+
+            if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
+                let left = args[0]
+                while (left.type === NodeTypes.BINARY) {
+                    left = left.left
+                }
+                start = left.loc.start;
+            }
+
+            let loc = {
+                start,
+                end,
+                filename
+            }
+
+            if (start.offset >= end.offset) {
+                emitError(ErrorCodes.INVALID_LOC_POSITION)
+            }
+
+            return {
+                ...ast,
+                loc,
+            };
+        }
+    }
+
+    const parse_error = injectLoc(function parse_error() {
+
+        function parse_list(endCheck = () => !default_right_end_condition()) {
+            let list: SimpleExpressionNode[] = []
+            while (endCheck()) {
+                list.push(dispatchParser())
+            }
+            return {
+                type: NodeTypes.LIST,
+                value: list
+            }
+        }
+
+        return {
+            type: NodeTypes.ERROR,
+            value: parse_list()
+        }
+    })
+
+    const consumeNextTokenWithLoc = injectLoc(() => input.next())
+
+    function dispatchParser() {
+
+        if (is_kw('@extend')) {
+            input.next()
+            return parse_extend();
+        }
+
+        if (is_kw('@mixin')) {
+            input.next()
+            return parse_mixin();
+        }
+
+        if (is_kw('@include')) {
+            input.next()
+            return parse_include();
+        }
+
+        if (is_kw('@import')) {
+            input.next()
+            return parse_import();
+        }
+
+        if (is_kw('@if')) {
+            input.next()
+            return parse_if();
+        }
+
+        if (is_kw('@each')) {
+            input.next()
+            return parse_each();
+        }
+
+        if (is_kw('@error')) {
+            input.next()
+            return parse_error();
+        }
+
+        let tok = input.peek();
+        if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
+            return consumeNextTokenWithLoc();
+        }
+
+        if (tok.type === NodeTypes.PUNC) {
+            if (tok.value === "#") {
+                return maybe_key_var_wrapper()
+            }
+            return consumeNextTokenWithLoc()
+        }
+
+        if (tok.type === NodeTypes.TEXT) {
+            return parse_consecutive_str()
+        }
+
+        emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE)
+    }
+
+    function parseAssign(left:AssignStatement['left']): AssignStatement {
+
+        input.next();
+
+        function parse_assign_right(): SimpleExpressionNode[] {
+            let right: SimpleExpressionNode[]=[];
+            while (!assign_right_end_condition()) {
+                if (debug()) break;
+                let result: SimpleExpressionNode = maybe_binary(dispatchParser(), 0);
+                right.push(result)
+            }
+            return right;
+        }
+
+
+        let right: ListNode = createListNode(parse_assign_right())
+
+        return createAssignStatement(left,right)
+    }
+
+    function maybe_binary(left:TextNode | BinaryNode, left_prec):TextNode | BinaryNode {
+        let tok: OperatorNode = is_op()
+        if (tok) {
+            if (PRECEDENCE[tok.value] > left_prec) {
+                tok = consumeNextTokenWithLoc(); //skip op , add loc
+                let nextNode: TextNode = consumeNextTokenWithLoc();
+
+                if(nextNode.type !== NodeTypes.TEXT){
+                    emitError(ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE,nextNode.loc)
+                }
+
+                return maybe_binary({
+                    type: NodeTypes.BINARY,
+                    operator: tok,
+                    left: left,
+                    right: maybe_binary(nextNode, PRECEDENCE[tok.value]),
+                    loc: {
+                        start: left.loc.start,
+                        end: nextNode.loc.end,
+                        filename
+                    }
+                }, left_prec)
+            }
+        }
+        return left;
+    }
+
+    function parse_child(selector:ChildStatement['selector']): ChildStatement {
+        let children = delimited("{", "}", ";", parse_statement);
+
         return {
             type: NodeTypes.CHILD,
             selector,
@@ -299,7 +312,7 @@ export default function parse(input, options:ParserOptions) {
         let expr = exp();
 
         if (is_assign()) {
-            return parserNamespace.parse_assign(expr)
+            return parseAssign(expr)
         }
 
         /**
@@ -311,8 +324,8 @@ export default function parse(input, options:ParserOptions) {
             return maybe_assign(() => {
                 return createListNode(
                     expr.type === NodeTypes.LIST ?
-                        expr.value.concat(parserNamespace.parse_atom())
-                        : [expr].concat(parserNamespace.parse_atom()))
+                        expr.value.concat(dispatchParser())
+                        : [expr].concat(dispatchParser()))
             })
         }
 
@@ -326,13 +339,13 @@ export default function parse(input, options:ParserOptions) {
     function parse_extend(): ExtendStatement {
         return {
             type: NodeTypes.EXTEND,
-            param: input.next(),
+            param: consumeNextTokenWithLoc(),
             loc: locStub
         }
     }
 
     function parse_block_statement(): BodyStatement {
-        let children: Statement[] = delimited("{", "}", ";", parse_expression);
+        let children: Statement[] = delimited("{", "}", ";", parse_statement);
         return {
             type: NodeTypes.BODY,
             children,
@@ -354,12 +367,12 @@ export default function parse(input, options:ParserOptions) {
 
         if (!is_punc('{')) {
             /**
-             * Support default params, which contains assign ':' symbol; which will be processed in parse_assign
+             * Support default params, which contains assign ':' symbol; which will be processed in parseAssign
              * @mixin replace-text($image,$x:default1, $y:default2) {
               */
             set_call_params_args_assign_right_end_condition()
 
-            params = delimited('(', ')', ',', parse_expression);
+            params = delimited('(', ')', ',', parse_statement);
         }
 
         reset_assign_right_end_condition()
@@ -382,7 +395,7 @@ export default function parse(input, options:ParserOptions) {
 
         if (!is_punc(';')) {
             set_call_params_args_assign_right_end_condition()
-            args = delimited('(', ')', ',', parse_expression); // extend like expr or call expr
+            args = delimited('(', ')', ',', parse_statement); // extend like expr or call expr
         }
 
         reset_assign_right_end_condition()
@@ -410,7 +423,7 @@ export default function parse(input, options:ParserOptions) {
         }
 
         while (!is_punc(';')) {  // @import 'foundation/code', 'foundation/lists';
-            params.push(processFilenameExp(input.next()));
+            params.push(processFilenameExp(consumeNextTokenWithLoc()));
             if (is_punc(',')) {
                 skip_punc(',')
             }
@@ -425,13 +438,13 @@ export default function parse(input, options:ParserOptions) {
 
     function parse_if(): IfStatement {
         let alternate: IfStatement | BodyStatement | null = null,
-            testExpression: BinaryNode | Boolean = true,
+            testExpression: BinaryNode | TextNode,
             blockStatement: BodyStatement;
 
-        testExpression = parserNamespace.maybe_binary(parserNamespace.parse_atom(), 0);
+        testExpression = maybe_binary(dispatchParser(), 0);
 
         if (!is_punc('{')) {
-            input.croak(`@if expect '{' but encountered '${input.next().value}'`)
+            input.croak(`@if expect '{' but encountered '${consumeNextTokenWithLoc().value}'`)
         }
 
         blockStatement = parse_block_statement();
@@ -460,7 +473,7 @@ export default function parse(input, options:ParserOptions) {
     }
 
     function parse_each(): EachStatement {
-        let left = parserNamespace.parse_atom();
+        let left = dispatchParser();
 
         /**
          * skip "in" expression
@@ -468,10 +481,10 @@ export default function parse(input, options:ParserOptions) {
 
         input.next();
 
-        let right = parserNamespace.parse_atom();
+        let right = dispatchParser();
 
         skip_punc('{')
-        let blockStatement = parse_expression()
+        let blockStatement = parse_statement()
         skip_punc('}')
         return {
             type: NodeTypes.EACHSTATEMENT,
@@ -482,45 +495,40 @@ export default function parse(input, options:ParserOptions) {
         }
     }
 
-
-    function parse_error() {
-
-        function parse_list(endCheck = () => !default_right_end_condition()) {
-            let list: SimpleExpressionNode[] = []
-            while (endCheck()) {
-                list.push(parserNamespace.parse_atom())
-            }
-            return {
-                type: NodeTypes.LIST,
-                value: list
-            }
-        }
-
-        return {
-            type: NodeTypes.ERROR,
-            value: parse_list()
-        }
-    }
-
-
-
     function parse_consecutive_str(): TextNode {
+
+        function maybe_call(exp: Function): TextNode { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
+            let expr = exp();
+
+            if (is_punc('(')) {
+                return {
+                    ...expr,
+                    type: NodeTypes.TEXT,
+                    value: expr.value + '(' + delimited('(', ')', ',', parse_statement).map(expr => expr.value).join(',') + ')'
+                }
+            }
+
+            return expr;
+        }
 
         function read_while(predicate): TextNode[] {
             let tokens: TextNode[] = [];
 
             while (!input.eof() && predicate(input.peek()))
                 //to resolve test skew(20deg) rotate(20deg);
-                tokens.push(parserNamespace.maybe_call(() => input.next()));
+                tokens.push(maybe_call(consumeNextTokenWithLoc));
             return tokens;
         }
 
-        let list: TextNode[] = read_while(tok => tok.type === NodeTypes.TEXT)
+        let list: TextNode[] = read_while(tok => tok.type === NodeTypes.TEXT),
 
+            listNode: ListNode = createListNode(list);
+
+        // no nested ListNode for now, so we flatten and return TextNode
         return {
             type: NodeTypes.TEXT,
             value: fillWhitespace(list).map(tok => tok.value).join(''),
-            loc: locStub // loc will be altered in injectLoc
+            loc: listNode.loc
         }
     }
 
@@ -531,53 +539,61 @@ export default function parse(input, options:ParserOptions) {
      * #{var} 
      */
 
-    function maybe_key_var_wrapper(exp) {
-
-        function parse_key_var_wrapper() {
+    function maybe_key_var_wrapper():VarKeyNode | TextNode {
+        function parse_key_var_wrapper(varKeyStartLoc): VarKeyNode {
             skip_punc('{')
-            let var_key = input.next();
-            if (var_key.type !== NodeTypes.VARIABLE) {
-                input.croak(`${var_key} should be a variable which starts with '$'`)
+            let node = consumeNextTokenWithLoc();
+            if (node.type !== NodeTypes.VARIABLE) {
+                input.croak(`${node} should be a variable which starts with '$'`)
             }
             skip_punc('}')
             return {
+                ...node,
                 type: NodeTypes.VAR_KEY,
-                value: var_key.value
+                loc:{
+                    start: varKeyStartLoc,
+                    end: node.loc.end,
+                    filename
+                }
             };
         }
 
-        let expr = exp();
+        let token = consumeNextTokenWithLoc();
 
         if (is_punc('{')) {
-            return parse_key_var_wrapper()
+            return parse_key_var_wrapper(token.loc.start)
         }
-
-        expr.type = NodeTypes.TEXT;
 
         /**
          * color: #1212; or #selector{}
           */
-        let nextToken = parserNamespace.parse_atom();
+        let nextToken = consumeNextTokenWithLoc();
 
         if (nextToken.type !== NodeTypes.TEXT) {
             input.croak(`[maybe_key_var_wrapper]: expect str token but received ${nextToken.value}`)
         }
 
-        expr.value = expr.value + nextToken.value;
-
-        return expr;
+        return {
+            type: NodeTypes.TEXT,
+            value: '#'+nextToken.value,
+            loc:{
+                start: token.start,
+                end: nextToken.end,
+                filename
+            }
+        };
     }
 
-    function parse_expression() {
+    function parse_statement() {
         return maybe_assign(function () {
-            return parserNamespace.parse_atom()
+            return dispatchParser()
         })
     }
 
     function parse_prog(): RootNode {
         let children: Statement[] = [];
         while (!input.eof()) {
-            let result = parse_expression()
+            let result = parse_statement()
             children.push(result);
             if (!input.eof()) skip_punc(";");
         }

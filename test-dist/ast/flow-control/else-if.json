@@ -106,9 +106,9 @@
                   "value": "0",
                   "loc": {
                     "start": {
-                      "offset": 56,
+                      "offset": 55,
                       "line": 2,
-                      "column": 12
+                      "column": 11
                     },
                     "end": {
                       "offset": 56,
@@ -121,9 +121,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 56,
+                  "offset": 55,
                   "line": 2,
-                  "column": 12
+                  "column": 11
                 },
                 "end": {
                   "offset": 56,
@@ -134,17 +134,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 47,
-                "line": 2,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 56,
-                "line": 2,
-                "column": 12
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -174,9 +174,9 @@
                   "value": "0",
                   "loc": {
                     "start": {
-                      "offset": 68,
+                      "offset": 67,
                       "line": 3,
-                      "column": 11
+                      "column": 10
                     },
                     "end": {
                       "offset": 68,
@@ -189,9 +189,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 68,
+                  "offset": 67,
                   "line": 3,
-                  "column": 11
+                  "column": 10
                 },
                 "end": {
                   "offset": 68,
@@ -202,17 +202,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 60,
-                "line": 3,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 68,
-                "line": 3,
-                "column": 11
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -242,9 +242,9 @@
                   "value": "transparent",
                   "loc": {
                     "start": {
-                      "offset": 98,
+                      "offset": 87,
                       "line": 5,
-                      "column": 28
+                      "column": 17
                     },
                     "end": {
                       "offset": 98,
@@ -257,9 +257,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 98,
+                  "offset": 87,
                   "line": 5,
-                  "column": 28
+                  "column": 17
                 },
                 "end": {
                   "offset": 98,
@@ -270,17 +270,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 73,
-                "line": 5,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 98,
-                "line": 5,
-                "column": 28
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -310,9 +310,9 @@
                   "value": "solid",
                   "loc": {
                     "start": {
-                      "offset": 121,
+                      "offset": 116,
                       "line": 6,
-                      "column": 22
+                      "column": 17
                     },
                     "end": {
                       "offset": 121,
@@ -325,9 +325,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 121,
+                  "offset": 116,
                   "line": 6,
-                  "column": 22
+                  "column": 17
                 },
                 "end": {
                   "offset": 121,
@@ -338,17 +338,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 102,
-                "line": 6,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 121,
-                "line": 6,
-                "column": 22
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -377,7 +377,20 @@
                   "type": "BINARY",
                   "operator": {
                     "type": "OPERATOR",
-                    "value": "/"
+                    "value": "/",
+                    "loc": {
+                      "start": {
+                        "offset": 145,
+                        "line": 7,
+                        "column": 23
+                      },
+                      "end": {
+                        "offset": 146,
+                        "line": 7,
+                        "column": 24
+                      },
+                      "filename": "else-if.scss"
+                    }
                   },
                   "left": {
                     "type": "VARIABLE",
@@ -401,9 +414,9 @@
                     "value": "2",
                     "loc": {
                       "start": {
-                        "offset": 148,
+                        "offset": 147,
                         "line": 7,
-                        "column": 26
+                        "column": 25
                       },
                       "end": {
                         "offset": 148,
@@ -443,17 +456,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 125,
-                "line": 7,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 148,
-                "line": 7,
-                "column": 26
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -462,7 +475,20 @@
               "type": "BINARY",
               "operator": {
                 "type": "OPERATOR",
-                "value": "=="
+                "value": "==",
+                "loc": {
+                  "start": {
+                    "offset": 168,
+                    "line": 9,
+                    "column": 18
+                  },
+                  "end": {
+                    "offset": 170,
+                    "line": 9,
+                    "column": 20
+                  },
+                  "filename": "else-if.scss"
+                }
               },
               "left": {
                 "type": "VARIABLE",
@@ -486,14 +512,14 @@
                 "value": "up",
                 "loc": {
                   "start": {
-                    "offset": 174,
+                    "offset": 171,
                     "line": 9,
-                    "column": 24
+                    "column": 21
                   },
                   "end": {
-                    "offset": 174,
+                    "offset": 173,
                     "line": 9,
-                    "column": 24
+                    "column": 23
                   },
                   "filename": "else-if.scss"
                 }
@@ -505,9 +531,9 @@
                   "column": 7
                 },
                 "end": {
-                  "offset": 174,
+                  "offset": 173,
                   "line": 9,
-                  "column": 24
+                  "column": 23
                 },
                 "filename": "else-if.scss"
               }
@@ -542,9 +568,9 @@
                         "value": "$color",
                         "loc": {
                           "start": {
-                            "offset": 207,
+                            "offset": 201,
                             "line": 10,
-                            "column": 32
+                            "column": 26
                           },
                           "end": {
                             "offset": 207,
@@ -557,9 +583,9 @@
                     ],
                     "loc": {
                       "start": {
-                        "offset": 207,
+                        "offset": 201,
                         "line": 10,
-                        "column": 32
+                        "column": 26
                       },
                       "end": {
                         "offset": 207,
@@ -570,17 +596,17 @@
                     }
                   },
                   "loc": {
+                    "filename": "",
                     "start": {
-                      "offset": 180,
-                      "line": 10,
-                      "column": 5
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
                     },
                     "end": {
-                      "offset": 207,
-                      "line": 10,
-                      "column": 32
-                    },
-                    "filename": "else-if.scss"
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    }
                   }
                 }
               ],
@@ -604,7 +630,20 @@
                 "type": "BINARY",
                 "operator": {
                   "type": "OPERATOR",
-                  "value": "=="
+                  "value": "==",
+                  "loc": {
+                    "start": {
+                      "offset": 233,
+                      "line": 11,
+                      "column": 25
+                    },
+                    "end": {
+                      "offset": 235,
+                      "line": 11,
+                      "column": 27
+                    },
+                    "filename": "else-if.scss"
+                  }
                 },
                 "left": {
                   "type": "VARIABLE",
@@ -628,14 +667,14 @@
                   "value": "right",
                   "loc": {
                     "start": {
-                      "offset": 242,
+                      "offset": 236,
                       "line": 11,
-                      "column": 34
+                      "column": 28
                     },
                     "end": {
-                      "offset": 242,
+                      "offset": 241,
                       "line": 11,
-                      "column": 34
+                      "column": 33
                     },
                     "filename": "else-if.scss"
                   }
@@ -647,9 +686,9 @@
                     "column": 14
                   },
                   "end": {
-                    "offset": 242,
+                    "offset": 241,
                     "line": 11,
-                    "column": 34
+                    "column": 33
                   },
                   "filename": "else-if.scss"
                 }
@@ -684,9 +723,9 @@
                           "value": "$color",
                           "loc": {
                             "start": {
-                              "offset": 273,
+                              "offset": 267,
                               "line": 12,
-                              "column": 30
+                              "column": 24
                             },
                             "end": {
                               "offset": 273,
@@ -699,9 +738,9 @@
                       ],
                       "loc": {
                         "start": {
-                          "offset": 273,
+                          "offset": 267,
                           "line": 12,
-                          "column": 30
+                          "column": 24
                         },
                         "end": {
                           "offset": 273,
@@ -712,17 +751,17 @@
                       }
                     },
                     "loc": {
+                      "filename": "",
                       "start": {
-                        "offset": 248,
-                        "line": 12,
-                        "column": 5
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
                       },
                       "end": {
-                        "offset": 273,
-                        "line": 12,
-                        "column": 30
-                      },
-                      "filename": "else-if.scss"
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      }
                     }
                   }
                 ],
@@ -746,7 +785,20 @@
                   "type": "BINARY",
                   "operator": {
                     "type": "OPERATOR",
-                    "value": "=="
+                    "value": "==",
+                    "loc": {
+                      "start": {
+                        "offset": 299,
+                        "line": 13,
+                        "column": 25
+                      },
+                      "end": {
+                        "offset": 301,
+                        "line": 13,
+                        "column": 27
+                      },
+                      "filename": "else-if.scss"
+                    }
                   },
                   "left": {
                     "type": "VARIABLE",
@@ -770,14 +822,14 @@
                     "value": "down",
                     "loc": {
                       "start": {
-                        "offset": 307,
+                        "offset": 302,
                         "line": 13,
-                        "column": 33
+                        "column": 28
                       },
                       "end": {
-                        "offset": 307,
+                        "offset": 306,
                         "line": 13,
-                        "column": 33
+                        "column": 32
                       },
                       "filename": "else-if.scss"
                     }
@@ -789,9 +841,9 @@
                       "column": 14
                     },
                     "end": {
-                      "offset": 307,
+                      "offset": 306,
                       "line": 13,
-                      "column": 33
+                      "column": 32
                     },
                     "filename": "else-if.scss"
                   }
@@ -826,9 +878,9 @@
                             "value": "$color",
                             "loc": {
                               "start": {
-                                "offset": 337,
+                                "offset": 331,
                                 "line": 14,
-                                "column": 29
+                                "column": 23
                               },
                               "end": {
                                 "offset": 337,
@@ -841,9 +893,9 @@
                         ],
                         "loc": {
                           "start": {
-                            "offset": 337,
+                            "offset": 331,
                             "line": 14,
-                            "column": 29
+                            "column": 23
                           },
                           "end": {
                             "offset": 337,
@@ -854,17 +906,17 @@
                         }
                       },
                       "loc": {
+                        "filename": "",
                         "start": {
-                          "offset": 313,
-                          "line": 14,
-                          "column": 5
+                          "line": 1,
+                          "column": 1,
+                          "offset": 0
                         },
                         "end": {
-                          "offset": 337,
-                          "line": 14,
-                          "column": 29
-                        },
-                        "filename": "else-if.scss"
+                          "line": 1,
+                          "column": 1,
+                          "offset": 0
+                        }
                       }
                     }
                   ],
@@ -888,7 +940,20 @@
                     "type": "BINARY",
                     "operator": {
                       "type": "OPERATOR",
-                      "value": "=="
+                      "value": "==",
+                      "loc": {
+                        "start": {
+                          "offset": 363,
+                          "line": 15,
+                          "column": 25
+                        },
+                        "end": {
+                          "offset": 365,
+                          "line": 15,
+                          "column": 27
+                        },
+                        "filename": "else-if.scss"
+                      }
                     },
                     "left": {
                       "type": "VARIABLE",
@@ -912,14 +977,14 @@
                       "value": "left",
                       "loc": {
                         "start": {
-                          "offset": 371,
+                          "offset": 366,
                           "line": 15,
-                          "column": 33
+                          "column": 28
                         },
                         "end": {
-                          "offset": 371,
+                          "offset": 370,
                           "line": 15,
-                          "column": 33
+                          "column": 32
                         },
                         "filename": "else-if.scss"
                       }
@@ -931,9 +996,9 @@
                         "column": 14
                       },
                       "end": {
-                        "offset": 371,
+                        "offset": 370,
                         "line": 15,
-                        "column": 33
+                        "column": 32
                       },
                       "filename": "else-if.scss"
                     }
@@ -968,9 +1033,9 @@
                               "value": "$color",
                               "loc": {
                                 "start": {
-                                  "offset": 403,
+                                  "offset": 397,
                                   "line": 16,
-                                  "column": 31
+                                  "column": 25
                                 },
                                 "end": {
                                   "offset": 403,
@@ -983,9 +1048,9 @@
                           ],
                           "loc": {
                             "start": {
-                              "offset": 403,
+                              "offset": 397,
                               "line": 16,
-                              "column": 31
+                              "column": 25
                             },
                             "end": {
                               "offset": 403,
@@ -996,17 +1061,17 @@
                           }
                         },
                         "loc": {
+                          "filename": "",
                           "start": {
-                            "offset": 377,
-                            "line": 16,
-                            "column": 5
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
                           },
                           "end": {
-                            "offset": 403,
-                            "line": 16,
-                            "column": 31
-                          },
-                          "filename": "else-if.scss"
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          }
                         }
                       }
                     ],
@@ -1059,9 +1124,9 @@
                                   "column": 31
                                 },
                                 "end": {
-                                  "offset": 460,
+                                  "offset": 459,
                                   "line": 18,
-                                  "column": 44
+                                  "column": 43
                                 },
                                 "filename": "else-if.scss"
                               }
@@ -1087,9 +1152,9 @@
                         },
                         "loc": {
                           "start": {
-                            "offset": 421,
+                            "offset": 428,
                             "line": 18,
-                            "column": 5
+                            "column": 12
                           },
                           "end": {
                             "offset": 462,
@@ -1157,17 +1222,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 153,
-                "line": 9,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 467,
-                "line": 19,
-                "column": 4
-              },
-              "filename": "else-if.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           }
         ],
@@ -1186,17 +1251,17 @@
         }
       },
       "loc": {
+        "filename": "",
         "start": {
-          "offset": 0,
           "line": 1,
-          "column": 1
+          "column": 1,
+          "offset": 0
         },
         "end": {
-          "offset": 469,
-          "line": 20,
-          "column": 2
-        },
-        "filename": "else-if.scss"
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
       }
     },
     {
@@ -1292,17 +1357,17 @@
             }
           ],
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 481,
-              "line": 23,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 517,
-              "line": 23,
-              "column": 39
-            },
-            "filename": "else-if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

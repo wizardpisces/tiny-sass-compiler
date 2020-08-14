@@ -251,13 +251,9 @@ export default function lex(input) {
     }
 
     function peek() {
-        // return current || (current = peek_next());
         return peek_next();
     }
-    function next(before_hook,after_hook) {
-        // let tok = current;
-        // current = null;
-        // tok = tok || read_next();
+    function next() {
         return read_next();
     }
 

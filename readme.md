@@ -207,9 +207,7 @@ Before code generation AST
 
 ### feat
 
-* sourcePosition not right(textNode variableNode)
-* code gen sourceMap, generate source for module(import)? ( doing )
-* handle import depth more than 2, and resolve recursive import
+* handle recursive @import
 * souce-map size compression (reference https://sokra.github.io/source-map-visualization generated map)
 * add keyword @function
 * replace @import with @use

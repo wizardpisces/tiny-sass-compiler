@@ -191,7 +191,7 @@ export interface ErrorStatement extends Node {
 // choice statement
 export interface IfStatement extends Node {
     type: NodeTypes.IFSTATEMENT
-    test: BinaryNode | Boolean
+    test: BinaryNode | TextNode
     consequent: BodyStatement
     alternate: IfStatement | BodyStatement | null
 }
@@ -223,3 +223,23 @@ export interface RootNode extends Node {
     children: (Statement | ProgCodeGenNode)[]
 }
 
+export function createAssignStatement(left: AssignStatement['left'], right: AssignStatement['right']): AssignStatement {
+    return {
+        type: NodeTypes.ASSIGN,
+        left: left,
+        right: right,
+        loc: locStub
+    }
+}
+
+export function createListNode(list: SimpleExpressionNode[]): ListNode {
+    return {
+        type: NodeTypes.LIST,
+        value: list,
+        loc: {
+            start: list[0].loc.start,
+            end: list[list.length - 1].loc.end,
+            filename: list[0].loc.filename
+        }
+    }
+}

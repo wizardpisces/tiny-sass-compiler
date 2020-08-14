@@ -45,10 +45,10 @@ export default function transform_module(rootNode: RootNode, options) {
 
                 let childRootNode: RootNode = parse(source, fileSourceMap)
 
-                // collect source map file in module
                 
                 walkNode(childRootNode)
-
+                
+                // collect source map file in module
                 Object.assign(parent.fileSourceMap, childRootNode.fileSourceMap)
             })
         }

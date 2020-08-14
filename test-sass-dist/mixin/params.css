@@ -1,0 +1,8 @@
+.box {
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg) skew(30deg, 20deg);
+  left: 1px;
+}
+
+/*# sourceMappingURL=params.css.map */

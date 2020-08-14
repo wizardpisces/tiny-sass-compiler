@@ -4,7 +4,7 @@
     "var-simple.scss"
   ],
   "names": [],
-  "mappings": "AAGA;EACE,KAAW;EACX,MACc",
+  "mappings": "AAGA;EACE,KAAM;EACN,MACA",
   "sourcesContent": [
     "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
   ]

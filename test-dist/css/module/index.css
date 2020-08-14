@@ -1,5 +1,8 @@
+.base-2{
+  background:red;
+}
 body{
-  font:100% Helvetica , sans-serif;
+  font:100% Helvetica, sans-serif;
   color:#333;
 }
 .inverse{

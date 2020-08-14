@@ -28,10 +28,14 @@ export function createCompilerError<T extends number>(
 
 export const enum ErrorCodes {
     //parse error
-    UNKNONWN_TOKEN_TYPE
+    UNKNONWN_TOKEN_TYPE,
+    INVALID_LOC_POSITION,
+    EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE
 }
 
 export const errorMessages: { [code: number]: string } = {
     // parse errors
-    [ErrorCodes.UNKNONWN_TOKEN_TYPE]: 'Unknown token type.'
+    [ErrorCodes.UNKNONWN_TOKEN_TYPE]: 'Unknown token type.',
+    [ErrorCodes.INVALID_LOC_POSITION]: 'Incorrect sourceLocation. start loc should be smaller than end loc',
+    [ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE]: 'Expect text node after operator node',
 }

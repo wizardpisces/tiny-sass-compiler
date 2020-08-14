@@ -149,6 +149,7 @@ function run(sourceDir, outputDir = './', options = {
 
             // if (filename!== 'flow-control' &&  filename !== 'each' && filename !=='each.scss') return;
             // if (filename!== 'var-simple.scss') return;
+            // if (filename!== 'operator.scss') return;
 
             let filePath = path.join(sourceDir, filename),
                 stat = fs.lstatSync(filePath)

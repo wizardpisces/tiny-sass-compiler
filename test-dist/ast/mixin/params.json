@@ -31,14 +31,14 @@
             "value": "skew(30deg,20deg)",
             "loc": {
               "start": {
-                "offset": 31,
+                "offset": 13,
                 "line": 1,
-                "column": 32
+                "column": 14
               },
               "end": {
-                "offset": 31,
+                "offset": 17,
                 "line": 1,
-                "column": 32
+                "column": 18
               },
               "filename": "params.scss"
             }
@@ -46,30 +46,30 @@
         ],
         "loc": {
           "start": {
-            "offset": 31,
+            "offset": 13,
             "line": 1,
-            "column": 32
+            "column": 14
           },
           "end": {
-            "offset": 31,
+            "offset": 17,
             "line": 1,
-            "column": 32
+            "column": 18
           },
           "filename": "params.scss"
         }
       },
       "loc": {
+        "filename": "",
         "start": {
-          "offset": 0,
           "line": 1,
-          "column": 1
+          "column": 1,
+          "offset": 0
         },
         "end": {
-          "offset": 31,
           "line": 1,
-          "column": 32
-        },
-        "filename": "params.scss"
+          "column": 1,
+          "offset": 0
+        }
       }
     },
     {
@@ -157,9 +157,9 @@
                   "value": "$property",
                   "loc": {
                     "start": {
-                      "offset": 104,
+                      "offset": 95,
                       "line": 3,
-                      "column": 31
+                      "column": 22
                     },
                     "end": {
                       "offset": 104,
@@ -172,9 +172,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 104,
+                  "offset": 95,
                   "line": 3,
-                  "column": 31
+                  "column": 22
                 },
                 "end": {
                   "offset": 104,
@@ -185,17 +185,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 76,
-                "line": 3,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 104,
-                "line": 3,
-                "column": 31
-              },
-              "filename": "params.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -225,9 +225,9 @@
                   "value": "$property",
                   "loc": {
                     "start": {
-                      "offset": 132,
+                      "offset": 123,
                       "line": 4,
-                      "column": 27
+                      "column": 18
                     },
                     "end": {
                       "offset": 132,
@@ -240,9 +240,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 132,
+                  "offset": 123,
                   "line": 4,
-                  "column": 27
+                  "column": 18
                 },
                 "end": {
                   "offset": 132,
@@ -253,17 +253,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 108,
-                "line": 4,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 132,
-                "line": 4,
-                "column": 27
-              },
-              "filename": "params.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           },
           {
@@ -293,14 +293,14 @@
                   "value": "$property",
                   "loc": {
                     "start": {
-                      "offset": 157,
+                      "offset": 147,
                       "line": 5,
-                      "column": 24
+                      "column": 14
                     },
                     "end": {
-                      "offset": 157,
+                      "offset": 156,
                       "line": 5,
-                      "column": 24
+                      "column": 23
                     },
                     "filename": "params.scss"
                   }
@@ -310,9 +310,9 @@
                   "value": "$property2",
                   "loc": {
                     "start": {
-                      "offset": 167,
+                      "offset": 157,
                       "line": 5,
-                      "column": 34
+                      "column": 24
                     },
                     "end": {
                       "offset": 167,
@@ -325,9 +325,9 @@
               ],
               "loc": {
                 "start": {
-                  "offset": 157,
+                  "offset": 147,
                   "line": 5,
-                  "column": 24
+                  "column": 14
                 },
                 "end": {
                   "offset": 167,
@@ -338,17 +338,17 @@
               }
             },
             "loc": {
+              "filename": "",
               "start": {
-                "offset": 136,
-                "line": 5,
-                "column": 3
+                "line": 1,
+                "column": 1,
+                "offset": 0
               },
               "end": {
-                "offset": 167,
-                "line": 5,
-                "column": 34
-              },
-              "filename": "params.scss"
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
             }
           }
         ],
@@ -367,17 +367,17 @@
         }
       },
       "loc": {
+        "filename": "",
         "start": {
-          "offset": 33,
-          "line": 2,
-          "column": 1
+          "line": 1,
+          "column": 1,
+          "offset": 0
         },
         "end": {
-          "offset": 170,
-          "line": 6,
-          "column": 2
-        },
-        "filename": "params.scss"
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
       }
     },
     {
@@ -430,9 +430,9 @@
                   "column": 22
                 },
                 "end": {
-                  "offset": 213,
+                  "offset": 206,
                   "line": 8,
-                  "column": 35
+                  "column": 28
                 },
                 "filename": "params.scss"
               }
@@ -456,17 +456,17 @@
             }
           ],
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 181,
-              "line": 8,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 225,
-              "line": 8,
-              "column": 47
-            },
-            "filename": "params.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -496,9 +496,9 @@
                 "value": "1px",
                 "loc": {
                   "start": {
-                    "offset": 238,
+                    "offset": 235,
                     "line": 9,
-                    "column": 11
+                    "column": 8
                   },
                   "end": {
                     "offset": 238,
@@ -511,9 +511,9 @@
             ],
             "loc": {
               "start": {
-                "offset": 238,
+                "offset": 235,
                 "line": 9,
-                "column": 11
+                "column": 8
               },
               "end": {
                 "offset": 238,
@@ -524,17 +524,17 @@
             }
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 230,
-              "line": 9,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 238,
-              "line": 9,
-              "column": 11
-            },
-            "filename": "params.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

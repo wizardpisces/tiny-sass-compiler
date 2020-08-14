@@ -47,9 +47,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 86,
+                "offset": 79,
                 "line": 6,
-                "column": 20
+                "column": 13
               },
               "end": {
                 "offset": 86,
@@ -61,17 +61,17 @@
             "value": "3px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 71,
-              "line": 6,
-              "column": 5
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 86,
-              "line": 6,
-              "column": 20
-            },
-            "filename": "var-nested.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -97,9 +97,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 105,
+                "offset": 99,
                 "line": 7,
-                "column": 18
+                "column": 12
               },
               "end": {
                 "offset": 105,
@@ -111,17 +111,17 @@
             "value": "20px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 92,
-              "line": 7,
-              "column": 5
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 105,
-              "line": 7,
-              "column": 18
-            },
-            "filename": "var-nested.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],
@@ -182,9 +182,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 132,
+                "offset": 128,
                 "line": 10,
-                "column": 16
+                "column": 12
               },
               "end": {
                 "offset": 132,
@@ -196,17 +196,17 @@
             "value": "20px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 121,
-              "line": 10,
-              "column": 5
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 132,
-              "line": 10,
-              "column": 16
-            },
-            "filename": "var-nested.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -270,9 +270,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 172,
+                "offset": 165,
                 "line": 12,
-                "column": 23
+                "column": 16
               },
               "end": {
                 "offset": 172,
@@ -284,17 +284,17 @@
             "value": "2px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 158,
-              "line": 12,
-              "column": 9
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 172,
-              "line": 12,
-              "column": 23
-            },
-            "filename": "var-nested.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -358,9 +358,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 219,
+                "offset": 214,
                 "line": 14,
-                "column": 29
+                "column": 24
               },
               "end": {
                 "offset": 219,
@@ -372,17 +372,17 @@
             "value": "green"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 203,
-              "line": 14,
-              "column": 13
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 219,
-              "line": 14,
-              "column": 29
-            },
-            "filename": "var-nested.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

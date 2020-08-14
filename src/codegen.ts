@@ -52,10 +52,6 @@ function createCodegenContext(
             context.code += code
             if (context.map) {
                 if (node) {
-                    // addMapping(node.loc.start,node.value)
-                    if(typeof node.loc.filename === 'undefined'){
-                        debugger
-                    }
                     addMapping(node.loc.start,node.loc.filename)
                 }
                 
@@ -179,7 +175,7 @@ function genChild(
     indent();
 
     (node.children as CodegenNode[]).forEach((node: CodegenNode,index:number) => {
-        if(index){
+        if(index && node.type!==NodeTypes.EMPTY){
             newline()
         }
         genNode(node, context);

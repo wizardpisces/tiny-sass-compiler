@@ -1,13 +1,15 @@
 {
   "version": 3,
   "sources": [
+    "./base-2.scss",
     "./base.scss",
     "index.scss"
   ],
   "names": [],
-  "mappings": "AAIA;EACE,KAAW;EACX,MAAqB;;ACHvB;EACE,iBAAgC;EAChC,MAAY",
+  "mappings": "AAAA;EACI,WAAY;;ACIhB;EACE,KAAM;EACN,MAAO;;ACJT;EACE,iBAAkB;EAClB,MAAO",
   "sourcesContent": [
-    "// _base.scss\n$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
+    ".base-2{\n    background: red;\n}",
+    "@import \"./base-2.scss\";\n// _base.scss\n$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
     "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   ]
 }

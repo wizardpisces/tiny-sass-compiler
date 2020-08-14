@@ -1,0 +1,10 @@
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=basic.css.map */

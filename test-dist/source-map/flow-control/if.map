@@ -4,7 +4,7 @@
     "if.scss"
   ],
   "names": [],
-  "mappings": "AASA;EARE,MAAY;EACZ,OAAa;;AAQf;EATE,MAAY;EACZ,OAAa;EAGX,cAAe",
+  "mappings": "AASA;EARE,MAAO;EACP,OAAQ;;AAQV;EATE,MAAO;EACP,OAAQ;EAGN,cAAe",
   "sourcesContent": [
     "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
   ]

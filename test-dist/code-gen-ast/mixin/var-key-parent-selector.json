@@ -36,9 +36,9 @@
                 "column": 3
               },
               "end": {
-                "offset": 62,
+                "offset": 61,
                 "line": 2,
-                "column": 15
+                "column": 14
               },
               "filename": "var-key-parent-selector.scss"
             }
@@ -47,9 +47,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 74,
+                "offset": 64,
                 "line": 2,
-                "column": 27
+                "column": 17
               },
               "end": {
                 "offset": 74,
@@ -61,17 +61,17 @@
             "value": "left"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 50,
-              "line": 2,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 74,
-              "line": 2,
-              "column": 27
-            },
-            "filename": "var-key-parent-selector.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -124,9 +124,9 @@
                 "column": 5
               },
               "end": {
-                "offset": 119,
+                "offset": 117,
                 "line": 5,
-                "column": 19
+                "column": 17
               },
               "filename": "var-key-parent-selector.scss"
             }
@@ -135,9 +135,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 131,
+                "offset": 121,
                 "line": 5,
-                "column": 31
+                "column": 21
               },
               "end": {
                 "offset": 131,
@@ -149,17 +149,17 @@
             "value": "right"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 105,
-              "line": 5,
-              "column": 5
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 131,
-              "line": 5,
-              "column": 31
-            },
-            "filename": "var-key-parent-selector.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

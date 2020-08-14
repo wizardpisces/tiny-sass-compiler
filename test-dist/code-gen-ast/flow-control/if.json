@@ -47,9 +47,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 53,
+                "offset": 48,
                 "line": 2,
-                "column": 15
+                "column": 10
               },
               "end": {
                 "offset": 53,
@@ -61,17 +61,17 @@
             "value": "100px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 41,
-              "line": 2,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 53,
-              "line": 2,
-              "column": 15
-            },
-            "filename": "if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -97,9 +97,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 70,
+                "offset": 65,
                 "line": 3,
-                "column": 16
+                "column": 11
               },
               "end": {
                 "offset": 70,
@@ -111,17 +111,17 @@
             "value": "100px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 57,
-              "line": 3,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 70,
-              "line": 3,
-              "column": 16
-            },
-            "filename": "if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],
@@ -182,9 +182,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 53,
+                "offset": 48,
                 "line": 2,
-                "column": 15
+                "column": 10
               },
               "end": {
                 "offset": 53,
@@ -196,17 +196,17 @@
             "value": "100px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 41,
-              "line": 2,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 53,
-              "line": 2,
-              "column": 15
-            },
-            "filename": "if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -232,9 +232,9 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 70,
+                "offset": 65,
                 "line": 3,
-                "column": 16
+                "column": 11
               },
               "end": {
                 "offset": 70,
@@ -246,17 +246,17 @@
             "value": "100px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 57,
-              "line": 3,
-              "column": 3
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 70,
-              "line": 3,
-              "column": 16
-            },
-            "filename": "if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         },
         {
@@ -296,17 +296,17 @@
             "value": "50px"
           },
           "loc": {
+            "filename": "",
             "start": {
-              "offset": 93,
-              "line": 6,
-              "column": 5
+              "line": 1,
+              "column": 1,
+              "offset": 0
             },
             "end": {
-              "offset": 117,
-              "line": 6,
-              "column": 29
-            },
-            "filename": "if.scss"
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
           }
         }
       ],

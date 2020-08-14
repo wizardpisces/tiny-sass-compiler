@@ -1,0 +1,10 @@
+.banner {
+  background-color: #f2ece4;
+  color: #036;
+}
+body.dark .banner {
+  background-color: #6b717f;
+  color: #d2e1dd;
+}
+
+/*# sourceMappingURL=else.css.map */
