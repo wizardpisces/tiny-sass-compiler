@@ -1,8 +1,7 @@
 import { NodeTypes, Node, RootNode, ParentNode, CodegenNode } from './parse/ast'
 import { TransformOptions } from './options'
 import { defaultOnError } from './parse/errors'
-import { 
-    isArray, 
+import {
     Environment
 } from './parse/util'
 import transformChain, { transform_module as transformModule} from './transform-middleware/index'
@@ -104,35 +103,14 @@ export function traverseNode(
     context.currentNode = node
     // apply transform plugins
     const { nodeTransforms } = context
-    const exitFns:Function[] = []
+    
     if (node.type !== NodeTypes.RootNode){
         for (let i = 0; i < nodeTransforms.length; i++) {
-            const onExit = nodeTransforms[i](node, context)
-            if (onExit) {
-                if (isArray(onExit)) {
-                    exitFns.push(...onExit)
-                } else {
-                    exitFns.push(onExit)
-                }
-            }
-            // if (!context.currentNode) {
-            //     // node was removed
-            //     return
-            // } else {
-            //     // node may have been replaced
-            //     node = context.currentNode
-            // }
+            nodeTransforms[i](node, context)
         }
     }
 
-    switch (node.type) {
-        case NodeTypes.RootNode:
-            traverseChildren(node as ParentNode, context)
-            break
+    if (node.type === NodeTypes.RootNode){
+        traverseChildren(node as ParentNode, context)
     }
-    // exit transforms
-    // let i = exitFns.length
-    // while (i--) {
-    //     exitFns[i]()
-    // }
 }
