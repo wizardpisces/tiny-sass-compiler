@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "dist",
-        "sourceMap": false,
+        "sourceMap": true,
         "target": "esnext",
         "module": "commonjs",
         "moduleResolution": "node",
@@ -15,6 +14,7 @@
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "removeComments": false,
+        "declarationDir": "dist/types",
         "jsx": "preserve",
         "lib": ["esnext", "dom"],
         "types": [

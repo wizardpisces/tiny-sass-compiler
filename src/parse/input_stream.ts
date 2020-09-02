@@ -1,4 +1,4 @@
-function input_stream(input) {
+function input_stream(input:string) {
 
     let offset = 0, line = 1, column = 1;
     return {

@@ -4,10 +4,11 @@
  * compile @extend
  */
 import {
-    NodeTypes
+    NodeTypes, 
+    RootNode
 } from '../parse/ast';
 
-export default function transform_extend(ast) {
+export default function transform_extend(ast:RootNode) {
     /**
      * transform
      * 

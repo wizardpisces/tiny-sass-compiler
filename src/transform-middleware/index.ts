@@ -1,6 +1,6 @@
 
-import tranform_nest from './tranform_nest.js'
-import transform_extend from './transform_extend.js'
+import tranform_nest from './tranform_nest'
+import transform_extend from './transform_extend'
 import transform_module from './transform_module'
 
 export {

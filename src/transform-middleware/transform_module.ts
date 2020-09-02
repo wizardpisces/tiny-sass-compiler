@@ -5,7 +5,7 @@
  * 
  */
 import fs from 'fs'
-import parse from '../parse'
+import parse from '../parse/index'
 import path from 'path'
 import {
     NodeTypes, 
@@ -13,7 +13,7 @@ import {
     TextNode, 
     Statement, 
     ImportStatement
-} from '../parse/ast';
+} from '@/parse/ast';
 import { ParserOptions } from '@/options';
 
 const EXTNAME_GLOBAL = '.scss'

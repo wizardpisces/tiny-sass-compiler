@@ -2,13 +2,17 @@
   "name": "tiny-sass-compiler",
   "version": "0.7.0",
   "description": "simple scss compiler",
-  "main": "index.js",
+  "main": "dist/tiny-sass-compiler.cjs.prod.js",
+  "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
+  "types": "dist/types",
   "bin": {
     "tiny-sass": "bin/tiny-sass"
   },
   "scripts": {
-    "test": "ts-node scripts/test.js",
+    "test": "ts-node scripts/test.ts",
+    "test-production": "npm run build && node scripts/production-test.js",
     "jest": "jest",
+    "build": "node scripts/build.js",
     "release": "sh scripts/release.sh",
     "sass-test": "sass ./test/:./test-sass-dist/"
   },
@@ -32,15 +36,23 @@
   },
   "homepage": "https://github.com/wizardpisces/tiny-sass-compiler#readme",
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.9.11",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-replace": "^2.3.3",
     "@types/jest": "^26.0.0",
+    "brotli": "^1.3.2",
     "jest": "^25.5.4",
+    "rollup-plugin-terser": "^7.0.1",
+    "rollup-plugin-typescript2": "^0.27.2",
     "sass": "^1.26.10",
     "ts-jest": "^26.1.0",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@vue/compiler-core": "^3.0.0-rc.9",
     "mkdirp": "^1.0.4",
+    "source-map": "^0.7.3",
     "superstruct": "^0.8.3",
     "ts-node": "^8.10.2"
   }

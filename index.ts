@@ -1,10 +1,12 @@
+export * from './src'
+
 import compile, {
     parse
 } from './src'
 
 import fs from 'fs';
 import path from 'path'
-import mkdirp from 'mkdirp'
+const mkdirp = require('mkdirp')
 import { CodegenResult } from '@/codegen';
 
 function require_css(scssPath) {
@@ -14,7 +16,7 @@ function require_css(scssPath) {
     }
 }
 
-function run(sourceDir, outputDir = './', options = {
+export default function run(sourceDir, outputDir = './', options = {
     genOtherInfo: false,
     sourceMap:false
 }) {
@@ -166,5 +168,3 @@ function run(sourceDir, outputDir = './', options = {
     renderDir(sourceDir)
 
 }
-
-module.exports = run;

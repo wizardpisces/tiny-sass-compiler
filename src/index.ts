@@ -1,10 +1,8 @@
 import compile from './compile';
 import parse from './parse'
-import transform from './transform'
 
 export {
-    parse,
-    transform
+    parse
 }
 
 export default compile

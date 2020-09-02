@@ -6,13 +6,17 @@
  * 
  */
 import {
-    NodeTypes
-} from '../parse/ast';
+    NodeTypes,
+    ChildStatement,
+    TextNode,
+    RootNode
+} from '@/parse/ast';
+import { createEmptyNode } from '../parse/util';
 
-export default function tranform_nest(ast) {
-    function flatten_child(child, arr = []) {
+export default function tranform_nest(ast:RootNode) {
+    function flatten_child(child: ChildStatement, arr: ChildStatement[] = []):ChildStatement[] {
 
-        function flatten(child, parentSelector = '') {
+        function flatten(child: ChildStatement, parentSelector = '') {
 
             /**
              * https://sass-lang.com/documentation/style-rules/parent-selector
@@ -20,14 +24,14 @@ export default function tranform_nest(ast) {
              */
             
             let containParentSelector = false;
-
-            if(child.selector.value.indexOf('&')>=0){
+            let selector: TextNode = child.selector as TextNode;
+            if (selector.value.indexOf('&')>=0){
                 containParentSelector = true;
-                child.selector.value = child.selector.value.replace(/&/, parentSelector)
+                selector.value = selector.value.replace(/&/, parentSelector)
             }
 
             if (!containParentSelector){
-                child.selector.value = (parentSelector + ' ' + child.selector.value).trim()
+                selector.value = (parentSelector + ' ' + selector.value).trim()
             }
             
             /**
@@ -40,8 +44,8 @@ export default function tranform_nest(ast) {
               */
             child.children.forEach((exp, index) => {
                 if (exp.type === NodeTypes.CHILD) {
-                    child.children.splice(index, 1,{type:NodeTypes.EMPTY})
-                    flatten(exp, child.selector.value)
+                    child.children.splice(index, 1,createEmptyNode())
+                    flatten(exp, selector.value)
                 }
             });
             return arr;
@@ -50,9 +54,9 @@ export default function tranform_nest(ast) {
         return flatten(child)
     }
 
-    function toplevel(ast) {
+    function toplevel(ast:RootNode) {
 
-        let children = [];
+        let children: RootNode["children"] = [];
 
         ast.children.forEach(exp => {
             if (exp.type === NodeTypes.CHILD) {
