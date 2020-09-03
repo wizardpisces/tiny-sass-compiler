@@ -7,17 +7,25 @@ import path from 'path'
 const mkdirp = require('mkdirp')
 import { CodegenResult } from '@/codegen';
 
-function require_css(scssPath) {
+function require_css(scssPath: string) {
     return {
-        source : fs.readFileSync(scssPath, 'utf8'),
+        source: fs.readFileSync(scssPath, 'utf8'),
         filename: path.basename(scssPath)
     }
 }
+export interface RunOptions {
+    genOtherInfo: boolean
+    sourceMap: boolean
+}
 
-export default function run(sourceDir, outputDir = './', options = {
-    genOtherInfo: false,
-    sourceMap:false
-}) {
+function run(
+    sourceDir: string,
+    outputDir: string = './',
+    options: RunOptions = {
+        genOtherInfo: false,
+        sourceMap: false
+    }
+): void {
 
     let sourceDirLength = path.basename(sourceDir).length;
 
@@ -32,14 +40,14 @@ export default function run(sourceDir, outputDir = './', options = {
         let requireCss = require_css(filePath),
             basename = path.basename(filePath, '.scss'),
             sourceDirname = path.dirname(filePath),
-            
+
             normalDistPath = path.join(outputDir, sourceDirname.substr(sourceDirLength)),
             astDistPath = path.join(outputDir, 'ast', sourceDirname.substr(sourceDirLength)),
             codeGenAstDistPath = path.join(outputDir, 'code-gen-ast', sourceDirname.substr(sourceDirLength)),
             sourceMapDistPath = path.join(outputDir, 'source-map', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
             ast;
-        
+
         if (!options.genOtherInfo) {
             if (!fs.existsSync(normalDistPath)) {
                 mkdirp.sync(normalDistPath)
@@ -79,12 +87,12 @@ export default function run(sourceDir, outputDir = './', options = {
 
         function write_compiled() {
             let compiled: CodegenResult;
-                
+
             try {
                 compiled = compile(requireCss.source, {
                     ...requireCss,
-                    sourceDir:sourceDirname,
-                    sourceMap:options.sourceMap
+                    sourceDir: sourceDirname,
+                    sourceMap: options.sourceMap
                 })
             } catch (e) {
                 console.log('Error source code path: ', filePath)
@@ -92,9 +100,9 @@ export default function run(sourceDir, outputDir = './', options = {
                 return;
             }
 
-            const {ast ,map , code} = compiled;
+            const { ast, map, code } = compiled;
 
-            function writeResultCode(cb){  
+            function writeResultCode(cb) {
                 fs.writeFile(path.join(cssDistPath, basename + '.css'), (code), function (err) {
                     if (err) {
                         return console.error(`write css failed ${basename}`);
@@ -103,7 +111,7 @@ export default function run(sourceDir, outputDir = './', options = {
                 })
             }
 
-            function writeCodegenAst(cb){
+            function writeCodegenAst(cb) {
                 fs.writeFile(path.join(codeGenAstDistPath, basename + '.json'), JSON.stringify(ast, null, 2), function (err) {
                     if (err) {
                         return console.error(`write transformed ast failed ${basename},\nError:${err}`);
@@ -111,8 +119,8 @@ export default function run(sourceDir, outputDir = './', options = {
                     cb()
                 })
             }
-            
-            function writeSourceMap(){  
+
+            function writeSourceMap() {
                 fs.writeFile(path.join(sourceMapDistPath, basename + '.map'), JSON.stringify(map, null, 2), function (err) {
                     if (err) {
                         return console.error(`write source map failed ${basename}`);
@@ -133,7 +141,7 @@ export default function run(sourceDir, outputDir = './', options = {
 
         if (!options.genOtherInfo) {
             write_compiled()
-        }else{
+        } else {
             write_parsed_ast(() => {
                 write_compiled()
             })
@@ -166,3 +174,8 @@ export default function run(sourceDir, outputDir = './', options = {
     renderDir(sourceDir)
 
 }
+
+export * from './src'
+
+
+export default run;

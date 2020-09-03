@@ -1,6 +1,6 @@
 import { CompilerOptions } from './options'
 import baseParse from './parse'
-import { generate } from './codegen'
+import { generate, CodegenResult } from './codegen'
 import { transform } from './transform'
 
 import { transformStatement } from './tranform-plugin/transformStatement'
@@ -11,7 +11,7 @@ export default function baseCompile(
         filename: 'default.scss',
         source: ''
     }
-) {
+): CodegenResult {
     let ast = baseParse(scss, options)
 
     transform(ast, {

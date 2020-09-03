@@ -1,8 +1,11 @@
 import compile from './compile';
-import parse from './parse'
 
-export {
-    parse
-}
+export * from './parse/ast'
+
+export * from './options'
+
+export * from './codegen'
+
+export { default as parse } from './parse'
 
 export default compile
