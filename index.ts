@@ -1,5 +1,3 @@
-export * from './src'
-
 import compile, {
     parse
 } from './src'

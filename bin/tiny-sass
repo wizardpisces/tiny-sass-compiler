@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const run = require('../index.js');
+const run = require('../dist/tiny-sass-compiler.cjs.prod.js');
 
 const [node_env, bin_path, ...args] = process.argv;
 
