@@ -95,7 +95,7 @@ function createReplacePlugin() {
 
 function createProductionConfig(format) {
     return createConfig(format, {
-        file: resolve(`dist/${name}.${format}.prod.js`),
+        file: outputConfigs[format].file.replace(/\.js$/, '.prod.js'),
         format: outputConfigs[format].format
     })
 }

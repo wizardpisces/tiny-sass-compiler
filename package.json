@@ -4,7 +4,7 @@
   "description": "simple scss compiler",
   "main": "dist/tiny-sass-compiler.cjs.prod.js",
   "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
-  "types": "dist/types",
+  "types": "dist/tiny-sass-compiler.d.ts",
   "files":["dist","bin"],
   "bin": {
     "tiny-sass": "bin/tiny-sass"

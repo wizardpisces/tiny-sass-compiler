@@ -1,5 +1,6 @@
-import compile, {
-    parse
+import {
+    parse,
+    compile
 } from './src'
 
 import fs from 'fs';
@@ -121,7 +122,7 @@ function run(
             }
 
             function writeSourceMap() {
-                fs.writeFile(path.join(sourceMapDistPath, basename + '.map'), JSON.stringify(map, null, 2), function (err) {
+                fs.writeFile(path.join(sourceMapDistPath, basename + '.css.map'), JSON.stringify(map, null, 2), function (err) {
                     if (err) {
                         return console.error(`write source map failed ${basename}`);
                     }

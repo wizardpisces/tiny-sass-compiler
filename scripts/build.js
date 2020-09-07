@@ -25,6 +25,7 @@ const pkg = require(`${pkgDir}/package.json`)
 run()
 
 async function run() {
+    await fs.remove(`${pkgDir}/dist`)
     await build()
     checkSize()
 }
@@ -102,7 +103,7 @@ async function build() {
             process.exitCode = 1
         }
 
-        // await fs.remove(`${pkgDir}/dist`)
+        await fs.remove(`${pkgDir}/dist/types`)
     }
 }
 
