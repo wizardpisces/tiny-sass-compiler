@@ -59,9 +59,12 @@ export function createTransformContext(
 }
 
 export function transform(root: RootNode, options: TransformOptions) {
+    
     const context = createTransformContext(root, options)
 
-    root = transformModule(root, options)
+    if(!__BROWSER__){
+        root = transformModule(root, options)
+    }
 
     traverseNode(root, context)
 

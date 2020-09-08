@@ -1,6 +1,9 @@
 #!/bin/sh
 
 set -e
+echo "Run test... "
+npm run build
+npm run test
 echo "Enter release version: "
 read VERSION
 
@@ -9,7 +12,6 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing $VERSION ..."
-  
   # commit
   git add -A
   git commit -m "[build] $VERSION"

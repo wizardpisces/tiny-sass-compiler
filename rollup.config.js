@@ -2,7 +2,7 @@ import path from 'path'
 import ts from 'rollup-plugin-typescript2'
 import replace from '@rollup/plugin-replace'
 import json from '@rollup/plugin-json'
-
+import nodeResolve  from '@rollup/plugin-node-resolve'
 const name = 'tiny-sass-compiler';
 const resolve = p => path.resolve(__dirname, p)
 const pkg = require(resolve(`package.json`))
@@ -18,10 +18,14 @@ const outputConfigs = {
         file: resolve(`dist/${name}.esm-bundler.js`),
         format: `es`
     },
+    'esm-browser': {
+        file: resolve(`dist/${name}.esm-browser.js`),
+        format: `es`
+    }
 }
 
-const packageFormats = ['esm-bundler', 'cjs']
-const packageConfigs =  []
+const packageFormats = ['esm-bundler', 'cjs', 'esm-browser']
+const packageConfigs = []
 
 if (process.env.NODE_ENV === 'production') {
     packageFormats.forEach(format => {
@@ -44,6 +48,8 @@ function createConfig(format, output, plugins = []) {
     const shouldEmitDeclarations = process.env.TYPES != null
     // const shouldEmitDeclarations =false
 
+    const isBrowserESMBuild = /esm-browser/.test(format)
+
     const tsPlugin = ts({
         useTsconfigDeclarationDir: true,
         check: process.env.NODE_ENV === 'production',
@@ -61,8 +67,17 @@ function createConfig(format, output, plugins = []) {
         }
     })
 
+    const nodePlugins = [
+        nodeResolve({
+            preferBuiltins: true
+        }),
+        require('@rollup/plugin-commonjs')({
+            sourceMap: false
+        })
+    ]
+
     const external = []
-    const entryFile = resolve('index.ts')
+    const entryFile = isBrowserESMBuild ? resolve('src/index.ts') : resolve('index.ts')
 
     return {
         input: entryFile,
@@ -72,7 +87,8 @@ function createConfig(format, output, plugins = []) {
                 namedExports: false
             }),
             tsPlugin,
-            createReplacePlugin(),
+            createReplacePlugin(isBrowserESMBuild),
+            ...nodePlugins,
             ...plugins
         ],
         output,
@@ -80,14 +96,18 @@ function createConfig(format, output, plugins = []) {
             if (!/Circular/.test(msg)) {
                 warn(msg)
             }
+        },
+        treeshake: {
+            moduleSideEffects: false
         }
     }
 }
 
-function createReplacePlugin() {
+function createReplacePlugin(isBrowserBuild) {
     const replacements = {
         __COMMIT__: `"${process.env.COMMIT}"`,
-        __VERSION__: `"${masterVersion}"`
+        __VERSION__: `"${masterVersion}"`,
+        __BROWSER__: isBrowserBuild
     }
 
     return replace(replacements)

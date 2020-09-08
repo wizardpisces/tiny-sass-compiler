@@ -50,7 +50,7 @@ function createCodegenContext(
         // source: ast.source,
         push(code: string, node) {
             context.code += code
-            if (context.map) {
+            if (!__BROWSER__ && context.map) {
                 if (node) {
                     addMapping(node.loc.start,node.loc.filename)
                 }
@@ -97,7 +97,7 @@ function createCodegenContext(
         })
     }
 
-    if (sourceMap) {
+    if (!__BROWSER__ && sourceMap) {
         context.map = new SourceMapGenerator()
         Object.keys(ast.fileSourceMap).forEach(filename => context.map!.setSourceContent(filename, ast.fileSourceMap[filename]))
     }

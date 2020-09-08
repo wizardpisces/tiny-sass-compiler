@@ -34,7 +34,7 @@ async function build() {
    
 
     const env = 'production'
-    // try{
+    try{
 
         await execa(
             'rollup',
@@ -53,9 +53,9 @@ async function build() {
                 stdio: 'inherit'
             }
         )
-    // }catch(e){
-    //     console.log('error rollup',__dirname,e)
-    // }
+    }catch(e){
+        console.log('error rollup',__dirname,e)
+    }
 
     if (pkg.types) {
         console.log()
