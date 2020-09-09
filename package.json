@@ -8,7 +8,8 @@
   "files": [
     "dist",
     "bin",
-    "index.js"
+    "index.js",
+    "index.esm.js"
   ],
   "bin": {
     "tiny-sass": "bin/tiny-sass"
