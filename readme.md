@@ -24,10 +24,10 @@ A compiler that compile sass to css, can be used both in ***node*** and ***brows
 ## Installation
 
 ```bash
-npm install --save-dev tiny-sass-compiler
+npm install --save tiny-sass-compiler
 ```
 
-### Usage
+### Usage in node
 
 ```ts
 import {compile} from "tiny-sass-compiler";
@@ -39,6 +39,24 @@ body .test{
   font: 100% $font-stack;
   color: $primary-color;
 }`)
+
+console.log(result.code)
+```
+
+### Usage in browser
+
+```ts
+import {compile} from  'tiny-sass-compiler/dist/tiny-sass-compiler.esm-browser.prod.js'
+const result = compile(`
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body .test{
+  font: 100% $font-stack;
+  color: $primary-color;
+}`)
+
+console.log(result.code)
 ```
 
 ## Terminal Setup
@@ -47,7 +65,7 @@ body .test{
 npm install -g tiny-sass-compiler
 ```
 
-## Command Line Interface
+### Command Line Interface
 
 *Support **.scss** extension for now*
 
