@@ -2,7 +2,7 @@ import path from 'path'
 import ts from 'rollup-plugin-typescript2'
 import replace from '@rollup/plugin-replace'
 import json from '@rollup/plugin-json'
-import nodeResolve  from '@rollup/plugin-node-resolve'
+import nodeResolve from '@rollup/plugin-node-resolve'
 const name = 'tiny-sass-compiler';
 const resolve = p => path.resolve(__dirname, p)
 const pkg = require(resolve(`package.json`))
@@ -18,13 +18,19 @@ const outputConfigs = {
         file: resolve(`dist/${name}.esm-bundler.js`),
         format: `es`
     },
+
+    // browser distribution
     'esm-browser': {
         file: resolve(`dist/${name}.esm-browser.js`),
         format: `es`
+    },
+    'cjs-browser': {
+        file: resolve(`dist/${name}.cjs-browser.js`),
+        format: `cjs`
     }
 }
 
-const packageFormats = ['esm-bundler', 'cjs', 'esm-browser']
+const packageFormats = Object.keys(outputConfigs);
 const packageConfigs = []
 
 if (process.env.NODE_ENV === 'production') {
@@ -76,8 +82,8 @@ function createConfig(format, output, plugins = []) {
         })
     ]
 
-    const external = []
-    const entryFile = isBrowserESMBuild ? resolve('src/index.ts') : resolve('index.ts')
+    const external = isBrowserESMBuild ? ['fs','path'] : ['fs', 'path', 'util']; // node build externalize system package
+    const entryFile = isBrowserESMBuild ? resolve('src/index.ts') : resolve('cli.ts')
 
     return {
         input: entryFile,

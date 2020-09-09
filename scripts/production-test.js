@@ -1,9 +1,11 @@
-const run = require('../dist/tiny-sass-compiler.cjs.prod.js')
+const {
+    run
+} = require('../index.js')
 /**
  * Todos:
  * add test cases besides input output snapshots
  */
-run.default('./test', './test-dist', {
+run('./test', './test-dist', {
     genOtherInfo: true,
     sourceMap: true
 });

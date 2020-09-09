@@ -2,18 +2,19 @@
   "name": "tiny-sass-compiler",
   "version": "0.7.3",
   "description": "simple scss compiler",
-  "main": "dist/tiny-sass-compiler.cjs.prod.js",
-  "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
+  "main": "index.js",
+  "module": "index.esm.js",
   "types": "dist/tiny-sass-compiler.d.ts",
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "index.js"
   ],
   "bin": {
     "tiny-sass": "bin/tiny-sass"
   },
   "scripts": {
-    "test-source": "ts-node scripts/test.ts",
+    "test-source": "ts-node scripts/source-test.ts",
     "test": "node scripts/production-test.js",
     "jest": "jest",
     "build": "node scripts/build.js",

@@ -4,8 +4,8 @@ import {
 } from './src'
 
 import fs from 'fs';
-import path from 'path'
-const mkdirp = require('mkdirp')
+import path from 'path';
+import mkdirp from 'mkdirp';
 import { CodegenResult } from '@/codegen';
 
 function require_css(scssPath: string) {
@@ -178,5 +178,6 @@ function run(
 
 export * from './src'
 
-
-export default run;
+export {
+    run
+}

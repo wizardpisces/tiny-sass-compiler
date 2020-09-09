@@ -10,7 +10,7 @@ A tiny Sass compiler in javascript for people familiar with javascript and want 
 
 ## Description 
 
-A compiler that compile sass to css ( tutorial only, not for production )
+A compiler that compile sass to css, can be used both in ***node*** and ***browser*** environment
 
 ### Features:
 
@@ -21,7 +21,27 @@ A compiler that compile sass to css ( tutorial only, not for production )
 5. Mixins
 6. Modules
 
-## Setup
+## Installation
+
+```bash
+npm install --save-dev tiny-sass-compiler
+```
+
+### Usage
+
+```ts
+import {compile} from "tiny-sass-compiler";
+const result = compile(`
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body .test{
+  font: 100% $font-stack;
+  color: $primary-color;
+}`)
+```
+
+## Terminal Setup
 
 ```bash
 npm install -g tiny-sass-compiler
