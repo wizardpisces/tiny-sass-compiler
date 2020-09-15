@@ -3,7 +3,8 @@
 
 ### feat
 
-* 中间文件通过增加阶段hook来捕获出来，而不是暴露出方法重复的build来写
+* compare with sass online to better lint error
+* middleware add hooks to capture mid product
 * release for browser to use in online demo in wizardpisces.github.io
 * handle recursive @import
 * souce-map size compression (reference https://sokra.github.io/source-map-visualization generated map)

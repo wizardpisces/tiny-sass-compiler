@@ -8,6 +8,8 @@ This project is for people who want to understand parser and AST(abstract syntax
 
 A tiny Sass compiler in javascript for people familiar with javascript and want to know more about compiler
 
+[Online Demo](https://wizardpisces.github.io/)
+
 ## Description 
 
 A compiler that compile sass to css, can be used both in ***node*** and ***browser*** environment
