@@ -1,6 +1,6 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "simple scss compiler",
   "main": "index.js",
   "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
