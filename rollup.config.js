@@ -19,6 +19,11 @@ const outputConfigs = {
         format: `es`
     },
 
+    global: {
+        file: resolve(`dist/${name}.global.js`),
+        format: `iife`
+    },
+
     // browser distribution
     'esm-browser': {
         file: resolve(`dist/${name}.esm-browser.js`),
@@ -48,13 +53,20 @@ function createConfig(format, output, plugins = []) {
         process.exit(1)
     }
 
-    output.sourcemap = !!process.env.SOURCE_MAP
+    const isBrowserESMBuild = /esm-browser/.test(format)
+    const isGlobalBuild = /global/.test(format)
+    const isBrowserBuild = isBrowserESMBuild | isGlobalBuild
+    
+    output.sourcemap = false
     output.externalLiveBindings = false
 
+    if(isGlobalBuild){
+        output.name = 'tinySassCompiler'
+    }
+    
     const shouldEmitDeclarations = process.env.TYPES != null
     // const shouldEmitDeclarations =false
-
-    const isBrowserESMBuild = /esm-browser/.test(format)
+    
 
     const tsPlugin = ts({
         useTsconfigDeclarationDir: true,
@@ -82,8 +94,8 @@ function createConfig(format, output, plugins = []) {
         })
     ]
 
-    const external = isBrowserESMBuild ? ['fs','path'] : ['fs', 'path', 'util']; // node build externalize system package
-    const entryFile = isBrowserESMBuild ? resolve('src/index.ts') : resolve('cli.ts')
+    const external = isBrowserBuild ? ['fs', 'path'] : ['fs', 'path', 'util']; // node build externalize system package
+    const entryFile = isBrowserBuild ? resolve('src/index.ts') : resolve('cli.ts')
 
     return {
         input: entryFile,
@@ -93,7 +105,7 @@ function createConfig(format, output, plugins = []) {
                 namedExports: false
             }),
             tsPlugin,
-            createReplacePlugin(isBrowserESMBuild),
+            createReplacePlugin(isBrowserBuild),
             ...nodePlugins,
             ...plugins
         ],

@@ -15,10 +15,10 @@ export function defaultOnError(error: CompilerError) {
 export function createCompilerError<T extends number>(
     code: T,
     loc?: SourceLocation,
+    additionalMessage?: string,
     messages?: { [code: number]: string },
-    additionalMessage?: string
 ): T extends ErrorCodes ? CoreCompilerError : CompilerError {
-    const msg = (messages || errorMessages)[code] + (additionalMessage || ``)
+    const msg = (messages || errorMessages)[code] +'\n' + (additionalMessage || ``)
     const error = new SyntaxError(String(msg)) as CompilerError
     error.code = code
     error.loc = loc
@@ -30,12 +30,18 @@ export const enum ErrorCodes {
     //parse error
     UNKNONWN_TOKEN_TYPE,
     INVALID_LOC_POSITION,
-    EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE
+    EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE,
+    UNKNOWN_EXPRESSION_TYPE,
+    UNKNOWN_STATEMENT_TYPE,
+    UNDEFINED_VARIABLE
 }
 
 export const errorMessages: { [code: number]: string } = {
     // parse errors
     [ErrorCodes.UNKNONWN_TOKEN_TYPE]: 'Unknown token type.',
-    [ErrorCodes.INVALID_LOC_POSITION]: 'Incorrect sourceLocation. start loc should be smaller than end loc',
-    [ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE]: 'Expect text node after operator node',
+    [ErrorCodes.INVALID_LOC_POSITION]: 'Incorrect sourceLocation. start loc should be smaller than end loc.',
+    [ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE]: 'Expect text node after operator node.',
+    [ErrorCodes.UNKNOWN_EXPRESSION_TYPE]: 'Unknown expression type.',
+    [ErrorCodes.UNKNOWN_STATEMENT_TYPE]: 'Unknown statement type.',
+    [ErrorCodes.UNDEFINED_VARIABLE]: 'Undefined variable.',
 }

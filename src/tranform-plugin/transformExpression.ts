@@ -1,6 +1,12 @@
 import { NodeTransform , TransformContext} from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode} from '../parse/ast'
 import { fillWhitespace} from '../parse/util'
+import {
+    defaultOnError,
+    ErrorCodes,
+    createCompilerError
+} from '../parse/errors';
+
 export const transformExpression: NodeTransform = (node, context) => {
 
 }
@@ -22,8 +28,7 @@ export function processExpression(
             case NodeTypes.LIST: return transformList(node, context);
             case NodeTypes.BINARY: return transformBinary(node, context);
 
-            default:
-                throw new Error("Don't know how to processExpression expression for " + JSON.stringify(node));
+            default: throw createCompilerError(ErrorCodes.UNKNOWN_EXPRESSION_TYPE, (node as Node).loc,(node as Node).type)
         }
     }
 
@@ -51,10 +56,16 @@ export function processExpression(
     }
 
     function transformVar(node: VariableNode | VarKeyNode, context: TransformContext):TextNode {
+        let value = context.env.get(node.value);
+        if(typeof value === 'undefined'){
+            defaultOnError(
+                createCompilerError(ErrorCodes.UNDEFINED_VARIABLE, node.loc,node.value)
+            )
+        }
         return {
             ...node,
             type:NodeTypes.TEXT,
-            value: context.env.get(node.value)
+            value: value
         };
     }
 
@@ -137,11 +148,7 @@ export function processExpression(
             };
 
             if (node.type === NodeTypes.TEXT) return parseFloatFn(node.value);
-            if (node.type === NodeTypes.VARIABLE) return evaluateBinary({
-                ...node,
-                type: NodeTypes.TEXT,
-                value: context.env.get(node.value),
-            })
+            if (node.type === NodeTypes.VARIABLE) return evaluateBinary(transformVar(node,context))
             if (node.type === NodeTypes.BINARY) return opAcMap[node.operator.value](evaluateBinary(node.left), evaluateBinary(node.right));
 
             throw new Error("Don't know how to evaluateBinary type: " + (node as Node).type);

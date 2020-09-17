@@ -5,6 +5,8 @@
   "main": "index.js",
   "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
   "types": "dist/tiny-sass-compiler.d.ts",
+  "unpkg": "dist/tinySassCompiler.global.js",
+  "jsdelivr": "dist/tinySassCompiler.global.js",
   "files": [
     "dist",
     "bin",

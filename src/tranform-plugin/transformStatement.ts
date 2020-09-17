@@ -1,8 +1,12 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement } from '../parse/ast'
 import { deepClone, createEmptyNode, isEmptyNode, addNodeEmptyLocation } from '../parse/util';
 import { processExpression } from './transformExpression';
 import { processAssign } from './transformAssign';
+import {
+    ErrorCodes,
+    createCompilerError
+} from '../parse/errors';
 
 export const transformStatement: NodeTransform = (node, context) => {
     processStatement(node as Statement,context)
@@ -35,8 +39,7 @@ export function processStatement(
             case NodeTypes.ERROR:
                 throw new Error(processExpression(node.value, context).value)
 
-            default:
-                throw new Error("Don't know how to compile statement for " + JSON.stringify(node));
+            default: throw createCompilerError(ErrorCodes.UNKNOWN_STATEMENT_TYPE, (node as Node).loc, (node as Node).type)
         }
     }
 

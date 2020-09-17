@@ -3,9 +3,12 @@
 
 ### feat
 
+* parse errors
+    1. don't have a semicolon should not report error
+    2. correctly report syntax error when there is no mid colon
+* contribute rollup/webpack/vite etc tiny-sass-compiler loader or plugin
 * compare with sass online to better lint error
-* middleware add hooks to capture mid product
-* release for browser to use in online demo in wizardpisces.github.io
+* middleware add hooks to capture mid product;
 * handle recursive @import
 * souce-map size compression (reference https://sokra.github.io/source-map-visualization generated map)
 * add keyword @function

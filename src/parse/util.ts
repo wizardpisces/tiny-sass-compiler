@@ -100,7 +100,6 @@ export class Environment  {
     get(name:string) {
         if (name in this.vars)
             return this.vars[name];
-        throw new Error("Undefined variable " + name);
     }
     // set: function (name, value) {
     //     let scope = this.lookup(name);
