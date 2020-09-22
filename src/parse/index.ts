@@ -9,5 +9,5 @@ export default function baseParse(
     scss: string,
     options: ParserOptions
 ): RootNode {
-    return parse(lexical(input_stream(scss)), options)
+    return parse(lexical(input_stream(scss,options.filename)), options)
 }

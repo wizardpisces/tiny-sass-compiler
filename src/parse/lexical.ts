@@ -1,19 +1,17 @@
 /**
  * 
  * @param {input_stream processed stream method} input 
- * { type: NodeTypes.PUNC, value: "(" }           // punctuation: parens((|)), comma(,), semicolon(;) etc.
- * { type: NodeTypes.TEXT, value: "12px" }
- * { type: NodeTypes.VARIABLE, value: "$height" }      // identifiers
- * { type: NodeTypes.KEYWORD, value: NodeTypes.INCLUDE}    // keywords below
- * { type: NodeTypes.PLACEHOLDER, value: "%str" }      //  % started string contains op char '%'
- * { type: NodeTypes.OPERATOR, value: "!=" }            // + - % * / != ==
- */
+*/
+
 import {
     is_calculate_op_char,
     is_punc
 } from './util'
 
 import { NodeTypes } from './ast';
+import {
+    ErrorCodes
+} from './errors';
 
 export default function lex(input) {
     // let current = null;
@@ -28,7 +26,7 @@ export default function lex(input) {
         eof,
         getCoordination:input.getCoordination,
         setCoordination:input.setCoordination,
-        croak: input.croak
+        emitError: input.emitError
     }
 
     function is_comment_char(ch) {
@@ -93,7 +91,7 @@ export default function lex(input) {
         let kw = read_while(is_base_char);
 
         if (!is_keyword(kw)) {
-            return input.croak(`Unknown keyword ${kw}`)
+            // unknown keyword handle moved to parse.ts dispatchParser
         }
         return {
             type: NodeTypes.KEYWORD,
@@ -237,7 +235,7 @@ export default function lex(input) {
         if (is_comparison_op_char(ch)) return maybe_comparison_op_token(read_while(is_comparison_op_char));
         if (is_base_char(ch)) return read_string();
 
-        input.croak("Can't handle character: " + ch);
+        input.emitError(ErrorCodes.UNKNOWN_CHAR);
     }
 
     /**

@@ -72,6 +72,13 @@ function createConfig(format, output, plugins = []) {
         useTsconfigDeclarationDir: true,
         check: process.env.NODE_ENV === 'production',
         tsconfig: resolve('tsconfig.json'),
+        /**
+         * caution:
+         * 
+         * clean set to true to avoid cache not track dependency which is not 100 % right
+         * in circumstance when change enum order, another dependent file keep the old order if not modified
+         */
+        // clean: true,
         cacheRoot: resolve('node_modules/.rts2_cache'),
         tsconfigOverride: {
             compilerOptions: {

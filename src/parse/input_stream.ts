@@ -1,4 +1,13 @@
-function input_stream(input:string) {
+import {
+    defaultOnError,
+    ErrorCodes,
+    createCompilerError
+} from './errors';
+import {
+    SourceLocation,
+}from './ast'
+
+function input_stream(input: string, filename:string) {
 
     let offset = 0, line = 1, column = 1;
     return {
@@ -8,6 +17,7 @@ function input_stream(input:string) {
         getCoordination,
         eof,
         croak,
+        emitError
     };
 
     function next() {
@@ -37,10 +47,25 @@ function input_stream(input:string) {
     }
 
     function eof() {
-        return peek() == "";
+        return peek() === "";
     }
+    
     function croak(msg) {
         throw new Error(msg + " (" + line + ":" + column + ")");
+    }
+
+    function emitError(
+        code: ErrorCodes,
+        loc: SourceLocation = {
+            start: getCoordination(),
+            end: getCoordination(),
+            filename
+        },
+        additionalMessage: string = ''
+    ): void {
+        defaultOnError(
+            createCompilerError(code, loc, additionalMessage)
+        )
     }
 }
 

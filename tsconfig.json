@@ -16,7 +16,10 @@
         "removeComments": false,
         "declarationDir": "dist/types",
         "jsx": "preserve",
-        "lib": ["esnext", "dom"],
+        "lib": [
+            "esnext",
+            "dom"
+        ],
         "types": [
             "jest",
             "node"

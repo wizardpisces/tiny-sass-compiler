@@ -1,6 +1,6 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "0.8.5",
+  "version": "0.8.4",
   "description": "simple scss compiler",
   "main": "index.js",
   "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
@@ -16,8 +16,8 @@
     "tiny-sass": "bin/tiny-sass"
   },
   "scripts": {
-    "test-source": "ts-node scripts/source-test.ts",
-    "test": "node scripts/production-test.js",
+    "test-source": "ts-node scripts/test-source.ts",
+    "test": "node scripts/test-production.js",
     "jest": "jest",
     "build": "node scripts/build.js",
     "release": "sh scripts/release.sh",

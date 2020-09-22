@@ -8,12 +8,12 @@
     2. correctly report syntax error when there is no mid colon
 * contribute rollup/webpack/vite etc tiny-sass-compiler loader or plugin
 * compare with sass online to better lint error
+* add '( | )' check to binary precedence, only support whitespace gap operator (eg: 1 + 2 but not 1+2)
 * middleware add hooks to capture mid product;
 * handle recursive @import
 * souce-map size compression (reference https://sokra.github.io/source-map-visualization generated map)
 * add keyword @function
 * replace @import with @use
-* add '( | )' check to binary precedence
 * add position to more tokens (doing)
 
 ### refactor

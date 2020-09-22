@@ -1,7 +1,5 @@
 import {
-    defaultOnError,
     ErrorCodes,
-    createCompilerError
 } from './errors';
 
 import {
@@ -25,10 +23,10 @@ import {
     BinaryNode,
     EachStatement,
     ListNode,
-    SourceLocation,
     createListNode,
     createAssignStatement,
-    VarKeyNode
+    VarKeyNode,
+    puncType
 } from './ast';
 
 import {
@@ -45,20 +43,6 @@ import { ParserOptions } from '@/options';
 
 export default function parse(input, options: ParserOptions) {
     const { filename, source } = options;
-
-    function emitError(
-        code: ErrorCodes,
-        loc: SourceLocation = {
-            start: input.getCoordination(),
-            end: input.getCoordination(),
-            filename
-        }
-    ): void {
-        defaultOnError(
-            createCompilerError(code, loc)
-        )
-    }
-
     /**
      * end with ';' , eg:
      * 
@@ -81,7 +65,7 @@ export default function parse(input, options: ParserOptions) {
         assign_right_end_condition = default_right_end_condition
     }
 
-    function is_punc(ch) {
+    function is_punc(ch?: puncType) {
         let tok = input.peek();
         return tok && tok.type == NodeTypes.PUNC && (!ch || tok.value == ch) && tok;
     }
@@ -103,27 +87,32 @@ export default function parse(input, options: ParserOptions) {
 
     function skip_punc(ch) {
         if (is_punc(ch)) input.next();
-        // Todos: no mandatory skip for now
-        // else {
-        //     input.croak("Expecting punctuation: \"" + ch + "\"");
-        // }
+        // mandatory skip
+        else {
+            input.emitError(ErrorCodes.EXPECTED_X, consumeNextTokenWithLoc().loc, ch)
+        }
     }
 
     // todos: replace typescript any
-    function delimited(start, stop, separator, parser: Function) {// FIFO
-        let a: any[] = [], first = true;
+    function delimited(start: puncType, stop: puncType, separator: puncType, parser: Function) {// FIFO
+        let statements: any[] = [], first = true;
+
         skip_punc(start);
 
         while (!input.eof()) {
             if (debug()) break;
             if (is_punc(stop)) break;
-            if (first) first = false; else skip_punc(separator);
+            if (first) {
+                first = false;
+            } else {
+                skip_punc(separator);
+            }
             if (is_punc(stop)) break;
 
-            a.push(parser());
+            statements.push(parser());
         }
         skip_punc(stop);
-        return a;
+        return statements;
     }
 
     let assign_right_end_condition = default_right_end_condition;
@@ -138,22 +127,18 @@ export default function parse(input, options: ParserOptions) {
                 end = input.getCoordination();
 
             /**
-             *  to resolve stacked injectLoc executed which will lead to  start equal end position 
-             * */
-            // if(ast.loc && ast.loc!==locStub && ast.loc.end.offset>0){
-            //     return ast;
-            // }
-            /**
              * patch ASSIGN , make left node start as start position
              * patch BINARY node position, make binary left most node start as binary node start position
              * */
 
             if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
                 let left = args[0]
-                while (left.type === NodeTypes.BINARY) {
-                    left = left.left
+                if(left){
+                    while (left.type === NodeTypes.BINARY) {
+                        left = left.left
+                    }
+                    start = left.loc.start;
                 }
-                start = left.loc.start;
             }
 
             let loc = {
@@ -163,7 +148,7 @@ export default function parse(input, options: ParserOptions) {
             }
 
             if (start.offset >= end.offset) {
-                emitError(ErrorCodes.INVALID_LOC_POSITION)
+                input.emitError(ErrorCodes.INVALID_LOC_POSITION)
             }
 
             return {
@@ -231,7 +216,9 @@ export default function parse(input, options: ParserOptions) {
             return parse_error();
         }
 
+
         let tok = input.peek();
+
         if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
             return consumeNextTokenWithLoc();
         }
@@ -247,38 +234,51 @@ export default function parse(input, options: ParserOptions) {
             return parse_consecutive_str()
         }
 
-        emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE)
+        // error handling
+
+        if (tok.type == NodeTypes.KEYWORD) {
+            return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
+        }
+
+        return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
-    function parseAssign(left:AssignStatement['left']): AssignStatement {
+    function parseAssign(left: AssignStatement['left']): AssignStatement {
 
         input.next();
 
         function parse_assign_right(): SimpleExpressionNode[] {
-            let right: SimpleExpressionNode[]=[];
+            let right: SimpleExpressionNode[] = [];
             while (!assign_right_end_condition()) {
                 if (debug()) break;
+                /**
+                 * catch error when missed ';', but encountered ':'
+                 */
+                if (is_assign() || is_punc('{')) {
+                    let tok = consumeNextTokenWithLoc()
+                    input.emitError(ErrorCodes.EXPECTED_X, tok.loc, ";")
+                }
+
                 let result: SimpleExpressionNode = maybe_binary(dispatchParser(), 0);
                 right.push(result)
             }
             return right;
         }
 
-
         let right: ListNode = createListNode(parse_assign_right())
 
-        return createAssignStatement(left,right)
+        return createAssignStatement(left, right)
     }
 
-    function maybe_binary(left:TextNode | BinaryNode, left_prec):TextNode | BinaryNode {
+    function maybe_binary(left: TextNode | BinaryNode, left_prec): TextNode | BinaryNode {
         let tok: OperatorNode = is_op()
         if (tok) {
             if (PRECEDENCE[tok.value] > left_prec) {
                 tok = consumeNextTokenWithLoc(); //skip op , add loc
                 let nextNode: TextNode = consumeNextTokenWithLoc();
 
-                if(nextNode.type !== NodeTypes.TEXT){
-                    emitError(ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE,nextNode.loc)
+                if (nextNode.type !== NodeTypes.TEXT) {
+                    input.emitError(ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE, nextNode.loc)
                 }
 
                 return maybe_binary({
@@ -297,7 +297,7 @@ export default function parse(input, options: ParserOptions) {
         return left;
     }
 
-    function parse_child(selector:ChildStatement['selector']): ChildStatement {
+    function parse_child(selector: ChildStatement['selector']): ChildStatement {
         let children = delimited("{", "}", ";", parse_statement);
 
         return {
@@ -443,10 +443,6 @@ export default function parse(input, options: ParserOptions) {
 
         testExpression = maybe_binary(dispatchParser(), 0);
 
-        if (!is_punc('{')) {
-            input.croak(`@if expect '{' but encountered '${consumeNextTokenWithLoc().value}'`)
-        }
-
         blockStatement = parse_block_statement();
 
         if (is_kw('@else')) {
@@ -539,7 +535,7 @@ export default function parse(input, options: ParserOptions) {
      * #{var} 
      */
 
-    function maybe_key_var_wrapper():VarKeyNode | TextNode {
+    function maybe_key_var_wrapper(): VarKeyNode | TextNode {
         function parse_key_var_wrapper(varKeyStartLoc): VarKeyNode {
             skip_punc('{')
             let node = consumeNextTokenWithLoc();
@@ -550,7 +546,7 @@ export default function parse(input, options: ParserOptions) {
             return {
                 ...node,
                 type: NodeTypes.VAR_KEY,
-                loc:{
+                loc: {
                     start: varKeyStartLoc,
                     end: node.loc.end,
                     filename
@@ -575,8 +571,8 @@ export default function parse(input, options: ParserOptions) {
 
         return {
             type: NodeTypes.TEXT,
-            value: '#'+nextToken.value,
-            loc:{
+            value: '#' + nextToken.value,
+            loc: {
                 start: token.start,
                 end: nextToken.end,
                 filename
@@ -595,7 +591,7 @@ export default function parse(input, options: ParserOptions) {
         while (!input.eof()) {
             let result = parse_statement()
             children.push(result);
-            if (!input.eof()) skip_punc(";");
+            if (is_punc(";")) skip_punc(";");
         }
         return {
             type: NodeTypes.RootNode,

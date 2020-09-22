@@ -7,7 +7,7 @@
         "name": "tiny-sass",
         "type": "node",
         "request": "launch",
-        "program": "${workspaceFolder}/scripts/test.js",
+        "program": "${workspaceFolder}/scripts/test-source.ts",
         "stopOnEntry": false,
         "cwd": "${workspaceFolder}",
         "runtimeArgs": [

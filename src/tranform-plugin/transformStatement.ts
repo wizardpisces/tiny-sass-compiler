@@ -12,6 +12,7 @@ export const transformStatement: NodeTransform = (node, context) => {
     processStatement(node as Statement,context)
 }
 
+
 export function processStatement(
     node: Statement,
     context: TransformContext,
