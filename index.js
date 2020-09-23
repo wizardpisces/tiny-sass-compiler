@@ -7,5 +7,5 @@ const isNode =
 if (isNode) {
     module.exports = require('./dist/tiny-sass-compiler.cjs.prod.js')
 } else {
-    module.exports = require('./dist/tiny-sass-compiler.cjs-browser.prod.js')
+    module.exports = require('./dist/tiny-sass-compiler.esm-browser.prod.js')
 }
