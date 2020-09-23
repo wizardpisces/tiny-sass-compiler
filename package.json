@@ -1,6 +1,6 @@
 {
   "name": "tiny-sass-compiler",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "simple scss compiler",
   "files": [
     "dist",
