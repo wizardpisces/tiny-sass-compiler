@@ -41,7 +41,8 @@ export const enum NodeTypes {
 }
 
 export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each'
-export type puncType = '(' | ')' | ',' | ';' | '#' | ':' | '{' | '}'
+export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
+export type assignPuncType = ':'
 export type arithmeticOperator = '+' | '-' | '*' | '/' | '%'
 export type comparisonOperator = '>' | '<' | '>=' | '<=' | '==' | '!='
 

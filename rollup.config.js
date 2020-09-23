@@ -53,7 +53,7 @@ function createConfig(format, output, plugins = []) {
         process.exit(1)
     }
 
-    const isBrowserESMBuild = /esm-browser/.test(format)
+    const isBrowserESMBuild = /browser/.test(format)
     const isGlobalBuild = /global/.test(format)
     const isBrowserBuild = isBrowserESMBuild | isGlobalBuild
     
@@ -85,7 +85,7 @@ function createConfig(format, output, plugins = []) {
                 sourceMap: output.sourcemap,
                 declaration: shouldEmitDeclarations,
                 // declarationMap: shouldEmitDeclarations,
-                module: 'ESNext'
+                module: 'ESNext' // when build for production, do not compile module, leave it to rollup
             },
             exclude: ['**/__tests__', 'test-dts'],
             include: ['src']

@@ -5,7 +5,7 @@ import {
     Environment
 } from './parse/util'
 import transformChain, { transform_module as transformModule} from './transform-middleware/index'
-
+import { isBrowser} from './global'
 // - NodeTransform:
 //   Transforms that operate directly on a ChildNode. NodeTransforms may mutate,
 //   replace or remove the node being processed.
@@ -62,7 +62,7 @@ export function transform(root: RootNode, options: TransformOptions) {
     
     const context = createTransformContext(root, options)
 
-    if(!__BROWSER__){
+    if (!isBrowser()){
         root = transformModule(root, options)
     }
 

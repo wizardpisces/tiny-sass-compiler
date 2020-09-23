@@ -2,11 +2,6 @@
   "name": "tiny-sass-compiler",
   "version": "0.8.6",
   "description": "simple scss compiler",
-  "main": "index.js",
-  "module": "dist/tiny-sass-compiler.esm-bundler.prod.js",
-  "types": "dist/tiny-sass-compiler.d.ts",
-  "unpkg": "dist/tinySassCompiler.global.js",
-  "jsdelivr": "dist/tinySassCompiler.global.js",
   "files": [
     "dist",
     "bin",
@@ -16,7 +11,7 @@
     "tiny-sass": "bin/tiny-sass"
   },
   "scripts": {
-    "test-source": "ts-node scripts/test-source.ts",
+    "test-source": "node -v && node -r ts-node/register scripts/test-source.ts",
     "test": "node scripts/test-production.js",
     "jest": "jest",
     "build": "node scripts/build.js",
@@ -56,14 +51,14 @@
     "rollup-plugin-typescript2": "^0.27.2",
     "sass": "^1.26.10",
     "ts-jest": "^26.1.0",
+    "ts-node": "^9.0.0",
     "tslib": "^2.0.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@vue/compiler-core": "^3.0.0-rc.9",
     "mkdirp": "^1.0.4",
-    "source-map": "^0.7.3",
-    "superstruct": "^0.8.3",
-    "ts-node": "^8.10.2"
+    "source-map": "^0.6.1",
+    "superstruct": "^0.8.3"
   }
 }

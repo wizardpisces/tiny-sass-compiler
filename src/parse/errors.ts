@@ -12,15 +12,17 @@ export function defaultOnError(error: CompilerError) {
     throw error
 }
 
+type messagesType = { [code: number]: string | Function }
+
 export function createCompilerError<T extends number>(
     code: T,
     loc?: SourceLocation,
     additionalMessage?: string,
-    messages?: { [code: number]: string },
+    messages?: messagesType,
 ): T extends ErrorCodes ? CoreCompilerError : CompilerError {
     let msg = (messages || errorMessages)[code];
     if(typeof msg === 'function'){
-        msg = msg(additionalMessage);
+        msg =( msg as Function)(additionalMessage);
     }else{
         msg +='\n' + (additionalMessage || ``)
     }
@@ -47,7 +49,7 @@ export const enum ErrorCodes {
 
 }
 
-export const errorMessages: { [code: number]: string | Function } = {
+export const errorMessages: messagesType = {
     // parse errors
     [ErrorCodes.UNKNONWN_TOKEN_TYPE]: 'Unknown token type.',
     [ErrorCodes.UNKNOWN_CHAR]: 'Unknown char.',

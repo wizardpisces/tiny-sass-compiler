@@ -6,7 +6,7 @@ import {
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
-import { CodegenResult } from '@/codegen';
+import { CodegenResult } from './src/codegen';
 
 function require_css(scssPath: string) {
     return {

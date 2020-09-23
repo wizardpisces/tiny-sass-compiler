@@ -3,18 +3,20 @@
         "baseUrl": ".",
         "sourceMap": true,
         "target": "esnext",
-        "module": "commonjs",
+        "module": "commonjs", //support: npm run test-source
         "moduleResolution": "node",
         "allowJs": true,
         "strict": true,
         "noUnusedLocals": true,
         "noImplicitAny": false,
-        "importHelpers": true,
-        "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "removeComments": false,
-        "declarationDir": "dist/types",
+        "declaration": true,
+        "declarationDir": "dist/types", //support api-extractor.json bundle ts config mainEntryPointFilePath
+        "importHelpers": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
         "jsx": "preserve",
         "lib": [
             "esnext",
@@ -27,14 +29,14 @@
         "rootDir": ".",
         "paths": {
             "@/*": [
-                "./src/*"
+                "src/*"
             ],
             "~": [
-                "/"
+                "/*"
             ]
         }
     },
-    "exclude": [
-        "node_modules"
+    "include": [
+        "src/**/*"
     ]
 }

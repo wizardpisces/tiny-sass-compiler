@@ -13,7 +13,7 @@ import { advancePositionWithMutation} from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
 
 // todos complete CodegenNode type
-
+import { isBrowser} from './global'
 export interface CodegenResult {
     code: string
     ast: RootNode
@@ -50,7 +50,7 @@ function createCodegenContext(
         // source: ast.source,
         push(code: string, node) {
             context.code += code
-            if (!__BROWSER__ && context.map) {
+            if (!isBrowser() && context.map) {
                 if (node) {
                     addMapping(node.loc.start,node.loc.filename)
                 }
@@ -97,7 +97,7 @@ function createCodegenContext(
         })
     }
 
-    if (!__BROWSER__ && sourceMap) {
+    if (!isBrowser() && sourceMap) {
         context.map = new SourceMapGenerator()
         Object.keys(ast.fileSourceMap).forEach(filename => context.map!.setSourceContent(filename, ast.fileSourceMap[filename]))
     }
