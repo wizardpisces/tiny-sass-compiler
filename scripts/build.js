@@ -58,7 +58,6 @@ async function build() {
     }
 
     if (pkg.types) {
-        console.log()
         console.log(
             chalk.bold(chalk.yellow(`Rolling up type definitions for tiny-sass-compiler...`))
         )

@@ -29,10 +29,10 @@ const outputConfigs = {
         file: resolve(`dist/${name}.esm-browser.js`),
         format: `es`
     },
-    'cjs-browser': {
-        file: resolve(`dist/${name}.cjs-browser.js`),
-        format: `cjs`
-    }
+    // 'cjs-browser': {
+    //     file: resolve(`dist/${name}.cjs-browser.js`),
+    //     format: `cjs`
+    // }
 }
 
 const packageFormats = Object.keys(outputConfigs);

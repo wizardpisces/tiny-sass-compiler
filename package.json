@@ -2,6 +2,11 @@
   "name": "tiny-sass-compiler",
   "version": "0.8.7",
   "description": "simple scss compiler",
+  "main": "index.js",
+  "module": "dist/tiny-sass-compiler.esm-browser.prod.js",
+  "types": "dist/tiny-sass-compiler.d.ts",
+  "unpkg": "dist/tinySassCompiler.global.js",
+  "jsdelivr": "dist/tinySassCompiler.global.js",
   "files": [
     "dist",
     "bin",
