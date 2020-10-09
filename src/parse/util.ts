@@ -67,6 +67,7 @@ export function fillWhitespace(tokens: SimpleExpressionNode[]) {
          nextToken = tokens[curIndex + 1];
          list.push(curToken)
          if (nextToken.loc.start.offset > curToken.loc.end.offset) {
+             // one whitespace is enough to demonstrate semantics
              list.push(whitespaceToken)
          }
          curIndex++;

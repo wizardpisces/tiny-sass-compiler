@@ -1,7 +1,7 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode } from '../parse/ast'
 import { deepClone, createEmptyNode, isEmptyNode, addNodeEmptyLocation } from '../parse/util';
-import { processExpression } from './transformExpression';
+import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
 import {
     ErrorCodes,
@@ -27,8 +27,10 @@ export function processStatement(
             * Statement
             */
             case NodeTypes.ASSIGN: return processAssign(node, context);
-            case NodeTypes.MIXIN: return transform_mixin(node, context);
-            case NodeTypes.INCLUDE: return transform_include(node, context);
+            case NodeTypes.MIXIN:
+            case NodeTypes.FUNCTION: return transformMixnOrFunction(node, context);
+            case NodeTypes.RETURN: return transformReturn(node, context);
+            case NodeTypes.INCLUDE: return transformInclude(node, context);
             case NodeTypes.CHILD:
             case NodeTypes.BODY:
                 return transform_child_or_body(node, context);
@@ -118,9 +120,9 @@ export function processStatement(
     }
 
     /**
-     * transform @mixin -> set to env -> delete @mixin ast
+     * transform @mixin/@function -> set to env -> delete @mixin ast
      */
-    function transform_mixin(node: MixinStatement, context: TransformContext) {
+    function transformMixnOrFunction(node: MixinStatement | FunctionStatement, context: TransformContext) {
 
         function make_function() {
 
@@ -128,7 +130,7 @@ export function processStatement(
              * deep clone function statement to restore context when called multiple times
              */
 
-            let restoredContext: MixinStatement = deepClone(node),
+            let restoredContext: MixinStatement | FunctionStatement = deepClone(node),
                 params = restoredContext.params,
                 scope = context.env.extend();
 
@@ -154,7 +156,13 @@ export function processStatement(
                 }
             })
 
-            return dispatchStatement(restoredContext.body, { ...context, env: scope });
+            if(node.type === NodeTypes.FUNCTION){
+                dispatchStatement(restoredContext.body, { ...context, env: scope })
+                return scope.get('@return')
+            }else{
+                return dispatchStatement(restoredContext.body, { ...context, env: scope });
+            }
+
         }
 
         context.env.def(node.id.value, make_function)
@@ -162,20 +170,20 @@ export function processStatement(
         return createEmptyNode();
     }
 
-    function transform_include(node: IncludeStatement, context: TransformContext) {
+    /**
+    * @return always be evaluated in a @function body
+    */
+    function transformReturn(node: ReturnStatement, context: TransformContext){
+        let result:TextNode = processExpression(node.argument, context);
+
+        context.env.def('@return', result.value);
+        return createEmptyNode();
+    }
+
+    function transformInclude(node: IncludeStatement, context: TransformContext) {
+
         let func = context.env.get(node.id.value);
-        return func.apply(null, node.args.map(arg => {
-
-            /**
-             * @include avatar(100px, $circle: false);
-             */
-            if (arg.type === NodeTypes.ASSIGN) {
-                return processExpression(arg.right, context).value
-            }else{
-                return processExpression(arg, context).value
-            }
-
-        }))
+        return callFunctionWithArgs(func,node,context)
     }
 
     function transform_child_or_body(node:ChildStatement | BodyStatement, context:TransformContext) {
@@ -191,8 +199,14 @@ export function processStatement(
             })
             return arr;
         }
+        let scope = context.env;
 
-        let scope = context.env.extend();
+        /**
+         * only extend a new child env when evaluate css child, but in program body, we do not extend
+         */
+        if(node.type === NodeTypes.CHILD){
+            scope = context.env.extend();
+        }
 
         node.children = (node.children as Statement[]).map(child => dispatchStatement(child, { ...context, env: scope })).filter(node => !isEmptyNode(node));
         if (node.selector && node.selector.type === NodeTypes.LIST) {

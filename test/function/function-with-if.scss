@@ -1,0 +1,13 @@
+@function min2($a, $b) {
+    @if $a > $b {
+        @return $b;
+    }
+
+    @else {
+        @return $a;
+    }
+}
+
+.sidebar {
+    margin-left: min2(5, 6) * 2px;
+}

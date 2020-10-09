@@ -813,8 +813,43 @@
           },
           "args": [
             {
-              "type": "TEXT",
-              "value": "url(\"/images/mail.svg\")",
+              "type": "CALL",
+              "id": {
+                "loc": {
+                  "start": {
+                    "offset": 276,
+                    "line": 15,
+                    "column": 25
+                  },
+                  "end": {
+                    "offset": 279,
+                    "line": 15,
+                    "column": 28
+                  },
+                  "filename": "optional-params.scss"
+                },
+                "value": "url",
+                "type": "IDENTIFIER"
+              },
+              "args": [
+                {
+                  "type": "TEXT",
+                  "value": "\"/images/mail.svg\"",
+                  "loc": {
+                    "start": {
+                      "offset": 280,
+                      "line": 15,
+                      "column": 29
+                    },
+                    "end": {
+                      "offset": 298,
+                      "line": 15,
+                      "column": 47
+                    },
+                    "filename": "optional-params.scss"
+                  }
+                }
+              ],
               "loc": {
                 "start": {
                   "offset": 276,
@@ -822,9 +857,9 @@
                   "column": 25
                 },
                 "end": {
-                  "offset": 279,
+                  "offset": 298,
                   "line": 15,
-                  "column": 28
+                  "column": 47
                 },
                 "filename": "optional-params.scss"
               }

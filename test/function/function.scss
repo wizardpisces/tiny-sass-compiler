@@ -1,0 +1,9 @@
+@function plus($a, $b) {
+    @return $a + $b;
+}
+
+
+.sidebar {
+    float: left;
+    margin-left: plus(4, 3) * 2px;
+}

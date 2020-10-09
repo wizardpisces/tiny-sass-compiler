@@ -48,12 +48,46 @@
             "value": [
               {
                 "type": "TEXT",
-                "value": "1px solid #ccc",
+                "value": "1px",
                 "loc": {
                   "start": {
                     "offset": 30,
                     "line": 2,
                     "column": 13
+                  },
+                  "end": {
+                    "offset": 33,
+                    "line": 2,
+                    "column": 16
+                  },
+                  "filename": "extend.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "solid",
+                "loc": {
+                  "start": {
+                    "offset": 34,
+                    "line": 2,
+                    "column": 17
+                  },
+                  "end": {
+                    "offset": 39,
+                    "line": 2,
+                    "column": 22
+                  },
+                  "filename": "extend.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "#ccc",
+                "loc": {
+                  "start": {
+                    "offset": 40,
+                    "line": 2,
+                    "column": 23
                   },
                   "end": {
                     "offset": 44,
@@ -287,12 +321,46 @@
             "value": [
               {
                 "type": "TEXT",
-                "value": "1px solid #ccc",
+                "value": "1px",
                 "loc": {
                   "start": {
                     "offset": 113,
                     "line": 8,
                     "column": 11
+                  },
+                  "end": {
+                    "offset": 116,
+                    "line": 8,
+                    "column": 14
+                  },
+                  "filename": "extend.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "solid",
+                "loc": {
+                  "start": {
+                    "offset": 117,
+                    "line": 8,
+                    "column": 15
+                  },
+                  "end": {
+                    "offset": 122,
+                    "line": 8,
+                    "column": 20
+                  },
+                  "filename": "extend.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "#ccc",
+                "loc": {
+                  "start": {
+                    "offset": 123,
+                    "line": 8,
+                    "column": 21
                   },
                   "end": {
                     "offset": 127,

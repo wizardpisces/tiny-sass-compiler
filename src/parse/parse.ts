@@ -26,7 +26,15 @@ import {
     createListNode,
     createAssignStatement,
     VarKeyNode,
-    puncType
+    puncType,
+    FunctionStatement,
+    createMixinStatement,
+    createFunctionStatement,
+    ReturnStatement,
+    createReturnStatement,
+    CallExpression,
+    createIdentifierNode,
+    createCallExpression
 } from './ast';
 
 import {
@@ -53,16 +61,16 @@ export default function parse(input, options: ParserOptions) {
      * @mixin test($param1:1,$param2:2){} // assign expression in @mixin or $include
       */
 
-    function default_right_end_condition() {
+    function defaultRightEndCondition() {
         return is_punc(';')
     }
 
     function set_call_params_args_assign_right_end_condition() {
-        assign_right_end_condition = () => is_punc(',') || is_punc(')');
+        assignRightEndCondition = () => is_punc(',') || is_punc(')');
     }
 
     function reset_assign_right_end_condition() {
-        assign_right_end_condition = default_right_end_condition
+        assignRightEndCondition = defaultRightEndCondition
     }
 
     function is_punc(ch?: puncType) {
@@ -115,7 +123,7 @@ export default function parse(input, options: ParserOptions) {
         return statements;
     }
 
-    let assign_right_end_condition = default_right_end_condition;
+    let assignRightEndCondition = defaultRightEndCondition;
 
     // type parseFunctionType = <T extends Node>(...args:any[]) => T
 
@@ -158,9 +166,9 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    const parse_error = injectLoc(function parse_error() {
+    const parseError = injectLoc(function parseError() {
 
-        function parse_list(endCheck = () => !default_right_end_condition()) {
+        function parse_list(endCheck = () => !defaultRightEndCondition()) {
             let list: SimpleExpressionNode[] = []
             while (endCheck()) {
                 list.push(dispatchParser())
@@ -178,44 +186,64 @@ export default function parse(input, options: ParserOptions) {
     })
 
     const consumeNextTokenWithLoc = injectLoc(() => input.next())
+    
+    /**
+     * divide dispatchParser 
+     * by scan_right ( deal with right only expression which may contain call expression) 
+     * and default (deal with left only expression which maybe a consecutive textNode as assign left type)
+     * 
+     */
 
-    function dispatchParser() {
+    function dispatchParserWithScanRight() {
+        return dispatchParser('scan_right')
+    }
+
+    function dispatchParser(scanType: 'scan_right' | '' = '') {
 
         if (is_kw('@extend')) {
             input.next()
-            return parse_extend();
+            return parseExtend();
         }
 
         if (is_kw('@mixin')) {
             input.next()
-            return parse_mixin();
+            return parseMixin();
+        }
+
+        if (is_kw('@function')) {
+            input.next()
+            return parseFunction();
+        }
+
+        if (is_kw('@return')) {
+            input.next()
+            return parseReturn();
         }
 
         if (is_kw('@include')) {
             input.next()
-            return parse_include();
+            return parseInclude();
         }
 
         if (is_kw('@import')) {
             input.next()
-            return parse_import();
+            return parseImport();
         }
 
         if (is_kw('@if')) {
             input.next()
-            return parse_if();
+            return parseIf();
         }
 
         if (is_kw('@each')) {
             input.next()
-            return parse_each();
+            return parseEach();
         }
 
         if (is_kw('@error')) {
             input.next()
-            return parse_error();
+            return parseError();
         }
-
 
         let tok = input.peek();
 
@@ -225,13 +253,22 @@ export default function parse(input, options: ParserOptions) {
 
         if (tok.type === NodeTypes.PUNC) {
             if (tok.value === "#") {
-                return maybe_key_var_wrapper()
+                return maybeVarKeyWrapper()
             }
             return consumeNextTokenWithLoc()
         }
 
         if (tok.type === NodeTypes.TEXT) {
-            return parse_consecutive_str()
+            if(scanType === 'scan_right'){
+                return maybeCall(consumeNextTokenWithLoc())
+            }else{
+            /**
+             * only parse expression left side, which won't contain callExpression
+             * eg:
+             * body .main{}
+             */
+                return parseConsecutiveLeft()
+            }
         }
 
         // error handling
@@ -243,49 +280,49 @@ export default function parse(input, options: ParserOptions) {
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
+    function parseSimpleExpressionList(): SimpleExpressionNode[] {
+        let right: SimpleExpressionNode[] = [];
+        while (!assignRightEndCondition()) {
+            if (debug()) break;
+            /**
+             * catch error when missed ';', but encountered ':'
+             */
+            if (is_assign() || is_punc('{')) {
+                let tok = consumeNextTokenWithLoc()
+                input.emitError(ErrorCodes.EXPECTED_X, tok.loc, ";")
+            }
+
+            let result: SimpleExpressionNode = maybeBinaryNode(dispatchParserWithScanRight(), 0);
+            right.push(result)
+        }
+        return right;
+    }
+
     function parseAssign(left: AssignStatement['left']): AssignStatement {
 
-        input.next();
+        input.next(); // skip ':' which is not punc type ,so could not use skip_punc
 
-        function parse_assign_right(): SimpleExpressionNode[] {
-            let right: SimpleExpressionNode[] = [];
-            while (!assign_right_end_condition()) {
-                if (debug()) break;
-                /**
-                 * catch error when missed ';', but encountered ':'
-                 */
-                if (is_assign() || is_punc('{')) {
-                    let tok = consumeNextTokenWithLoc()
-                    input.emitError(ErrorCodes.EXPECTED_X, tok.loc, ";")
-                }
-
-                let result: SimpleExpressionNode = maybe_binary(dispatchParser(), 0);
-                right.push(result)
-            }
-            return right;
-        }
-
-        let right: ListNode = createListNode(parse_assign_right())
+        let right: ListNode = createListNode(parseSimpleExpressionList())
 
         return createAssignStatement(left, right)
     }
 
-    function maybe_binary(left: TextNode | BinaryNode, left_prec): TextNode | BinaryNode {
+    function maybeBinaryNode(left: TextNode | BinaryNode, left_prec): TextNode | BinaryNode {
         let tok: OperatorNode = is_op()
         if (tok) {
             if (PRECEDENCE[tok.value] > left_prec) {
                 tok = consumeNextTokenWithLoc(); //skip op , add loc
                 let nextNode: TextNode = consumeNextTokenWithLoc();
 
-                if (nextNode.type !== NodeTypes.TEXT) {
+                if (nextNode.type !== NodeTypes.TEXT && nextNode.type !== NodeTypes.VARIABLE) {
                     input.emitError(ErrorCodes.EXPECT_TEXT_NODE_AFTER_OPERATOR_NODE, nextNode.loc)
                 }
 
-                return maybe_binary({
+                return maybeBinaryNode({
                     type: NodeTypes.BINARY,
                     operator: tok,
                     left: left,
-                    right: maybe_binary(nextNode, PRECEDENCE[tok.value]),
+                    right: maybeBinaryNode(nextNode, PRECEDENCE[tok.value]),
                     loc: {
                         start: left.loc.start,
                         end: nextNode.loc.end,
@@ -297,8 +334,8 @@ export default function parse(input, options: ParserOptions) {
         return left;
     }
 
-    function parse_child(selector: ChildStatement['selector']): ChildStatement {
-        let children = delimited("{", "}", ";", parse_statement);
+    function parseChild(selector: ChildStatement['selector']): ChildStatement {
+        let children = delimited("{", "}", ";", parseStatement);
 
         return {
             type: NodeTypes.CHILD,
@@ -308,7 +345,7 @@ export default function parse(input, options: ParserOptions) {
         };
     }
 
-    function maybe_assign(exp) {
+    function maybeAssign(exp) {
         let expr = exp();
 
         if (is_assign()) {
@@ -321,7 +358,7 @@ export default function parse(input, options: ParserOptions) {
         */
 
         if (is_punc('#')) {
-            return maybe_assign(() => {
+            return maybeAssign(() => {
                 return createListNode(
                     expr.type === NodeTypes.LIST ?
                         expr.value.concat(dispatchParser())
@@ -330,13 +367,13 @@ export default function parse(input, options: ParserOptions) {
         }
 
         if (is_punc('{')) {
-            return parse_child(expr) //passin selector
+            return parseChild(expr) //passin selector
         }
 
         return expr;
     }
 
-    function parse_extend(): ExtendStatement {
+    function parseExtend(): ExtendStatement {
         return {
             type: NodeTypes.EXTEND,
             param: consumeNextTokenWithLoc(),
@@ -344,8 +381,8 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    function parse_block_statement(): BodyStatement {
-        let children: Statement[] = delimited("{", "}", ";", parse_statement);
+    function parseBody(): BodyStatement {
+        let children: Statement[] = delimited("{", "}", ";", parseStatement);
         return {
             type: NodeTypes.BODY,
             children,
@@ -356,7 +393,7 @@ export default function parse(input, options: ParserOptions) {
     /**
      * Todos: add @content kw and include body
      */
-    function parse_mixin(): MixinStatement {
+    function parseMixin(): MixinStatement {
         let id: IdentifierNode = {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
@@ -372,21 +409,43 @@ export default function parse(input, options: ParserOptions) {
               */
             set_call_params_args_assign_right_end_condition()
 
-            params = delimited('(', ')', ',', parse_statement);
+            params = delimited('(', ')', ',', parseStatement);
         }
 
         reset_assign_right_end_condition()
 
-        return {
-            type: NodeTypes.MIXIN,
-            id,
-            params, // %extend like expr or func expr
-            body: parse_block_statement(),
-            loc: locStub
-        }
+        return createMixinStatement(id, params, parseBody());
     }
 
-    function parse_include(): IncludeStatement {
+    function parseFunction():FunctionStatement{
+        let id: IdentifierNode = {
+            type: NodeTypes.IDENTIFIER,
+            value: input.next().value,
+            loc: locStub
+        },
+            params: (VariableNode | AssignStatement)[] = [];
+
+
+        if (!is_punc('{')) {
+            /**
+             * Support default params, which contains assign ':' symbol; which will be processed in parseAssign
+             * @mixin replace-text($image,$x:default1, $y:default2) {
+              */
+            set_call_params_args_assign_right_end_condition()
+
+            params = delimited('(', ')', ',', parseStatement);
+        }
+
+        reset_assign_right_end_condition()
+
+        return createFunctionStatement(id, params, parseBody());
+    }
+
+    function parseReturn():ReturnStatement {
+        return createReturnStatement(parseSimpleExpressionList())
+    }
+
+    function parseInclude(): IncludeStatement {
         let id: IdentifierNode = {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
@@ -395,7 +454,12 @@ export default function parse(input, options: ParserOptions) {
 
         if (!is_punc(';')) {
             set_call_params_args_assign_right_end_condition()
-            args = delimited('(', ')', ',', parse_statement); // extend like expr or call expr
+            /**
+             * use maybeAssign to wrap to deal with possible default include args 
+             * eg:
+             * @include avatar(100px, $circle: false);
+             */
+            args = delimited('(', ')', ',', () => maybeAssign(dispatchParserWithScanRight)); // extend like expr or call expr
         }
 
         reset_assign_right_end_condition()
@@ -408,7 +472,7 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    function parse_import(): ImportStatement {
+    function parseImport(): ImportStatement {
 
         function processFilenameExp(exp) {
             exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
@@ -436,14 +500,14 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    function parse_if(): IfStatement {
+    function parseIf(): IfStatement {
         let alternate: IfStatement | BodyStatement | null = null,
             testExpression: BinaryNode | TextNode,
             blockStatement: BodyStatement;
 
-        testExpression = maybe_binary(dispatchParser(), 0);
+        testExpression = maybeBinaryNode(dispatchParser(), 0);
 
-        blockStatement = parse_block_statement();
+        blockStatement = parseBody();
 
         if (is_kw('@else')) {
             input.next();
@@ -453,9 +517,9 @@ export default function parse(input, options: ParserOptions) {
               */
             if (predictToken.type === NodeTypes.TEXT && predictToken.value === 'if') {
                 input.next();
-                alternate = parse_if();
+                alternate = parseIf();
             } else {
-                alternate = parse_block_statement()
+                alternate = parseBody()
             }
         }
 
@@ -468,7 +532,7 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    function parse_each(): EachStatement {
+    function parseEach(): EachStatement {
         let left = dispatchParser();
 
         /**
@@ -480,7 +544,7 @@ export default function parse(input, options: ParserOptions) {
         let right = dispatchParser();
 
         skip_punc('{')
-        let blockStatement = parse_statement()
+        let blockStatement = parseStatement()
         skip_punc('}')
         return {
             type: NodeTypes.EACHSTATEMENT,
@@ -491,28 +555,15 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    function parse_consecutive_str(): TextNode {
+    function parseConsecutiveLeft(): TextNode {
 
-        function maybe_call(exp: Function): TextNode { //to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
-            let expr = exp();
-
-            if (is_punc('(')) {
-                return {
-                    ...expr,
-                    type: NodeTypes.TEXT,
-                    value: expr.value + '(' + delimited('(', ')', ',', parse_statement).map(expr => expr.value).join(',') + ')'
-                }
-            }
-
-            return expr;
-        }
-
+       
         function read_while(predicate): TextNode[] {
             let tokens: TextNode[] = [];
 
             while (!input.eof() && predicate(input.peek()))
                 //to resolve test skew(20deg) rotate(20deg);
-                tokens.push(maybe_call(consumeNextTokenWithLoc));
+                tokens.push(consumeNextTokenWithLoc());
             return tokens;
         }
 
@@ -528,14 +579,23 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
+    /** to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
+     * also custom @function call
+     */
+    function maybeCall(node: TextNode): TextNode | CallExpression {
 
+        if (is_punc('(')) {
+            return createCallExpression(createIdentifierNode(node), delimited('(', ')', ',', parseStatement))
+        }
+        return node;
+    }
 
     /**
      * 
      * #{var} 
      */
 
-    function maybe_key_var_wrapper(): VarKeyNode | TextNode {
+    function maybeVarKeyWrapper(): VarKeyNode | TextNode {
         function parse_key_var_wrapper(varKeyStartLoc): VarKeyNode {
             skip_punc('{')
             let node = consumeNextTokenWithLoc();
@@ -566,7 +626,7 @@ export default function parse(input, options: ParserOptions) {
         let nextToken = consumeNextTokenWithLoc();
 
         if (nextToken.type !== NodeTypes.TEXT) {
-            input.croak(`[maybe_key_var_wrapper]: expect str token but received ${nextToken.value}`)
+            input.croak(`[maybeVarKeyWrapper]: expect str token but received ${nextToken.value}`)
         }
 
         return {
@@ -580,16 +640,16 @@ export default function parse(input, options: ParserOptions) {
         };
     }
 
-    function parse_statement() {
-        return maybe_assign(function () {
+    function parseStatement() {
+        return maybeAssign(function () {
             return dispatchParser()
         })
     }
 
-    function parse_prog(): RootNode {
+    function parseProgram(): RootNode {
         let children: Statement[] = [];
         while (!input.eof()) {
-            let result = parse_statement()
+            let result = parseStatement()
             children.push(result);
             if (is_punc(";")) skip_punc(";");
         }
@@ -603,5 +663,5 @@ export default function parse(input, options: ParserOptions) {
         };
     }
 
-    return parse_prog()
+    return parseProgram()
 }

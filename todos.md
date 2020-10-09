@@ -3,9 +3,11 @@
 
 ### feat
 
+* binary expression has to be divided with whitespace for now, remove whitespace is needed
+* how to evaluate CallExpression , and how to parse to CallExpression in old parse_consecutive_str
 * parse errors
-    1. don't have a semicolon should not report error
-    2. correctly report syntax error when there is no mid colon
+    1. correctly report syntax error when there is no bracket
+* create static check 'typesass' just as ts to js
 * contribute rollup/webpack/vite etc tiny-sass-compiler loader or plugin
 * compare with sass online to better lint error
 * add '( | )' check to binary precedence, only support whitespace gap operator (eg: 1 + 2 but not 1+2)

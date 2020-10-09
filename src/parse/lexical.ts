@@ -15,7 +15,7 @@ import {
 
 export default function lex(input) {
     // let current = null;
-    let keywords = ' @extend @mixin @include @import @if @else @error @each ',
+    let keywords = ' @extend @mixin @include @import @if @else @error @each @function @return',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==','!=','>=','<=','>','<']
 

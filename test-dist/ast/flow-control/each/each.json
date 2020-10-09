@@ -394,12 +394,29 @@
                     },
                     {
                       "type": "TEXT",
-                      "value": "solid #111111",
+                      "value": "solid",
                       "loc": {
                         "start": {
                           "offset": 153,
                           "line": 8,
                           "column": 24
+                        },
+                        "end": {
+                          "offset": 158,
+                          "line": 8,
+                          "column": 29
+                        },
+                        "filename": "each.scss"
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "value": "#111111",
+                      "loc": {
+                        "start": {
+                          "offset": 166,
+                          "line": 8,
+                          "column": 37
                         },
                         "end": {
                           "offset": 173,

@@ -1,0 +1,106 @@
+{
+  "type": "RootNode",
+  "fileSourceMap": {
+    "function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
+  },
+  "children": [
+    {
+      "type": "CHILD",
+      "selector": {
+        "type": "TEXT",
+        "value": ".sidebar",
+        "loc": {
+          "start": {
+            "offset": 111,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 119,
+            "line": 11,
+            "column": 9
+          },
+          "filename": "function-with-if.scss"
+        }
+      },
+      "children": [
+        {
+          "type": "ASSIGN",
+          "left": {
+            "type": "TEXT",
+            "value": "margin-left",
+            "loc": {
+              "start": {
+                "offset": 126,
+                "line": 12,
+                "column": 5
+              },
+              "end": {
+                "offset": 137,
+                "line": 12,
+                "column": 16
+              },
+              "filename": "function-with-if.scss"
+            }
+          },
+          "right": {
+            "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 139,
+                "line": 12,
+                "column": 18
+              },
+              "end": {
+                "offset": 155,
+                "line": 12,
+                "column": 34
+              },
+              "filename": "function-with-if.scss"
+            },
+            "value": "10px"
+          },
+          "loc": {
+            "filename": "",
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

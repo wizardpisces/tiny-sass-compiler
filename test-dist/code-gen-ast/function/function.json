@@ -1,26 +1,26 @@
 {
   "type": "RootNode",
   "fileSourceMap": {
-    "var-simple.scss": "$font-stack:    Helvetica,  sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: $primary-color;\n}\n"
+    "function.scss": "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
   },
   "children": [
     {
       "type": "CHILD",
       "selector": {
         "type": "TEXT",
-        "value": "body .test",
+        "value": ".sidebar",
         "loc": {
           "start": {
-            "offset": 63,
-            "line": 4,
+            "offset": 50,
+            "line": 6,
             "column": 1
           },
           "end": {
-            "offset": 73,
-            "line": 4,
-            "column": 11
+            "offset": 58,
+            "line": 6,
+            "column": 9
           },
-          "filename": "var-simple.scss"
+          "filename": "function.scss"
         }
       },
       "children": [
@@ -28,37 +28,37 @@
           "type": "ASSIGN",
           "left": {
             "type": "TEXT",
-            "value": "font",
+            "value": "float",
             "loc": {
               "start": {
-                "offset": 77,
-                "line": 5,
-                "column": 3
+                "offset": 65,
+                "line": 7,
+                "column": 5
               },
               "end": {
-                "offset": 81,
-                "line": 5,
-                "column": 7
+                "offset": 70,
+                "line": 7,
+                "column": 10
               },
-              "filename": "var-simple.scss"
+              "filename": "function.scss"
             }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 83,
-                "line": 5,
-                "column": 9
+                "offset": 72,
+                "line": 7,
+                "column": 12
               },
               "end": {
-                "offset": 99,
-                "line": 5,
-                "column": 25
+                "offset": 76,
+                "line": 7,
+                "column": 16
               },
-              "filename": "var-simple.scss"
+              "filename": "function.scss"
             },
-            "value": "100% Helvetica, sans-serif"
+            "value": "left"
           },
           "loc": {
             "filename": "",
@@ -78,37 +78,37 @@
           "type": "ASSIGN",
           "left": {
             "type": "TEXT",
-            "value": "color",
+            "value": "margin-left",
             "loc": {
               "start": {
-                "offset": 103,
-                "line": 6,
-                "column": 3
+                "offset": 82,
+                "line": 8,
+                "column": 5
               },
               "end": {
-                "offset": 108,
-                "line": 6,
-                "column": 8
+                "offset": 93,
+                "line": 8,
+                "column": 16
               },
-              "filename": "var-simple.scss"
+              "filename": "function.scss"
             }
           },
           "right": {
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 110,
-                "line": 6,
-                "column": 10
+                "offset": 95,
+                "line": 8,
+                "column": 18
               },
               "end": {
-                "offset": 124,
-                "line": 6,
-                "column": 24
+                "offset": 111,
+                "line": 8,
+                "column": 34
               },
-              "filename": "var-simple.scss"
+              "filename": "function.scss"
             },
-            "value": "#333"
+            "value": "14px"
           },
           "loc": {
             "filename": "",

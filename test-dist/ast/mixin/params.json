@@ -27,8 +27,60 @@
         "type": "LIST",
         "value": [
           {
-            "type": "TEXT",
-            "value": "skew(30deg,20deg)",
+            "type": "CALL",
+            "id": {
+              "loc": {
+                "start": {
+                  "offset": 13,
+                  "line": 1,
+                  "column": 14
+                },
+                "end": {
+                  "offset": 17,
+                  "line": 1,
+                  "column": 18
+                },
+                "filename": "params.scss"
+              },
+              "value": "skew",
+              "type": "IDENTIFIER"
+            },
+            "args": [
+              {
+                "type": "TEXT",
+                "value": "30deg",
+                "loc": {
+                  "start": {
+                    "offset": 18,
+                    "line": 1,
+                    "column": 19
+                  },
+                  "end": {
+                    "offset": 23,
+                    "line": 1,
+                    "column": 24
+                  },
+                  "filename": "params.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "20deg",
+                "loc": {
+                  "start": {
+                    "offset": 25,
+                    "line": 1,
+                    "column": 26
+                  },
+                  "end": {
+                    "offset": 30,
+                    "line": 1,
+                    "column": 31
+                  },
+                  "filename": "params.scss"
+                }
+              }
+            ],
             "loc": {
               "start": {
                 "offset": 13,
@@ -36,9 +88,9 @@
                 "column": 14
               },
               "end": {
-                "offset": 17,
+                "offset": 30,
                 "line": 1,
-                "column": 18
+                "column": 31
               },
               "filename": "params.scss"
             }
@@ -51,9 +103,9 @@
             "column": 14
           },
           "end": {
-            "offset": 17,
+            "offset": 30,
             "line": 1,
-            "column": 18
+            "column": 31
           },
           "filename": "params.scss"
         }
@@ -421,8 +473,43 @@
           },
           "args": [
             {
-              "type": "TEXT",
-              "value": "rotate(30deg)",
+              "type": "CALL",
+              "id": {
+                "loc": {
+                  "start": {
+                    "offset": 200,
+                    "line": 8,
+                    "column": 22
+                  },
+                  "end": {
+                    "offset": 206,
+                    "line": 8,
+                    "column": 28
+                  },
+                  "filename": "params.scss"
+                },
+                "value": "rotate",
+                "type": "IDENTIFIER"
+              },
+              "args": [
+                {
+                  "type": "TEXT",
+                  "value": "30deg",
+                  "loc": {
+                    "start": {
+                      "offset": 207,
+                      "line": 8,
+                      "column": 29
+                    },
+                    "end": {
+                      "offset": 212,
+                      "line": 8,
+                      "column": 34
+                    },
+                    "filename": "params.scss"
+                  }
+                }
+              ],
               "loc": {
                 "start": {
                   "offset": 200,
@@ -430,9 +517,9 @@
                   "column": 22
                 },
                 "end": {
-                  "offset": 206,
+                  "offset": 212,
                   "line": 8,
-                  "column": 28
+                  "column": 34
                 },
                 "filename": "params.scss"
               }

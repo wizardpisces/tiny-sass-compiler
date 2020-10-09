@@ -15,6 +15,7 @@ export const enum NodeTypes {
     */
     LIST = 'LIST',
     BINARY = 'BINARY',
+    CALL = 'CALL',
 
     /**
      * Statement 
@@ -25,10 +26,16 @@ export const enum NodeTypes {
 
     // keyword statement
     IMPORT = 'IMPORT',
-    INCLUDE = 'INCLUDE',
-    EXTEND = 'EXTEND',
-    MIXIN = 'MIXIN',
+    INCLUDE = 'INCLUDE',// use mixin
+    EXTEND = 'EXTEND',// combind repeated css
+    MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your stylesheet.
+    FUNCTION = 'FUNCTION',// must end with @return
+
+    // exceptions
     ERROR = 'ERROR',
+
+    // control flow
+    RETURN = 'RETURN',// always return a text
 
     // choice statement
     IFSTATEMENT = 'IFSTATEMENT',
@@ -39,8 +46,17 @@ export const enum NodeTypes {
     RootNode = 'RootNode',
 
 }
+/**
+ * new keyword add steps
+ * 0. add test cases to test folder
+ * 1. modify ast.ts (add new Node ast etc)
+ * 2. modify lexical keywords
+ * 4. 
+ */
 
-export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each'
+export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
+
+
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
 export type arithmeticOperator = '+' | '-' | '*' | '/' | '%'
@@ -127,7 +143,13 @@ export interface ListNode extends Node {
     value: SimpleExpressionNode[]
 }
 
-export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode
+export interface CallExpression extends Node {
+    type: NodeTypes.CALL
+    id: IdentifierNode
+    args: ArgsType
+}
+
+export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression
 
 /* Statement */
 
@@ -139,9 +161,13 @@ export type Statement =
     | IncludeStatement 
     | ExtendStatement 
     | MixinStatement
+    | FunctionStatement
     | ErrorStatement
     | IfStatement
     | EachStatement
+    | ReturnStatement
+
+export type ArgsType = (TextNode | VariableNode | BinaryNode | AssignStatement)[]
 
 export interface BodyStatement extends Node {
     type: NodeTypes.BODY
@@ -169,7 +195,7 @@ export interface ImportStatement extends Node {
 export interface IncludeStatement extends Node {
     type: NodeTypes.INCLUDE
     id: IdentifierNode,
-    args: (TextNode | VariableNode | BinaryNode | AssignStatement)[]
+    args: ArgsType
 }
 
 export interface ExtendStatement extends Node {
@@ -182,6 +208,18 @@ export interface MixinStatement extends Node {
     id: IdentifierNode
     params: (VariableNode | AssignStatement)[]
     body: BodyStatement
+}
+
+export interface FunctionStatement extends Node {
+    type: NodeTypes.FUNCTION
+    id: IdentifierNode
+    params: MixinStatement['params']
+    body: BodyStatement
+}
+
+export interface ReturnStatement extends Node {
+    type: NodeTypes.RETURN
+    argument: AssignStatement['right']
 }
 
 export interface ErrorStatement extends Node {
@@ -224,6 +262,27 @@ export interface RootNode extends Node {
     children: (Statement | ProgCodeGenNode)[]
 }
 
+export function createIdentifierNode(id:TextNode):IdentifierNode{
+    return {
+        loc:id.loc,
+        value:id.value,
+        type:NodeTypes.IDENTIFIER
+    }
+}
+
+export function createCallExpression(id: CallExpression['id'], args: CallExpression['args']):CallExpression{
+    return {
+        type:NodeTypes.CALL,
+        id,
+        args,
+        loc:{
+            start:id.loc.start,
+            end: args[args.length-1].loc.end,
+            filename:id.loc.filename
+        }
+    }
+}
+
 export function createAssignStatement(left: AssignStatement['left'], right: AssignStatement['right']): AssignStatement {
     return {
         type: NodeTypes.ASSIGN,
@@ -242,5 +301,34 @@ export function createListNode(list: SimpleExpressionNode[]): ListNode {
             end: list[list.length - 1].loc.end,
             filename: list[0].loc.filename
         }
+    }
+}
+
+export function createMixinStatement(id:MixinStatement['id'],params:MixinStatement['params'],body:MixinStatement['body']):MixinStatement{
+    return {
+        type:NodeTypes.MIXIN,
+        id,
+        params,
+        body,
+        loc: locStub
+    }
+}
+
+export function createFunctionStatement(id: FunctionStatement['id'], params: FunctionStatement['params'], body: FunctionStatement['body']):FunctionStatement{
+    return {
+        type:NodeTypes.FUNCTION,
+        id,
+        params,
+        // always contain a ReturnStatement in the last line
+        body,
+        loc: locStub
+    }
+}
+
+export function createReturnStatement(list:SimpleExpressionNode[]):ReturnStatement {
+    return {
+        type:NodeTypes.RETURN,
+        argument: createListNode(list),
+        loc: locStub
     }
 }

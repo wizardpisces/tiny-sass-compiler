@@ -1,7 +1,7 @@
 {
   "type": "RootNode",
   "fileSourceMap": {
-    "var-simple.scss": "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: $primary-color;\n}\n"
+    "var-simple.scss": "$font-stack:    Helvetica,  sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: $primary-color;\n}\n"
   },
   "children": [
     {
@@ -65,14 +65,14 @@
             "value": "sans-serif",
             "loc": {
               "start": {
-                "offset": 27,
+                "offset": 28,
                 "line": 1,
-                "column": 28
+                "column": 29
               },
               "end": {
-                "offset": 37,
+                "offset": 38,
                 "line": 1,
-                "column": 38
+                "column": 39
               },
               "filename": "var-simple.scss"
             }
@@ -85,9 +85,9 @@
             "column": 17
           },
           "end": {
-            "offset": 37,
+            "offset": 38,
             "line": 1,
-            "column": 38
+            "column": 39
           },
           "filename": "var-simple.scss"
         }
@@ -113,12 +113,12 @@
         "value": "$primary-color",
         "loc": {
           "start": {
-            "offset": 39,
+            "offset": 40,
             "line": 2,
             "column": 1
           },
           "end": {
-            "offset": 53,
+            "offset": 54,
             "line": 2,
             "column": 15
           },
@@ -133,12 +133,12 @@
             "value": "#333",
             "loc": {
               "start": {
-                "offset": 55,
+                "offset": 56,
                 "line": 2,
                 "column": 17
               },
               "end": {
-                "offset": 59,
+                "offset": 60,
                 "line": 2,
                 "column": 21
               },
@@ -148,12 +148,12 @@
         ],
         "loc": {
           "start": {
-            "offset": 55,
+            "offset": 56,
             "line": 2,
             "column": 17
           },
           "end": {
-            "offset": 59,
+            "offset": 60,
             "line": 2,
             "column": 21
           },
@@ -181,12 +181,12 @@
         "value": "body .test",
         "loc": {
           "start": {
-            "offset": 62,
+            "offset": 63,
             "line": 4,
             "column": 1
           },
           "end": {
-            "offset": 72,
+            "offset": 73,
             "line": 4,
             "column": 11
           },
@@ -201,12 +201,12 @@
             "value": "font",
             "loc": {
               "start": {
-                "offset": 76,
+                "offset": 77,
                 "line": 5,
                 "column": 3
               },
               "end": {
-                "offset": 80,
+                "offset": 81,
                 "line": 5,
                 "column": 7
               },
@@ -221,12 +221,12 @@
                 "value": "100%",
                 "loc": {
                   "start": {
-                    "offset": 82,
+                    "offset": 83,
                     "line": 5,
                     "column": 9
                   },
                   "end": {
-                    "offset": 86,
+                    "offset": 87,
                     "line": 5,
                     "column": 13
                   },
@@ -238,12 +238,12 @@
                 "value": "$font-stack",
                 "loc": {
                   "start": {
-                    "offset": 87,
+                    "offset": 88,
                     "line": 5,
                     "column": 14
                   },
                   "end": {
-                    "offset": 98,
+                    "offset": 99,
                     "line": 5,
                     "column": 25
                   },
@@ -253,12 +253,12 @@
             ],
             "loc": {
               "start": {
-                "offset": 82,
+                "offset": 83,
                 "line": 5,
                 "column": 9
               },
               "end": {
-                "offset": 98,
+                "offset": 99,
                 "line": 5,
                 "column": 25
               },
@@ -286,12 +286,12 @@
             "value": "color",
             "loc": {
               "start": {
-                "offset": 102,
+                "offset": 103,
                 "line": 6,
                 "column": 3
               },
               "end": {
-                "offset": 107,
+                "offset": 108,
                 "line": 6,
                 "column": 8
               },
@@ -306,12 +306,12 @@
                 "value": "$primary-color",
                 "loc": {
                   "start": {
-                    "offset": 109,
+                    "offset": 110,
                     "line": 6,
                     "column": 10
                   },
                   "end": {
-                    "offset": 123,
+                    "offset": 124,
                     "line": 6,
                     "column": 24
                   },
@@ -321,12 +321,12 @@
             ],
             "loc": {
               "start": {
-                "offset": 109,
+                "offset": 110,
                 "line": 6,
                 "column": 10
               },
               "end": {
-                "offset": 123,
+                "offset": 124,
                 "line": 6,
                 "column": 24
               },
