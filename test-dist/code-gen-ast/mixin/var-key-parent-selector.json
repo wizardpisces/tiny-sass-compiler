@@ -61,17 +61,17 @@
             "value": "left"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 50,
+              "line": 2,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 74,
+              "line": 2,
+              "column": 27
+            },
+            "filename": "var-key-parent-selector.scss"
           }
         },
         {
@@ -162,17 +162,17 @@
             "value": "right"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 105,
+              "line": 5,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 131,
+              "line": 5,
+              "column": 31
+            },
+            "filename": "var-key-parent-selector.scss"
           }
         }
       ],

@@ -61,17 +61,17 @@
             "value": "rotate(30deg)"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 76,
+              "line": 3,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 104,
+              "line": 3,
+              "column": 31
+            },
+            "filename": "params.scss"
           }
         },
         {
@@ -111,17 +111,17 @@
             "value": "rotate(30deg)"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 108,
+              "line": 4,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 132,
+              "line": 4,
+              "column": 27
+            },
+            "filename": "params.scss"
           }
         },
         {
@@ -161,17 +161,17 @@
             "value": "rotate(30deg) skew(30deg,20deg)"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 136,
+              "line": 5,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 167,
+              "line": 5,
+              "column": 34
+            },
+            "filename": "params.scss"
           }
         },
         {
@@ -211,17 +211,17 @@
             "value": "1px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 230,
+              "line": 9,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 238,
+              "line": 9,
+              "column": 11
+            },
+            "filename": "params.scss"
           }
         }
       ],

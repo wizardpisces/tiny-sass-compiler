@@ -93,19 +93,23 @@ export default function parse(input, options: ParserOptions) {
         return tok && tok.type === NodeTypes.ASSIGN;
     }
 
-    function skip_punc(ch) {
+    function skipPunc(ch:any,silent:boolean=false) {
         if (is_punc(ch)) input.next();
         // mandatory skip
         else {
-            input.emitError(ErrorCodes.EXPECTED_X, consumeNextTokenWithLoc().loc, ch)
+            !silent && input.emitError(ErrorCodes.EXPECTED_X, consumeNextTokenWithLoc().loc, ch)
         }
+    }
+
+    function skipPuncSilent(ch: any) {
+        return skipPunc(ch, true)
     }
 
     // todos: replace typescript any
     function delimited(start: puncType, stop: puncType, separator: puncType, parser: Function) {// FIFO
         let statements: any[] = [], first = true;
 
-        skip_punc(start);
+        skipPunc(start);
 
         while (!input.eof()) {
             if (debug()) break;
@@ -113,13 +117,17 @@ export default function parse(input, options: ParserOptions) {
             if (first) {
                 first = false;
             } else {
-                skip_punc(separator);
+                if (separator === ';'){
+                    skipPuncSilent(separator)
+                }else{
+                    skipPunc(separator);
+                }
             }
             if (is_punc(stop)) break;
 
             statements.push(parser());
         }
-        skip_punc(stop);
+        skipPunc(stop);
         return statements;
     }
 
@@ -141,7 +149,7 @@ export default function parse(input, options: ParserOptions) {
 
             if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
                 let left = args[0]
-                if(left){
+                if (left) {
                     while (left.type === NodeTypes.BINARY) {
                         left = left.left
                     }
@@ -165,6 +173,7 @@ export default function parse(input, options: ParserOptions) {
             };
         }
     }
+    const consumeNextTokenWithLoc = injectLoc(() => input.next())
 
     const parseError = injectLoc(function parseError() {
 
@@ -185,8 +194,6 @@ export default function parse(input, options: ParserOptions) {
         }
     })
 
-    const consumeNextTokenWithLoc = injectLoc(() => input.next())
-    
     /**
      * divide dispatchParser 
      * by scan_right ( deal with right only expression which may contain call expression) 
@@ -259,20 +266,22 @@ export default function parse(input, options: ParserOptions) {
         }
 
         if (tok.type === NodeTypes.TEXT) {
-            if(scanType === 'scan_right'){
+
+            if (scanType === 'scan_right') {
                 return maybeCall(consumeNextTokenWithLoc())
-            }else{
-            /**
-             * only parse expression left side, which won't contain callExpression
-             * eg:
-             * body .main{}
-             */
+            } else {
+                /**
+                 * only parse expression left side, which won't contain callExpression
+                 * eg:
+                 * body .main{}
+                 */
                 return parseConsecutiveLeft()
             }
         }
-
-        // error handling
-
+        
+        /**
+         * cases like internal keyword @media (min-width: 768px) {} etc, should not throw error but parsed as callExpression
+         */
         if (tok.type == NodeTypes.KEYWORD) {
             return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
         }
@@ -300,7 +309,7 @@ export default function parse(input, options: ParserOptions) {
 
     function parseAssign(left: AssignStatement['left']): AssignStatement {
 
-        input.next(); // skip ':' which is not punc type ,so could not use skip_punc
+        input.next(); // skip ':' which is not punc type ,so could not use skipPunc
 
         let right: ListNode = createListNode(parseSimpleExpressionList())
 
@@ -417,7 +426,7 @@ export default function parse(input, options: ParserOptions) {
         return createMixinStatement(id, params, parseBody());
     }
 
-    function parseFunction():FunctionStatement{
+    function parseFunction(): FunctionStatement {
         let id: IdentifierNode = {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
@@ -429,7 +438,7 @@ export default function parse(input, options: ParserOptions) {
         if (!is_punc('{')) {
             /**
              * Support default params, which contains assign ':' symbol; which will be processed in parseAssign
-             * @mixin replace-text($image,$x:default1, $y:default2) {
+             * @functoin replace-text($image,$x:default1, $y:default2) {
               */
             set_call_params_args_assign_right_end_condition()
 
@@ -441,8 +450,23 @@ export default function parse(input, options: ParserOptions) {
         return createFunctionStatement(id, params, parseBody());
     }
 
-    function parseReturn():ReturnStatement {
+    function parseReturn(): ReturnStatement {
         return createReturnStatement(parseSimpleExpressionList())
+    }
+
+
+    /** to resolve rotate(30deg) or url("/images/mail.svg") @media (min-width: 768px) {}  kind of inner call expression
+     * also custom @function call
+     */
+    function maybeCall(node: TextNode): TextNode | CallExpression {
+
+        if (is_punc('(')) {
+            set_call_params_args_assign_right_end_condition()
+            let callExpression = createCallExpression(createIdentifierNode(node), delimited('(', ')', ',', parseStatement))
+            reset_assign_right_end_condition()
+            return callExpression
+        }
+        return node;
     }
 
     function parseInclude(): IncludeStatement {
@@ -489,7 +513,7 @@ export default function parse(input, options: ParserOptions) {
         while (!is_punc(';')) {  // @import 'foundation/code', 'foundation/lists';
             params.push(processFilenameExp(consumeNextTokenWithLoc()));
             if (is_punc(',')) {
-                skip_punc(',')
+                skipPunc(',')
             }
         }
 
@@ -543,9 +567,9 @@ export default function parse(input, options: ParserOptions) {
 
         let right = dispatchParser();
 
-        skip_punc('{')
+        skipPunc('{')
         let blockStatement = parseStatement()
-        skip_punc('}')
+        skipPunc('}')
         return {
             type: NodeTypes.EACHSTATEMENT,
             left,
@@ -557,7 +581,7 @@ export default function parse(input, options: ParserOptions) {
 
     function parseConsecutiveLeft(): TextNode {
 
-       
+
         function read_while(predicate): TextNode[] {
             let tokens: TextNode[] = [];
 
@@ -579,17 +603,6 @@ export default function parse(input, options: ParserOptions) {
         }
     }
 
-    /** to resolve rotate(30deg) or url("/images/mail.svg") this kind of inner call expression
-     * also custom @function call
-     */
-    function maybeCall(node: TextNode): TextNode | CallExpression {
-
-        if (is_punc('(')) {
-            return createCallExpression(createIdentifierNode(node), delimited('(', ')', ',', parseStatement))
-        }
-        return node;
-    }
-
     /**
      * 
      * #{var} 
@@ -597,12 +610,12 @@ export default function parse(input, options: ParserOptions) {
 
     function maybeVarKeyWrapper(): VarKeyNode | TextNode {
         function parse_key_var_wrapper(varKeyStartLoc): VarKeyNode {
-            skip_punc('{')
+            skipPunc('{')
             let node = consumeNextTokenWithLoc();
             if (node.type !== NodeTypes.VARIABLE) {
                 input.croak(`${node} should be a variable which starts with '$'`)
             }
-            skip_punc('}')
+            skipPunc('}')
             return {
                 ...node,
                 type: NodeTypes.VAR_KEY,
@@ -651,7 +664,7 @@ export default function parse(input, options: ParserOptions) {
         while (!input.eof()) {
             let result = parseStatement()
             children.push(result);
-            if (is_punc(";")) skip_punc(";");
+            if (is_punc(";")) skipPunc(";");
         }
         return {
             type: NodeTypes.RootNode,

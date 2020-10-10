@@ -267,17 +267,17 @@
             }
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 65,
+              "line": 7,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 76,
+              "line": 7,
+              "column": 16
+            },
+            "filename": "function.scss"
           }
         },
         {
@@ -437,17 +437,17 @@
             }
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 82,
+              "line": 8,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 111,
+              "line": 8,
+              "column": 34
+            },
+            "filename": "function.scss"
           }
         }
       ],

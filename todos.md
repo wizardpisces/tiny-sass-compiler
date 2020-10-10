@@ -3,7 +3,9 @@
 
 ### feat
 
+* complete at-rules-and-bubbling (mainly resolve special keyword @media)
 * binary expression has to be divided with whitespace for now, remove whitespace is needed
+* resolve css internal keyword @media etc (keep them as raw code)
 * how to evaluate CallExpression , and how to parse to CallExpression in old parse_consecutive_str
 * parse errors
     1. correctly report syntax error when there is no bracket

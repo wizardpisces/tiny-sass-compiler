@@ -489,17 +489,17 @@
             }
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 126,
+              "line": 12,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 155,
+              "line": 12,
+              "column": 34
+            },
+            "filename": "function-with-if.scss"
           }
         }
       ],

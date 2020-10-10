@@ -61,17 +61,17 @@
             "value": "40px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 77,
+              "line": 5,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 93,
+              "line": 5,
+              "column": 21
+            },
+            "filename": "each.scss"
           }
         },
         {
@@ -162,17 +162,17 @@
             "value": "40px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 112,
+              "line": 7,
+              "column": 9
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 128,
+              "line": 7,
+              "column": 25
+            },
+            "filename": "each.scss"
           }
         },
         {
@@ -212,17 +212,17 @@
             "value": "40px solid #111111"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 138,
+              "line": 8,
+              "column": 9
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 173,
+              "line": 8,
+              "column": 44
+            },
+            "filename": "each.scss"
           }
         }
       ],
@@ -297,17 +297,17 @@
             "value": "50px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 77,
+              "line": 5,
+              "column": 5
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 93,
+              "line": 5,
+              "column": 21
+            },
+            "filename": "each.scss"
           }
         },
         {
@@ -398,17 +398,17 @@
             "value": "50px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 112,
+              "line": 7,
+              "column": 9
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 128,
+              "line": 7,
+              "column": 25
+            },
+            "filename": "each.scss"
           }
         },
         {
@@ -448,17 +448,17 @@
             "value": "50px solid #111111"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 138,
+              "line": 8,
+              "column": 9
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 173,
+              "line": 8,
+              "column": 44
+            },
+            "filename": "each.scss"
           }
         }
       ],

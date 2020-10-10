@@ -277,7 +277,7 @@ export function createCallExpression(id: CallExpression['id'], args: CallExpress
         args,
         loc:{
             start:id.loc.start,
-            end: args[args.length-1].loc.end,
+            end: args.length ? args[args.length-1].loc.end : id.loc.end,
             filename:id.loc.filename
         }
     }
@@ -288,7 +288,11 @@ export function createAssignStatement(left: AssignStatement['left'], right: Assi
         type: NodeTypes.ASSIGN,
         left: left,
         right: right,
-        loc: locStub
+        loc: {
+            start:left.loc.start,
+            end:right.length ? right[right.length-1].loc.end : right.loc.end,
+            filename:left.loc.filename
+        }
     }
 }
 

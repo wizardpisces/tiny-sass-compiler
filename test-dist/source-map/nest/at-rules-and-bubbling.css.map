@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "at-rules-and-bubbling.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA;EACI,MAAO;;AAEP;EACI,MAAO;;AAEP;EACI,iBAAkB;;AAI1B;EACI,MAAO",
+  "sourcesContent": [
+    ".component {\n    width: 300px;\n\n    @media (min-width: 768px) {\n        width: 600px;\n\n        @media (min-resolution: 192dpi) {\n            background-image: url(/img/retina2x.png);\n        }\n    }\n\n    @media (min-width: 1280px) {\n        width: 800px;\n    }\n}\n"
+  ]
+}

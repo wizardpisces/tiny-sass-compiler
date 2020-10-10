@@ -134,17 +134,17 @@
               }
             },
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 47,
+                "line": 2,
+                "column": 3
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
+                "offset": 56,
+                "line": 2,
+                "column": 12
+              },
+              "filename": "else-if.scss"
             }
           },
           {
@@ -202,17 +202,17 @@
               }
             },
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 60,
+                "line": 3,
+                "column": 3
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
+                "offset": 68,
+                "line": 3,
+                "column": 11
+              },
+              "filename": "else-if.scss"
             }
           },
           {
@@ -270,17 +270,17 @@
               }
             },
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 73,
+                "line": 5,
+                "column": 3
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
+                "offset": 98,
+                "line": 5,
+                "column": 28
+              },
+              "filename": "else-if.scss"
             }
           },
           {
@@ -338,17 +338,17 @@
               }
             },
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 102,
+                "line": 6,
+                "column": 3
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
+                "offset": 121,
+                "line": 6,
+                "column": 22
+              },
+              "filename": "else-if.scss"
             }
           },
           {
@@ -456,17 +456,17 @@
               }
             },
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 125,
+                "line": 7,
+                "column": 3
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
+                "offset": 148,
+                "line": 7,
+                "column": 26
+              },
+              "filename": "else-if.scss"
             }
           },
           {
@@ -596,17 +596,17 @@
                     }
                   },
                   "loc": {
-                    "filename": "",
                     "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
+                      "offset": 180,
+                      "line": 10,
+                      "column": 5
                     },
                     "end": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    }
+                      "offset": 207,
+                      "line": 10,
+                      "column": 32
+                    },
+                    "filename": "else-if.scss"
                   }
                 }
               ],
@@ -751,17 +751,17 @@
                       }
                     },
                     "loc": {
-                      "filename": "",
                       "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
+                        "offset": 248,
+                        "line": 12,
+                        "column": 5
                       },
                       "end": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      }
+                        "offset": 273,
+                        "line": 12,
+                        "column": 30
+                      },
+                      "filename": "else-if.scss"
                     }
                   }
                 ],
@@ -906,17 +906,17 @@
                         }
                       },
                       "loc": {
-                        "filename": "",
                         "start": {
-                          "line": 1,
-                          "column": 1,
-                          "offset": 0
+                          "offset": 313,
+                          "line": 14,
+                          "column": 5
                         },
                         "end": {
-                          "line": 1,
-                          "column": 1,
-                          "offset": 0
-                        }
+                          "offset": 337,
+                          "line": 14,
+                          "column": 29
+                        },
+                        "filename": "else-if.scss"
                       }
                     }
                   ],
@@ -1061,17 +1061,17 @@
                           }
                         },
                         "loc": {
-                          "filename": "",
                           "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
+                            "offset": 377,
+                            "line": 16,
+                            "column": 5
                           },
                           "end": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          }
+                            "offset": 403,
+                            "line": 16,
+                            "column": 31
+                          },
+                          "filename": "else-if.scss"
                         }
                       }
                     ],

@@ -61,17 +61,17 @@
             "value": "9px"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 29,
+              "line": 3,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 45,
+              "line": 3,
+              "column": 19
+            },
+            "filename": "operator.scss"
           }
         }
       ],
@@ -146,17 +146,17 @@
             "value": "left"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 75,
+              "line": 7,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 86,
+              "line": 7,
+              "column": 14
+            },
+            "filename": "operator.scss"
           }
         },
         {
@@ -196,17 +196,17 @@
             "value": "62.5%"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 90,
+              "line": 8,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 116,
+              "line": 8,
+              "column": 29
+            },
+            "filename": "operator.scss"
           }
         }
       ],
@@ -281,17 +281,17 @@
             "value": "right"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 153,
+              "line": 12,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 165,
+              "line": 12,
+              "column": 15
+            },
+            "filename": "operator.scss"
           }
         },
         {
@@ -331,17 +331,17 @@
             "value": "31.25%"
           },
           "loc": {
-            "filename": "",
             "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
+              "offset": 169,
+              "line": 13,
+              "column": 3
             },
             "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
+              "offset": 196,
+              "line": 13,
+              "column": 30
+            },
+            "filename": "operator.scss"
           }
         }
       ],

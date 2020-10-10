@@ -4,6 +4,9 @@ set -e
 echo "Run test... "
 npm run build
 npm run test
+
+echo "Enter commit message: "
+read MESSAGE
 echo "Enter release version: "
 read VERSION
 
@@ -14,7 +17,7 @@ then
   echo "Releasing $VERSION ..."
   # commit
   git add -A
-  git commit -m "[build] $VERSION"
+  git commit -m "[build] $VERSION,[message] $MESSAGE"
   npm version $VERSION --message "[release] $VERSION"
 
   # publish
