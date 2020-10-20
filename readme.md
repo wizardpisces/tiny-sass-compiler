@@ -242,3 +242,10 @@ Before code generation AST
 ```
 
 *Interested in more intermediate status? Please view files in ./test-dist/*
+
+## Reference
+
+* https://github.com/csstree/csstree
+* https://astexplorer.net/#/gist/244e2fb4da940df52bf0f4b94277db44/e79aff44611020b22cfd9708f3a99ce09b7d67a8
+* http://lesscss.org/
+* 

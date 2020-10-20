@@ -6,12 +6,13 @@ import {
     ChildStatement,
     CodegenNode,
     ProgCodeGenNode,
-    Position
+    Position,
+    SelectorNode
 } from './parse/ast';
 import { CodegenOptions } from './options'
 import { advancePositionWithMutation} from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
-
+import { applyPlugins} from './PluginManager'
 // todos complete CodegenNode type
 import { isBrowser} from './global'
 export interface CodegenResult {
@@ -109,8 +110,11 @@ export function generate(
     ast: RootNode,
     options: CodegenOptions = {}
 ): CodegenResult {
+
+    applyPlugins(ast);// run plugins automatically before codegen
+
     const context = createCodegenContext(ast, options);
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context));
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context, ast.children as ProgCodeGenNode[] ));
 
     return {
         ast,
@@ -121,22 +125,27 @@ export function generate(
 }
 
 function genNode(
-    node: CodegenNode, 
-    context: CodegenContext
+    node: CodegenNode,
+    context: CodegenContext,
+    list: CodegenNode[]
 ) {
     if(!node){
         console.error('node',node,'context',context)
         return;
     }
+
     switch (node.type) {
         case NodeTypes.TEXT:
             genText(node as TextNode, context);
+            break;
+        case NodeTypes.SELECTOR:
+            genSelector(node as SelectorNode, context);
             break;
         case NodeTypes.ASSIGN:
             genAssign(node as AssignStatement, context);
             break;
         case NodeTypes.CHILD:
-            genChild(node as ChildStatement, context);
+            genChild(node as ChildStatement, context, list);
             break;
         case NodeTypes.EMPTY:
             break;
@@ -152,6 +161,12 @@ function genText(
 ) {
     context.push(node.value, node)
 }
+function genSelector(
+    node: SelectorNode,
+    context: CodegenContext
+) {
+    context.push(node.value.value as string, node)
+}
 
 function genAssign(
     node: AssignStatement,
@@ -159,26 +174,27 @@ function genAssign(
 ) {
     const { push } = context;
 
-    genNode(node.left as TextNode, context)
+    genText(node.left as TextNode, context)
     push(':')
-    genNode(node.right as TextNode, context)
+    genText(node.right as TextNode, context)
     push(';');
 }
 
 function genChild(
     node: CodegenNode,
-    context: CodegenContext
+    context: CodegenContext,
+    list: CodegenNode[]
 ) {
     const { push, deindent, indent, newline} = context;
-    genNode(node.selector,context);
+    genNode(node.selector,context,list);
     push('{');
     indent();
 
-    (node.children as CodegenNode[]).forEach((node: CodegenNode,index:number) => {
-        if(index && node.type!==NodeTypes.EMPTY){
+    (node.children as CodegenNode[]).forEach((childNode: CodegenNode,index:number) => {
+        if (index && childNode.type !== NodeTypes.EMPTY) {
             newline()
         }
-        genNode(node, context);
+        genNode(childNode, context, node.children as CodegenNode[]);
     })
 
     deindent();

@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".message-shared",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 0,
@@ -21,6 +20,23 @@
             "column": 16
           },
           "filename": "extend.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".message-shared",
+          "loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 15,
+              "line": 1,
+              "column": 16
+            },
+            "filename": "extend.scss"
+          }
         }
       },
       "children": [
@@ -280,8 +296,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "PLACEHOLDER",
-        "value": "%message-shared",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 85,
@@ -294,6 +309,23 @@
             "column": 16
           },
           "filename": "extend.scss"
+        },
+        "value": {
+          "type": "PLACEHOLDER",
+          "value": "%message-shared",
+          "loc": {
+            "start": {
+              "offset": 85,
+              "line": 7,
+              "column": 1
+            },
+            "end": {
+              "offset": 100,
+              "line": 7,
+              "column": 16
+            },
+            "filename": "extend.scss"
+          }
         }
       },
       "children": [
@@ -553,8 +585,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".message",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 164,
@@ -567,6 +598,23 @@
             "column": 9
           },
           "filename": "extend.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".message",
+          "loc": {
+            "start": {
+              "offset": 164,
+              "line": 13,
+              "column": 1
+            },
+            "end": {
+              "offset": 172,
+              "line": 13,
+              "column": 9
+            },
+            "filename": "extend.scss"
+          }
         }
       },
       "children": [
@@ -621,8 +669,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".success",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 207,
@@ -635,6 +682,23 @@
             "column": 9
           },
           "filename": "extend.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".success",
+          "loc": {
+            "start": {
+              "offset": 207,
+              "line": 17,
+              "column": 1
+            },
+            "end": {
+              "offset": 215,
+              "line": 17,
+              "column": 9
+            },
+            "filename": "extend.scss"
+          }
         }
       },
       "children": [
@@ -757,8 +821,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".error",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 274,
@@ -771,6 +834,23 @@
             "column": 7
           },
           "filename": "extend.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".error",
+          "loc": {
+            "start": {
+              "offset": 274,
+              "line": 21,
+              "column": 1
+            },
+            "end": {
+              "offset": 280,
+              "line": 21,
+              "column": 7
+            },
+            "filename": "extend.scss"
+          }
         }
       },
       "children": [

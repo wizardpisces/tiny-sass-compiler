@@ -22,7 +22,7 @@ export default function lex(input) {
          * special treatment for internal callExpression which will be increased overtime
          * parse.ts also treat undiscoverd internal call expression as string when transformed
          */ 
-        internalCallIdentifiers = ['@media', 'url'];
+        internalCallIdentifiers = ['@media', 'url']; // will be replaced by in depth analyze
 
     return {
         next,

@@ -4,6 +4,10 @@
 ### feat
 
 * complete at-rules-and-bubbling (mainly resolve special keyword @media)
+* add walker in codegen process to code-gen-ast
+* add browser style[type='text/acss'] and link[rel='RootNode/acss'] support
+* read mcss and less.js（https://github.com/leeluolee/mcss），mcss/less是如何parse的 @media
+* add changeLog generation （reference vite）
 * binary expression has to be divided with whitespace for now, remove whitespace is needed
 * resolve css internal keyword @media etc (keep them as raw code)
 * how to evaluate CallExpression , and how to parse to CallExpression in old parse_consecutive_str

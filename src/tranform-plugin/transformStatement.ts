@@ -1,6 +1,6 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode } from '../parse/ast'
-import { deepClone, createEmptyNode, isEmptyNode, addNodeEmptyLocation } from '../parse/util';
+import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode } from '../parse/ast'
+import { deepClone, isEmptyNode } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../parse/errors';
 
 export const transformStatement: NodeTransform = (node, context) => {
-    processStatement(node as Statement,context)
+    processStatement(node as Statement, context)
 }
 
 
@@ -53,7 +53,7 @@ export function processStatement(
         let restoredContext = deepClone(node),
             right = processExpression(restoredContext.right, context),
             scope = context.env.extend(),
-            list:string[] = [];
+            list: string[] = [];
 
         if (right.type === NodeTypes.TEXT) {
             list = right.value.split(/,|\s+/).filter(val => val !== '')
@@ -68,7 +68,7 @@ export function processStatement(
 
             scope.def(restoredContext.left.value, val);
 
-            return dispatchStatement(restoredContext.body, { ...context,env:scope})
+            return dispatchStatement(restoredContext.body, { ...context, env: scope })
         })
 
         /**
@@ -77,10 +77,7 @@ export function processStatement(
         let child: ChildStatement = {
             ...node,
             type: NodeTypes.CHILD,
-            selector: addNodeEmptyLocation({
-                type: NodeTypes.TEXT,
-                value: ''
-            }),
+            selector: createSelectorNode(createTextNode('')),
             children
         }
 
@@ -156,10 +153,10 @@ export function processStatement(
                 }
             })
 
-            if(node.type === NodeTypes.FUNCTION){
+            if (node.type === NodeTypes.FUNCTION) {
                 dispatchStatement(restoredContext.body, { ...context, env: scope })
                 return scope.get('@return')
-            }else{
+            } else {
                 return dispatchStatement(restoredContext.body, { ...context, env: scope });
             }
 
@@ -173,8 +170,8 @@ export function processStatement(
     /**
     * @return always be evaluated in a @function body
     */
-    function transformReturn(node: ReturnStatement, context: TransformContext){
-        let result:TextNode = processExpression(node.argument, context);
+    function transformReturn(node: ReturnStatement, context: TransformContext) {
+        let result: TextNode = processExpression(node.argument, context);
 
         context.env.def('@return', result.value);
         return createEmptyNode();
@@ -183,10 +180,10 @@ export function processStatement(
     function transformInclude(node: IncludeStatement, context: TransformContext) {
 
         let func = context.env.get(node.id.value);
-        return callFunctionWithArgs(func,node,context)
+        return callFunctionWithArgs(func, node, context)
     }
 
-    function transform_child_or_body(node:ChildStatement | BodyStatement, context:TransformContext) {
+    function transform_child_or_body(node: ChildStatement | BodyStatement, context: TransformContext) {
 
         function flatten_included_body(children: Statement[]): Statement[] {
             let arr: Statement[] = []
@@ -204,13 +201,15 @@ export function processStatement(
         /**
          * only extend a new child env when evaluate css child, but in program body, we do not extend
          */
-        if(node.type === NodeTypes.CHILD){
+        if (node.type === NodeTypes.CHILD) {
             scope = context.env.extend();
         }
 
         node.children = (node.children as Statement[]).map(child => dispatchStatement(child, { ...context, env: scope })).filter(node => !isEmptyNode(node));
-        if (node.selector && node.selector.type === NodeTypes.LIST) {
-            node.selector = processExpression(node.selector, { ...context,env:scope})
+        if (node.type === NodeTypes.CHILD) { // CHILD must have selector
+            if (node.selector.value.type === NodeTypes.LIST) {
+                node.selector.value = processExpression(node.selector.value, { ...context, env: scope })
+            }
         }
         /**
          * resolve BlockStatement/body

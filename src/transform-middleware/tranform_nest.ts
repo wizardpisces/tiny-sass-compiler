@@ -8,15 +8,16 @@
 import {
     NodeTypes,
     ChildStatement,
+    RootNode,
+    SelectorNode,
     TextNode,
-    RootNode
-} from '@/parse/ast';
-import { createEmptyNode } from '../parse/util';
+    createEmptyNode
+} from '../parse/ast';
 
 export default function tranform_nest(ast:RootNode) {
     function flatten_child(child: ChildStatement, arr: ChildStatement[] = []):ChildStatement[] {
 
-        function flatten(child: ChildStatement, parentSelector = '') {
+        function flatten(child: ChildStatement, parentSelector:string = '') {
 
             /**
              * https://sass-lang.com/documentation/style-rules/parent-selector
@@ -24,20 +25,22 @@ export default function tranform_nest(ast:RootNode) {
              */
             
             let containParentSelector = false;
-            let selector: TextNode = child.selector as TextNode;
-            if (selector.value.indexOf('&')>=0){
+            let selector: SelectorNode = child.selector as SelectorNode,
+                selectorValue:TextNode = selector.value as TextNode; // after transform selector value will be TextNode
+
+            if (selectorValue.value.indexOf('&')>=0){
                 containParentSelector = true;
-                selector.value = selector.value.replace(/&/, parentSelector)
+                selectorValue.value = selectorValue.value.replace(/&/, parentSelector)
             }
 
             if (!containParentSelector){
-                selector.value = (parentSelector + ' ' + selector.value).trim()
+                selectorValue.value = (parentSelector + ' ' + selectorValue.value).trim()
             }
             
             /**
              * 清理空的选择器
               */
-            child.selector.value  && arr.push(child);
+            child.selector.value.value && arr.push(child);
 
             /**
              * 
@@ -45,7 +48,7 @@ export default function tranform_nest(ast:RootNode) {
             child.children.forEach((exp, index) => {
                 if (exp.type === NodeTypes.CHILD) {
                     child.children.splice(index, 1,createEmptyNode())
-                    flatten(exp, selector.value)
+                    flatten(exp, selectorValue.value)
                 }
             });
             return arr;

@@ -4,23 +4,4 @@ const run = require('../dist/tiny-sass-compiler.cjs.prod.js');
 
 const [node_env, bin_path, ...args] = process.argv;
 
-/**
- * Todos:
- * optimize
- * Initialize CLI
- */
-
-// var cli = meow({
-//     pkg: pkg,
-//     version: pkg.version,
-//     help: `
-//                 Usage:
-//                     tiny-sass sourceFile targetFile
-//             `
-// });
-
-// console.log(`this is the arguments: ${node_env},${bin_path},${args}`)
-
-// tiny - sass < input > [output]
-
 run(args[0], args[1],{generateAstFile:true})

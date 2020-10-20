@@ -17,7 +17,7 @@ import {
 import { ParserOptions } from '@/options';
 
 const EXTNAME_GLOBAL = '.scss'
-export default function transform_module(rootNode: RootNode, options) {
+export default function transform_module(RootNode: RootNode, options) {
     const {sourceDir = './'} = options;
     let statementList :Statement[] = [];
 
@@ -27,7 +27,7 @@ export default function transform_module(rootNode: RootNode, options) {
      * 
      *  depth/left first walk import module, push child module children before parent module child
      */
-    function walkNode(rootNode: RootNode){
+    function walkNode(RootNode: RootNode){
 
        
         function importModule(module:ImportStatement, parent:RootNode){
@@ -53,18 +53,18 @@ export default function transform_module(rootNode: RootNode, options) {
             })
         }
 
-        rootNode.children.forEach((statement) => {
+        RootNode.children.forEach((statement) => {
             if (statement.type === NodeTypes.IMPORT) {
-                importModule(statement, rootNode)
+                importModule(statement, RootNode)
             }else{
                 statementList.push(statement as Statement)
             }
         })
     }
 
-    walkNode(rootNode)
+    walkNode(RootNode)
 
-    rootNode.children = statementList;
+    RootNode.children = statementList;
 
-    return rootNode
+    return RootNode
 }

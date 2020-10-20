@@ -5,9 +5,10 @@ export const enum NodeTypes {
     OPERATOR = 'OPERATOR',   // arithmeticOperator | comparisonOperator
     VAR_KEY = 'VAR_KEY', // to solve "TEXT-#{VARIABLE}" , expression replaced after evaluation
     PLACEHOLDER = 'PLACEHOLDER', // %TEXT
-    KEYWORD = 'KEYWORD', // keywordType
-    IDENTIFIER = 'IDENTIFIER', // keywordType
-    EMPTY = 'EMPTY', // keywordType
+    KEYWORD = 'KEYWORD',
+    IDENTIFIER = 'IDENTIFIER',
+    EMPTY = 'EMPTY',
+    SELECTOR = 'SELECTOR',
     /**
      * https://sass-lang.com/documentation/values/lists
      * any expressions separated with spaces or commas count as a list;
@@ -16,20 +17,28 @@ export const enum NodeTypes {
     LIST = 'LIST',
     BINARY = 'BINARY',
     CALL = 'CALL',
-
+    
     /**
      * Statement 
      * */
     BODY = 'BODY',
     CHILD = 'CHILD',
     ASSIGN = 'ASSIGN',
-
+    
     // keyword statement
     IMPORT = 'IMPORT',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
-    MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your stylesheet.
+    MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
     FUNCTION = 'FUNCTION',// must end with @return
+    
+    /**
+     * internal atrule
+     */
+    MediaFeature ='MediaFeature',
+    MediaQuery ='MediaQuery',
+    AtrulePrelude ='AtrulePrelude',
+    Atrule = 'Atrule',
 
     // exceptions
     ERROR = 'ERROR',
@@ -55,7 +64,7 @@ export const enum NodeTypes {
  */
 
 export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
-
+export type atruleNames = '@media'// | '@support' | '@charset' | '@keyframes' | '@font-face
 
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
@@ -130,6 +139,11 @@ export interface OperatorNode extends Node {
     value: arithmeticOperator | comparisonOperator
 }
 
+export interface SelectorNode extends Node {
+    type: NodeTypes.SELECTOR
+    value: TextNode | PlaceholderNode | ListNode | EmptyNode
+}
+
 // combined node
 export interface BinaryNode extends Node {
     type: NodeTypes.BINARY
@@ -148,6 +162,31 @@ export interface CallExpression extends Node {
     id: IdentifierNode
     args: ArgsType
 }
+
+/**
+ * @media ast tree (simplified) start  (reference: https://github.com/csstree/csstree)
+ * When the width is between 600px and 900px OR above 1100px - change the appearance of <div> 
+ * @media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1100px) {}
+ */
+
+export interface MediaQuery extends Node{
+    type: NodeTypes.MediaQuery
+    children:(TextNode | CallExpression)[]
+}
+export interface AtrulePrelude extends Node{
+    type: NodeTypes.AtrulePrelude
+    children: MediaQuery[]
+}
+export interface Atrule extends Node {
+    type: NodeTypes.Atrule
+    name: atruleNames
+    block: ChildStatement['children']
+    prelude: AtrulePrelude
+}
+
+/**
+ * @media ast tree end
+ */
 
 export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression
 
@@ -176,7 +215,7 @@ export interface BodyStatement extends Node {
 
 export interface ChildStatement extends Node {
     type: NodeTypes.CHILD
-    selector: TextNode | PlaceholderNode | ListNode
+    selector: SelectorNode
     children: (Statement | CodegenNode)[]
 }
 
@@ -246,7 +285,7 @@ export interface EachStatement extends Node {
 
 export type CodegenNode = TextNode | ProgCodeGenNode
 
-export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode;
+export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode | SelectorNode;
 
 export type ParentNode = RootNode | BodyStatement | ChildStatement
 
@@ -334,5 +373,71 @@ export function createReturnStatement(list:SimpleExpressionNode[]):ReturnStateme
         type:NodeTypes.RETURN,
         argument: createListNode(list),
         loc: locStub
+    }
+}
+
+export function createChildStatement(selector:ChildStatement['selector'],children:ChildStatement['children']):ChildStatement {
+    return {
+        type:NodeTypes.CHILD,
+        selector,
+        children,
+        loc: locStub
+    }
+}
+
+export function createIncludeStatement(id:IncludeStatement['id'],args:IncludeStatement['args']):IncludeStatement {
+    return {
+        type:NodeTypes.INCLUDE,
+        id,
+        args,
+        loc: locStub
+    }
+}
+
+export function createIfStatement(test:IfStatement['test'],consequent:IfStatement['consequent'],alternate:IfStatement['alternate']):IfStatement {
+    return {
+        type:NodeTypes.IFSTATEMENT,
+        test,
+        consequent,
+        alternate,
+        loc: locStub
+    }
+}
+export function createEachStatement(left:EachStatement['left'],right:EachStatement['right'],body:EachStatement['body']):EachStatement {
+    return {
+        type:NodeTypes.EACHSTATEMENT,
+        left,
+        right,
+        body,
+        loc: locStub
+    }
+}
+
+export function createVarKeyExpression(value:VarKeyNode['value'],loc:Node['loc']):VarKeyNode{
+    return {
+        type:NodeTypes.VAR_KEY,
+        value,
+        loc
+    }
+}
+export function createTextNode(value:TextNode['value']='',loc:Node['loc']=locStub):TextNode{
+    return {
+        type:NodeTypes.TEXT,
+        value,
+        loc
+    }
+}
+export function createSelectorNode(value: SelectorNode['value']): SelectorNode{
+    return {
+        type:NodeTypes.SELECTOR,
+        loc:value.loc,
+        value:value
+    }
+}
+
+export function createEmptyNode(loc: Node['loc'] = locStub): EmptyNode {
+    return {
+        type: NodeTypes.EMPTY,
+        loc
     }
 }

@@ -34,7 +34,14 @@ import {
     createReturnStatement,
     CallExpression,
     createIdentifierNode,
-    createCallExpression
+    createCallExpression,
+    createChildStatement,
+    createIncludeStatement,
+    createIfStatement,
+    createEachStatement,
+    createVarKeyExpression,
+    createTextNode,
+    createSelectorNode
 } from './ast';
 
 import {
@@ -280,13 +287,23 @@ export default function parse(input, options: ParserOptions) {
         }
         
         /**
-         * cases like internal keyword @media (min-width: 768px) {} etc, should not throw error but parsed as callExpression
+         * cases like internal keyword 
+         * @media only screen and (max-width: $maxwidth){}
+         * etc, should not throw error but parsed as special callExpression
          */
         if (tok.type == NodeTypes.KEYWORD) {
+            if (is_kw('@media')){
+                input.next()
+                return parseMedia();
+            }
             return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
+    }
+
+    function parseMedia(){
+
     }
 
     function parseSimpleExpressionList(): SimpleExpressionNode[] {
@@ -345,13 +362,7 @@ export default function parse(input, options: ParserOptions) {
 
     function parseChild(selector: ChildStatement['selector']): ChildStatement {
         let children = delimited("{", "}", ";", parseStatement);
-
-        return {
-            type: NodeTypes.CHILD,
-            selector,
-            children,
-            loc: locStub
-        };
+        return createChildStatement(selector,children)
     }
 
     function maybeAssign(exp) {
@@ -376,7 +387,7 @@ export default function parse(input, options: ParserOptions) {
         }
 
         if (is_punc('{')) {
-            return parseChild(expr) //passin selector
+            return parseChild(createSelectorNode(expr)) //passin selector
         }
 
         return expr;
@@ -488,12 +499,7 @@ export default function parse(input, options: ParserOptions) {
 
         reset_assign_right_end_condition()
 
-        return {
-            type: NodeTypes.INCLUDE,
-            id,
-            args,
-            loc: locStub
-        }
+        return createIncludeStatement(id,args);
     }
 
     function parseImport(): ImportStatement {
@@ -547,13 +553,7 @@ export default function parse(input, options: ParserOptions) {
             }
         }
 
-        return {
-            type: NodeTypes.IFSTATEMENT,
-            test: testExpression,
-            consequent: blockStatement,
-            alternate: alternate,
-            loc: locStub
-        }
+        return createIfStatement(testExpression, blockStatement, alternate)
     }
 
     function parseEach(): EachStatement {
@@ -570,13 +570,7 @@ export default function parse(input, options: ParserOptions) {
         skipPunc('{')
         let blockStatement = parseStatement()
         skipPunc('}')
-        return {
-            type: NodeTypes.EACHSTATEMENT,
-            left,
-            right,
-            body: blockStatement,
-            loc: locStub
-        }
+        return createEachStatement(left,right,blockStatement)
     }
 
     function parseConsecutiveLeft(): TextNode {
@@ -616,15 +610,11 @@ export default function parse(input, options: ParserOptions) {
                 input.croak(`${node} should be a variable which starts with '$'`)
             }
             skipPunc('}')
-            return {
-                ...node,
-                type: NodeTypes.VAR_KEY,
-                loc: {
-                    start: varKeyStartLoc,
-                    end: node.loc.end,
-                    filename
-                }
-            };
+            return createVarKeyExpression(node.value,{
+                start: varKeyStartLoc,
+                end: node.loc.end,
+                filename
+            })
         }
 
         let token = consumeNextTokenWithLoc();
@@ -642,15 +632,11 @@ export default function parse(input, options: ParserOptions) {
             input.croak(`[maybeVarKeyWrapper]: expect str token but received ${nextToken.value}`)
         }
 
-        return {
-            type: NodeTypes.TEXT,
-            value: '#' + nextToken.value,
-            loc: {
-                start: token.start,
-                end: nextToken.end,
-                filename
-            }
-        };
+        return createTextNode('#' + nextToken.value, {
+            start: token.start,
+            end: nextToken.end,
+            filename
+        })
     }
 
     function parseStatement() {

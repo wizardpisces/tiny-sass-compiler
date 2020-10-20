@@ -451,8 +451,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".square-av",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 126,
@@ -465,6 +464,23 @@
             "column": 11
           },
           "filename": "if.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".square-av",
+          "loc": {
+            "start": {
+              "offset": 126,
+              "line": 10,
+              "column": 1
+            },
+            "end": {
+              "offset": 136,
+              "line": 10,
+              "column": 11
+            },
+            "filename": "if.scss"
+          }
         }
       },
       "children": [
@@ -606,8 +622,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".circle-av",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 181,
@@ -620,6 +635,23 @@
             "column": 11
           },
           "filename": "if.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".circle-av",
+          "loc": {
+            "start": {
+              "offset": 181,
+              "line": 11,
+              "column": 1
+            },
+            "end": {
+              "offset": 191,
+              "line": 11,
+              "column": 11
+            },
+            "filename": "if.scss"
+          }
         }
       },
       "children": [

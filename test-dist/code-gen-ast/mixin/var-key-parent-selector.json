@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".sidebar",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 140,
@@ -21,6 +20,23 @@
             "column": 9
           },
           "filename": "var-key-parent-selector.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".sidebar",
+          "loc": {
+            "start": {
+              "offset": 140,
+              "line": 9,
+              "column": 1
+            },
+            "end": {
+              "offset": 148,
+              "line": 9,
+              "column": 9
+            },
+            "filename": "var-key-parent-selector.scss"
+          }
         }
       },
       "children": [
@@ -108,8 +124,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": "[dir=rtl] .sidebar.second",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 80,
@@ -122,6 +137,23 @@
             "column": 22
           },
           "filename": "var-key-parent-selector.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": "[dir=rtl] .sidebar.second",
+          "loc": {
+            "start": {
+              "offset": 80,
+              "line": 4,
+              "column": 4
+            },
+            "end": {
+              "offset": 98,
+              "line": 4,
+              "column": 22
+            },
+            "filename": "var-key-parent-selector.scss"
+          }
         }
       },
       "children": [

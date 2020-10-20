@@ -490,8 +490,7 @@
           {
             "type": "CHILD",
             "selector": {
-              "type": "TEXT",
-              "value": "background",
+              "type": "SELECTOR",
               "loc": {
                 "start": {
                   "offset": 156,
@@ -504,6 +503,23 @@
                   "column": 13
                 },
                 "filename": "optional-params.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "background",
+                "loc": {
+                  "start": {
+                    "offset": 156,
+                    "line": 7,
+                    "column": 3
+                  },
+                  "end": {
+                    "offset": 166,
+                    "line": 7,
+                    "column": 13
+                  },
+                  "filename": "optional-params.scss"
+                }
               }
             },
             "children": [
@@ -775,8 +791,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".mail-icon",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 239,
@@ -789,6 +804,23 @@
             "column": 11
           },
           "filename": "optional-params.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".mail-icon",
+          "loc": {
+            "start": {
+              "offset": 239,
+              "line": 14,
+              "column": 1
+            },
+            "end": {
+              "offset": 249,
+              "line": 14,
+              "column": 11
+            },
+            "filename": "optional-params.scss"
+          }
         }
       },
       "children": [

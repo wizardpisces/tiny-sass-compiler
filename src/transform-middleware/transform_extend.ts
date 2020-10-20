@@ -28,14 +28,14 @@ export default function transform_extend(ast:RootNode) {
     }
 
     function rm_empty_child(exp) {
-        return exp.type === NodeTypes.CHILD && (is_placeholder(exp.selector) || exp.children.length === 0) ? null : exp
+        return exp.type === NodeTypes.CHILD && (is_placeholder(exp.selector.value) || exp.children.length === 0) ? null : exp
     }
 
     function collect_extend(exp) {
         function collect(child) {
             child.children = child.children.map(exp => {
                 if (exp.type === NodeTypes.EXTEND) {
-                    extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(child.selector.value)
+                    extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(child.selector.value.value)
                     return null;
                 }
                 return exp;
@@ -48,22 +48,22 @@ export default function transform_extend(ast:RootNode) {
 
     function transform_extend(exp) {
         function transform(child) {
-            if (is_placeholder(child.selector)) {
+            if (is_placeholder(child.selector.value)) {
                 child.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value].join(','),
+                    value: extendSelectorPair[child.selector.value.value].join(','),
                     loc: child.selector.loc
                 }
             } else {
                 child.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value].concat(child.selector.value).join(','),
+                    value: extendSelectorPair[child.selector.value.value].concat(child.selector.value.value).join(','),
                     loc: child.selector.loc
                 }
             }
             return child;
         }
-        return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value] ? transform(exp) : exp;
+        return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value.value] ? transform(exp) : exp;
     }
 
     function toplevel(ast) {

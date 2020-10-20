@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugin: tests registerPlugin 1`] = `
+"body .test{
+  color:#333;
+}
+"
+`;

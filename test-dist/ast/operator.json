@@ -75,8 +75,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".container",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 14,
@@ -89,6 +88,23 @@
             "column": 11
           },
           "filename": "operator.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".container",
+          "loc": {
+            "start": {
+              "offset": 14,
+              "line": 2,
+              "column": 1
+            },
+            "end": {
+              "offset": 24,
+              "line": 2,
+              "column": 11
+            },
+            "filename": "operator.scss"
+          }
         }
       },
       "children": [
@@ -228,8 +244,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": "article[role=\"main\"]",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 50,
@@ -242,6 +257,23 @@
             "column": 21
           },
           "filename": "operator.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": "article[role=\"main\"]",
+          "loc": {
+            "start": {
+              "offset": 50,
+              "line": 6,
+              "column": 1
+            },
+            "end": {
+              "offset": 70,
+              "line": 6,
+              "column": 21
+            },
+            "filename": "operator.scss"
+          }
         }
       },
       "children": [
@@ -499,8 +531,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": "aside[role=\"complementary\"]",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 121,
@@ -513,6 +544,23 @@
             "column": 28
           },
           "filename": "operator.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": "aside[role=\"complementary\"]",
+          "loc": {
+            "start": {
+              "offset": 121,
+              "line": 11,
+              "column": 1
+            },
+            "end": {
+              "offset": 148,
+              "line": 11,
+              "column": 28
+            },
+            "filename": "operator.scss"
+          }
         }
       },
       "children": [

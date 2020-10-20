@@ -7,7 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 48,
@@ -21,7 +21,23 @@
           },
           "filename": "each.scss"
         },
-        "value": ".icon-#asfssd-40px"
+        "value": {
+          "type": "TEXT",
+          "loc": {
+            "start": {
+              "offset": 48,
+              "line": 4,
+              "column": 3
+            },
+            "end": {
+              "offset": 69,
+              "line": 4,
+              "column": 24
+            },
+            "filename": "each.scss"
+          },
+          "value": ".icon-#asfssd-40px"
+        }
       },
       "children": [
         {
@@ -108,8 +124,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".icon-#asfssd-40px .ok",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 99,
@@ -122,6 +137,23 @@
             "column": 8
           },
           "filename": "each.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".icon-#asfssd-40px .ok",
+          "loc": {
+            "start": {
+              "offset": 99,
+              "line": 6,
+              "column": 5
+            },
+            "end": {
+              "offset": 102,
+              "line": 6,
+              "column": 8
+            },
+            "filename": "each.scss"
+          }
         }
       },
       "children": [
@@ -243,7 +275,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 48,
@@ -257,7 +289,23 @@
           },
           "filename": "each.scss"
         },
-        "value": ".icon-#asfssd-50px"
+        "value": {
+          "type": "TEXT",
+          "loc": {
+            "start": {
+              "offset": 48,
+              "line": 4,
+              "column": 3
+            },
+            "end": {
+              "offset": 69,
+              "line": 4,
+              "column": 24
+            },
+            "filename": "each.scss"
+          },
+          "value": ".icon-#asfssd-50px"
+        }
       },
       "children": [
         {
@@ -344,8 +392,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".icon-#asfssd-50px .ok",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 99,
@@ -358,6 +405,23 @@
             "column": 8
           },
           "filename": "each.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".icon-#asfssd-50px .ok",
+          "loc": {
+            "start": {
+              "offset": 99,
+              "line": 6,
+              "column": 5
+            },
+            "end": {
+              "offset": 102,
+              "line": 6,
+              "column": 8
+            },
+            "filename": "each.scss"
+          }
         }
       },
       "children": [

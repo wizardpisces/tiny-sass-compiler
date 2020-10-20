@@ -68,7 +68,7 @@ export function transform(root: RootNode, options: TransformOptions) {
 
     traverseNode(root, context)
 
-    // transformChain will be slowly replaced by transform plugins if possible
+    // transformChain will be slowly replaced by transform plugins if possible, where self designed plugin comes up
     root = transformChain(root)
 }
 

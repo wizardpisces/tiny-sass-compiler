@@ -1,8 +1,10 @@
 import {
     parse,
-    compile
+    transform,
+    generate,
+    // compile //combings parse + transform + generate
 } from './src'
-
+import { RootNode} from './src/parse/ast'
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
@@ -47,7 +49,7 @@ function run(
             codeGenAstDistPath = path.join(outputDir, 'code-gen-ast', sourceDirname.substr(sourceDirLength)),
             sourceMapDistPath = path.join(outputDir, 'source-map', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
-            ast;
+            parsedAst:RootNode;
 
         if (!options.genOtherInfo) {
             if (!fs.existsSync(normalDistPath)) {
@@ -70,14 +72,14 @@ function run(
         }
 
         try {
-            ast = parse(requireCss.source, requireCss)
+            parsedAst = parse(requireCss.source, requireCss)
         } catch (e) {
             console.error(`\nParser Error:\n filePath: ${filePath}\n`, e)
             return;
         }
 
         function write_parsed_ast(cb) {
-            fs.writeFile(path.join(astDistPath, basename + '.json'), JSON.stringify(ast, null, 2), function (err) {
+            fs.writeFile(path.join(astDistPath, basename + '.json'), JSON.stringify(parsedAst, null, 2), function (err) {
                 if (err) {
                     console.error(err)
                     return console.error(`parse failed ${basename}`);
@@ -90,9 +92,12 @@ function run(
             let compiled: CodegenResult;
 
             try {
-                compiled = compile(requireCss.source, {
+                transform(parsedAst, {
                     ...requireCss,
                     sourceDir: sourceDirname,
+                    sourceMap: options.sourceMap
+                })
+                compiled = generate(parsedAst, {
                     sourceMap: options.sourceMap
                 })
             } catch (e) {

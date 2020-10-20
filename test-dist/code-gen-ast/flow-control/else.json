@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".banner",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 306,
@@ -21,6 +20,23 @@
             "column": 8
           },
           "filename": "else.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".banner",
+          "loc": {
+            "start": {
+              "offset": 306,
+              "line": 16,
+              "column": 1
+            },
+            "end": {
+              "offset": 313,
+              "line": 16,
+              "column": 8
+            },
+            "filename": "else.scss"
+          }
         }
       },
       "children": [
@@ -158,8 +174,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": "body.dark .banner",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 363,
@@ -172,6 +187,23 @@
             "column": 14
           },
           "filename": "else.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": "body.dark .banner",
+          "loc": {
+            "start": {
+              "offset": 363,
+              "line": 18,
+              "column": 3
+            },
+            "end": {
+              "offset": 374,
+              "line": 18,
+              "column": 14
+            },
+            "filename": "else.scss"
+          }
         }
       },
       "children": [

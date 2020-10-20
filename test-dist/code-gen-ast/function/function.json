@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".sidebar",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 50,
@@ -21,6 +20,23 @@
             "column": 9
           },
           "filename": "function.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".sidebar",
+          "loc": {
+            "start": {
+              "offset": 50,
+              "line": 6,
+              "column": 1
+            },
+            "end": {
+              "offset": 58,
+              "line": 6,
+              "column": 9
+            },
+            "filename": "function.scss"
+          }
         }
       },
       "children": [

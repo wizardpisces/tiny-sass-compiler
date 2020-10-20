@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".component",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 0,
@@ -21,6 +20,23 @@
             "column": 11
           },
           "filename": "at-rules-and-bubbling.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".component",
+          "loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 10,
+              "line": 1,
+              "column": 11
+            },
+            "filename": "at-rules-and-bubbling.scss"
+          }
         }
       },
       "children": [
@@ -95,8 +111,7 @@
         {
           "type": "CHILD",
           "selector": {
-            "type": "TEXT",
-            "value": "@media(min-width: 768px)",
+            "type": "SELECTOR",
             "loc": {
               "start": {
                 "offset": 36,
@@ -109,6 +124,23 @@
                 "column": 30
               },
               "filename": "at-rules-and-bubbling.scss"
+            },
+            "value": {
+              "type": "TEXT",
+              "value": "@media(min-width: 768px)",
+              "loc": {
+                "start": {
+                  "offset": 36,
+                  "line": 4,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 61,
+                  "line": 4,
+                  "column": 30
+                },
+                "filename": "at-rules-and-bubbling.scss"
+              }
             }
           },
           "children": [
@@ -183,8 +215,7 @@
             {
               "type": "CHILD",
               "selector": {
-                "type": "TEXT",
-                "value": "@media(min-resolution: 192dpi)",
+                "type": "SELECTOR",
                 "loc": {
                   "start": {
                     "offset": 95,
@@ -197,6 +228,23 @@
                     "column": 40
                   },
                   "filename": "at-rules-and-bubbling.scss"
+                },
+                "value": {
+                  "type": "TEXT",
+                  "value": "@media(min-resolution: 192dpi)",
+                  "loc": {
+                    "start": {
+                      "offset": 95,
+                      "line": 7,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 126,
+                      "line": 7,
+                      "column": 40
+                    },
+                    "filename": "at-rules-and-bubbling.scss"
+                  }
                 }
               },
               "children": [
@@ -301,8 +349,7 @@
         {
           "type": "CHILD",
           "selector": {
-            "type": "TEXT",
-            "value": "@media(min-width: 1280px)",
+            "type": "SELECTOR",
             "loc": {
               "start": {
                 "offset": 204,
@@ -315,6 +362,23 @@
                 "column": 31
               },
               "filename": "at-rules-and-bubbling.scss"
+            },
+            "value": {
+              "type": "TEXT",
+              "value": "@media(min-width: 1280px)",
+              "loc": {
+                "start": {
+                  "offset": 204,
+                  "line": 12,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 230,
+                  "line": 12,
+                  "column": 31
+                },
+                "filename": "at-rules-and-bubbling.scss"
+              }
             }
           },
           "children": [

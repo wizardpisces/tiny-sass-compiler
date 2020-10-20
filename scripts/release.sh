@@ -2,6 +2,8 @@
 
 set -e
 echo "Run test... "
+
+npm run jest
 npm run build
 npm run test
 

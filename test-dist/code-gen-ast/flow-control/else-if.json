@@ -7,8 +7,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".next",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 471,
@@ -21,6 +20,23 @@
             "column": 6
           },
           "filename": "else-if.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".next",
+          "loc": {
+            "start": {
+              "offset": 471,
+              "line": 22,
+              "column": 1
+            },
+            "end": {
+              "offset": 476,
+              "line": 22,
+              "column": 6
+            },
+            "filename": "else-if.scss"
+          }
         }
       },
       "children": [

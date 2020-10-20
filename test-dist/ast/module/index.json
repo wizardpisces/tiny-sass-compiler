@@ -42,8 +42,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".inverse",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 39,
@@ -56,6 +55,23 @@
             "column": 9
           },
           "filename": "index.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".inverse",
+          "loc": {
+            "start": {
+              "offset": 39,
+              "line": 4,
+              "column": 1
+            },
+            "end": {
+              "offset": 47,
+              "line": 4,
+              "column": 9
+            },
+            "filename": "index.scss"
+          }
         }
       },
       "children": [

@@ -435,8 +435,7 @@
     {
       "type": "CHILD",
       "selector": {
-        "type": "TEXT",
-        "value": ".box",
+        "type": "SELECTOR",
         "loc": {
           "start": {
             "offset": 171,
@@ -449,6 +448,23 @@
             "column": 5
           },
           "filename": "params.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".box",
+          "loc": {
+            "start": {
+              "offset": 171,
+              "line": 7,
+              "column": 1
+            },
+            "end": {
+              "offset": 175,
+              "line": 7,
+              "column": 5
+            },
+            "filename": "params.scss"
+          }
         }
       },
       "children": [
