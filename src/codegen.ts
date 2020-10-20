@@ -12,7 +12,7 @@ import {
 import { CodegenOptions } from './options'
 import { advancePositionWithMutation} from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
-import { applyPlugins} from './PluginManager'
+import { applyPlugins} from './pluginManager'
 // todos complete CodegenNode type
 import { isBrowser} from './global'
 export interface CodegenResult {

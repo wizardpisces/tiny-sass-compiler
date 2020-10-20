@@ -1,6 +1,6 @@
 import { parse, transform, registerPlugin, generate } from '../index'
 import { CodegenNode, NodeTypes } from '../parse/ast'
-import { PluginContext } from '../PluginManager'
+import { PluginContext } from '../pluginManager'
 describe('plugin: tests', () => {
     const source = `
 $stack:    Helvetica, sans-serif;
