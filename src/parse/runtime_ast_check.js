@@ -20,8 +20,8 @@ const astTypeLiteralValidator = [
     NodeTypes.IDENTIFIER,
 
     NodeTypes.BODY,
-    NodeTypes.ASSIGN,
-    NodeTypes.CHILD,
+    NodeTypes.DECLARATION,
+    NodeTypes.RULE,
     NodeTypes.IMPORT,
     NodeTypes.INCLUDE,
     NodeTypes.EXTEND,
@@ -69,8 +69,8 @@ const baseSchema = {
  */
 const Statement_Types = [
     NodeTypes.BODY, 
-    NodeTypes.ASSIGN, 
-    NodeTypes.CHILD, 
+    NodeTypes.DECLARATION, 
+    NodeTypes.RULE, 
     NodeTypes.IMPORT, 
     NodeTypes.INCLUDE, 
     NodeTypes.EXTEND, 
@@ -143,17 +143,17 @@ let Type_Schema_Map = {
         children: [constructDynamicStruct(Statement_Types, NodeTypes.BODY)]
     },
 
-    [NodeTypes.ASSIGN]: {
-        type: NodeTypes.ASSIGN,
-        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], NodeTypes.ASSIGN),
-        right: constructDynamicStruct([NodeTypes.LIST], NodeTypes.ASSIGN)
+    [NodeTypes.DECLARATION]: {
+        type: NodeTypes.DECLARATION,
+        left: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.VAR_KEY], NodeTypes.DECLARATION),
+        right: constructDynamicStruct([NodeTypes.LIST], NodeTypes.DECLARATION)
     },
 
-    [NodeTypes.CHILD]: {
-        type: NodeTypes.CHILD,
+    [NodeTypes.RULE]: {
+        type: NodeTypes.RULE,
         // selector: str | placeholder | list,
-        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, NodeTypes.LIST], NodeTypes.CHILD),
-        children: [constructDynamicStruct(Statement_Types, NodeTypes.CHILD)]
+        selector: constructDynamicStruct([NodeTypes.TEXT, NodeTypes.PLACEHOLDER, NodeTypes.LIST], NodeTypes.RULE),
+        children: [constructDynamicStruct(Statement_Types, NodeTypes.RULE)]
     },
 
     [NodeTypes.IMPORT]: {
@@ -167,7 +167,7 @@ let Type_Schema_Map = {
             type: NodeTypes.IDENTIFIER,
             name: "string"
         },
-        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, NodeTypes.ASSIGN], NodeTypes.INCLUDE)]
+        args: [constructDynamicStruct([NodeTypes.TEXT, NodeTypes.VARIABLE, NodeTypes.BINARY, NodeTypes.DECLARATION], NodeTypes.INCLUDE)]
     },
 
     [NodeTypes.EXTEND]: {
@@ -182,7 +182,7 @@ let Type_Schema_Map = {
             name: 'string'
         },
         // params: [var | assign],
-        params: [constructDynamicStruct([NodeTypes.VARIABLE, NodeTypes.ASSIGN], NodeTypes.MIXIN)],
+        params: [constructDynamicStruct([NodeTypes.VARIABLE, NodeTypes.DECLARATION], NodeTypes.MIXIN)],
         body: constructDynamicStruct([NodeTypes.BODY], NodeTypes.MIXIN)
     },
 
@@ -203,7 +203,7 @@ let Type_Schema_Map = {
         type: NodeTypes.EACHSTATEMENT,
         left: constructDynamicStruct([NodeTypes.VARIABLE], NodeTypes.EACHSTATEMENT),
         right: constructDynamicStruct([NodeTypes.VARIABLE], NodeTypes.EACHSTATEMENT),
-        body: constructDynamicStruct([NodeTypes.CHILD], NodeTypes.EACHSTATEMENT)
+        body: constructDynamicStruct([NodeTypes.RULE], NodeTypes.EACHSTATEMENT)
     },
     [NodeTypes.PROGRAM]: {
         type: NodeTypes.PROGRAM,

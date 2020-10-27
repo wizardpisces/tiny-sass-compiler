@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -91,7 +88,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "height",
@@ -156,7 +153,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -192,7 +189,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -242,7 +239,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "height",
@@ -292,7 +289,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "border-radius",
@@ -357,6 +354,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
+  },
   "loc": {
     "filename": "",
     "start": {

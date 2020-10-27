@@ -4,11 +4,11 @@
  * compile @extend
  */
 import {
-    NodeTypes, 
+    NodeTypes,
     RootNode
 } from '../parse/ast';
 
-export default function transform_extend(ast:RootNode) {
+export default function transform_extend(ast: RootNode) {
     /**
      * transform
      * 
@@ -28,42 +28,42 @@ export default function transform_extend(ast:RootNode) {
     }
 
     function rm_empty_child(exp) {
-        return exp.type === NodeTypes.CHILD && (is_placeholder(exp.selector.value) || exp.children.length === 0) ? null : exp
+        return exp.type === NodeTypes.RULE && (is_placeholder(exp.selector.value) || exp.children.length === 0) ? null : exp
     }
 
     function collect_extend(exp) {
-        function collect(child) {
-            child.children = child.children.map(exp => {
+        function collect(rule) {
+            rule.children = rule.children.map(exp => {
                 if (exp.type === NodeTypes.EXTEND) {
-                    extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(child.selector.value.value)
+                    extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(rule.selector.value.value)
                     return null;
                 }
                 return exp;
             }).filter(exp => exp !== null)
 
-            return child;
+            return rule;
         }
-        return exp.type === NodeTypes.CHILD ? collect(exp) : exp;
+        return exp.type === NodeTypes.RULE ? collect(exp) : exp;
     }
 
     function transform_extend(exp) {
-        function transform(child) {
-            if (is_placeholder(child.selector.value)) {
-                child.selector = {
+        function transform(rule) {
+            if (is_placeholder(rule.selector.value)) {
+                rule.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value.value].join(','),
-                    loc: child.selector.loc
+                    value: extendSelectorPair[rule.selector.value.value].join(','),
+                    loc: rule.selector.loc
                 }
             } else {
-                child.selector = {
+                rule.selector = {
                     type: NodeTypes.TEXT,
-                    value: extendSelectorPair[child.selector.value.value].concat(child.selector.value.value).join(','),
-                    loc: child.selector.loc
+                    value: extendSelectorPair[rule.selector.value.value].concat(rule.selector.value.value).join(','),
+                    loc: rule.selector.loc
                 }
             }
-            return child;
+            return rule;
         }
-        return exp.type === NodeTypes.CHILD && extendSelectorPair[exp.selector.value.value] ? transform(exp) : exp;
+        return exp.type === NodeTypes.RULE && extendSelectorPair[exp.selector.value.value] ? transform(exp) : exp;
     }
 
     function toplevel(ast) {

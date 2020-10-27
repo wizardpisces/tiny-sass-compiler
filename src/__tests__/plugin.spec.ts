@@ -18,7 +18,7 @@ let result =
 }
 `
     function testPlugin(node: CodegenNode, context: PluginContext) {
-        if (node.type === NodeTypes.ASSIGN && node.left.value === 'font') {
+        if (node.type === NodeTypes.DECLARATION && node.left.value === 'font') {
             context.remove(node)
         }
     }

@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "at-rules-and-bubbling.scss": ".component {\n    width: 300px;\n\n    @media (min-width: 768px) {\n        width: 600px;\n\n        @media (min-resolution: 192dpi) {\n            background-image: url(/img/retina2x.png);\n        }\n    }\n\n    @media (min-width: 1280px) {\n        width: 800px;\n    }\n}\n"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -109,7 +106,7 @@
           }
         },
         {
-          "type": "CHILD",
+          "type": "RULE",
           "selector": {
             "type": "SELECTOR",
             "loc": {
@@ -145,7 +142,7 @@
           },
           "children": [
             {
-              "type": "ASSIGN",
+              "type": "DECLARATION",
               "left": {
                 "type": "TEXT",
                 "value": "width",
@@ -213,7 +210,7 @@
               }
             },
             {
-              "type": "CHILD",
+              "type": "RULE",
               "selector": {
                 "type": "SELECTOR",
                 "loc": {
@@ -249,7 +246,7 @@
               },
               "children": [
                 {
-                  "type": "ASSIGN",
+                  "type": "DECLARATION",
                   "left": {
                     "type": "TEXT",
                     "value": "background-image",
@@ -347,7 +344,7 @@
           }
         },
         {
-          "type": "CHILD",
+          "type": "RULE",
           "selector": {
             "type": "SELECTOR",
             "loc": {
@@ -383,7 +380,7 @@
           },
           "children": [
             {
-              "type": "ASSIGN",
+              "type": "DECLARATION",
               "left": {
                 "type": "TEXT",
                 "value": "width",
@@ -481,6 +478,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "at-rules-and-bubbling.scss": ".component {\n    width: 300px;\n\n    @media (min-width: 768px) {\n        width: 600px;\n\n        @media (min-resolution: 192dpi) {\n            background-image: url(/img/retina2x.png);\n        }\n    }\n\n    @media (min-width: 1280px) {\n        width: 800px;\n    }\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {

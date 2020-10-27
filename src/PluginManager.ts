@@ -34,9 +34,9 @@ class PluginManager {
 
     _walk(node: CodegenNode, list: CodegenNode[]) {
         this._runEnterWalkers(node, list)
-        if (node.type === NodeTypes.CHILD) {
-            (node.children as CodegenNode[]).forEach((childNode: CodegenNode, index: number) => {
-                this._walk(childNode, node.children as CodegenNode[])
+        if (node.type === NodeTypes.RULE) {
+            (node.children as CodegenNode[]).forEach((CHILDNode: CodegenNode, index: number) => {
+                this._walk(CHILDNode, node.children as CodegenNode[])
             })
         }
         this._runLeaveWakers(node,list)

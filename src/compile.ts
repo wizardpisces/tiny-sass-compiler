@@ -23,7 +23,6 @@ export default function baseCompile(
     let ast = baseParse(scss, options)
 
     transform(ast, {
-        nodeTransforms: [transformStatement],
         ...options
     })
 

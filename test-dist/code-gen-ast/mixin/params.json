@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "params.scss": "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "-webkit-transform",
@@ -91,7 +88,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "-ms-transform",
@@ -141,7 +138,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "transform",
@@ -191,7 +188,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "left",
@@ -256,6 +253,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "params.scss": "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {

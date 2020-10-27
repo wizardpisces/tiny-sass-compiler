@@ -7,7 +7,7 @@ import {
 import transformChain, { transform_module as transformModule} from './transform-middleware/index'
 import { isBrowser} from './global'
 // - NodeTransform:
-//   Transforms that operate directly on a ChildNode. NodeTransforms may mutate,
+//   Transforms that operate directly on a childNode. NodeTransforms may mutate,
 //   replace or remove the node being processed.
 export type NodeTransform = (
     node: Node,
@@ -69,7 +69,7 @@ export function transform(root: RootNode, options: TransformOptions) {
     traverseNode(root, context)
 
     // transformChain will be slowly replaced by transform plugins if possible, where self designed plugin comes up
-    root = transformChain(root)
+    transformChain(root)
 }
 
 export function traverseChildren(
@@ -81,13 +81,13 @@ export function traverseChildren(
         i--
     }
     for (; i < parent.children.length; i++) {
-        const child = parent.children[i]
+        const RULE = parent.children[i]
 
         context.parent = parent
         context.childIndex = i
         context.onNodeRemoved = nodeRemoved
         
-        traverseNode(child, context)
+        traverseNode(RULE, context)
     }
 
     parent.children = (parent.children as CodegenNode[]).filter((node:CodegenNode) => node.type !== NodeTypes.EMPTY)

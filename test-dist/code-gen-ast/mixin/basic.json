@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "margin",
@@ -91,7 +88,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "padding",
@@ -141,7 +138,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "list-style",
@@ -222,7 +219,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -258,7 +255,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "display",
@@ -323,6 +320,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

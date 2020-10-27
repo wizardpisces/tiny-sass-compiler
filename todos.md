@@ -4,6 +4,7 @@
 ### feat
 
 * complete at-rules-and-bubbling (mainly resolve special keyword @media)
+* support css atrules (@keyframes @media)
 * add browser style[type='text/acss'] and link[rel='RootNode/acss'] support
 * read mcss and less.js（https://github.com/leeluolee/mcss），mcss/less是如何parse的 @media
 * add changeLog generation （reference vite）

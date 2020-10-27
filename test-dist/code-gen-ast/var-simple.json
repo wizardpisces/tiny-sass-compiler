@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "var-simple.scss": "$font-stack:    Helvetica,  sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: $primary-color;\n}\n"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "font",
@@ -91,7 +88,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "color",
@@ -156,6 +153,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "var-simple.scss": "$font-stack:    Helvetica,  sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: $primary-color;\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {

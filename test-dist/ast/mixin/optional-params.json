@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
-  },
   "children": [
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$font",
@@ -144,7 +141,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "VARIABLE",
             "value": "$x",
@@ -212,7 +209,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "VARIABLE",
             "value": "$y",
@@ -284,7 +281,7 @@
         "type": "BODY",
         "children": [
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "text-indent",
@@ -352,7 +349,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "overflow",
@@ -420,7 +417,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "text-align",
@@ -488,7 +485,7 @@
             }
           },
           {
-            "type": "CHILD",
+            "type": "RULE",
             "selector": {
               "type": "SELECTOR",
               "loc": {
@@ -524,7 +521,7 @@
             },
             "children": [
               {
-                "type": "ASSIGN",
+                "type": "DECLARATION",
                 "left": {
                   "type": "TEXT",
                   "value": "image",
@@ -592,7 +589,7 @@
                 }
               },
               {
-                "type": "ASSIGN",
+                "type": "DECLARATION",
                 "left": {
                   "type": "TEXT",
                   "value": "repeat",
@@ -660,7 +657,7 @@
                 }
               },
               {
-                "type": "ASSIGN",
+                "type": "DECLARATION",
                 "left": {
                   "type": "TEXT",
                   "value": "position",
@@ -789,7 +786,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -909,6 +906,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {

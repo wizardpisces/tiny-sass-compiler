@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "function.scss": "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "float",
@@ -91,7 +88,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "margin-left",
@@ -156,6 +153,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "function.scss": "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {

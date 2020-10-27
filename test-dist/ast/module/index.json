@@ -1,8 +1,5 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "index.scss": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
-  },
   "children": [
     {
       "type": "IMPORT",
@@ -40,7 +37,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -76,7 +73,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "background-color",
@@ -144,7 +141,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "color",
@@ -227,6 +224,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "index.scss": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

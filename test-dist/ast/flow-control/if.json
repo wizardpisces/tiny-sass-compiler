@@ -1,8 +1,5 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
-  },
   "children": [
     {
       "type": "MIXIN",
@@ -42,7 +39,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "VARIABLE",
             "value": "$circle",
@@ -114,7 +111,7 @@
         "type": "BODY",
         "children": [
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "width",
@@ -182,7 +179,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "height",
@@ -272,7 +269,7 @@
               "type": "BODY",
               "children": [
                 {
-                  "type": "ASSIGN",
+                  "type": "DECLARATION",
                   "left": {
                     "type": "TEXT",
                     "value": "border-radius",
@@ -449,7 +446,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -522,7 +519,7 @@
               }
             },
             {
-              "type": "ASSIGN",
+              "type": "DECLARATION",
               "left": {
                 "type": "VARIABLE",
                 "value": "$circle",
@@ -620,7 +617,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -693,7 +690,7 @@
               }
             },
             {
-              "type": "ASSIGN",
+              "type": "DECLARATION",
               "left": {
                 "type": "VARIABLE",
                 "value": "$circle",
@@ -791,6 +788,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
+  },
   "loc": {
     "filename": "",
     "start": {

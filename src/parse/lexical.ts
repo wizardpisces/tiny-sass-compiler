@@ -14,15 +14,17 @@ import {
 } from './errors';
 
 export default function lex(input) {
-    // let current = null;
+
     let keywords = ' @extend @mixin @include @import @if @else @error @each @function @return',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==', '!=', '>=', '<=', '>', '<'],
         /** 
          * special treatment for internal callExpression which will be increased overtime
          * parse.ts also treat undiscoverd internal call expression as string when transformed
+         * 
+         * Todos: will be replaced by in depth analyze
          */ 
-        internalCallIdentifiers = ['@media', 'url']; // will be replaced by in depth analyze
+        internalCallIdentifiers = ['@media','url'];
 
     return {
         next,
@@ -121,7 +123,7 @@ export default function lex(input) {
 
     function read_assign_char() {
         return {
-            type: NodeTypes.ASSIGN,
+            type: NodeTypes.DECLARATION,
             value: input.next()
         }
     }

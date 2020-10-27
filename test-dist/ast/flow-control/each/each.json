@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "each.scss": "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
-  },
   "children": [
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$sizes",
@@ -143,7 +140,7 @@
         }
       },
       "body": {
-        "type": "CHILD",
+        "type": "RULE",
         "selector": {
           "type": "SELECTOR",
           "loc": {
@@ -214,7 +211,7 @@
         },
         "children": [
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "font-size",
@@ -282,7 +279,7 @@
             }
           },
           {
-            "type": "CHILD",
+            "type": "RULE",
             "selector": {
               "type": "SELECTOR",
               "loc": {
@@ -318,7 +315,7 @@
             },
             "children": [
               {
-                "type": "ASSIGN",
+                "type": "DECLARATION",
                 "left": {
                   "type": "TEXT",
                   "value": "font-size",
@@ -386,7 +383,7 @@
                 }
               },
               {
-                "type": "ASSIGN",
+                "type": "DECLARATION",
                 "left": {
                   "type": "TEXT",
                   "value": "border",
@@ -532,6 +529,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "each.scss": "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

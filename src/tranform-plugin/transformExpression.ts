@@ -16,7 +16,7 @@ export function callFunctionWithArgs(func: Function, node: IncludeStatement | Ca
         /**
          * @include avatar(100px, $circle: false);
          */
-        if (arg.type === NodeTypes.ASSIGN) {
+        if (arg.type === NodeTypes.DECLARATION) {
             return processExpression(arg.right, context).value
         } else {
             return processExpression(arg, context).value
@@ -87,7 +87,7 @@ export function processExpression(
        
         function convertCallNodeToString(node:CallExpression):string {
             return node.id.value + '(' + node.args.map(node=>{
-                if(node.type === NodeTypes.ASSIGN){
+                if(node.type === NodeTypes.DECLARATION){
                     return defaultOnError(
                         createCompilerError(ErrorCodes.EXPECTED_X, node.loc, ',')
                     )

@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "operator.scss": "$var : 600px;\n.container {\n  width: 1px + 8px;\n}\n\narticle[role=\"main\"] {\n  float: left;\n  width: $var / 960px * 100%;\n}\n\naside[role=\"complementary\"] {\n  float: right;\n  width: 300px / 960px * 100%;\n}"
-  },
   "children": [
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$var",
@@ -73,7 +70,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -109,7 +106,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -242,7 +239,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -278,7 +275,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "float",
@@ -346,7 +343,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -529,7 +526,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -565,7 +562,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "float",
@@ -633,7 +630,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "width",
@@ -816,6 +813,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "operator.scss": "$var : 600px;\n.container {\n  width: 1px + 8px;\n}\n\narticle[role=\"main\"] {\n  float: left;\n  width: $var / 960px * 100%;\n}\n\naside[role=\"complementary\"] {\n  float: right;\n  width: 300px / 960px * 100%;\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

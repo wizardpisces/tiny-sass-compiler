@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "float",
@@ -122,7 +119,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -158,7 +155,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "float",
@@ -223,6 +220,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

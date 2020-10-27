@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -41,7 +38,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "margin-left",
@@ -106,6 +103,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

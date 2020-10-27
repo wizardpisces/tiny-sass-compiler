@@ -2,8 +2,6 @@
 
 This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
 
-[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
-
 ## Sass Compiler
 
 A tiny Sass compiler in javascript for people familiar with javascript and want to know more about compiler
@@ -86,8 +84,9 @@ tiny-sass src/ dist/
 
 *will generate intermediate AST file in dist/ast and css file in dist/css*
 
-## Project Snapshot Test
+## Test
 
+### Snapshot Test
 ```bash
 npm run test
 ```
@@ -116,136 +115,19 @@ body .test {
 }
 ```
 
-Before code generation AST
-```json
-{
-  "type": "PROGRAM",
-  "children": [
-    {
-      "type": "CHILD",
-      "selector": {
-        "loc": {
-          "start": {
-            "offset": 62,
-            "line": 4,
-            "column": 0
-          },
-          "end": {
-            "offset": 72,
-            "line": 4,
-            "column": 10
-          }
-        },
-        "type": "TEXT",
-        "value": "body .test"
-      },
-      "children": [
-        {
-          "loc": {
-            "start": {
-              "offset": 76,
-              "line": 5,
-              "column": 2
-            },
-            "end": {
-              "offset": 98,
-              "line": 5,
-              "column": 24
-            }
-          },
-          "type": "ASSIGN",
-          "left": {
-            "loc": {
-              "start": {
-                "offset": 76,
-                "line": 5,
-                "column": 2
-              },
-              "end": {
-                "offset": 80,
-                "line": 5,
-                "column": 6
-              }
-            },
-            "type": "TEXT",
-            "value": "font"
-          },
-          "right": {
-            "type": "TEXT",
-            "loc": {
-              "start": {
-                "offset": 82,
-                "line": 5,
-                "column": 8
-              },
-              "end": {
-                "offset": 98,
-                "line": 5,
-                "column": 24
-              }
-            },
-            "value": "100% Helvetica, sans-serif"
-          }
-        },
-        {
-          "loc": {
-            "start": {
-              "offset": 102,
-              "line": 6,
-              "column": 2
-            },
-            "end": {
-              "offset": 126,
-              "line": 7,
-              "column": 16
-            }
-          },
-          "type": "ASSIGN",
-          "left": {
-            "loc": {
-              "start": {
-                "offset": 102,
-                "line": 6,
-                "column": 2
-              },
-              "end": {
-                "offset": 107,
-                "line": 6,
-                "column": 7
-              }
-            },
-            "type": "TEXT",
-            "value": "color"
-          },
-          "right": {
-            "type": "TEXT",
-            "loc": {
-              "start": {
-                "offset": 112,
-                "line": 7,
-                "column": 2
-              },
-              "end": {
-                "offset": 126,
-                "line": 7,
-                "column": 16
-              }
-            },
-            "value": "#333"
-          }
-        }
-      ]
-    }
-  ],
-  "source": "$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody .test{\n  font: 100% $font-stack;\n  color: \n  $primary-color;\n}\n"
-}
+### Jest test
+
+```bash
+npm run jest
 ```
 
-*Interested in more intermediate status? Please view files in ./test-dist/*
+*Interested in more intermediate status? Please view files in ./test-dist/ which contains ast after parse | transform and code after code generation*
+
+[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
+[AST travesal plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
 
 ## Reference
 
 * https://github.com/csstree/csstree
 * https://astexplorer.net/#/gist/244e2fb4da940df52bf0f4b94277db44/e79aff44611020b22cfd9708f3a99ce09b7d67a8
 * http://lesscss.org/
-* 

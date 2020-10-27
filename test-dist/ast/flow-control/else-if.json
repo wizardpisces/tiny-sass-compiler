@@ -1,8 +1,5 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "else-if.scss": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
-  },
   "children": [
     {
       "type": "MIXIN",
@@ -80,7 +77,7 @@
         "type": "BODY",
         "children": [
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "height",
@@ -148,7 +145,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "width",
@@ -216,7 +213,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "border-color",
@@ -284,7 +281,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "border-style",
@@ -352,7 +349,7 @@
             }
           },
           {
-            "type": "ASSIGN",
+            "type": "DECLARATION",
             "left": {
               "type": "TEXT",
               "value": "border-width",
@@ -542,7 +539,7 @@
               "type": "BODY",
               "children": [
                 {
-                  "type": "ASSIGN",
+                  "type": "DECLARATION",
                   "left": {
                     "type": "TEXT",
                     "value": "border-bottom-color",
@@ -697,7 +694,7 @@
                 "type": "BODY",
                 "children": [
                   {
-                    "type": "ASSIGN",
+                    "type": "DECLARATION",
                     "left": {
                       "type": "TEXT",
                       "value": "border-left-color",
@@ -852,7 +849,7 @@
                   "type": "BODY",
                   "children": [
                     {
-                      "type": "ASSIGN",
+                      "type": "DECLARATION",
                       "left": {
                         "type": "TEXT",
                         "value": "border-top-color",
@@ -1007,7 +1004,7 @@
                     "type": "BODY",
                     "children": [
                       {
-                        "type": "ASSIGN",
+                        "type": "DECLARATION",
                         "left": {
                           "type": "TEXT",
                           "value": "border-right-color",
@@ -1265,7 +1262,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -1402,6 +1399,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "else-if.scss": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

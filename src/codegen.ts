@@ -2,8 +2,8 @@ import {
     NodeTypes,
     RootNode,
     TextNode,
-    AssignStatement,
-    ChildStatement,
+    DeclarationStatement,
+    RuleStatement,
     CodegenNode,
     ProgCodeGenNode,
     Position,
@@ -141,11 +141,11 @@ function genNode(
         case NodeTypes.SELECTOR:
             genSelector(node as SelectorNode, context);
             break;
-        case NodeTypes.ASSIGN:
-            genAssign(node as AssignStatement, context);
+        case NodeTypes.DECLARATION:
+            genAssign(node as DeclarationStatement, context);
             break;
-        case NodeTypes.CHILD:
-            genChild(node as ChildStatement, context, list);
+        case NodeTypes.RULE:
+            genChild(node as RuleStatement, context, list);
             break;
         case NodeTypes.EMPTY:
             break;
@@ -169,7 +169,7 @@ function genSelector(
 }
 
 function genAssign(
-    node: AssignStatement,
+    node: DeclarationStatement,
     context: CodegenContext
 ) {
     const { push } = context;
@@ -190,11 +190,11 @@ function genChild(
     push('{');
     indent();
 
-    (node.children as CodegenNode[]).forEach((childNode: CodegenNode,index:number) => {
-        if (index && childNode.type !== NodeTypes.EMPTY) {
+    (node.children as CodegenNode[]).forEach((child: CodegenNode,index:number) => {
+        if (index && child.type !== NodeTypes.EMPTY) {
             newline()
         }
-        genNode(childNode, context, node.children as CodegenNode[]);
+        genNode(child, context, node.children as CodegenNode[]);
     })
 
     deindent();

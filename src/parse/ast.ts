@@ -21,9 +21,10 @@ export const enum NodeTypes {
     /**
      * Statement 
      * */
+    BLOCK = 'BLOCK',
     BODY = 'BODY',
-    CHILD = 'CHILD',
-    ASSIGN = 'ASSIGN',
+    RULE = 'RULE',
+    DECLARATION = 'DECLARATION',
     
     // keyword statement
     IMPORT = 'IMPORT',
@@ -33,12 +34,12 @@ export const enum NodeTypes {
     FUNCTION = 'FUNCTION',// must end with @return
     
     /**
-     * internal atrule
+     * internal atCHILD
      */
     MediaFeature ='MediaFeature',
+    MediaQueryList ='MediaQueryList',
     MediaQuery ='MediaQuery',
-    AtrulePrelude ='AtrulePrelude',
-    Atrule = 'Atrule',
+    AtRule = 'AtRule',
 
     // exceptions
     ERROR = 'ERROR',
@@ -64,7 +65,7 @@ export const enum NodeTypes {
  */
 
 export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
-export type atruleNames = '@media'// | '@support' | '@charset' | '@keyframes' | '@font-face
+export type internalAtRuleNames = 'media'| 'keyframes'  | 'support' | 'charset' | 'font-face';
 
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
@@ -163,39 +164,14 @@ export interface CallExpression extends Node {
     args: ArgsType
 }
 
-/**
- * @media ast tree (simplified) start  (reference: https://github.com/csstree/csstree)
- * When the width is between 600px and 900px OR above 1100px - change the appearance of <div> 
- * @media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1100px) {}
- */
-
-export interface MediaQuery extends Node{
-    type: NodeTypes.MediaQuery
-    children:(TextNode | CallExpression)[]
-}
-export interface AtrulePrelude extends Node{
-    type: NodeTypes.AtrulePrelude
-    children: MediaQuery[]
-}
-export interface Atrule extends Node {
-    type: NodeTypes.Atrule
-    name: atruleNames
-    block: ChildStatement['children']
-    prelude: AtrulePrelude
-}
-
-/**
- * @media ast tree end
- */
-
 export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression
 
 /* Statement */
 
 export type Statement = 
     BodyStatement 
-    | ChildStatement 
-    | AssignStatement 
+    | RuleStatement 
+    | DeclarationStatement 
     | ImportStatement 
     | IncludeStatement 
     | ExtendStatement 
@@ -206,21 +182,32 @@ export type Statement =
     | EachStatement
     | ReturnStatement
 
-export type ArgsType = (TextNode | VariableNode | BinaryNode | AssignStatement)[]
+export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
+export interface BlockStatement extends Node{
+    type:NodeTypes.BLOCK
+    children: RuleStatement | DeclarationStatement[]
+}
+/**
+ * used with self designed statement eg: @function @mixin
+ * will be deleted after evaluation， so it will not exist in codegen step
+ */
 export interface BodyStatement extends Node {
     type: NodeTypes.BODY
     children: Statement[]
 }
 
-export interface ChildStatement extends Node {
-    type: NodeTypes.CHILD
+/**
+ * Todos: replace children with BlockStatement
+ */
+export interface RuleStatement extends Node {
+    type: NodeTypes.RULE
     selector: SelectorNode
     children: (Statement | CodegenNode)[]
 }
 
-export interface AssignStatement extends Node {
-    type: NodeTypes.ASSIGN
+export interface DeclarationStatement extends Node {
+    type: NodeTypes.DECLARATION
     left: VariableNode | TextNode | VarKeyNode
     right: ListNode | TextNode // ListNode before transform , TextNode after transform
 }
@@ -245,7 +232,7 @@ export interface ExtendStatement extends Node {
 export interface MixinStatement extends Node {
     type: NodeTypes.MIXIN
     id: IdentifierNode
-    params: (VariableNode | AssignStatement)[]
+    params: (VariableNode | DeclarationStatement)[]
     body: BodyStatement
 }
 
@@ -258,7 +245,7 @@ export interface FunctionStatement extends Node {
 
 export interface ReturnStatement extends Node {
     type: NodeTypes.RETURN
-    argument: AssignStatement['right']
+    argument: DeclarationStatement['right']
 }
 
 export interface ErrorStatement extends Node {
@@ -278,16 +265,56 @@ export interface EachStatement extends Node {
     type: NodeTypes.EACHSTATEMENT
     left: VariableNode
     right: VariableNode
-    body: ChildStatement
+    body: RuleStatement
 }
+
+
+/**
+ * interface prototype for css internal atCHILD eg: @media @keyframes @font-face @charset etc
+ * Todos: change @import by AtRule
+ */
+export interface AtRule extends Node {
+    type: NodeTypes.AtRule
+    name: internalAtRuleNames
+    block: BlockStatement
+    prelude: MediaQueryList | TextNode | null
+}
+/**
+ * @media ast tree (simplified) start  (reference: https://github.com/csstree/csstree)
+ * When the width is between 600px and 900px OR above 1100px - change the appearance of <div>
+ * @media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1100px) {}
+ * 
+ */
+export interface MediaFeature extends Node {
+    type: NodeTypes.MediaFeature
+    name: string
+    value: VariableNode | TextNode // value may contain variable
+}
+export interface MediaQuery extends Node {
+    type: NodeTypes.MediaQuery
+    children: (TextNode | MediaFeature)[]
+}
+
+export interface MediaQueryList extends Node{
+    type:NodeTypes.MediaQueryList
+    children:MediaQuery[]
+}
+
+export interface MediaStatement extends AtRule {
+    name: 'media'
+    prelude: MediaQueryList
+}
+/**
+ * @media ast tree end
+ */
 
 /* codeGenNode means ast tree that is transformed  */
 
 export type CodegenNode = TextNode | ProgCodeGenNode
 
-export type ProgCodeGenNode = AssignStatement | ChildStatement | EmptyNode | SelectorNode;
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode;
 
-export type ParentNode = RootNode | BodyStatement | ChildStatement
+export type ParentNode = RootNode | BodyStatement | RuleStatement
 
 export type FileSourceMap = {
     [key: string] : string
@@ -322,9 +349,9 @@ export function createCallExpression(id: CallExpression['id'], args: CallExpress
     }
 }
 
-export function createAssignStatement(left: AssignStatement['left'], right: AssignStatement['right']): AssignStatement {
+export function createDeclarationStatement(left: DeclarationStatement['left'], right: DeclarationStatement['right']): DeclarationStatement {
     return {
-        type: NodeTypes.ASSIGN,
+        type: NodeTypes.DECLARATION,
         left: left,
         right: right,
         loc: {
@@ -376,9 +403,9 @@ export function createReturnStatement(list:SimpleExpressionNode[]):ReturnStateme
     }
 }
 
-export function createChildStatement(selector:ChildStatement['selector'],children:ChildStatement['children']):ChildStatement {
+export function createRuleStatement(selector:RuleStatement['selector'],children:RuleStatement['children']):RuleStatement {
     return {
-        type:NodeTypes.CHILD,
+        type:NodeTypes.RULE,
         selector,
         children,
         loc: locStub
@@ -438,6 +465,15 @@ export function createSelectorNode(value: SelectorNode['value']): SelectorNode{
 export function createEmptyNode(loc: Node['loc'] = locStub): EmptyNode {
     return {
         type: NodeTypes.EMPTY,
+        loc
+    }
+}
+
+export function createRootNode(children: RootNode['children'], fileSourceMap:RootNode['fileSourceMap'],loc: Node['loc'] = locStub): RootNode {
+    return {
+        type: NodeTypes.RootNode,
+        children,
+        fileSourceMap,
         loc
     }
 }

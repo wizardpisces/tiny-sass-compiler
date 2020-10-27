@@ -1,5 +1,5 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, ChildStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode } from '../parse/ast'
 import { deepClone, isEmptyNode } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
@@ -26,12 +26,12 @@ export function processStatement(
             /**
             * Statement
             */
-            case NodeTypes.ASSIGN: return processAssign(node, context);
+            case NodeTypes.DECLARATION: return processAssign(node, context);
             case NodeTypes.MIXIN:
             case NodeTypes.FUNCTION: return transformMixnOrFunction(node, context);
             case NodeTypes.RETURN: return transformReturn(node, context);
             case NodeTypes.INCLUDE: return transformInclude(node, context);
-            case NodeTypes.CHILD:
+            case NodeTypes.RULE:
             case NodeTypes.BODY:
                 return transform_child_or_body(node, context);
 
@@ -72,11 +72,11 @@ export function processStatement(
         })
 
         /**
-         * return a created an empty selector child whose children will be flattened in transform_nest
+         * return a created an empty selector RULE whose children will be flattened in transform_nest
          */
-        let child: ChildStatement = {
+        let child: RuleStatement = {
             ...node,
-            type: NodeTypes.CHILD,
+            type: NodeTypes.RULE,
             selector: createSelectorNode(createTextNode('')),
             children
         }
@@ -134,7 +134,7 @@ export function processStatement(
             function handle_params_default_value(params) {
                 return params.map((param) => {
                     let ret = param;
-                    if (param.type === NodeTypes.ASSIGN) {
+                    if (param.type === NodeTypes.DECLARATION) {
                         ret = {
                             type: NodeTypes.VARIABLE,
                             value: param.left.value
@@ -183,7 +183,7 @@ export function processStatement(
         return callFunctionWithArgs(func, node, context)
     }
 
-    function transform_child_or_body(node: ChildStatement | BodyStatement, context: TransformContext) {
+    function transform_child_or_body(node: RuleStatement | BodyStatement, context: TransformContext) {
 
         function flatten_included_body(children: Statement[]): Statement[] {
             let arr: Statement[] = []
@@ -201,12 +201,12 @@ export function processStatement(
         /**
          * only extend a new child env when evaluate css child, but in program body, we do not extend
          */
-        if (node.type === NodeTypes.CHILD) {
+        if (node.type === NodeTypes.RULE) {
             scope = context.env.extend();
         }
 
         node.children = (node.children as Statement[]).map(child => dispatchStatement(child, { ...context, env: scope })).filter(node => !isEmptyNode(node));
-        if (node.type === NodeTypes.CHILD) { // CHILD must have selector
+        if (node.type === NodeTypes.RULE) { // RCHILDust have selector
             if (node.selector.value.type === NodeTypes.LIST) {
                 node.selector.value = processExpression(node.selector.value, { ...context, env: scope })
             }

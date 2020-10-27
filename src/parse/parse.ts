@@ -15,16 +15,16 @@ import {
     MixinStatement,
     IdentifierNode,
     VariableNode,
-    AssignStatement,
+    DeclarationStatement,
     IncludeStatement,
     OperatorNode,
-    ChildStatement,
+    RuleStatement,
     ExtendStatement,
     BinaryNode,
     EachStatement,
     ListNode,
     createListNode,
-    createAssignStatement,
+    createDeclarationStatement,
     VarKeyNode,
     puncType,
     FunctionStatement,
@@ -35,13 +35,14 @@ import {
     CallExpression,
     createIdentifierNode,
     createCallExpression,
-    createChildStatement,
+    createRuleStatement,
     createIncludeStatement,
     createIfStatement,
     createEachStatement,
     createVarKeyExpression,
     createTextNode,
-    createSelectorNode
+    createSelectorNode,
+    createRootNode
 } from './ast';
 
 import {
@@ -97,10 +98,10 @@ export default function parse(input, options: ParserOptions) {
 
     function is_assign() {
         let tok = input.peek()
-        return tok && tok.type === NodeTypes.ASSIGN;
+        return tok && tok.type === NodeTypes.DECLARATION;
     }
 
-    function skipPunc(ch:any,silent:boolean=false) {
+    function skipPunc(ch: any, silent: boolean = false) {
         if (is_punc(ch)) input.next();
         // mandatory skip
         else {
@@ -124,9 +125,9 @@ export default function parse(input, options: ParserOptions) {
             if (first) {
                 first = false;
             } else {
-                if (separator === ';'){
+                if (separator === ';') {
                     skipPuncSilent(separator)
-                }else{
+                } else {
                     skipPunc(separator);
                 }
             }
@@ -150,11 +151,11 @@ export default function parse(input, options: ParserOptions) {
                 end = input.getCoordination();
 
             /**
-             * patch ASSIGN , make left node start as start position
+             * patch DECLARATION , make left node start as start position
              * patch BINARY node position, make binary left most node start as binary node start position
              * */
 
-            if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.ASSIGN) {
+            if (ast.type === NodeTypes.BINARY || ast.type === NodeTypes.DECLARATION) {
                 let left = args[0]
                 if (left) {
                     while (left.type === NodeTypes.BINARY) {
@@ -285,14 +286,14 @@ export default function parse(input, options: ParserOptions) {
                 return parseConsecutiveLeft()
             }
         }
-        
+
         /**
          * cases like internal keyword 
          * @media only screen and (max-width: $maxwidth){}
          * etc, should not throw error but parsed as special callExpression
          */
         if (tok.type == NodeTypes.KEYWORD) {
-            if (is_kw('@media')){
+            if (is_kw('@media')) {
                 input.next()
                 return parseMedia();
             }
@@ -302,7 +303,7 @@ export default function parse(input, options: ParserOptions) {
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
-    function parseMedia(){
+    function parseMedia() {
 
     }
 
@@ -324,13 +325,13 @@ export default function parse(input, options: ParserOptions) {
         return right;
     }
 
-    function parseAssign(left: AssignStatement['left']): AssignStatement {
+    function parseAssign(left: DeclarationStatement['left']): DeclarationStatement {
 
         input.next(); // skip ':' which is not punc type ,so could not use skipPunc
 
         let right: ListNode = createListNode(parseSimpleExpressionList())
 
-        return createAssignStatement(left, right)
+        return createDeclarationStatement(left, right)
     }
 
     function maybeBinaryNode(left: TextNode | BinaryNode, left_prec): TextNode | BinaryNode {
@@ -360,9 +361,9 @@ export default function parse(input, options: ParserOptions) {
         return left;
     }
 
-    function parseChild(selector: ChildStatement['selector']): ChildStatement {
+    function parseCHILD(selector: RuleStatement['selector']): RuleStatement {
         let children = delimited("{", "}", ";", parseStatement);
-        return createChildStatement(selector,children)
+        return createRuleStatement(selector, children)
     }
 
     function maybeAssign(exp) {
@@ -387,7 +388,7 @@ export default function parse(input, options: ParserOptions) {
         }
 
         if (is_punc('{')) {
-            return parseChild(createSelectorNode(expr)) //passin selector
+            return parseCHILD(createSelectorNode(expr)) //passin selector
         }
 
         return expr;
@@ -419,7 +420,7 @@ export default function parse(input, options: ParserOptions) {
             value: input.next().value,
             loc: locStub
         },
-            params: (VariableNode | AssignStatement)[] = [];
+            params: (VariableNode | DeclarationStatement)[] = [];
 
 
         if (!is_punc('{')) {
@@ -443,7 +444,7 @@ export default function parse(input, options: ParserOptions) {
             value: input.next().value,
             loc: locStub
         },
-            params: (VariableNode | AssignStatement)[] = [];
+            params: (VariableNode | DeclarationStatement)[] = [];
 
 
         if (!is_punc('{')) {
@@ -485,7 +486,7 @@ export default function parse(input, options: ParserOptions) {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
             loc: locStub
-        }, args: (VariableNode | AssignStatement)[] = [];// @include mixin1;
+        }, args: (VariableNode | DeclarationStatement)[] = [];// @include mixin1;
 
         if (!is_punc(';')) {
             set_call_params_args_assign_right_end_condition()
@@ -499,7 +500,7 @@ export default function parse(input, options: ParserOptions) {
 
         reset_assign_right_end_condition()
 
-        return createIncludeStatement(id,args);
+        return createIncludeStatement(id, args);
     }
 
     function parseImport(): ImportStatement {
@@ -570,7 +571,7 @@ export default function parse(input, options: ParserOptions) {
         skipPunc('{')
         let blockStatement = parseStatement()
         skipPunc('}')
-        return createEachStatement(left,right,blockStatement)
+        return createEachStatement(left, right, blockStatement)
     }
 
     function parseConsecutiveLeft(): TextNode {
@@ -610,7 +611,7 @@ export default function parse(input, options: ParserOptions) {
                 input.croak(`${node} should be a variable which starts with '$'`)
             }
             skipPunc('}')
-            return createVarKeyExpression(node.value,{
+            return createVarKeyExpression(node.value, {
                 start: varKeyStartLoc,
                 end: node.loc.end,
                 filename
@@ -645,21 +646,21 @@ export default function parse(input, options: ParserOptions) {
         })
     }
 
-    function parseProgram(): RootNode {
+    function isEnd() {
+        return input.eof()
+    }
+
+    function parsechildren(): Statement[] {
         let children: Statement[] = [];
-        while (!input.eof()) {
-            let result = parseStatement()
-            children.push(result);
-            if (is_punc(";")) skipPunc(";");
+        while (!isEnd()) {
+            children.push(parseStatement());
+            skipPuncSilent(";");
         }
-        return {
-            type: NodeTypes.RootNode,
-            fileSourceMap: {
-                [filename]: source
-            },
-            children,
-            loc: locStub
-        };
+        return children
+    }
+
+    function parseProgram(): RootNode {
+        return createRootNode(parsechildren(), { [filename]: source })
     }
 
     return parseProgram()

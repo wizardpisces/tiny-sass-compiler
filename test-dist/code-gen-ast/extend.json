@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "extend.scss": ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
-  },
   "children": [
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "TEXT",
         "value": ".message,.success,.message-shared",
@@ -25,7 +22,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "border",
@@ -75,7 +72,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "padding",
@@ -125,7 +122,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "color",
@@ -190,7 +187,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "TEXT",
         "value": ".error",
@@ -210,7 +207,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "border",
@@ -260,7 +257,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "padding",
@@ -310,7 +307,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "color",
@@ -375,7 +372,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -411,7 +408,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "border-color",
@@ -476,7 +473,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -512,7 +509,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "color",
@@ -577,6 +574,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "extend.scss": ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
+  },
   "loc": {
     "filename": "",
     "start": {

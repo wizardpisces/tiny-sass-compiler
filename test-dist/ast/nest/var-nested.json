@@ -1,11 +1,8 @@
 {
   "type": "RootNode",
-  "fileSourceMap": {
-    "var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        margin:$margin;\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
-  },
   "children": [
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$top",
@@ -73,7 +70,7 @@
       }
     },
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$margin",
@@ -141,7 +138,7 @@
       }
     },
     {
-      "type": "ASSIGN",
+      "type": "DECLARATION",
       "left": {
         "type": "VARIABLE",
         "value": "$right",
@@ -209,7 +206,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -245,7 +242,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "VARIABLE",
             "value": "$margin",
@@ -313,7 +310,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "margin",
@@ -381,7 +378,7 @@
           }
         },
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "right",
@@ -464,7 +461,7 @@
       }
     },
     {
-      "type": "CHILD",
+      "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "loc": {
@@ -500,7 +497,7 @@
       },
       "children": [
         {
-          "type": "ASSIGN",
+          "type": "DECLARATION",
           "left": {
             "type": "TEXT",
             "value": "top",
@@ -568,7 +565,7 @@
           }
         },
         {
-          "type": "CHILD",
+          "type": "RULE",
           "selector": {
             "type": "SELECTOR",
             "loc": {
@@ -604,7 +601,7 @@
           },
           "children": [
             {
-              "type": "ASSIGN",
+              "type": "DECLARATION",
               "left": {
                 "type": "TEXT",
                 "value": "margin",
@@ -672,7 +669,7 @@
               }
             },
             {
-              "type": "CHILD",
+              "type": "RULE",
               "selector": {
                 "type": "SELECTOR",
                 "loc": {
@@ -708,7 +705,7 @@
               },
               "children": [
                 {
-                  "type": "ASSIGN",
+                  "type": "DECLARATION",
                   "left": {
                     "type": "TEXT",
                     "value": "background",
@@ -791,7 +788,7 @@
               }
             },
             {
-              "type": "CHILD",
+              "type": "RULE",
               "selector": {
                 "type": "SELECTOR",
                 "loc": {
@@ -827,7 +824,7 @@
               },
               "children": [
                 {
-                  "type": "ASSIGN",
+                  "type": "DECLARATION",
                   "left": {
                     "type": "TEXT",
                     "value": "background",
@@ -940,6 +937,9 @@
       }
     }
   ],
+  "fileSourceMap": {
+    "var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        margin:$margin;\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
+  },
   "loc": {
     "filename": "",
     "start": {
