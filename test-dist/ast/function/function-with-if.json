@@ -313,6 +313,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 111,

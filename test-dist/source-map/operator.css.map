@@ -4,7 +4,7 @@
     "operator.scss"
   ],
   "names": [],
-  "mappings": "AACA;EACE,MAAO;;AAGT;EACE,MAAO;EACP,MAAO;;AAGT;EACE,MAAO;EACP,MAAO",
+  "mappings": ";EAEE,MAAO;;;EAIP,MAAO;EACP,MAAO;;;EAIP,MAAO;EACP,MAAO",
   "sourcesContent": [
     "$var : 600px;\n.container {\n  width: 1px + 8px;\n}\n\narticle[role=\"main\"] {\n  float: left;\n  width: $var / 960px * 100%;\n}\n\naside[role=\"complementary\"] {\n  float: right;\n  width: 300px / 960px * 100%;\n}"
   ]

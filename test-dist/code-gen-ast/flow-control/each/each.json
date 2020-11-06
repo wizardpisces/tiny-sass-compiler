@@ -5,6 +5,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 48,
@@ -86,22 +87,6 @@
             },
             "filename": "each.scss"
           }
-        },
-        {
-          "type": "EMPTY",
-          "loc": {
-            "filename": "",
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
-          }
         }
       ],
       "loc": {
@@ -122,6 +107,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 99,
@@ -273,6 +259,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 48,
@@ -354,22 +341,6 @@
             },
             "filename": "each.scss"
           }
-        },
-        {
-          "type": "EMPTY",
-          "loc": {
-            "filename": "",
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
-          }
         }
       ],
       "loc": {
@@ -390,6 +361,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 99,

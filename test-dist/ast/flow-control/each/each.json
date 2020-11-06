@@ -143,6 +143,7 @@
         "type": "RULE",
         "selector": {
           "type": "SELECTOR",
+          "meta": [],
           "loc": {
             "start": {
               "offset": 48,
@@ -282,6 +283,7 @@
             "type": "RULE",
             "selector": {
               "type": "SELECTOR",
+              "meta": [],
               "loc": {
                 "start": {
                   "offset": 99,

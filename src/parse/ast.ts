@@ -17,7 +17,7 @@ export const enum NodeTypes {
     LIST = 'LIST',
     BINARY = 'BINARY',
     CALL = 'CALL',
-    
+
     /**
      * Statement 
      * */
@@ -25,20 +25,20 @@ export const enum NodeTypes {
     BODY = 'BODY',
     RULE = 'RULE',
     DECLARATION = 'DECLARATION',
-    
+
     // keyword statement
     IMPORT = 'IMPORT',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
     FUNCTION = 'FUNCTION',// must end with @return
-    
+
     /**
-     * internal atCHILD
+     * internal AtRule
      */
-    MediaFeature ='MediaFeature',
-    MediaQueryList ='MediaQueryList',
-    MediaQuery ='MediaQuery',
+    MediaFeature = 'MediaFeature',
+    MediaPrelude = 'MediaPrelude',
+    MediaQuery = 'MediaQuery',
     AtRule = 'AtRule',
 
     // exceptions
@@ -52,7 +52,7 @@ export const enum NodeTypes {
 
     //Loops
     EACHSTATEMENT = 'EACHSTATEMENT',
-    
+
     RootNode = 'RootNode',
 
 }
@@ -65,7 +65,7 @@ export const enum NodeTypes {
  */
 
 export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
-export type internalAtRuleNames = 'media'| 'keyframes'  | 'support' | 'charset' | 'font-face';
+export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face';
 
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
@@ -92,7 +92,7 @@ export interface SourceLocation {
 }
 
 export interface Node {
-    [key:string]:any
+    [key: string]: any
     type: NodeTypes
     loc: SourceLocation
 }
@@ -142,6 +142,7 @@ export interface OperatorNode extends Node {
 
 export interface SelectorNode extends Node {
     type: NodeTypes.SELECTOR
+    meta: MediaStatement['prelude'][] // helper to trace nested media parent
     value: TextNode | PlaceholderNode | ListNode | EmptyNode
 }
 
@@ -168,38 +169,32 @@ export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | Variable
 
 /* Statement */
 
-export type Statement = 
-    BodyStatement 
-    | RuleStatement 
-    | DeclarationStatement 
-    | ImportStatement 
-    | IncludeStatement 
-    | ExtendStatement 
+export type Statement =
+    BodyStatement
+    | RuleStatement
+    | DeclarationStatement
+    | ImportStatement
+    | IncludeStatement
+    | ExtendStatement
     | MixinStatement
     | FunctionStatement
     | ErrorStatement
     | IfStatement
     | EachStatement
     | ReturnStatement
+    | AtRule
 
 export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
-export interface BlockStatement extends Node{
-    type:NodeTypes.BLOCK
-    children: RuleStatement | DeclarationStatement[]
-}
 /**
  * used with self designed statement eg: @function @mixin
  * will be deleted after evaluation， so it will not exist in codegen step
  */
 export interface BodyStatement extends Node {
     type: NodeTypes.BODY
-    children: Statement[]
+    children: RuleStatement['children']
 }
 
-/**
- * Todos: replace children with BlockStatement
- */
 export interface RuleStatement extends Node {
     type: NodeTypes.RULE
     selector: SelectorNode
@@ -270,39 +265,79 @@ export interface EachStatement extends Node {
 
 
 /**
- * interface prototype for css internal atCHILD eg: @media @keyframes @font-face @charset etc
+ * interface prototype for css internal AtRule eg: @media @keyframes @font-face @charset etc
  * Todos: change @import by AtRule
  */
 export interface AtRule extends Node {
     type: NodeTypes.AtRule
     name: internalAtRuleNames
-    block: BlockStatement
-    prelude: MediaQueryList | TextNode | null
+    block: BodyStatement
+    prelude: MediaPrelude | TextNode | null
 }
 /**
- * @media ast tree (simplified) start  (reference: https://github.com/csstree/csstree)
- * When the width is between 600px and 900px OR above 1100px - change the appearance of <div>
+ * @media ast tree (simplified) start  
+ * (reference: https://github.com/csstree/csstree)
+ * eg: When the width is between 600px and 900px OR above 1100px - change the appearance of <div>
  * @media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1100px) {}
  * 
  */
-export interface MediaFeature extends Node {
+export interface MediaFeature extends Node { // (min-width: 600px)
     type: NodeTypes.MediaFeature
     name: string
-    value: VariableNode | TextNode // value may contain variable
+    value: SimpleExpressionNode // after transform , in codegen value will be TextNode
 }
 export interface MediaQuery extends Node {
     type: NodeTypes.MediaQuery
-    children: (TextNode | MediaFeature)[]
+    children: (TextNode | MediaFeature)[] // TextNode contains special identifier: screen | and
 }
 
-export interface MediaQueryList extends Node{
-    type:NodeTypes.MediaQueryList
-    children:MediaQuery[]
+export interface MediaPrelude extends Node {
+    type: NodeTypes.MediaPrelude
+    children: MediaQuery[] // splited by ','
 }
 
 export interface MediaStatement extends AtRule {
     name: 'media'
-    prelude: MediaQueryList
+    prelude: MediaPrelude
+}
+// work before ast transform
+export function createMediaFeature(declaration: DeclarationStatement): MediaFeature {
+    return {
+        type: NodeTypes.MediaFeature,
+        name: declaration.left.value,
+        value: (declaration.right as ListNode).value[0],
+        loc: declaration.loc
+    }
+}
+
+export function createMediaQuery(children: MediaQuery['children']): MediaQuery {
+    return {
+        type: NodeTypes.MediaQuery,
+        children,
+        loc: locStub
+    }
+}
+
+export function createMediaPrelude(children: MediaPrelude['children']): MediaPrelude {
+    return {
+        type: NodeTypes.MediaPrelude,
+        children,
+        loc: locStub
+    }
+}
+
+export function createMediaStatement(prelude: MediaStatement['prelude'], block: MediaStatement['block']): MediaStatement {
+    return {
+        type: NodeTypes.AtRule,
+        name: 'media',
+        block,
+        prelude,
+        loc: {
+            start: prelude.loc.start,
+            end: block.loc.end,
+            filename: prelude.loc.filename
+        }
+    }
 }
 /**
  * @media ast tree end
@@ -312,12 +347,12 @@ export interface MediaStatement extends AtRule {
 
 export type CodegenNode = TextNode | ProgCodeGenNode
 
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode;
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | AtRule | MediaPrelude;
 
 export type ParentNode = RootNode | BodyStatement | RuleStatement
 
 export type FileSourceMap = {
-    [key: string] : string
+    [key: string]: string
 }
 export interface RootNode extends Node {
     type: NodeTypes.RootNode
@@ -328,23 +363,23 @@ export interface RootNode extends Node {
     children: (Statement | ProgCodeGenNode)[]
 }
 
-export function createIdentifierNode(id:TextNode):IdentifierNode{
+export function createIdentifierNode(id: TextNode): IdentifierNode {
     return {
-        loc:id.loc,
-        value:id.value,
-        type:NodeTypes.IDENTIFIER
+        loc: id.loc,
+        value: id.value,
+        type: NodeTypes.IDENTIFIER
     }
 }
 
-export function createCallExpression(id: CallExpression['id'], args: CallExpression['args']):CallExpression{
+export function createCallExpression(id: CallExpression['id'], args: CallExpression['args']): CallExpression {
     return {
-        type:NodeTypes.CALL,
+        type: NodeTypes.CALL,
         id,
         args,
-        loc:{
-            start:id.loc.start,
-            end: args.length ? args[args.length-1].loc.end : id.loc.end,
-            filename:id.loc.filename
+        loc: {
+            start: id.loc.start,
+            end: args.length ? args[args.length - 1].loc.end : id.loc.end,
+            filename: id.loc.filename
         }
     }
 }
@@ -355,9 +390,9 @@ export function createDeclarationStatement(left: DeclarationStatement['left'], r
         left: left,
         right: right,
         loc: {
-            start:left.loc.start,
-            end:right.length ? right[right.length-1].loc.end : right.loc.end,
-            filename:left.loc.filename
+            start: left.loc.start,
+            end: right.length ? right[right.length - 1].loc.end : right.loc.end,
+            filename: left.loc.filename
         }
     }
 }
@@ -374,9 +409,9 @@ export function createListNode(list: SimpleExpressionNode[]): ListNode {
     }
 }
 
-export function createMixinStatement(id:MixinStatement['id'],params:MixinStatement['params'],body:MixinStatement['body']):MixinStatement{
+export function createMixinStatement(id: MixinStatement['id'], params: MixinStatement['params'], body: MixinStatement['body']): MixinStatement {
     return {
-        type:NodeTypes.MIXIN,
+        type: NodeTypes.MIXIN,
         id,
         params,
         body,
@@ -384,9 +419,9 @@ export function createMixinStatement(id:MixinStatement['id'],params:MixinStateme
     }
 }
 
-export function createFunctionStatement(id: FunctionStatement['id'], params: FunctionStatement['params'], body: FunctionStatement['body']):FunctionStatement{
+export function createFunctionStatement(id: FunctionStatement['id'], params: FunctionStatement['params'], body: FunctionStatement['body']): FunctionStatement {
     return {
-        type:NodeTypes.FUNCTION,
+        type: NodeTypes.FUNCTION,
         id,
         params,
         // always contain a ReturnStatement in the last line
@@ -395,44 +430,44 @@ export function createFunctionStatement(id: FunctionStatement['id'], params: Fun
     }
 }
 
-export function createReturnStatement(list:SimpleExpressionNode[]):ReturnStatement {
+export function createReturnStatement(list: SimpleExpressionNode[]): ReturnStatement {
     return {
-        type:NodeTypes.RETURN,
+        type: NodeTypes.RETURN,
         argument: createListNode(list),
         loc: locStub
     }
 }
 
-export function createRuleStatement(selector:RuleStatement['selector'],children:RuleStatement['children']):RuleStatement {
+export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children']): RuleStatement {
     return {
-        type:NodeTypes.RULE,
+        type: NodeTypes.RULE,
         selector,
         children,
         loc: locStub
     }
 }
 
-export function createIncludeStatement(id:IncludeStatement['id'],args:IncludeStatement['args']):IncludeStatement {
+export function createIncludeStatement(id: IncludeStatement['id'], args: IncludeStatement['args']): IncludeStatement {
     return {
-        type:NodeTypes.INCLUDE,
+        type: NodeTypes.INCLUDE,
         id,
         args,
         loc: locStub
     }
 }
 
-export function createIfStatement(test:IfStatement['test'],consequent:IfStatement['consequent'],alternate:IfStatement['alternate']):IfStatement {
+export function createIfStatement(test: IfStatement['test'], consequent: IfStatement['consequent'], alternate: IfStatement['alternate']): IfStatement {
     return {
-        type:NodeTypes.IFSTATEMENT,
+        type: NodeTypes.IFSTATEMENT,
         test,
         consequent,
         alternate,
         loc: locStub
     }
 }
-export function createEachStatement(left:EachStatement['left'],right:EachStatement['right'],body:EachStatement['body']):EachStatement {
+export function createEachStatement(left: EachStatement['left'], right: EachStatement['right'], body: EachStatement['body']): EachStatement {
     return {
-        type:NodeTypes.EACHSTATEMENT,
+        type: NodeTypes.EACHSTATEMENT,
         left,
         right,
         body,
@@ -440,25 +475,27 @@ export function createEachStatement(left:EachStatement['left'],right:EachStateme
     }
 }
 
-export function createVarKeyExpression(value:VarKeyNode['value'],loc:Node['loc']):VarKeyNode{
+export function createVarKeyExpression(value: VarKeyNode['value'], loc: Node['loc']): VarKeyNode {
     return {
-        type:NodeTypes.VAR_KEY,
+        type: NodeTypes.VAR_KEY,
         value,
         loc
     }
 }
-export function createTextNode(value:TextNode['value']='',loc:Node['loc']=locStub):TextNode{
+export function createTextNode(value: TextNode['value'] = '', loc: Node['loc'] = locStub): TextNode {
     return {
-        type:NodeTypes.TEXT,
+        type: NodeTypes.TEXT,
         value,
         loc
     }
 }
-export function createSelectorNode(value: SelectorNode['value']): SelectorNode{
+
+export function createSelectorNode(value: SelectorNode['value'] = createTextNode(), meta: SelectorNode['meta'] = []): SelectorNode {
     return {
-        type:NodeTypes.SELECTOR,
-        loc:value.loc,
-        value:value
+        type: NodeTypes.SELECTOR,
+        meta,
+        loc: value.loc,
+        value: value
     }
 }
 
@@ -469,11 +506,48 @@ export function createEmptyNode(loc: Node['loc'] = locStub): EmptyNode {
     }
 }
 
-export function createRootNode(children: RootNode['children'], fileSourceMap:RootNode['fileSourceMap'],loc: Node['loc'] = locStub): RootNode {
+export function createBodyStatement(children: BodyStatement['children']): BodyStatement {
+    return {
+        type: NodeTypes.BODY,
+        children,
+        loc: locStub
+    };
+}
+
+export function createRootNode(children: RootNode['children'], fileSourceMap: RootNode['fileSourceMap'], loc: Node['loc'] = locStub): RootNode {
     return {
         type: NodeTypes.RootNode,
         children,
         fileSourceMap,
         loc
     }
+}
+
+export function createRuleFromMedia(media: MediaStatement): RuleStatement {
+    return createRuleStatement(
+        createSelectorNode(
+            createTextNode(''),
+            [media.prelude]
+        ),
+        media.block.children
+    );
+}
+
+export function createMediaFromRule(rule: RuleStatement): MediaStatement {
+    function mergeMediaPreludeList(preludeList: MediaStatement['prelude'][]): MediaStatement['prelude'] {
+        let children: MediaPrelude['children'] = [];
+        preludeList.forEach((prelude: MediaStatement['prelude']) => {
+            if (children.length) {
+                children.push(createMediaQuery([createTextNode('and')]))
+            }
+            children = children.concat(prelude.children)
+        })
+        return createMediaPrelude(children)
+    }
+
+    let prelude = mergeMediaPreludeList(rule.selector.meta);
+    // reset rule selector meta
+    rule.selector.meta = []
+    
+    return createMediaStatement(prelude, createBodyStatement([rule]))
 }

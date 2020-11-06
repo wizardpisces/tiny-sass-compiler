@@ -17,7 +17,7 @@ import {
 import { ParserOptions } from '@/options';
 
 const EXTNAME_GLOBAL = '.scss'
-export default function transform_module(root: RootNode, options) {
+export default function transformModule(root: RootNode, options) {
     const { sourceDir = './' } = options;
     let statementList: Statement[] = [];
 

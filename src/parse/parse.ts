@@ -42,7 +42,15 @@ import {
     createVarKeyExpression,
     createTextNode,
     createSelectorNode,
-    createRootNode
+    createRootNode,
+    MediaStatement,
+    createMediaFeature,
+    MediaQuery,
+    MediaPrelude,
+    createMediaStatement,
+    createMediaPrelude,
+    createMediaQuery,
+    createBodyStatement
 } from './ast';
 
 import {
@@ -126,7 +134,7 @@ export default function parse(input, options: ParserOptions) {
                 first = false;
             } else {
                 if (separator === ';') {
-                    skipPuncSilent(separator)
+                    skipPuncSilent(separator) // prevent nested block from emit error
                 } else {
                     skipPunc(separator);
                 }
@@ -303,8 +311,38 @@ export default function parse(input, options: ParserOptions) {
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
-    function parseMedia() {
+    function parseMedia(): MediaStatement {
+        let mediaQueryListChildren: MediaPrelude['children'] = [],
+            mediaQueryChildren: MediaQuery['children'] = [];
 
+        set_call_params_args_assign_right_end_condition()
+        while (!is_punc('{')) {
+            if (is_punc(',')) {
+                // reset mediaQueryChildren
+                mediaQueryListChildren.push(createMediaQuery(mediaQueryChildren))
+                mediaQueryChildren = []
+                skipPunc(',')
+            } else if (is_punc('(')) {
+                skipPunc('(')
+                let left: DeclarationStatement['left'] = consumeNextTokenWithLoc(),
+                    declaration = parseDeclaration(left)
+
+                mediaQueryChildren.push(createMediaFeature(declaration))
+                skipPunc(')')
+            } else {
+                mediaQueryChildren.push(createTextNode(consumeNextTokenWithLoc()))
+            }
+        }
+        reset_assign_right_end_condition()
+        // flush array
+        if (mediaQueryChildren.length) {
+            mediaQueryListChildren.push(createMediaQuery(mediaQueryChildren))
+            mediaQueryChildren = []
+        }
+
+        let bodyStatement: BodyStatement = parseBody()
+
+        return createMediaStatement(createMediaPrelude(mediaQueryListChildren), bodyStatement)
     }
 
     function parseSimpleExpressionList(): SimpleExpressionNode[] {
@@ -325,7 +363,7 @@ export default function parse(input, options: ParserOptions) {
         return right;
     }
 
-    function parseAssign(left: DeclarationStatement['left']): DeclarationStatement {
+    function parseDeclaration(left: DeclarationStatement['left']): DeclarationStatement {
 
         input.next(); // skip ':' which is not punc type ,so could not use skipPunc
 
@@ -361,16 +399,16 @@ export default function parse(input, options: ParserOptions) {
         return left;
     }
 
-    function parseCHILD(selector: RuleStatement['selector']): RuleStatement {
+    function parseRule(selector: RuleStatement['selector']): RuleStatement {
         let children = delimited("{", "}", ";", parseStatement);
         return createRuleStatement(selector, children)
     }
 
-    function maybeAssign(exp) {
+    function maybeDeclaration(exp) {
         let expr = exp();
 
         if (is_assign()) {
-            return parseAssign(expr)
+            return parseDeclaration(expr)
         }
 
         /**
@@ -379,7 +417,7 @@ export default function parse(input, options: ParserOptions) {
         */
 
         if (is_punc('#')) {
-            return maybeAssign(() => {
+            return maybeDeclaration(() => {
                 return createListNode(
                     expr.type === NodeTypes.LIST ?
                         expr.value.concat(dispatchParser())
@@ -388,7 +426,7 @@ export default function parse(input, options: ParserOptions) {
         }
 
         if (is_punc('{')) {
-            return parseCHILD(createSelectorNode(expr)) //passin selector
+            return parseRule(createSelectorNode(expr)) //passin selector
         }
 
         return expr;
@@ -404,11 +442,7 @@ export default function parse(input, options: ParserOptions) {
 
     function parseBody(): BodyStatement {
         let children: Statement[] = delimited("{", "}", ";", parseStatement);
-        return {
-            type: NodeTypes.BODY,
-            children,
-            loc: locStub
-        };
+        return createBodyStatement(children)
     }
 
     /**
@@ -425,7 +459,7 @@ export default function parse(input, options: ParserOptions) {
 
         if (!is_punc('{')) {
             /**
-             * Support default params, which contains assign ':' symbol; which will be processed in parseAssign
+             * Support default params, which contains assign ':' symbol; which will be processed in parseDeclaration
              * @mixin replace-text($image,$x:default1, $y:default2) {
               */
             set_call_params_args_assign_right_end_condition()
@@ -449,7 +483,7 @@ export default function parse(input, options: ParserOptions) {
 
         if (!is_punc('{')) {
             /**
-             * Support default params, which contains assign ':' symbol; which will be processed in parseAssign
+             * Support default params, which contains assign ':' symbol; which will be processed in parseDeclaration
              * @functoin replace-text($image,$x:default1, $y:default2) {
               */
             set_call_params_args_assign_right_end_condition()
@@ -467,7 +501,7 @@ export default function parse(input, options: ParserOptions) {
     }
 
 
-    /** to resolve rotate(30deg) or url("/images/mail.svg") @media (min-width: 768px) {}  kind of inner call expression
+    /** to resolve rotate(30deg) or url("/images/mail.svg")  kind of inner call expression
      * also custom @function call
      */
     function maybeCall(node: TextNode): TextNode | CallExpression {
@@ -491,11 +525,11 @@ export default function parse(input, options: ParserOptions) {
         if (!is_punc(';')) {
             set_call_params_args_assign_right_end_condition()
             /**
-             * use maybeAssign to wrap to deal with possible default include args 
+             * use maybeDeclaration to wrap to deal with possible default include args 
              * eg:
              * @include avatar(100px, $circle: false);
              */
-            args = delimited('(', ')', ',', () => maybeAssign(dispatchParserWithScanRight)); // extend like expr or call expr
+            args = delimited('(', ')', ',', () => maybeDeclaration(dispatchParserWithScanRight)); // extend like expr or call expr
         }
 
         reset_assign_right_end_condition()
@@ -534,11 +568,11 @@ export default function parse(input, options: ParserOptions) {
     function parseIf(): IfStatement {
         let alternate: IfStatement | BodyStatement | null = null,
             testExpression: BinaryNode | TextNode,
-            blockStatement: BodyStatement;
+            bodyStatement: BodyStatement;
 
         testExpression = maybeBinaryNode(dispatchParser(), 0);
 
-        blockStatement = parseBody();
+        bodyStatement = parseBody();
 
         if (is_kw('@else')) {
             input.next();
@@ -554,7 +588,7 @@ export default function parse(input, options: ParserOptions) {
             }
         }
 
-        return createIfStatement(testExpression, blockStatement, alternate)
+        return createIfStatement(testExpression, bodyStatement, alternate)
     }
 
     function parseEach(): EachStatement {
@@ -569,9 +603,9 @@ export default function parse(input, options: ParserOptions) {
         let right = dispatchParser();
 
         skipPunc('{')
-        let blockStatement = parseStatement()
+        let bodyStatement = parseStatement()
         skipPunc('}')
-        return createEachStatement(left, right, blockStatement)
+        return createEachStatement(left, right, bodyStatement)
     }
 
     function parseConsecutiveLeft(): TextNode {
@@ -641,7 +675,7 @@ export default function parse(input, options: ParserOptions) {
     }
 
     function parseStatement() {
-        return maybeAssign(function () {
+        return maybeDeclaration(function () {
             return dispatchParser()
         })
     }

@@ -1,7 +1,7 @@
 
-import tranform_nest from './tranform_nest'
-import transform_extend from './transform_extend'
-import transform_module from './transform_module'
+import tranform_nest from './tranformNest'
+import transform_extend from './transformExtend'
+import transform_module from './transformModule'
 
 export {
     transform_module

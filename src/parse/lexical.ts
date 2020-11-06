@@ -24,7 +24,7 @@ export default function lex(input) {
          * 
          * Todos: will be replaced by in depth analyze
          */ 
-        internalCallIdentifiers = ['@media','url'];
+        internalCallIdentifiers = ['url'];
 
     return {
         next,

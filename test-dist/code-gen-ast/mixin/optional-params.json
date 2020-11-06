@@ -5,6 +5,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 239,
@@ -186,22 +187,6 @@
             },
             "filename": "optional-params.scss"
           }
-        },
-        {
-          "type": "EMPTY",
-          "loc": {
-            "filename": "",
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            }
-          }
         }
       ],
       "loc": {
@@ -222,6 +207,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 156,

@@ -1,12 +1,21 @@
 .component{
   width:300px;
 }
-.component @media(min-width: 768px){
-  width:600px;
+@media(min-width:1280px){
+  .component .selector{
+    width:800px;
+  }
+  
 }
-.component @media(min-width: 768px) @media(min-resolution: 192dpi){
-  background-image:url(/img/retina2x.png);
+@media(min-width:768px){
+  .component{
+    width:600px;
+  }
+  
 }
-.component @media(min-width: 1280px){
-  width:800px;
+.component .selector2{
+  @media(min-resolution:192dpi){
+    background-image:url(/img/retina2x.png);
+  }
+  
 }

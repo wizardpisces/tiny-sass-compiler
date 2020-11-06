@@ -1,5 +1,5 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, AtRule, MediaStatement } from '../parse/ast'
 import { deepClone, isEmptyNode } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
@@ -38,11 +38,23 @@ export function processStatement(
             case NodeTypes.EXTEND: return node;
             case NodeTypes.IFSTATEMENT: return transform_if(node, context);
             case NodeTypes.EACHSTATEMENT: return transform_each(node, context);
+            case NodeTypes.AtRule: return transformAtRule(node, context);
 
             case NodeTypes.ERROR:
                 throw new Error(processExpression(node.value, context).value)
 
             default: throw createCompilerError(ErrorCodes.UNKNOWN_STATEMENT_TYPE, (node as Node).loc, (node as Node).type)
+        }
+    }
+
+    function transformMedia(node:MediaStatement, context: TransformContext){
+        // Todos: skip parseExpression for now, mainly to test media bubble
+        node.block = dispatchStatement(node.block,context)
+        return node
+    }
+    function transformAtRule(node:AtRule,context: TransformContext){
+        switch (node.name) {
+            case 'media': return transformMedia(node as MediaStatement,context)
         }
     }
 
@@ -189,7 +201,7 @@ export function processStatement(
             let arr: Statement[] = []
             children.forEach(child => {
                 if (child.type === NodeTypes.BODY) {
-                    arr = arr.concat(flatten_included_body(child.children))
+                    arr = arr.concat(flatten_included_body(child.children as Statement[]))
                 } else {
                     arr.push(child)
                 }
@@ -212,10 +224,9 @@ export function processStatement(
             }
         }
         /**
-         * resolve BlockStatement/body
          * 
          * @include include_function_body
-         * @if which contain BlockStatement
+         * @if which contain bodyStatement
           */
         node.children = flatten_included_body(node.children as Statement[]);
 

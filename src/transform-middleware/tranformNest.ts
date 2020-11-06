@@ -13,53 +13,66 @@ import {
     TextNode,
     createEmptyNode
 } from '../parse/ast';
+import { isEmptyNode } from '../parse/util';
+import {
+    propagateMediaDown,
+    extractMediaUp
+} from './transformMedia'
+export default function tranformNest(ast: RootNode) {
 
-export default function tranform_nest(ast:RootNode) {
-    function flatten_nested_rule(ruleNode: RuleStatement, arr: RuleStatement[] = []):RuleStatement[] {
+    // DFS search
+    function flatten_nested_rule(ruleNode: RuleStatement, arr: RuleStatement[] = []): RuleStatement[] {
 
-        function flatten(ruleNode: RuleStatement, parentSelector:string = '') {
+        function flatten(ruleNode: RuleStatement, parentSelector: string = '') {
 
             /**
-             * https://sass-lang.com/documentation/style-CHILDs/parent-selector
+             * https://sass-lang.com/documentation/style-rules/parent-selector
              * support parent selector with loosening restriction
              */
-            
+
             let containParentSelector = false;
             let selector: SelectorNode = ruleNode.selector as SelectorNode,
-                selectorValue:TextNode = selector.value as TextNode; // after transform selector value will be TextNode
+                selectorValue: TextNode = selector.value as TextNode; // after transform selector value will be TextNode
 
-            if (selectorValue.value.indexOf('&')>=0){
+            if (selectorValue.value.indexOf('&') >= 0) { // & symbol stands for parentSelector
                 containParentSelector = true;
                 selectorValue.value = selectorValue.value.replace(/&/, parentSelector)
             }
 
-            if (!containParentSelector){
+            if (!containParentSelector) {
                 selectorValue.value = (parentSelector + ' ' + selectorValue.value).trim()
             }
-            
-            /**
-             * 清理空的选择器
-              */
-            ruleNode.selector.value.value && arr.push(ruleNode);
 
             /**
-             * 
-              */
+             * collect ruleNode reference, operate before in depth children traverse to keep selector in order
+            */
+            ruleNode.selector.value.value && arr.push(ruleNode);
+
             ruleNode.children.forEach((exp, index) => {
                 if (exp.type === NodeTypes.RULE) {
-                    ruleNode.children.splice(index, 1,createEmptyNode())
+                    // 动态替换掉即将被转换了的模块
+                    ruleNode.children.splice(index, 1, createEmptyNode())
                     flatten(exp, selectorValue.value)
                 }
             });
+
+            /**
+             * filter out empty node after all children traversed
+             */
+
+            ruleNode.children.filter(node => !isEmptyNode(node));
+            ruleNode.children.length === 0 && arr.splice(arr.indexOf(ruleNode), 1)
+
             return arr;
         }
 
         return flatten(ruleNode)
     }
 
-    function toplevel(ast:RootNode) {
-
+    function toplevel(ast: RootNode) {
         let children: RootNode["children"] = [];
+
+        propagateMediaDown(ast);
 
         ast.children.forEach(exp => {
             if (exp.type === NodeTypes.RULE) {
@@ -70,6 +83,8 @@ export default function tranform_nest(ast:RootNode) {
         });
 
         ast.children = children;
+
+        extractMediaUp(ast)
 
         return ast;
     }

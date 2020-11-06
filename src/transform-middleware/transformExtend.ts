@@ -5,10 +5,12 @@
  */
 import {
     NodeTypes,
-    RootNode
+    RootNode,
+    createEmptyNode
 } from '../parse/ast';
+import { isEmptyNode } from '../parse/util';
 
-export default function transform_extend(ast: RootNode) {
+export default function transformExtend(ast: RootNode) {
     /**
      * transform
      * 
@@ -28,7 +30,7 @@ export default function transform_extend(ast: RootNode) {
     }
 
     function rm_empty_child(exp) {
-        return exp.type === NodeTypes.RULE && (is_placeholder(exp.selector.value) || exp.children.length === 0) ? null : exp
+        return exp.type === NodeTypes.RULE && (is_placeholder(exp.selector.value) || exp.children.length === 0) ? createEmptyNode() : exp
     }
 
     function collect_extend(exp) {
@@ -36,10 +38,10 @@ export default function transform_extend(ast: RootNode) {
             rule.children = rule.children.map(exp => {
                 if (exp.type === NodeTypes.EXTEND) {
                     extendSelectorPair[exp.param.value] = (extendSelectorPair[exp.param.value] || []).concat(rule.selector.value.value)
-                    return null;
+                    return createEmptyNode();
                 }
                 return exp;
-            }).filter(exp => exp !== null)
+            }).filter(exp => !isEmptyNode(exp))
 
             return rule;
         }
@@ -70,7 +72,7 @@ export default function transform_extend(ast: RootNode) {
 
         ast.children = ast.children.map(exp => collect_extend(exp))
         ast.children = ast.children.map(exp => transform_extend(exp))
-        ast.children = ast.children.map(exp => rm_empty_child(exp)).filter(exp => exp !== null)
+        ast.children = ast.children.map(exp => rm_empty_child(exp)).filter(exp => !isEmptyNode(exp))
         return ast;
     }
 

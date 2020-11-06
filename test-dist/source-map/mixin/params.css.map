@@ -4,7 +4,7 @@
     "params.scss"
   ],
   "names": [],
-  "mappings": "AAMA;EAJE,kBAAmB;EACnB,cAAe;EACf,UAAW;EAIX,KAAK",
+  "mappings": ";EAEE,kBAAmB;EACnB,cAAe;EACf,UAAW;EAIX,KAAK",
   "sourcesContent": [
     "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
   ]

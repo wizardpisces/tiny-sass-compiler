@@ -7,14 +7,19 @@ import {
     CodegenNode,
     ProgCodeGenNode,
     Position,
-    SelectorNode
+    SelectorNode,
+    AtRule,
+    MediaStatement,
+    MediaQuery,
+    SourceLocation,
+    MediaPrelude
 } from './parse/ast';
 import { CodegenOptions } from './options'
-import { advancePositionWithMutation} from './parse/util'
+import { advancePositionWithMutation } from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
-import { applyPlugins} from './pluginManager'
+import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
-import { isBrowser} from './global'
+import { isBrowser } from './global'
 export interface CodegenResult {
     code: string
     ast: RootNode
@@ -29,7 +34,7 @@ export interface CodegenContext extends Required<CodegenOptions> {
     column: number
     offset: number
     map?: SourceMapGenerator
-    push(code: string, node?: CodegenNode): void
+    push(code: string, sourceLoc?: SourceLocation): void
     indent(): void
     deindent(withoutNewLine?: boolean): void
     newline(): void
@@ -49,18 +54,18 @@ function createCodegenContext(
         offset: 0,
         indentLevel: 0,
         // source: ast.source,
-        push(code: string, node) {
+        push(code: string, sourceLoc: SourceLocation) {
             context.code += code
             if (!isBrowser() && context.map) {
-                if (node) {
-                    addMapping(node.loc.start,node.loc.filename)
+                if (sourceLoc) {
+                    addMapping(sourceLoc.start, sourceLoc.filename)
                 }
-                
+
                 advancePositionWithMutation(context, code)
 
                 // end info is not needed for now ,which could compress source-map size
-                // if(node) {
-                //     addMapping(node.loc.end)
+                // if(sourceLoc) {
+                //     addMapping(sourceLoc.sourceLoc.end)
                 // }
             }
         },
@@ -83,7 +88,7 @@ function createCodegenContext(
         context.push('\n' + `  `.repeat(n))
     }
 
-    function addMapping(loc: Position, filename:string, name?: string) {
+    function addMapping(loc: Position, filename: string, name?: string) {
         context.map!.addMapping({
             name,
             source: filename,
@@ -114,7 +119,7 @@ export function generate(
     applyPlugins(ast);// run plugins automatically before codegen
 
     const context = createCodegenContext(ast, options);
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context, ast.children as ProgCodeGenNode[] ));
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context, ast.children as ProgCodeGenNode[]));
 
     return {
         ast,
@@ -129,8 +134,8 @@ function genNode(
     context: CodegenContext,
     list: CodegenNode[]
 ) {
-    if(!node){
-        console.error('node',node,'context',context)
+    if (!node) {
+        console.error('node', node, 'context', context)
         return;
     }
 
@@ -142,10 +147,13 @@ function genNode(
             genSelector(node as SelectorNode, context);
             break;
         case NodeTypes.DECLARATION:
-            genAssign(node as DeclarationStatement, context);
+            genDeclaration(node as DeclarationStatement, context);
             break;
         case NodeTypes.RULE:
-            genChild(node as RuleStatement, context, list);
+            genRule(node as RuleStatement, context, list);
+            break;
+        case NodeTypes.AtRule:
+            genAtRule(node, context);
             break;
         case NodeTypes.EMPTY:
             break;
@@ -159,16 +167,17 @@ function genText(
     node: TextNode,
     context: CodegenContext
 ) {
-    context.push(node.value, node)
+    context.push(node.value, node.loc)
 }
+
 function genSelector(
     node: SelectorNode,
     context: CodegenContext
 ) {
-    context.push(node.value.value as string, node)
+    context.push(node.value.value as string)
 }
 
-function genAssign(
+function genDeclaration(
     node: DeclarationStatement,
     context: CodegenContext
 ) {
@@ -180,23 +189,56 @@ function genAssign(
     push(';');
 }
 
-function genChild(
-    node: CodegenNode,
+function genRule(
+    node: RuleStatement,
     context: CodegenContext,
     list: CodegenNode[]
 ) {
-    const { push, deindent, indent, newline} = context;
-    genNode(node.selector,context,list);
+    genNode(node.selector, context, list);
+    genChildrenIterator(node.children as CodegenNode[], context)
+}
+
+function genAtRule(node: AtRule, context: CodegenContext) {
+    const { push } = context;
+    function genMedia(node: MediaStatement, context: CodegenContext) {
+
+        function genMediaQueryPrelude(node: MediaPrelude) {
+            let prelude: string = node.children.map((mediaQuery: MediaQuery) => {
+                return mediaQuery.children.map(child => {
+                    if (child.type === NodeTypes.MediaFeature) {
+                        return `(${child.name}:${child.value.value})`
+                    } else if(child.type === NodeTypes.TEXT){ // csstree name Identifier eg: screen , and etc
+                        return child.value
+                    }
+                }).join(' ');
+            }).join(',');
+
+            push(prelude)
+        }
+
+        context.push('@media')
+        genMediaQueryPrelude(node.prelude)
+        genChildrenIterator(node.block.children as CodegenNode[], context)
+    }
+
+    switch (node.name) {
+        case 'media':
+            genMedia(node as MediaStatement, context);
+            break;
+    }
+}
+
+function genChildrenIterator(children: CodegenNode[], context: CodegenContext) {
+    const { push, deindent, indent, newline } = context;
     push('{');
     indent();
 
-    (node.children as CodegenNode[]).forEach((child: CodegenNode,index:number) => {
+    children.forEach((child: CodegenNode, index: number) => {
         if (index && child.type !== NodeTypes.EMPTY) {
             newline()
         }
-        genNode(child, context, node.children as CodegenNode[]);
+        genNode(child, context, children);
     })
-
     deindent();
     push('}');
     newline();

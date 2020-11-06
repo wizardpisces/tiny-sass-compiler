@@ -9,7 +9,6 @@ $right: $top;
 .main {
     top  : $top;   
     .child1{
-        margin:$margin;
         .child2{
             background:green;
         }

@@ -209,6 +209,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 41,
@@ -464,6 +465,7 @@
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
+        "meta": [],
         "loc": {
           "start": {
             "offset": 109,
@@ -568,6 +570,7 @@
           "type": "RULE",
           "selector": {
             "type": "SELECTOR",
+            "meta": [],
             "loc": {
               "start": {
                 "offset": 141,
@@ -601,10 +604,10 @@
           },
           "children": [
             {
-              "type": "DECLARATION",
-              "left": {
-                "type": "TEXT",
-                "value": "margin",
+              "type": "RULE",
+              "selector": {
+                "type": "SELECTOR",
+                "meta": [],
                 "loc": {
                   "start": {
                     "offset": 158,
@@ -612,75 +615,8 @@
                     "column": 9
                   },
                   "end": {
-                    "offset": 164,
-                    "line": 12,
-                    "column": 15
-                  },
-                  "filename": "var-nested.scss"
-                }
-              },
-              "right": {
-                "type": "LIST",
-                "value": [
-                  {
-                    "type": "VARIABLE",
-                    "value": "$margin",
-                    "loc": {
-                      "start": {
-                        "offset": 165,
-                        "line": 12,
-                        "column": 16
-                      },
-                      "end": {
-                        "offset": 172,
-                        "line": 12,
-                        "column": 23
-                      },
-                      "filename": "var-nested.scss"
-                    }
-                  }
-                ],
-                "loc": {
-                  "start": {
                     "offset": 165,
                     "line": 12,
-                    "column": 16
-                  },
-                  "end": {
-                    "offset": 172,
-                    "line": 12,
-                    "column": 23
-                  },
-                  "filename": "var-nested.scss"
-                }
-              },
-              "loc": {
-                "start": {
-                  "offset": 158,
-                  "line": 12,
-                  "column": 9
-                },
-                "end": {
-                  "offset": 172,
-                  "line": 12,
-                  "column": 23
-                },
-                "filename": "var-nested.scss"
-              }
-            },
-            {
-              "type": "RULE",
-              "selector": {
-                "type": "SELECTOR",
-                "loc": {
-                  "start": {
-                    "offset": 182,
-                    "line": 13,
-                    "column": 9
-                  },
-                  "end": {
-                    "offset": 189,
-                    "line": 13,
                     "column": 16
                   },
                   "filename": "var-nested.scss"
@@ -690,13 +626,13 @@
                   "value": ".child2",
                   "loc": {
                     "start": {
-                      "offset": 182,
-                      "line": 13,
+                      "offset": 158,
+                      "line": 12,
                       "column": 9
                     },
                     "end": {
-                      "offset": 189,
-                      "line": 13,
+                      "offset": 165,
+                      "line": 12,
                       "column": 16
                     },
                     "filename": "var-nested.scss"
@@ -711,13 +647,13 @@
                     "value": "background",
                     "loc": {
                       "start": {
-                        "offset": 203,
-                        "line": 14,
+                        "offset": 179,
+                        "line": 13,
                         "column": 13
                       },
                       "end": {
-                        "offset": 213,
-                        "line": 14,
+                        "offset": 189,
+                        "line": 13,
                         "column": 23
                       },
                       "filename": "var-nested.scss"
@@ -731,13 +667,13 @@
                         "value": "green",
                         "loc": {
                           "start": {
-                            "offset": 214,
-                            "line": 14,
+                            "offset": 190,
+                            "line": 13,
                             "column": 24
                           },
                           "end": {
-                            "offset": 219,
-                            "line": 14,
+                            "offset": 195,
+                            "line": 13,
                             "column": 29
                           },
                           "filename": "var-nested.scss"
@@ -746,13 +682,13 @@
                     ],
                     "loc": {
                       "start": {
-                        "offset": 214,
-                        "line": 14,
+                        "offset": 190,
+                        "line": 13,
                         "column": 24
                       },
                       "end": {
-                        "offset": 219,
-                        "line": 14,
+                        "offset": 195,
+                        "line": 13,
                         "column": 29
                       },
                       "filename": "var-nested.scss"
@@ -760,13 +696,13 @@
                   },
                   "loc": {
                     "start": {
-                      "offset": 203,
-                      "line": 14,
+                      "offset": 179,
+                      "line": 13,
                       "column": 13
                     },
                     "end": {
-                      "offset": 219,
-                      "line": 14,
+                      "offset": 195,
+                      "line": 13,
                       "column": 29
                     },
                     "filename": "var-nested.scss"
@@ -791,15 +727,16 @@
               "type": "RULE",
               "selector": {
                 "type": "SELECTOR",
+                "meta": [],
                 "loc": {
                   "start": {
-                    "offset": 239,
-                    "line": 16,
+                    "offset": 215,
+                    "line": 15,
                     "column": 9
                   },
                   "end": {
-                    "offset": 246,
-                    "line": 16,
+                    "offset": 222,
+                    "line": 15,
                     "column": 16
                   },
                   "filename": "var-nested.scss"
@@ -809,13 +746,13 @@
                   "value": ".child3",
                   "loc": {
                     "start": {
-                      "offset": 239,
-                      "line": 16,
+                      "offset": 215,
+                      "line": 15,
                       "column": 9
                     },
                     "end": {
-                      "offset": 246,
-                      "line": 16,
+                      "offset": 222,
+                      "line": 15,
                       "column": 16
                     },
                     "filename": "var-nested.scss"
@@ -830,13 +767,13 @@
                     "value": "background",
                     "loc": {
                       "start": {
-                        "offset": 260,
-                        "line": 17,
+                        "offset": 236,
+                        "line": 16,
                         "column": 13
                       },
                       "end": {
-                        "offset": 270,
-                        "line": 17,
+                        "offset": 246,
+                        "line": 16,
                         "column": 23
                       },
                       "filename": "var-nested.scss"
@@ -850,13 +787,13 @@
                         "value": "green",
                         "loc": {
                           "start": {
-                            "offset": 271,
-                            "line": 17,
+                            "offset": 247,
+                            "line": 16,
                             "column": 24
                           },
                           "end": {
-                            "offset": 276,
-                            "line": 17,
+                            "offset": 252,
+                            "line": 16,
                             "column": 29
                           },
                           "filename": "var-nested.scss"
@@ -865,13 +802,13 @@
                     ],
                     "loc": {
                       "start": {
-                        "offset": 271,
-                        "line": 17,
+                        "offset": 247,
+                        "line": 16,
                         "column": 24
                       },
                       "end": {
-                        "offset": 276,
-                        "line": 17,
+                        "offset": 252,
+                        "line": 16,
                         "column": 29
                       },
                       "filename": "var-nested.scss"
@@ -879,13 +816,13 @@
                   },
                   "loc": {
                     "start": {
-                      "offset": 260,
-                      "line": 17,
+                      "offset": 236,
+                      "line": 16,
                       "column": 13
                     },
                     "end": {
-                      "offset": 276,
-                      "line": 17,
+                      "offset": 252,
+                      "line": 16,
                       "column": 29
                     },
                     "filename": "var-nested.scss"
@@ -938,7 +875,7 @@
     }
   ],
   "fileSourceMap": {
-    "var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        margin:$margin;\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
+    "var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
   },
   "loc": {
     "filename": "",

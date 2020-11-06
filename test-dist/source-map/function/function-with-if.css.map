@@ -4,7 +4,7 @@
     "function-with-if.scss"
   ],
   "names": [],
-  "mappings": "AAUA;EACI,YAAa",
+  "mappings": ";EAWI,YAAa",
   "sourcesContent": [
     "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
   ]
