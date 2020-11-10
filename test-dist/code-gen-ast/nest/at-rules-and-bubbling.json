@@ -402,22 +402,6 @@
                   },
                   "filename": "at-rules-and-bubbling.scss"
                 }
-              },
-              {
-                "type": "EMPTY",
-                "loc": {
-                  "filename": "",
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  }
-                }
               }
             ],
             "loc": {
@@ -534,47 +518,47 @@
       }
     },
     {
-      "type": "RULE",
-      "selector": {
-        "type": "SELECTOR",
-        "meta": [],
-        "loc": {
-          "start": {
-            "offset": 187,
-            "line": 10,
-            "column": 9
-          },
-          "end": {
-            "offset": 197,
-            "line": 10,
-            "column": 19
-          },
-          "filename": "at-rules-and-bubbling.scss"
-        },
-        "value": {
-          "type": "TEXT",
-          "value": ".component .selector2",
-          "loc": {
-            "start": {
-              "offset": 187,
-              "line": 10,
-              "column": 9
+      "type": "AtRule",
+      "name": "media",
+      "block": {
+        "type": "BODY",
+        "children": [
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "filename": "",
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                }
+              },
+              "value": {
+                "type": "TEXT",
+                "value": ".component .selector2",
+                "loc": {
+                  "filename": "",
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  }
+                }
+              }
             },
-            "end": {
-              "offset": 197,
-              "line": 10,
-              "column": 19
-            },
-            "filename": "at-rules-and-bubbling.scss"
-          }
-        }
-      },
-      "children": [
-        {
-          "type": "AtRule",
-          "name": "media",
-          "block": {
-            "type": "BODY",
             "children": [
               {
                 "type": "DECLARATION",
@@ -640,48 +624,65 @@
                 "offset": 0
               }
             }
+          }
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
           },
-          "prelude": {
-            "type": "MediaPrelude",
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "prelude": {
+        "type": "MediaPrelude",
+        "children": [
+          {
+            "type": "MediaQuery",
             "children": [
               {
-                "type": "MediaQuery",
-                "children": [
-                  {
-                    "type": "MediaFeature",
-                    "name": "min-resolution",
-                    "value": {
-                      "type": "TEXT",
-                      "value": "192dpi",
-                      "loc": {
-                        "start": {
-                          "offset": 235,
-                          "line": 11,
-                          "column": 37
-                        },
-                        "end": {
-                          "offset": 241,
-                          "line": 11,
-                          "column": 43
-                        },
-                        "filename": "at-rules-and-bubbling.scss"
-                      }
+                "type": "MediaFeature",
+                "name": "min-resolution",
+                "value": {
+                  "type": "TEXT",
+                  "value": "192dpi",
+                  "loc": {
+                    "start": {
+                      "offset": 235,
+                      "line": 11,
+                      "column": 37
                     },
-                    "loc": {
-                      "start": {
-                        "offset": 219,
-                        "line": 11,
-                        "column": 21
-                      },
-                      "end": {
-                        "offset": 241,
-                        "line": 11,
-                        "column": 43
-                      },
-                      "filename": "at-rules-and-bubbling.scss"
-                    }
+                    "end": {
+                      "offset": 241,
+                      "line": 11,
+                      "column": 43
+                    },
+                    "filename": "at-rules-and-bubbling.scss"
                   }
-                ],
+                },
+                "loc": {
+                  "start": {
+                    "offset": 219,
+                    "line": 11,
+                    "column": 21
+                  },
+                  "end": {
+                    "offset": 241,
+                    "line": 11,
+                    "column": 43
+                  },
+                  "filename": "at-rules-and-bubbling.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "and",
                 "loc": {
                   "filename": "",
                   "start": {
@@ -694,6 +695,40 @@
                     "column": 1,
                     "offset": 0
                   }
+                }
+              },
+              {
+                "type": "MediaFeature",
+                "name": "min-width",
+                "value": {
+                  "type": "TEXT",
+                  "value": "768px",
+                  "loc": {
+                    "start": {
+                      "offset": 148,
+                      "line": 8,
+                      "column": 24
+                    },
+                    "end": {
+                      "offset": 153,
+                      "line": 8,
+                      "column": 29
+                    },
+                    "filename": "at-rules-and-bubbling.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 137,
+                    "line": 8,
+                    "column": 13
+                  },
+                  "end": {
+                    "offset": 153,
+                    "line": 8,
+                    "column": 29
+                  },
+                  "filename": "at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -710,24 +745,23 @@
                 "offset": 0
               }
             }
+          }
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
           },
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "filename": ""
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
           }
         }
-      ],
+      },
       "loc": {
-        "filename": "",
         "start": {
           "line": 1,
           "column": 1,
@@ -737,7 +771,8 @@
           "line": 1,
           "column": 1,
           "offset": 0
-        }
+        },
+        "filename": ""
       }
     }
   ],

@@ -121,6 +121,10 @@ export function isEmptyNode(node: Node):boolean{
     return node.type === NodeTypes.EMPTY
 }
 
+export function isMediaNode(node: Node):boolean{
+    return node.type === NodeTypes.AtRule && node.name === 'media';
+}
+
 // function createPromiseCallback() {
 //     var resolve, reject;
 //     var promise = new Promise(function (_resolve, _reject) {

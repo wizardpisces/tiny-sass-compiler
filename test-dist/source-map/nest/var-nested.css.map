@@ -4,7 +4,7 @@
     "var-nested.scss"
   ],
   "names": [],
-  "mappings": ";EAKI,OAAQ;EACR,MAAO;;;EAGP,IAAO;;;EAGC,WAAW;;;EAGX,WAAW",
+  "mappings": "AAGA;EAEI,OAAQ;EACR,MAAO;;AAEX;EACI,IAAO;;AAEH;EACI,WAAW;;AAEf;EACI,WAAW",
   "sourcesContent": [
     "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
   ]

@@ -438,12 +438,12 @@ export function createReturnStatement(list: SimpleExpressionNode[]): ReturnState
     }
 }
 
-export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children']): RuleStatement {
+export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children'], loc:SourceLocation=locStub): RuleStatement {
     return {
         type: NodeTypes.RULE,
         selector,
         children,
-        loc: locStub
+        loc
     }
 }
 
@@ -534,20 +534,32 @@ export function createRuleFromMedia(media: MediaStatement): RuleStatement {
 }
 
 export function createMediaFromRule(rule: RuleStatement): MediaStatement {
+    /**
+     * merge media prelude list as one glued by 'and' idetifier 
+     * */
     function mergeMediaPreludeList(preludeList: MediaStatement['prelude'][]): MediaStatement['prelude'] {
+
+        function mergeMediaPreludeChildren(children: MediaPrelude['children'] ): MediaQuery {
+            let mediaQueryChildren = children.reduce(
+                (mediaQueryList: MediaQuery['children'], mediaQuery: MediaQuery) =>
+                    mediaQueryList.concat(mediaQuery['children'])
+                , [])
+            return createMediaQuery(mediaQueryChildren)
+        }
+
         let children: MediaPrelude['children'] = [];
         preludeList.forEach((prelude: MediaStatement['prelude']) => {
-            if (children.length) {
+            if (children.length > 0) { // push 'and' identifer to glue mediaQuery
                 children.push(createMediaQuery([createTextNode('and')]))
             }
             children = children.concat(prelude.children)
         })
-        return createMediaPrelude(children)
-    }
 
-    let prelude = mergeMediaPreludeList(rule.selector.meta);
+        return createMediaPrelude([mergeMediaPreludeChildren(children)])
+    }
+    let prelude = mergeMediaPreludeList(rule.selector.meta)
     // reset rule selector meta
     rule.selector.meta = []
-    
+
     return createMediaStatement(prelude, createBodyStatement([rule]))
 }

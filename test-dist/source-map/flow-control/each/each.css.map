@@ -4,7 +4,7 @@
     "each.scss"
   ],
   "names": [],
-  "mappings": ";EAII,UAAW;;;EAEP,UAAW;EACX,OAAQ;;;EAHZ,UAAW;;;EAEP,UAAW;EACX,OAAQ",
+  "mappings": "AAGE;EACE,UAAW;;AACX;EACI,UAAW;EACX,OAAQ;;AAJd;EACE,UAAW;;AACX;EACI,UAAW;EACX,OAAQ",
   "sourcesContent": [
     "$sizes: 40px,  50px;\n\n@each $size in $sizes {\n  .icon-#asfssd-#{$size} {\n    font-size: $size;\n    .ok{\n        font-size: $size;\n        border: $size  solid        #111111;\n    }\n  }\n}"
   ]

@@ -6,7 +6,7 @@
     "index.scss"
   ],
   "names": [],
-  "mappings": ";EACI,WAAY;;;ECKd,KAAM;EACN,MAAO;;;ECHP,iBAAkB;EAClB,MAAO",
+  "mappings": "AAAA;EACI,WAAY;;ACIhB;EACE,KAAM;EACN,MAAO;;ACJT;EACE,iBAAkB;EAClB,MAAO",
   "sourcesContent": [
     ".base-2{\n    background: red;\n}",
     "@import \"./base-2.scss\";\n// _base.scss\n$font-stack:    Helvetica, sans-serif;\n$primary-color: #333;\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",

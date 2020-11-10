@@ -1,0 +1,20 @@
+.component {
+  width: 300px;
+}
+@media (min-width: 1280px) {
+  .component .selector {
+    width: 800px;
+  }
+}
+@media (min-width: 768px) {
+  .component {
+    width: 600px;
+  }
+}
+@media (min-width: 768px) and (min-resolution: 192dpi) {
+  .component .selector2 {
+    background-image: url(/img/retina2x.png);
+  }
+}
+
+/*# sourceMappingURL=at-rules-and-bubbling.css.map */

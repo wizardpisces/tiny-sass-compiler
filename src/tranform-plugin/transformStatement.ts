@@ -1,5 +1,5 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, AtRule, MediaStatement } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, AtRule, MediaStatement, createRuleStatement } from '../parse/ast'
 import { deepClone, isEmptyNode } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
@@ -47,14 +47,14 @@ export function processStatement(
         }
     }
 
-    function transformMedia(node:MediaStatement, context: TransformContext){
+    function transformMedia(node: MediaStatement, context: TransformContext) {
         // Todos: skip parseExpression for now, mainly to test media bubble
-        node.block = dispatchStatement(node.block,context)
+        node.block = dispatchStatement(node.block, context)
         return node
     }
-    function transformAtRule(node:AtRule,context: TransformContext){
+    function transformAtRule(node: AtRule, context: TransformContext) {
         switch (node.name) {
-            case 'media': return transformMedia(node as MediaStatement,context)
+            case 'media': return transformMedia(node as MediaStatement, context)
         }
     }
 
@@ -86,15 +86,13 @@ export function processStatement(
         /**
          * return a created an empty selector RULE whose children will be flattened in transform_nest
          */
-        let child: RuleStatement = {
-            ...node,
-            type: NodeTypes.RULE,
-            selector: createSelectorNode(createTextNode('')),
-            children
-        }
-
-        return child;
+        return createRuleStatement(
+            createSelectorNode(createTextNode('')),
+            children,
+            node.loc
+        );
     }
+    
     /**
      * context will be restored with function 
      */

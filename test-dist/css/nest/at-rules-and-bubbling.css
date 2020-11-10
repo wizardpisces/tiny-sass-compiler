@@ -13,8 +13,8 @@
   }
   
 }
-.component .selector2{
-  @media(min-resolution:192dpi){
+@media(min-resolution:192dpi) and (min-width:768px){
+  .component .selector2{
     background-image:url(/img/retina2x.png);
   }
   

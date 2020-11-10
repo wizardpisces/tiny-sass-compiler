@@ -15,7 +15,7 @@ import {
     MediaPrelude
 } from './parse/ast';
 import { CodegenOptions } from './options'
-import { advancePositionWithMutation } from './parse/util'
+import { advancePositionWithMutation, isEmptyNode } from './parse/util'
 import { SourceMapGenerator, RawSourceMap } from 'source-map'
 import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
@@ -55,9 +55,12 @@ function createCodegenContext(
         indentLevel: 0,
         // source: ast.source,
         push(code: string, sourceLoc: SourceLocation) {
+            function isValidSourceLocation(sourceLoc: SourceLocation){
+                return sourceLoc && sourceLoc.end.offset>0;
+            }
             context.code += code
             if (!isBrowser() && context.map) {
-                if (sourceLoc) {
+                if (isValidSourceLocation(sourceLoc)) {
                     addMapping(sourceLoc.start, sourceLoc.filename)
                 }
 
@@ -174,7 +177,11 @@ function genSelector(
     node: SelectorNode,
     context: CodegenContext
 ) {
-    context.push(node.value.value as string)
+    try{
+        context.push(node.value.value as string, node.loc)
+    }catch(e){
+        console.log('*********** genSelector **************',e)
+    }
 }
 
 function genDeclaration(
@@ -234,7 +241,7 @@ function genChildrenIterator(children: CodegenNode[], context: CodegenContext) {
     indent();
 
     children.forEach((child: CodegenNode, index: number) => {
-        if (index && child.type !== NodeTypes.EMPTY) {
+        if (index && !isEmptyNode(child)) {
             newline()
         }
         genNode(child, context, children);

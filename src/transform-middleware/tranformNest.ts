@@ -44,9 +44,9 @@ export default function tranformNest(ast: RootNode) {
             }
 
             /**
-             * collect ruleNode reference, operate before in depth children traverse to keep selector in order
+             * collect ruleNode reference before children traverse to keep flattened RuleStatement in order
             */
-            ruleNode.selector.value.value && arr.push(ruleNode);
+            arr.push(ruleNode);
 
             ruleNode.children.forEach((exp, index) => {
                 if (exp.type === NodeTypes.RULE) {
@@ -60,7 +60,7 @@ export default function tranformNest(ast: RootNode) {
              * filter out empty node after all children traversed
              */
 
-            ruleNode.children.filter(node => !isEmptyNode(node));
+            ruleNode.children = ruleNode.children.filter(node => !isEmptyNode(node));
             ruleNode.children.length === 0 && arr.splice(arr.indexOf(ruleNode), 1)
 
             return arr;
@@ -82,7 +82,7 @@ export default function tranformNest(ast: RootNode) {
             }
         });
 
-        ast.children = children;
+        ast.children = children
 
         extractMediaUp(ast)
 

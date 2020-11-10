@@ -4,7 +4,7 @@
     "function.scss"
   ],
   "names": [],
-  "mappings": ";EAMI,MAAO;EACP,YAAa",
+  "mappings": "AAKA;EACI,MAAO;EACP,YAAa",
   "sourcesContent": [
     "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
   ]
