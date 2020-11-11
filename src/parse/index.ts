@@ -2,7 +2,7 @@ import input_stream from './input_stream'
 import lexical from './lexical'
 import parse from './parse'
 import { RootNode } from './ast'
-import { ParserOptions } from '@/options'
+import { ParserOptions } from '@/type'
 // import runtime_schema_check from './runtime_ast_check'
 
 export default function baseParse(

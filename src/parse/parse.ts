@@ -58,7 +58,7 @@ import {
     PRECEDENCE,
     fillWhitespace,
 } from './util'
-import { ParserOptions } from '@/options';
+import { ParserOptions } from '@/type';
 
 /**
  * 
@@ -330,7 +330,7 @@ export default function parse(input, options: ParserOptions) {
                 mediaQueryChildren.push(createMediaFeature(declaration))
                 skipPunc(')')
             } else {
-                mediaQueryChildren.push(createTextNode(consumeNextTokenWithLoc()))
+                mediaQueryChildren.push(consumeNextTokenWithLoc()) // eg: and,screen etc like TEXT
             }
         }
         reset_assign_right_end_condition()

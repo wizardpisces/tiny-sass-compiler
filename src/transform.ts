@@ -1,5 +1,5 @@
 import { NodeTypes, Node, RootNode, ParentNode, CodegenNode } from './parse/ast'
-import { TransformOptions } from './options'
+import { TransformOptions } from './type'
 import { defaultOnError } from './parse/errors'
 import {
     Environment

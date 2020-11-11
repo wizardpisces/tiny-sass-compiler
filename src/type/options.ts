@@ -1,5 +1,5 @@
-import { NodeTransform} from './transform'
-import { CompilerError} from './parse/errors'
+import { NodeTransform} from '../transform'
+import { CompilerError} from '../parse/errors'
 
 export interface TransformOptions {
     /**

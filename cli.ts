@@ -8,7 +8,7 @@ import { RootNode} from './src/parse/ast'
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
-import { CodegenResult } from './src/codegen';
+import { CodegenResult } from './src/type';
 
 function require_css(scssPath: string) {
     return {
@@ -161,7 +161,7 @@ function run(
                 return;
             }
 
-            if (filename!== 'flow-control' &&  filename !== 'each' && filename !=='each.scss') return;
+            // if (filename!== 'flow-control' &&  filename !== 'each' && filename !=='each.scss') return;
             // if (filename!== 'var-simple.scss') return;
             // if (filename!='nest' && filename !== 'at-rules-and-bubbling.scss') return;
             // if (filename!== 'function' && !filename.startsWith('function')) return;

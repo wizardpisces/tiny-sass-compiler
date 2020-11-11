@@ -14,7 +14,7 @@ import {
     Statement,
     ImportStatement
 } from '@/parse/ast';
-import { ParserOptions } from '@/options';
+import { ParserOptions } from '../type';
 
 const EXTNAME_GLOBAL = '.scss'
 export default function transformModule(root: RootNode, options) {

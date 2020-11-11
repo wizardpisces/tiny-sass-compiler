@@ -14,31 +14,12 @@ import {
     SourceLocation,
     MediaPrelude
 } from './parse/ast';
-import { CodegenOptions } from './options'
+import { SourceMapGenerator } from 'source-map'
 import { advancePositionWithMutation, isEmptyNode } from './parse/util'
-import { SourceMapGenerator, RawSourceMap } from 'source-map'
 import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
-export interface CodegenResult {
-    code: string
-    ast: RootNode
-    map?: RawSourceMap
-}
-
-export interface CodegenContext extends Required<CodegenOptions> {
-    // source: string
-    code: string
-    indentLevel: number
-    line: number
-    column: number
-    offset: number
-    map?: SourceMapGenerator
-    push(code: string, sourceLoc?: SourceLocation): void
-    indent(): void
-    deindent(withoutNewLine?: boolean): void
-    newline(): void
-}
+import { CodegenContext, CodegenResult, CodegenOptions} from './type'
 
 function createCodegenContext(
     ast: RootNode,
@@ -122,7 +103,7 @@ export function generate(
     applyPlugins(ast);// run plugins automatically before codegen
 
     const context = createCodegenContext(ast, options);
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context, ast.children as ProgCodeGenNode[]));
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context));
 
     return {
         ast,
@@ -134,8 +115,7 @@ export function generate(
 
 function genNode(
     node: CodegenNode,
-    context: CodegenContext,
-    list: CodegenNode[]
+    context: CodegenContext
 ) {
     if (!node) {
         console.error('node', node, 'context', context)
@@ -153,7 +133,7 @@ function genNode(
             genDeclaration(node as DeclarationStatement, context);
             break;
         case NodeTypes.RULE:
-            genRule(node as RuleStatement, context, list);
+            genRule(node as RuleStatement, context);
             break;
         case NodeTypes.AtRule:
             genAtRule(node, context);
@@ -198,10 +178,9 @@ function genDeclaration(
 
 function genRule(
     node: RuleStatement,
-    context: CodegenContext,
-    list: CodegenNode[]
+    context: CodegenContext
 ) {
-    genNode(node.selector, context, list);
+    genNode(node.selector, context);
     genChildrenIterator(node.children as CodegenNode[], context)
 }
 
@@ -244,7 +223,7 @@ function genChildrenIterator(children: CodegenNode[], context: CodegenContext) {
         if (index && !isEmptyNode(child)) {
             newline()
         }
-        genNode(child, context, children);
+        genNode(child, context);
     })
     deindent();
     push('}');
