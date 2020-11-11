@@ -4,8 +4,8 @@
     "at-rules-and-bubbling.scss"
   ],
   "names": [],
-  "mappings": "AAAA;EACI,MAAO;;;EAIP;IACI,MAAO;;;;;EAMX;IACI,MAAO;;;;;EAMX;IACI,iBAAkB",
+  "mappings": "AAAA;EACI,MAAO;;;;IAGC,MAAO;;;;;;IAIX,MAAO;;;;;;IAGC,iBAAkB",
   "sourcesContent": [
-    ".component {\n    width: 300px;\n}\n\n@media(min-width:1280px) {\n    .component .selector {\n        width: 800px;\n    }\n\n}\n\n@media(min-width:768px) {\n    .component {\n        width: 600px;\n    }\n\n}\n\n@media(min-resolution:192dpi) and (min-width:768px) {\n    .component .selector2 {\n        background-image: url(/img/retina2x.png);\n    }\n\n}\n"
+    ".component {\n    width: 300px;\n    .selector{\n        @media (min-width: 1280px) {\n            width: 800px;\n        }\n    }\n    @media (min-width: 768px) {\n        width: 600px;\n        .selector2{\n            @media (min-resolution: 192dpi) {\n                background-image: url(/img/retina2x.png);\n            }\n        }\n    }\n}\n"
   ]
 }

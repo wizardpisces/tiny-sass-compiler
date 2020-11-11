@@ -10,16 +10,15 @@ import {
     SelectorNode,
     AtRule,
     MediaStatement,
-    MediaQuery,
     SourceLocation,
-    MediaPrelude
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
-import { advancePositionWithMutation, isEmptyNode } from './parse/util'
+import { advancePositionWithMutation } from './parse/util'
 import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
+import { Rule, Selector, Text, Declaration, Media } from './tree';
 
 function createCodegenContext(
     ast: RootNode,
@@ -150,61 +149,34 @@ function genText(
     node: TextNode,
     context: CodegenContext
 ) {
-    context.push(node.value, node.loc)
+    new Text(node).genCSS(context);
 }
 
 function genSelector(
     node: SelectorNode,
     context: CodegenContext
 ) {
-    try{
-        context.push(node.value.value as string, node.loc)
-    }catch(e){
-        console.log('*********** genSelector **************',e)
-    }
+    new Selector(node).genCSS(context);
 }
 
 function genDeclaration(
     node: DeclarationStatement,
     context: CodegenContext
 ) {
-    const { push } = context;
 
-    genText(node.left as TextNode, context)
-    push(':')
-    genText(node.right as TextNode, context)
-    push(';');
+    new Declaration(node).genCSS(context)
 }
 
 function genRule(
     node: RuleStatement,
     context: CodegenContext
 ) {
-    genNode(node.selector, context);
-    genChildrenIterator(node.children as CodegenNode[], context)
+    new Rule(node).genCSS(context)
 }
 
 function genAtRule(node: AtRule, context: CodegenContext) {
-    const { push } = context;
     function genMedia(node: MediaStatement, context: CodegenContext) {
-
-        function genMediaQueryPrelude(node: MediaPrelude) {
-            let prelude: string = node.children.map((mediaQuery: MediaQuery) => {
-                return mediaQuery.children.map(child => {
-                    if (child.type === NodeTypes.MediaFeature) {
-                        return `(${child.name}:${child.value.value})`
-                    } else if(child.type === NodeTypes.TEXT){ // csstree name Identifier eg: screen , and etc
-                        return child.value
-                    }
-                }).join(' ');
-            }).join(',');
-
-            push(prelude)
-        }
-
-        context.push('@media')
-        genMediaQueryPrelude(node.prelude)
-        genChildrenIterator(node.block.children as CodegenNode[], context)
+        new Media(node).genCSS(context)
     }
 
     switch (node.name) {
@@ -212,20 +184,4 @@ function genAtRule(node: AtRule, context: CodegenContext) {
             genMedia(node as MediaStatement, context);
             break;
     }
-}
-
-function genChildrenIterator(children: CodegenNode[], context: CodegenContext) {
-    const { push, deindent, indent, newline } = context;
-    push('{');
-    indent();
-
-    children.forEach((child: CodegenNode, index: number) => {
-        if (index && !isEmptyNode(child)) {
-            newline()
-        }
-        genNode(child, context);
-    })
-    deindent();
-    push('}');
-    newline();
 }

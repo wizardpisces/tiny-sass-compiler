@@ -6,7 +6,9 @@
 import {
     NodeTypes,
     RootNode,
-    createEmptyNode
+    createEmptyNode,
+    createTextNode,
+    createSelectorNode
 } from '../parse/ast';
 import { isEmptyNode } from '../parse/util';
 
@@ -51,17 +53,20 @@ export default function transformExtend(ast: RootNode) {
     function transform_extend(exp) {
         function transform(rule) {
             if (is_placeholder(rule.selector.value)) {
-                rule.selector = {
-                    type: NodeTypes.TEXT,
-                    value: extendSelectorPair[rule.selector.value.value].join(','),
-                    loc: rule.selector.loc
-                }
+                rule.selector = createSelectorNode(
+                    createTextNode(
+                        extendSelectorPair[rule.selector.value.value].join(','),
+                        rule.selector.loc
+                    )
+                )
+
             } else {
-                rule.selector = {
-                    type: NodeTypes.TEXT,
-                    value: extendSelectorPair[rule.selector.value.value].concat(rule.selector.value.value).join(','),
-                    loc: rule.selector.loc
-                }
+                rule.selector = createSelectorNode(
+                    createTextNode(
+                        extendSelectorPair[rule.selector.value.value].concat(rule.selector.value.value).join(','),
+                        rule.selector.loc
+                    )
+                )
             }
             return rule;
         }
