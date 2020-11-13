@@ -1,6 +1,12 @@
 # Project Target
 
-This project is for people who want to understand parser and AST(abstract syntax tree) , and how they combine to make a compiler
+This project is for people who want to understand how to write a compiler , mainly cover steps:
+
+1. sourceCode (sass scanning)
+2. tokens (parsing)
+3. syntaxTree (analysis)
+4. intermediateRepresentation or IR (code generation + sourceMap)
+5. highLevelLanguage (css)
 
 ## Sass Compiler
 
@@ -131,3 +137,5 @@ npm run jest
 * https://github.com/csstree/csstree
 * https://astexplorer.net/#/gist/244e2fb4da940df52bf0f4b94277db44/e79aff44611020b22cfd9708f3a99ce09b7d67a8
 * http://lesscss.org/
+* https://github.com/vuejs/vue-next/tree/master/packages/compiler-core
+* http://lisperator.net/pltut/

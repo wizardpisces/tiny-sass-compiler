@@ -48,7 +48,7 @@ export default class Media {
 }
 
 function genChildrenIterator(children: RuleStatement[], context: CodegenContext) {
-    const { push, deindent, indent, newline } = context;
+    const { push, deindent, indent } = context;
     push('{');
     indent();
 
@@ -57,5 +57,4 @@ function genChildrenIterator(children: RuleStatement[], context: CodegenContext)
     })
     deindent();
     push('}');
-    newline();
 }

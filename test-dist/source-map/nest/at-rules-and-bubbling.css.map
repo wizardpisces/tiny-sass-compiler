@@ -4,7 +4,7 @@
     "at-rules-and-bubbling.scss"
   ],
   "names": [],
-  "mappings": "AAAA;EACI,MAAO;;;;IAGC,MAAO;;;;;;IAIX,MAAO;;;;;;IAGC,iBAAkB",
+  "mappings": "AAAA;EACI,MAAO;;;;IAGC,MAAO;;;;;IAIX,MAAO;;;;;IAGC,iBAAkB",
   "sourcesContent": [
     ".component {\n    width: 300px;\n    .selector{\n        @media (min-width: 1280px) {\n            width: 800px;\n        }\n    }\n    @media (min-width: 768px) {\n        width: 600px;\n        .selector2{\n            @media (min-resolution: 192dpi) {\n                background-image: url(/img/retina2x.png);\n            }\n        }\n    }\n}\n"
   ]

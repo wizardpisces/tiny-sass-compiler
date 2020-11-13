@@ -45,7 +45,6 @@ export default class Rule {
 
         deindent();
         push('}');
-        newline();
     }
 }
 

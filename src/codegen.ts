@@ -1,13 +1,9 @@
 import {
     NodeTypes,
     RootNode,
-    TextNode,
-    DeclarationStatement,
-    RuleStatement,
     CodegenNode,
     ProgCodeGenNode,
     Position,
-    SelectorNode,
     AtRule,
     MediaStatement,
     SourceLocation,
@@ -18,7 +14,7 @@ import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
-import { Rule, Selector, Text, Declaration, Media } from './tree';
+import { Rule, Media } from './tree';
 
 function createCodegenContext(
     ast: RootNode,
@@ -102,7 +98,10 @@ export function generate(
     applyPlugins(ast);// run plugins automatically before codegen
 
     const context = createCodegenContext(ast, options);
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => genNode(node, context));
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode,index) =>{
+        genNode(node, context);
+        context.newline()
+    })
 
     return {
         ast,
@@ -116,23 +115,9 @@ function genNode(
     node: CodegenNode,
     context: CodegenContext
 ) {
-    if (!node) {
-        console.error('node', node, 'context', context)
-        return;
-    }
-
     switch (node.type) {
-        case NodeTypes.TEXT:
-            genText(node as TextNode, context);
-            break;
-        case NodeTypes.SELECTOR:
-            genSelector(node as SelectorNode, context);
-            break;
-        case NodeTypes.DECLARATION:
-            genDeclaration(node as DeclarationStatement, context);
-            break;
         case NodeTypes.RULE:
-            genRule(node as RuleStatement, context);
+            new Rule(node).genCSS(context)
             break;
         case NodeTypes.AtRule:
             genAtRule(node, context);
@@ -145,43 +130,10 @@ function genNode(
     }
 }
 
-function genText(
-    node: TextNode,
-    context: CodegenContext
-) {
-    new Text(node).genCSS(context);
-}
-
-function genSelector(
-    node: SelectorNode,
-    context: CodegenContext
-) {
-    new Selector(node).genCSS(context);
-}
-
-function genDeclaration(
-    node: DeclarationStatement,
-    context: CodegenContext
-) {
-
-    new Declaration(node).genCSS(context)
-}
-
-function genRule(
-    node: RuleStatement,
-    context: CodegenContext
-) {
-    new Rule(node).genCSS(context)
-}
-
 function genAtRule(node: AtRule, context: CodegenContext) {
-    function genMedia(node: MediaStatement, context: CodegenContext) {
-        new Media(node).genCSS(context)
-    }
-
     switch (node.name) {
         case 'media':
-            genMedia(node as MediaStatement, context);
+            new Media(node as MediaStatement).genCSS(context)
             break;
     }
 }

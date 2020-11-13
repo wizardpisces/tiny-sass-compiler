@@ -5,17 +5,14 @@
   .component .selector{
     width:800px;
   }
-  
 }
 @media(min-width:768px){
   .component{
     width:600px;
   }
-  
 }
 @media(min-resolution:192dpi) and (min-width:768px){
   .component .selector2{
     background-image:url(/img/retina2x.png);
   }
-  
 }
