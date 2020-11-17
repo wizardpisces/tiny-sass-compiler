@@ -25,7 +25,7 @@ function propagateMediaDown(ast: RootNode) {
             if (child.type === NodeTypes.RULE) {
                 child = new Rule(child as RuleStatement).addMeta(parentSelectorMeta).toJSON();
                 traverseChildren(child.children, child.selector.meta.slice())
-            } else if (child.type === NodeTypes.AtRule && child.name === 'media') {
+            } else if (child.type === NodeTypes.Atrule && child.name === 'media') {
                 let newRule: RuleStatement = new Rule(child as MediaStatement).addMeta(parentSelectorMeta).toJSON()
                 children.splice(index, 1, newRule) // replace media with newRule
                 traverseChildren(newRule.children, newRule.selector.meta.slice())

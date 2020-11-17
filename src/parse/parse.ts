@@ -50,7 +50,10 @@ import {
     createMediaStatement,
     createMediaPrelude,
     createMediaQuery,
-    createBodyStatement
+    createBodyStatement,
+    createKeyframes,
+    Keyframes,
+    createKeyframesPrelude
 } from './ast';
 
 import {
@@ -305,10 +308,26 @@ export default function parse(input, options: ParserOptions) {
                 input.next()
                 return parseMedia();
             }
+            if (is_kw('@keyframes')){
+                input.next()
+                return parseKeyframes()
+            }
             return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
+    }
+
+    function parseKeyframes():Keyframes{
+        let children:Keyframes['prelude']['children'] = [];
+
+        while (!is_punc('{')) {
+            children.push(consumeNextTokenWithLoc())
+        }
+
+        let bodyStatement: BodyStatement = parseBody()
+        
+        return createKeyframes(createKeyframesPrelude(children),bodyStatement)
     }
 
     function parseMedia(): MediaStatement {

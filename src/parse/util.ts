@@ -122,7 +122,7 @@ export function isEmptyNode(node: Node):boolean{
 }
 
 export function isMediaNode(node: Node):boolean{
-    return node.type === NodeTypes.AtRule && node.name === 'media';
+    return node.type === NodeTypes.Atrule && node.name === 'media';
 }
 
 // function createPromiseCallback() {

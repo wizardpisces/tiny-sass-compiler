@@ -12,5 +12,19 @@
                 background-image: url(/img/retina2x.png);
             }
         }
+        .selector3{
+            color:red;
+        }
+    }
+}
+
+$layout-breakpoint-small: 960px;
+
+@media (min-width: $layout-breakpoint-small) {
+    .hide-extra-small {
+        display: none;
+    }
+    .selector1{
+        color:red;
     }
 }

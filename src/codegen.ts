@@ -4,9 +4,10 @@ import {
     CodegenNode,
     ProgCodeGenNode,
     Position,
-    AtRule,
+    Atrule,
     MediaStatement,
     SourceLocation,
+    Keyframes,
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
 import { advancePositionWithMutation } from './parse/util'
@@ -15,6 +16,7 @@ import { applyPlugins } from './pluginManager'
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
 import { Rule, Media } from './tree';
+import KeyframesTree from './tree/keyframes';
 
 function createCodegenContext(
     ast: RootNode,
@@ -119,7 +121,7 @@ function genNode(
         case NodeTypes.RULE:
             new Rule(node).genCSS(context)
             break;
-        case NodeTypes.AtRule:
+        case NodeTypes.Atrule:
             genAtRule(node, context);
             break;
         case NodeTypes.EMPTY:
@@ -130,10 +132,9 @@ function genNode(
     }
 }
 
-function genAtRule(node: AtRule, context: CodegenContext) {
+function genAtRule(node: Atrule, context: CodegenContext) {
     switch (node.name) {
-        case 'media':
-            new Media(node as MediaStatement).genCSS(context)
-            break;
+        case 'media': return new Media(node as MediaStatement).genCSS(context);
+        case 'keyframes': return new KeyframesTree(node as Keyframes).genCSS(context);
     }
 }

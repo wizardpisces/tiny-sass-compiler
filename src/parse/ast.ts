@@ -34,12 +34,13 @@ export const enum NodeTypes {
     FUNCTION = 'FUNCTION',// must end with @return
 
     /**
-     * internal AtRule
+     * internal Atrule
      */
     MediaFeature = 'MediaFeature',
     MediaPrelude = 'MediaPrelude',
+    KeyframesPrelude = 'KeyframesPrelude',
     MediaQuery = 'MediaQuery',
-    AtRule = 'AtRule',
+    Atrule = 'Atrule',
 
     // exceptions
     ERROR = 'ERROR',
@@ -95,13 +96,6 @@ export interface Node {
     [key: string]: any
     type: NodeTypes
     loc: SourceLocation
-}
-
-// Simple Node
-
-export interface KeywordNode extends Node { // exists only in lexical
-    type: NodeTypes.KEYWORD
-    value: string
 }
 
 export interface TextNode extends Node {
@@ -182,7 +176,7 @@ export type Statement =
     | IfStatement
     | EachStatement
     | ReturnStatement
-    | AtRule
+    | Atrule
 
 export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
@@ -265,14 +259,14 @@ export interface EachStatement extends Node {
 
 
 /**
- * interface prototype for css internal AtRule eg: @media @keyframes @font-face @charset etc
- * Todos: change @import by AtRule
+ * interface prototype for css internal Atrule eg: @media @keyframes @font-face @charset etc
+ * Todos: change @import by Atrule
  */
-export interface AtRule extends Node {
-    type: NodeTypes.AtRule
+export interface Atrule extends Node {
+    type: NodeTypes.Atrule
     name: internalAtRuleNames
     block: BodyStatement
-    prelude: MediaPrelude | TextNode | null
+    prelude: MediaPrelude | KeyframesPrelude
 }
 /**
  * @media ast tree (simplified) start  
@@ -296,11 +290,48 @@ export interface MediaPrelude extends Node {
     children: MediaQuery[] // splited by ','
 }
 
-export interface MediaStatement extends AtRule {
+export interface MediaStatement extends Atrule {
     name: 'media'
     prelude: MediaPrelude
 }
+
+export interface KeyframesPrelude extends Node {
+    type: NodeTypes.KeyframesPrelude
+    children: TextNode[]
+}
+
+export interface Keyframes extends Atrule {
+    name:'keyframes'
+    prelude:KeyframesPrelude
+}
+
 // work before ast transform
+export function createKeyframesPrelude(children:KeyframesPrelude['children']):KeyframesPrelude{
+    return {
+        type:NodeTypes.KeyframesPrelude,
+        children,
+        loc:{
+            start: children[0].loc.start,
+            end:children[children.length-1].loc.end,
+            filename:children[0].loc.filename
+        }
+    }
+}
+
+export function createKeyframes(prelude:Keyframes['prelude'],block:Keyframes['block']):Keyframes{
+    return {
+        type:NodeTypes.Atrule,
+        name:'keyframes',
+        block,
+        prelude,
+        loc: {
+            start: prelude.loc.start,
+            end: block.loc.end,
+            filename: prelude.loc.filename
+        }
+    }
+}
+
 export function createMediaFeature(declaration: DeclarationStatement): MediaFeature {
     return {
         type: NodeTypes.MediaFeature,
@@ -328,7 +359,7 @@ export function createMediaPrelude(children: MediaPrelude['children']): MediaPre
 
 export function createMediaStatement(prelude: MediaStatement['prelude'], block: MediaStatement['block']): MediaStatement {
     return {
-        type: NodeTypes.AtRule,
+        type: NodeTypes.Atrule,
         name: 'media',
         block,
         prelude,
@@ -347,7 +378,7 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
 
 export type CodegenNode = TextNode | ProgCodeGenNode
 
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | AtRule | MediaPrelude;
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude;
 
 export type ParentNode = RootNode | BodyStatement | RuleStatement
 

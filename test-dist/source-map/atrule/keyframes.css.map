@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "keyframes.scss"
+  ],
+  "names": [],
+  "mappings": "WAAW;EACP;IACI,YAAa;IACb,MAAO;;EAGX;IACI,YAAa;IACb,MAAO;;EAGX;IACI,YAAa;IACb,MAAO",
+  "sourcesContent": [
+    "@keyframes slide-in {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    70% {\n        margin-left: 90%;\n        width: 150%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 100%;\n    }\n}"
+  ]
+}

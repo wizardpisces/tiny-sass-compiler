@@ -3,7 +3,9 @@
 
 ### feat
 
+* keep media scope as usual (avoid split)
 * transform fop to oop and import visitor mode
+* add buildin modules and less.js like @plugin
 * support css atrules (@keyframes @media) and complete at-rules
 * add browser style[type='text/acss'] and link[rel='RootNode/acss'] support
 * read mcss and less.js（https://github.com/leeluolee/mcss），mcss/less是如何parse的 @media

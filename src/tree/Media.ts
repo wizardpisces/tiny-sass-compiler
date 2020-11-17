@@ -1,6 +1,6 @@
 import { RuleStatement, MediaStatement, createMediaStatement, createMediaFromRule, NodeTypes, MediaPrelude, MediaQuery } from "../parse/ast";
 import { CodegenContext } from '@/type';
-import { Rule } from '.';
+import { genChildrenIterator } from './util'
 
 type params = Parameters<typeof createMediaStatement>
 
@@ -27,34 +27,22 @@ export default class Media {
     genCSS(context: CodegenContext) {
         let node = this.mediaStatement;
 
-        function genMediaQueryPrelude(node: MediaPrelude) {
-            let prelude: string = node.children.map((mediaQuery: MediaQuery) => {
-                return mediaQuery.children.map(child => {
-                    if (child.type === NodeTypes.MediaFeature) {
-                        return `(${child.name}:${child.value.value})`
-                    } else if (child.type === NodeTypes.TEXT) { // csstree name Identifier eg: screen , and etc
-                        return child.value
-                    }
-                }).join(' ');
-            }).join(',');
-
-            context.push(prelude)
-        }
-
-        context.push('@media')
-        genMediaQueryPrelude(node.prelude)
+        context.push('@media ')
+        genMediaQueryPrelude(node.prelude, context)
         genChildrenIterator(node.block.children as RuleStatement[], context)
     }
 }
 
-function genChildrenIterator(children: RuleStatement[], context: CodegenContext) {
-    const { push, deindent, indent } = context;
-    push('{');
-    indent();
+function genMediaQueryPrelude(node: MediaPrelude, context: CodegenContext) {
+    let prelude: string = node.children.map((mediaQuery: MediaQuery) => {
+        return mediaQuery.children.map(child => {
+            if (child.type === NodeTypes.MediaFeature) {
+                return `(${child.name}:${child.value.value})`
+            } else if (child.type === NodeTypes.TEXT) { // csstree name Identifier eg: screen , and etc
+                return child.value
+            }
+        }).join(' ');
+    }).join(',');
 
-    children.forEach((child: RuleStatement, index: number) => {
-        new Rule(child).genCSS(context)
-    })
-    deindent();
-    push('}');
+    context.push(prelude)
 }

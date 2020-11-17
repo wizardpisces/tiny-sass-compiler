@@ -1,5 +1,5 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, AtRule, MediaStatement, createRuleStatement } from '../parse/ast'
+import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, Atrule, MediaStatement, createRuleStatement, Keyframes } from '../parse/ast'
 import { deepClone, isEmptyNode } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
@@ -38,7 +38,7 @@ export function processStatement(
             case NodeTypes.EXTEND: return node;
             case NodeTypes.IFSTATEMENT: return transform_if(node, context);
             case NodeTypes.EACHSTATEMENT: return transform_each(node, context);
-            case NodeTypes.AtRule: return transformAtRule(node, context);
+            case NodeTypes.Atrule: return transformAtRule(node, context);
 
             case NodeTypes.ERROR:
                 throw new Error(processExpression(node.value, context).value)
@@ -47,14 +47,31 @@ export function processStatement(
         }
     }
 
-    function transformMedia(node: MediaStatement, context: TransformContext) {
+    function transformMedia(node: MediaStatement, context: TransformContext): MediaStatement {
+
         // Todos: skip parseExpression for now, mainly to test media bubble
+        node.prelude.children = node.prelude.children.map(mediaQuery => {
+            mediaQuery.children = mediaQuery.children.map(node => {
+                if (node.type === NodeTypes.MediaFeature) {
+                    node.value = processExpression(node.value, context)
+                }
+                return node;
+            })
+            return mediaQuery;
+        })
         node.block = dispatchStatement(node.block, context)
         return node
     }
-    function transformAtRule(node: AtRule, context: TransformContext) {
+
+    function transformKeyframes(node: Keyframes, context: TransformContext): Keyframes {
+        node.block = dispatchStatement(node.block, context)
+        return node;
+    }
+
+    function transformAtRule(node: Atrule, context: TransformContext) {
         switch (node.name) {
-            case 'media': return transformMedia(node as MediaStatement, context)
+            case 'media': return transformMedia(node as MediaStatement, context);
+            case 'keyframes': return transformKeyframes(node as Keyframes, context)
         }
     }
 
@@ -92,7 +109,7 @@ export function processStatement(
             node.loc
         );
     }
-    
+
     /**
      * context will be restored with function 
      */
