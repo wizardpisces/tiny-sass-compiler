@@ -301,27 +301,27 @@ export interface KeyframesPrelude extends Node {
 }
 
 export interface Keyframes extends Atrule {
-    name:'keyframes'
-    prelude:KeyframesPrelude
+    name: 'keyframes'
+    prelude: KeyframesPrelude
 }
 
 // work before ast transform
-export function createKeyframesPrelude(children:KeyframesPrelude['children']):KeyframesPrelude{
+export function createKeyframesPrelude(children: KeyframesPrelude['children']): KeyframesPrelude {
     return {
-        type:NodeTypes.KeyframesPrelude,
+        type: NodeTypes.KeyframesPrelude,
         children,
-        loc:{
+        loc: {
             start: children[0].loc.start,
-            end:children[children.length-1].loc.end,
-            filename:children[0].loc.filename
+            end: children[children.length - 1].loc.end,
+            filename: children[0].loc.filename
         }
     }
 }
 
-export function createKeyframes(prelude:Keyframes['prelude'],block:Keyframes['block']):Keyframes{
+export function createKeyframes(prelude: Keyframes['prelude'], block: Keyframes['block']): Keyframes {
     return {
-        type:NodeTypes.Atrule,
-        name:'keyframes',
+        type: NodeTypes.Atrule,
+        name: 'keyframes',
         block,
         prelude,
         loc: {
@@ -469,7 +469,7 @@ export function createReturnStatement(list: SimpleExpressionNode[]): ReturnState
     }
 }
 
-export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children'], loc:SourceLocation=locStub): RuleStatement {
+export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children'], loc: SourceLocation = locStub): RuleStatement {
     return {
         type: NodeTypes.RULE,
         selector,
@@ -564,21 +564,26 @@ export function createRuleFromMedia(media: MediaStatement): RuleStatement {
     );
 }
 
-export function createMediaFromRule(rule: RuleStatement): MediaStatement {
+export function createMediaFromRule(rules: RuleStatement[] | RuleStatement): MediaStatement {
+    if (!rules.length) {
+        rules = [rules as RuleStatement]
+    }
     /**
      * merge media prelude list as one glued by 'and' idetifier 
      * */
     function mergeMediaPreludeList(preludeList: MediaStatement['prelude'][]): MediaStatement['prelude'] {
 
-        function mergeMediaPreludeChildren(children: MediaPrelude['children'] ): MediaQuery {
+        function mergeMediaPreludeChildren(children: MediaPrelude['children']): MediaQuery {
             let mediaQueryChildren = children.reduce(
                 (mediaQueryList: MediaQuery['children'], mediaQuery: MediaQuery) =>
                     mediaQueryList.concat(mediaQuery['children'])
                 , [])
+                
             return createMediaQuery(mediaQueryChildren)
         }
 
         let children: MediaPrelude['children'] = [];
+
         preludeList.forEach((prelude: MediaStatement['prelude']) => {
             if (children.length > 0) { // push 'and' identifer to glue mediaQuery
                 children.push(createMediaQuery([createTextNode('and')]))
@@ -586,11 +591,22 @@ export function createMediaFromRule(rule: RuleStatement): MediaStatement {
             children = children.concat(prelude.children)
         })
 
-        return createMediaPrelude([mergeMediaPreludeChildren(children)])
+        // return mediaPrelude with only one child
+        return createMediaPrelude(children.length > 1 ? [mergeMediaPreludeChildren(children)] : children)
     }
-    let prelude = mergeMediaPreludeList(rule.selector.meta)
-    // reset rule selector meta
-    rule.selector.meta = []
 
-    return createMediaStatement(prelude, createBodyStatement([rule]))
+    let prelude = mergeMediaPreludeList(
+        Array.from(
+            new Set(
+                rules.reduce(
+                    (preludeList: MediaStatement['prelude'][], rule: RuleStatement) =>
+                        preludeList.concat(rule.selector.meta)
+                    , [])
+            )
+        )
+    )
+    // reset rule selector meta
+    rules.forEach((rule: RuleStatement) => rule.selector.meta = [])
+
+    return createMediaStatement(prelude, createBodyStatement(rules as RuleStatement[]))
 }

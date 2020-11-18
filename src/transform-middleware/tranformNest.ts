@@ -15,8 +15,8 @@ import {
 } from '../parse/ast';
 import { isEmptyNode } from '../parse/util';
 import {
-    propagateMediaDown,
-    extractMediaUp
+    broadcastMedia,
+    bubbleAndMergeMedia
 } from './transformMedia'
 export default function tranformNest(ast: RootNode) {
 
@@ -69,10 +69,8 @@ export default function tranformNest(ast: RootNode) {
         return flatten(ruleNode)
     }
 
-    function toplevel(ast: RootNode) {
+    function flattenNested(ast:RootNode){
         let children: RootNode["children"] = [];
-
-        propagateMediaDown(ast);
 
         ast.children.forEach(exp => {
             if (exp.type === NodeTypes.RULE) {
@@ -83,8 +81,17 @@ export default function tranformNest(ast: RootNode) {
         });
 
         ast.children = children
+    }
 
-        extractMediaUp(ast)
+    function toplevel(ast: RootNode) {
+
+        // propagate media before flatten selector
+        broadcastMedia(ast);
+
+        flattenNested(ast)
+        
+        // extract after flatten selector and media
+        bubbleAndMergeMedia(ast)
 
         return ast;
     }

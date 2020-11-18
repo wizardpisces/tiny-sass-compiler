@@ -26,5 +26,12 @@ $layout-breakpoint-small: 960px;
     }
     .selector1{
         color:red;
+        .selector1-1{
+            color:green;
+        }
     }
+}
+
+.class-a{
+    width: 1px;
 }
