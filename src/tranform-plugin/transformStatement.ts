@@ -1,6 +1,27 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, Atrule, MediaStatement, createRuleStatement, Keyframes } from '../parse/ast'
-import { deepClone, isEmptyNode } from '../parse/util';
+import {
+    Node,
+    NodeTypes,
+    Statement,
+    BodyStatement,
+    RuleStatement,
+    IncludeStatement,
+    MixinStatement,
+    IfStatement,
+    EachStatement,
+    FunctionStatement,
+    ReturnStatement,
+    TextNode,
+    createTextNode,
+    createEmptyNode,
+    createSelectorNode,
+    Atrule,
+    MediaStatement,
+    createRuleStatement,
+    Keyframes,
+    ContentPlaceholder
+} from '../parse/ast'
+import { deepClone, isEmptyNode, isKeyframesName } from '../parse/util';
 import { processExpression, callFunctionWithArgs } from './transformExpression';
 import { processAssign } from './transformAssign';
 import {
@@ -18,7 +39,7 @@ export function processStatement(
     context: TransformContext,
 ) {
 
-    function dispatchStatement(node: Statement, context: TransformContext) {
+    function dispatchStatement(node: Statement | ContentPlaceholder, context: TransformContext) {
 
         // console.log(context.env.parent)
 
@@ -30,14 +51,15 @@ export function processStatement(
             case NodeTypes.MIXIN:
             case NodeTypes.FUNCTION: return transformMixnOrFunction(node, context);
             case NodeTypes.RETURN: return transformReturn(node, context);
+            case NodeTypes.CONTENT: return transformContent(context);
             case NodeTypes.INCLUDE: return transformInclude(node, context);
             case NodeTypes.RULE:
             case NodeTypes.BODY:
-                return transform_child_or_body(node, context);
+                return transformChildOrBody(node, context);
 
             case NodeTypes.EXTEND: return node;
-            case NodeTypes.IFSTATEMENT: return transform_if(node, context);
-            case NodeTypes.EACHSTATEMENT: return transform_each(node, context);
+            case NodeTypes.IFSTATEMENT: return transformIf(node, context);
+            case NodeTypes.EACHSTATEMENT: return transformEach(node, context);
             case NodeTypes.Atrule: return transformAtRule(node, context);
 
             case NodeTypes.ERROR:
@@ -64,21 +86,31 @@ export function processStatement(
     }
 
     function transformKeyframes(node: Keyframes, context: TransformContext): Keyframes {
+        node.prelude.children = node.prelude.children.map((keyframesPreludeChild) => {
+
+            if (keyframesPreludeChild.type === NodeTypes.VAR_KEY) {
+                keyframesPreludeChild = processExpression(keyframesPreludeChild, context)
+            }
+
+            return keyframesPreludeChild;
+        })
+
         node.block = dispatchStatement(node.block, context)
         return node;
     }
 
     function transformAtRule(node: Atrule, context: TransformContext) {
-        switch (node.name) {
-            case 'media': return transformMedia(node as MediaStatement, context);
-            case 'keyframes': return transformKeyframes(node as Keyframes, context)
+        if (node.name === 'media') {
+            return transformMedia(node as MediaStatement, context);
+        } else if (isKeyframesName(node.name)) {
+            return transformKeyframes(node as Keyframes, context)
         }
     }
 
     /**
      * any expressions separated with spaces or commas count as a list
      */
-    function transform_each(node: EachStatement, context: TransformContext) {
+    function transformEach(node: EachStatement, context: TransformContext) {
         let restoredContext = deepClone(node),
             right = processExpression(restoredContext.right, context),
             scope = context.env.extend(),
@@ -113,7 +145,7 @@ export function processStatement(
     /**
      * context will be restored with function 
      */
-    function transform_if(node: IfStatement, context: TransformContext) {
+    function transformIf(node: IfStatement, context: TransformContext) {
 
         function is_true_exp(expression, context: TransformContext) {
 
@@ -183,7 +215,7 @@ export function processStatement(
             if (node.type === NodeTypes.FUNCTION) {
                 dispatchStatement(restoredContext.body, { ...context, env: scope })
                 return scope.get('@return')
-            } else {
+            } else if (node.type === NodeTypes.MIXIN) {
                 return dispatchStatement(restoredContext.body, { ...context, env: scope });
             }
 
@@ -195,7 +227,7 @@ export function processStatement(
     }
 
     /**
-    * @return always be evaluated in a @function body
+    * @return only be evaluated in a @function body
     */
     function transformReturn(node: ReturnStatement, context: TransformContext) {
         let result: TextNode = processExpression(node.argument, context);
@@ -204,14 +236,21 @@ export function processStatement(
         return createEmptyNode();
     }
 
-    function transformInclude(node: IncludeStatement, context: TransformContext) {
-
-        let func = context.env.get(node.id.value);
-        return callFunctionWithArgs(func, node, context)
+    function transformContent(context: TransformContext) {
+        // let content: IncludeStatement['content'] = context.env.get('@content')
+        // return (content as BodyStatement).children
+        return context.env.get('@content')
     }
 
-    function transform_child_or_body(node: RuleStatement | BodyStatement, context: TransformContext) {
+    function transformInclude(node: IncludeStatement, context: TransformContext) {
+        let func = context.env.get(node.id.value);
 
+        node.content && context.env.def('@content', dispatchStatement(node.content, context))
+
+        return callFunctionWithArgs(func, node, context) // call mixin which will use just defined @content if mixin contains
+    }
+
+    function transformChildOrBody(node: RuleStatement | BodyStatement, context: TransformContext): RuleStatement | BodyStatement {
         function flatten_included_body(children: Statement[]): Statement[] {
             let arr: Statement[] = []
             children.forEach(child => {
@@ -223,6 +262,7 @@ export function processStatement(
             })
             return arr;
         }
+
         let scope = context.env;
 
         /**
@@ -233,16 +273,18 @@ export function processStatement(
         }
 
         node.children = (node.children as Statement[]).map(child => dispatchStatement(child, { ...context, env: scope })).filter(node => !isEmptyNode(node));
-        if (node.type === NodeTypes.RULE) { // RCHILDust have selector
+
+        if (node.type === NodeTypes.RULE) { // have selector
             if (node.selector.value.type === NodeTypes.LIST) {
                 node.selector.value = processExpression(node.selector.value, { ...context, env: scope })
             }
         }
+        
         /**
-         * 
+         *
          * @include include_function_body
          * @if which contain bodyStatement
-          */
+         */
         node.children = flatten_included_body(node.children as Statement[]);
 
         return node;

@@ -53,13 +53,16 @@ import {
     createBodyStatement,
     createKeyframes,
     Keyframes,
-    createKeyframesPrelude
+    createKeyframesPrelude,
+    ContentPlaceholder,
+    createContentPlaceholder
 } from './ast';
 
 import {
     debug,
     PRECEDENCE,
     fillWhitespace,
+    isKeyframesName,
 } from './util'
 import { ParserOptions } from '@/type';
 
@@ -100,6 +103,11 @@ export default function parse(input, options: ParserOptions) {
     function is_kw(kw) {
         let tok = input.peek();
         return tok && tok.type == NodeTypes.KEYWORD && (!kw || tok.value == kw) && tok;
+    }
+
+    function is_keyframes() {
+        let tok = input.peek()
+        return tok && tok.type == NodeTypes.KEYWORD && isKeyframesName('keyframes');
     }
 
     function is_op(op?: OperatorNode): OperatorNode {
@@ -236,6 +244,11 @@ export default function parse(input, options: ParserOptions) {
             return parseMixin();
         }
 
+        if (is_kw('@content')) {
+            let tok = consumeNextTokenWithLoc()
+            return parseContent(tok.loc);
+        }
+
         if (is_kw('@function')) {
             input.next()
             return parseFunction();
@@ -308,26 +321,33 @@ export default function parse(input, options: ParserOptions) {
                 input.next()
                 return parseMedia();
             }
-            if (is_kw('@keyframes')){
-                input.next()
-                return parseKeyframes()
+            /**
+             * @-webkit-keyframes
+             * @-moz-keyframes
+             * @-o-keyframes
+             * @keyframes
+             */
+            if (is_keyframes()) {
+                let kf = input.next()
+                return parseKeyframes(kf.value)
             }
+
             return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
-    function parseKeyframes():Keyframes{
-        let children:Keyframes['prelude']['children'] = [];
+    function parseKeyframes(keyframesName: string): Keyframes {
+        let children: Keyframes['prelude']['children'] = [];
 
         while (!is_punc('{')) {
-            children.push(consumeNextTokenWithLoc())
+            children.push(dispatchParser())
         }
 
         let bodyStatement: BodyStatement = parseBody()
-        
-        return createKeyframes(createKeyframesPrelude(children),bodyStatement)
+
+        return createKeyframes(keyframesName, createKeyframesPrelude(children), bodyStatement)
     }
 
     function parseMedia(): MediaStatement {
@@ -464,6 +484,10 @@ export default function parse(input, options: ParserOptions) {
         return createBodyStatement(children)
     }
 
+    function parseContent(loc: ContentPlaceholder['loc']): ContentPlaceholder {
+        return createContentPlaceholder(loc)
+    }
+
     /**
      * Todos: add @content kw and include body
      */
@@ -539,7 +563,9 @@ export default function parse(input, options: ParserOptions) {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
             loc: locStub
-        }, args: (VariableNode | DeclarationStatement)[] = [];// @include mixin1;
+        },
+            args: (VariableNode | DeclarationStatement)[] = [],
+            content: IncludeStatement['content'];// @include mixin1;
 
         if (!is_punc(';')) {
             set_call_params_args_assign_right_end_condition()
@@ -553,7 +579,11 @@ export default function parse(input, options: ParserOptions) {
 
         reset_assign_right_end_condition()
 
-        return createIncludeStatement(id, args);
+        if (is_punc('{')) {
+            content = parseBody()
+        }
+
+        return createIncludeStatement(id, args, content);
     }
 
     function parseImport(): ImportStatement {
@@ -671,7 +701,7 @@ export default function parse(input, options: ParserOptions) {
             })
         }
 
-        let token = consumeNextTokenWithLoc();
+        let token = consumeNextTokenWithLoc(); // token maybe '#'
 
         if (is_punc('{')) {
             return parse_key_var_wrapper(token.loc.start)
@@ -686,7 +716,7 @@ export default function parse(input, options: ParserOptions) {
             input.croak(`[maybeVarKeyWrapper]: expect str token but received ${nextToken.value}`)
         }
 
-        return createTextNode('#' + nextToken.value, {
+        return createTextNode(token.value + nextToken.value, {
             start: token.start,
             end: nextToken.end,
             filename

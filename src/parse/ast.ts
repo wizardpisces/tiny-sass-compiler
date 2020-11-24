@@ -31,6 +31,7 @@ export const enum NodeTypes {
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
+    CONTENT = 'CONTENT',// must end with @return
     FUNCTION = 'FUNCTION',// must end with @return
 
     /**
@@ -65,8 +66,15 @@ export const enum NodeTypes {
  * 4. 
  */
 
-export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
-export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face';
+export type keywordType = '@extend'
+    | '@mixin' | '@content' | '@include'
+    | '@import'
+    | '@if' | '@else'
+    | '@error'
+    | '@each'
+    | '@function' | '@return'
+
+export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face' | string;
 
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
@@ -207,10 +215,15 @@ export interface ImportStatement extends Node {
     params: TextNode[]
 }
 
+export interface ContentPlaceholder extends Node { // @content
+    type: NodeTypes.CONTENT
+}
+
 export interface IncludeStatement extends Node {
     type: NodeTypes.INCLUDE
-    id: IdentifierNode,
+    id: IdentifierNode
     args: ArgsType
+    content?: BodyStatement
 }
 
 export interface ExtendStatement extends Node {
@@ -297,11 +310,11 @@ export interface MediaStatement extends Atrule {
 
 export interface KeyframesPrelude extends Node {
     type: NodeTypes.KeyframesPrelude
-    children: TextNode[]
+    children: (TextNode | VarKeyNode)[]
 }
 
 export interface Keyframes extends Atrule {
-    name: 'keyframes'
+    name: string // keyframes | -webkit-keyframes etc
     prelude: KeyframesPrelude
 }
 
@@ -318,10 +331,10 @@ export function createKeyframesPrelude(children: KeyframesPrelude['children']): 
     }
 }
 
-export function createKeyframes(prelude: Keyframes['prelude'], block: Keyframes['block']): Keyframes {
+export function createKeyframes(name: string, prelude: Keyframes['prelude'], block: Keyframes['block']): Keyframes {
     return {
         type: NodeTypes.Atrule,
-        name: 'keyframes',
+        name,
         block,
         prelude,
         loc: {
@@ -478,13 +491,26 @@ export function createRuleStatement(selector: RuleStatement['selector'], childre
     }
 }
 
-export function createIncludeStatement(id: IncludeStatement['id'], args: IncludeStatement['args']): IncludeStatement {
+export function createContentPlaceholder(loc: ContentPlaceholder['loc'] = locStub): ContentPlaceholder {
     return {
+        type: NodeTypes.CONTENT,
+        loc
+    }
+}
+
+export function createIncludeStatement(id: IncludeStatement['id'], args: IncludeStatement['args'], content?: IncludeStatement['content']): IncludeStatement {
+    let node: IncludeStatement = {
         type: NodeTypes.INCLUDE,
         id,
         args,
         loc: locStub
     }
+
+    if (content) {
+        node.content = content
+    }
+
+    return node;
 }
 
 export function createIfStatement(test: IfStatement['test'], consequent: IfStatement['consequent'], alternate: IfStatement['alternate']): IfStatement {
@@ -554,6 +580,13 @@ export function createRootNode(children: RootNode['children'], fileSourceMap: Ro
     }
 }
 
+export function createRuleFromBody(body: BodyStatement): RuleStatement {
+    return createRuleStatement(
+        createSelectorNode(createTextNode('')),
+        body.children
+    );
+}
+
 export function createRuleFromMedia(media: MediaStatement): RuleStatement {
     return createRuleStatement(
         createSelectorNode(
@@ -578,7 +611,7 @@ export function createMediaFromRule(rules: RuleStatement[] | RuleStatement): Med
                 (mediaQueryList: MediaQuery['children'], mediaQuery: MediaQuery) =>
                     mediaQueryList.concat(mediaQuery['children'])
                 , [])
-                
+
             return createMediaQuery(mediaQueryChildren)
         }
 

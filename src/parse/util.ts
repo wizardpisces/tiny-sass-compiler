@@ -44,6 +44,10 @@ export const PRECEDENCE = {
 export function is_operator(op:string) {
     return Object.keys(PRECEDENCE).includes(op)
 }
+
+export function isKeyframesName(name:string):boolean{
+    return name.indexOf('keyframes') > -1
+}
  /**
   * fill whitespace between tokens which is removed in lexical analyze
   * 

@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "mixin-keyframes-content.scss"
+  ],
+  "names": [],
+  "mappings": "mBACuB;EAkBnB;IACI,UAAW;;EAGf;IACI,UAAW;;;gBAnBC;EAchB;IACI,UAAW;;EAGf;IACI,UAAW;;;cAfD;EAUd;IACI,UAAW;;EAGf;IACI,UAAW;;;WAXJ;EAMX;IACI,UAAW;;EAGf;IACI,UAAW",
+  "sourcesContent": [
+    "@mixin keyframes($animationName) {\n    @-webkit-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-moz-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-o-keyframes #{$animationName} {\n        @content;\n    }\n\n    @keyframes #{$animationName} {\n        @content;\n    }\n}\n\n@include keyframes(move-the-object) {\n    0% {\n        transform: translateX(0);\n    }\n\n    100% {\n        transform: translateX(200px);\n    }\n}"
+  ]
+}

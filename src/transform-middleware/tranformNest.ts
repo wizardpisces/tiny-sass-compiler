@@ -18,6 +18,7 @@ import {
     broadcastMedia,
     bubbleAndMergeMedia
 } from './transformMedia'
+
 export default function tranformNest(ast: RootNode) {
 
     // DFS search
@@ -75,6 +76,8 @@ export default function tranformNest(ast: RootNode) {
         ast.children.forEach(exp => {
             if (exp.type === NodeTypes.RULE) {
                 children = children.concat(...flatten_nested_rule(exp))
+            } else if(exp.type === NodeTypes.BODY){
+                children = children.concat(exp.children as RootNode["children"])
             } else {
                 children.push(exp)
             }
@@ -84,7 +87,6 @@ export default function tranformNest(ast: RootNode) {
     }
 
     function toplevel(ast: RootNode) {
-
         // propagate media before flatten selector
         broadcastMedia(ast);
 

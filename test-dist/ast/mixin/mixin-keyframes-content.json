@@ -1,0 +1,815 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "MIXIN",
+      "id": {
+        "type": "IDENTIFIER",
+        "value": "keyframes",
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "params": [
+        {
+          "type": "VARIABLE",
+          "value": "$animationName",
+          "loc": {
+            "start": {
+              "offset": 17,
+              "line": 1,
+              "column": 18
+            },
+            "end": {
+              "offset": 31,
+              "line": 1,
+              "column": 32
+            },
+            "filename": "mixin-keyframes-content.scss"
+          }
+        }
+      ],
+      "body": {
+        "type": "BODY",
+        "children": [
+          {
+            "type": "Atrule",
+            "name": "@-webkit-keyframes",
+            "block": {
+              "type": "BODY",
+              "children": [
+                {
+                  "type": "CONTENT",
+                  "loc": {
+                    "start": {
+                      "offset": 86,
+                      "line": 3,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 94,
+                      "line": 3,
+                      "column": 17
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "filename": "",
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "prelude": {
+              "type": "KeyframesPrelude",
+              "children": [
+                {
+                  "type": "VAR_KEY",
+                  "value": "$animationName",
+                  "loc": {
+                    "start": {
+                      "offset": 58,
+                      "line": 2,
+                      "column": 24
+                    },
+                    "end": {
+                      "offset": 74,
+                      "line": 2,
+                      "column": 40
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "start": {
+                  "offset": 58,
+                  "line": 2,
+                  "column": 24
+                },
+                "end": {
+                  "offset": 74,
+                  "line": 2,
+                  "column": 40
+                },
+                "filename": "mixin-keyframes-content.scss"
+              }
+            },
+            "loc": {
+              "start": {
+                "offset": 58,
+                "line": 2,
+                "column": 24
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "filename": "mixin-keyframes-content.scss"
+            }
+          },
+          {
+            "type": "Atrule",
+            "name": "@-moz-keyframes",
+            "block": {
+              "type": "BODY",
+              "children": [
+                {
+                  "type": "CONTENT",
+                  "loc": {
+                    "start": {
+                      "offset": 151,
+                      "line": 7,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 159,
+                      "line": 7,
+                      "column": 17
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "filename": "",
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "prelude": {
+              "type": "KeyframesPrelude",
+              "children": [
+                {
+                  "type": "VAR_KEY",
+                  "value": "$animationName",
+                  "loc": {
+                    "start": {
+                      "offset": 123,
+                      "line": 6,
+                      "column": 21
+                    },
+                    "end": {
+                      "offset": 139,
+                      "line": 6,
+                      "column": 37
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "start": {
+                  "offset": 123,
+                  "line": 6,
+                  "column": 21
+                },
+                "end": {
+                  "offset": 139,
+                  "line": 6,
+                  "column": 37
+                },
+                "filename": "mixin-keyframes-content.scss"
+              }
+            },
+            "loc": {
+              "start": {
+                "offset": 123,
+                "line": 6,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "filename": "mixin-keyframes-content.scss"
+            }
+          },
+          {
+            "type": "Atrule",
+            "name": "@-o-keyframes",
+            "block": {
+              "type": "BODY",
+              "children": [
+                {
+                  "type": "CONTENT",
+                  "loc": {
+                    "start": {
+                      "offset": 214,
+                      "line": 11,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 222,
+                      "line": 11,
+                      "column": 17
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "filename": "",
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "prelude": {
+              "type": "KeyframesPrelude",
+              "children": [
+                {
+                  "type": "VAR_KEY",
+                  "value": "$animationName",
+                  "loc": {
+                    "start": {
+                      "offset": 186,
+                      "line": 10,
+                      "column": 19
+                    },
+                    "end": {
+                      "offset": 202,
+                      "line": 10,
+                      "column": 35
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "start": {
+                  "offset": 186,
+                  "line": 10,
+                  "column": 19
+                },
+                "end": {
+                  "offset": 202,
+                  "line": 10,
+                  "column": 35
+                },
+                "filename": "mixin-keyframes-content.scss"
+              }
+            },
+            "loc": {
+              "start": {
+                "offset": 186,
+                "line": 10,
+                "column": 19
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "filename": "mixin-keyframes-content.scss"
+            }
+          },
+          {
+            "type": "Atrule",
+            "name": "@keyframes",
+            "block": {
+              "type": "BODY",
+              "children": [
+                {
+                  "type": "CONTENT",
+                  "loc": {
+                    "start": {
+                      "offset": 274,
+                      "line": 15,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 282,
+                      "line": 15,
+                      "column": 17
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "filename": "",
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                }
+              }
+            },
+            "prelude": {
+              "type": "KeyframesPrelude",
+              "children": [
+                {
+                  "type": "VAR_KEY",
+                  "value": "$animationName",
+                  "loc": {
+                    "start": {
+                      "offset": 246,
+                      "line": 14,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 262,
+                      "line": 14,
+                      "column": 32
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "start": {
+                  "offset": 246,
+                  "line": 14,
+                  "column": 16
+                },
+                "end": {
+                  "offset": 262,
+                  "line": 14,
+                  "column": 32
+                },
+                "filename": "mixin-keyframes-content.scss"
+              }
+            },
+            "loc": {
+              "start": {
+                "offset": 246,
+                "line": 14,
+                "column": 16
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "filename": "mixin-keyframes-content.scss"
+            }
+          }
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "INCLUDE",
+      "id": {
+        "type": "IDENTIFIER",
+        "value": "keyframes",
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "args": [
+        {
+          "type": "TEXT",
+          "value": "move-the-object",
+          "loc": {
+            "start": {
+              "offset": 312,
+              "line": 19,
+              "column": 20
+            },
+            "end": {
+              "offset": 327,
+              "line": 19,
+              "column": 35
+            },
+            "filename": "mixin-keyframes-content.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      },
+      "content": {
+        "type": "BODY",
+        "children": [
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "start": {
+                  "offset": 335,
+                  "line": 20,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 337,
+                  "line": 20,
+                  "column": 7
+                },
+                "filename": "mixin-keyframes-content.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "0%",
+                "loc": {
+                  "start": {
+                    "offset": 335,
+                    "line": 20,
+                    "column": 5
+                  },
+                  "end": {
+                    "offset": 337,
+                    "line": 20,
+                    "column": 7
+                  },
+                  "filename": "mixin-keyframes-content.scss"
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "transform",
+                  "loc": {
+                    "start": {
+                      "offset": 348,
+                      "line": 21,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 357,
+                      "line": 21,
+                      "column": 18
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "CALL",
+                      "id": {
+                        "loc": {
+                          "start": {
+                            "offset": 359,
+                            "line": 21,
+                            "column": 20
+                          },
+                          "end": {
+                            "offset": 369,
+                            "line": 21,
+                            "column": 30
+                          },
+                          "filename": "mixin-keyframes-content.scss"
+                        },
+                        "value": "translateX",
+                        "type": "IDENTIFIER"
+                      },
+                      "args": [
+                        {
+                          "type": "TEXT",
+                          "value": "0",
+                          "loc": {
+                            "start": {
+                              "offset": 370,
+                              "line": 21,
+                              "column": 31
+                            },
+                            "end": {
+                              "offset": 371,
+                              "line": 21,
+                              "column": 32
+                            },
+                            "filename": "mixin-keyframes-content.scss"
+                          }
+                        }
+                      ],
+                      "loc": {
+                        "start": {
+                          "offset": 359,
+                          "line": 21,
+                          "column": 20
+                        },
+                        "end": {
+                          "offset": 371,
+                          "line": 21,
+                          "column": 32
+                        },
+                        "filename": "mixin-keyframes-content.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 359,
+                      "line": 21,
+                      "column": 20
+                    },
+                    "end": {
+                      "offset": 371,
+                      "line": 21,
+                      "column": 32
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 348,
+                    "line": 21,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 371,
+                    "line": 21,
+                    "column": 32
+                  },
+                  "filename": "mixin-keyframes-content.scss"
+                }
+              }
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
+          },
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "start": {
+                  "offset": 385,
+                  "line": 24,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 389,
+                  "line": 24,
+                  "column": 9
+                },
+                "filename": "mixin-keyframes-content.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "100%",
+                "loc": {
+                  "start": {
+                    "offset": 385,
+                    "line": 24,
+                    "column": 5
+                  },
+                  "end": {
+                    "offset": 389,
+                    "line": 24,
+                    "column": 9
+                  },
+                  "filename": "mixin-keyframes-content.scss"
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "transform",
+                  "loc": {
+                    "start": {
+                      "offset": 400,
+                      "line": 25,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 409,
+                      "line": 25,
+                      "column": 18
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "CALL",
+                      "id": {
+                        "loc": {
+                          "start": {
+                            "offset": 411,
+                            "line": 25,
+                            "column": 20
+                          },
+                          "end": {
+                            "offset": 421,
+                            "line": 25,
+                            "column": 30
+                          },
+                          "filename": "mixin-keyframes-content.scss"
+                        },
+                        "value": "translateX",
+                        "type": "IDENTIFIER"
+                      },
+                      "args": [
+                        {
+                          "type": "TEXT",
+                          "value": "200px",
+                          "loc": {
+                            "start": {
+                              "offset": 422,
+                              "line": 25,
+                              "column": 31
+                            },
+                            "end": {
+                              "offset": 427,
+                              "line": 25,
+                              "column": 36
+                            },
+                            "filename": "mixin-keyframes-content.scss"
+                          }
+                        }
+                      ],
+                      "loc": {
+                        "start": {
+                          "offset": 411,
+                          "line": 25,
+                          "column": 20
+                        },
+                        "end": {
+                          "offset": 427,
+                          "line": 25,
+                          "column": 36
+                        },
+                        "filename": "mixin-keyframes-content.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 411,
+                      "line": 25,
+                      "column": 20
+                    },
+                    "end": {
+                      "offset": 427,
+                      "line": 25,
+                      "column": 36
+                    },
+                    "filename": "mixin-keyframes-content.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 400,
+                    "line": 25,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 427,
+                    "line": 25,
+                    "column": 36
+                  },
+                  "filename": "mixin-keyframes-content.scss"
+                }
+              }
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
+          }
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "mixin-keyframes-content.scss": "@mixin keyframes($animationName) {\n    @-webkit-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-moz-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-o-keyframes #{$animationName} {\n        @content;\n    }\n\n    @keyframes #{$animationName} {\n        @content;\n    }\n}\n\n@include keyframes(move-the-object) {\n    0% {\n        transform: translateX(0);\n    }\n\n    100% {\n        transform: translateX(200px);\n    }\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

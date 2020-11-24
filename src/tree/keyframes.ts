@@ -17,13 +17,12 @@ export default class KeyframesTree {
     genCSS(context: CodegenContext) {
         let node = this.keyframes;
 
-        context.push('@keyframes ')
+        context.push(node.name+' ')
         genPrelude(node.prelude, context)
         genChildrenIterator(node.block.children as RuleStatement[], context)
     }
 }
 
 function genPrelude(node:Keyframes['prelude'],context:CodegenContext){
-    context.push(node.children.map((child:TextNode)=>child.value).join(' '),node.loc)
+    context.push(node.children.map((child) => (child as TextNode).value).join(' '),node.loc)
 }
-

@@ -3,7 +3,7 @@
   "children": [
     {
       "type": "Atrule",
-      "name": "keyframes",
+      "name": "@keyframes",
       "block": {
         "type": "BODY",
         "children": [

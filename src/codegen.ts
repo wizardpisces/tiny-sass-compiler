@@ -10,7 +10,7 @@ import {
     Keyframes,
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
-import { advancePositionWithMutation } from './parse/util'
+import { advancePositionWithMutation, isKeyframesName } from './parse/util'
 import { applyPlugins } from './pluginManager'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
@@ -133,8 +133,9 @@ function genNode(
 }
 
 function genAtRule(node: Atrule, context: CodegenContext) {
-    switch (node.name) {
-        case 'media': return new Media(node as MediaStatement).genCSS(context);
-        case 'keyframes': return new KeyframesTree(node as Keyframes).genCSS(context);
+    if(node.name === 'media'){
+        return new Media(node as MediaStatement).genCSS(context);
+    }else if(isKeyframesName(node.name)){
+        return new KeyframesTree(node as Keyframes).genCSS(context);
     }
 }
