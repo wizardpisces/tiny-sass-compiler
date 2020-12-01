@@ -11,7 +11,7 @@ export type Kind = NodeTypes.VARIABLE | NodeTypes.VAR_KEY // VAR_KEY only invole
 
 export class Variable {
     private _value: any
-    kind: Kind = NodeTypes.VARIABLE // set default as VAR
+    kind: Kind = NodeTypes.VARIABLE // set default as VARIABLE
     constructor(kind: Kind, val: any) {
         this.kind = kind;
         this._value = val;
