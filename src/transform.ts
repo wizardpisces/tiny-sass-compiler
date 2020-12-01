@@ -3,7 +3,7 @@ import { TransformOptions } from './type'
 import { defaultOnError } from './parse/errors'
 import {
     Environment
-} from './parse/util'
+} from './enviroment/Enviroment'
 import transformChain, { transform_module as transformModule} from './transform-middleware/index'
 import { isBrowser} from './global'
 // - NodeTransform:

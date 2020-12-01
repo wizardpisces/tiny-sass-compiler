@@ -78,42 +78,6 @@ export function fillWhitespace(tokens: SimpleExpressionNode[]) {
      return list;
  }
 
-export class Environment  {
-    vars : { [name:string] :any}
-    parent: Environment | null
-
-    constructor(parent:Environment | null){
-        this.vars = Object.create(parent ? parent.vars : null);
-        this.parent = parent;
-    }
-
-    extend() {
-        return new Environment(this);
-    }
-    // lookup: function (name) {
-    //     let scope = this;
-    //     while (scope) {
-    //         if (Object.prototype.hasOwnProperty.call(scope.vars, name))
-    //             return scope;
-    //         scope = scope.parent;
-    //     }
-    // },
-    get(name:string) {
-        if (name in this.vars)
-            return this.vars[name];
-    }
-    // set: function (name, value) {
-    //     let scope = this.lookup(name);
-    //     // let's not allow defining globals from a nested environment
-    //     if (!scope && this.parent)
-    //         throw new Error("Undefined variable " + name);
-    //     return (scope || this).vars[name] = value;
-    // },
-    def(name:string, value:any) {
-        return this.vars[name] = value;
-    }
-};
-
 /**
  * todos: optimize deep_clone
  */

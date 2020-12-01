@@ -3,6 +3,7 @@
 
 ### feat
 
+* optimize kind reference https://juejin.cn/post/6898093501376905230
 * add buildin modules and less.js like @plugin
 * complete @keyframes (based on @content)
 * add static check for acss in vscode

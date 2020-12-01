@@ -214,14 +214,14 @@ export function processStatement(
 
             if (node.type === NodeTypes.FUNCTION) {
                 dispatchStatement(restoredContext.body, { ...context, env: scope })
-                return scope.get('@return')
+                return scope.get('@return', NodeTypes.RETURN)
             } else if (node.type === NodeTypes.MIXIN) {
                 return dispatchStatement(restoredContext.body, { ...context, env: scope });
             }
 
         }
 
-        context.env.def(node.id.value, make_function)
+        context.env.def(node.id.value, make_function, node.type)
 
         return createEmptyNode();
     }
@@ -232,20 +232,18 @@ export function processStatement(
     function transformReturn(node: ReturnStatement, context: TransformContext) {
         let result: TextNode = processExpression(node.argument, context);
 
-        context.env.def('@return', result.value);
+        context.env.def('@return', result.value, node.type);
         return createEmptyNode();
     }
 
     function transformContent(context: TransformContext) {
-        // let content: IncludeStatement['content'] = context.env.get('@content')
-        // return (content as BodyStatement).children
-        return context.env.get('@content')
+        return context.env.get('@content', NodeTypes.CONTENT)
     }
 
     function transformInclude(node: IncludeStatement, context: TransformContext) {
-        let func = context.env.get(node.id.value);
+        let func = context.env.get(node.id.value, NodeTypes.MIXIN);
 
-        node.content && context.env.def('@content', dispatchStatement(node.content, context))
+        node.content && context.env.def('@content', dispatchStatement(node.content, context), NodeTypes.CONTENT)
 
         return callFunctionWithArgs(func, node, context) // call mixin which will use just defined @content if mixin contains
     }
@@ -279,7 +277,7 @@ export function processStatement(
                 node.selector.value = processExpression(node.selector.value, { ...context, env: scope })
             }
         }
-        
+
         /**
          *
          * @include include_function_body
