@@ -1,8 +1,8 @@
-import { NodeTransform, TransformContext } from '../transform'
+import { TransformContext } from '../transform'
 import { NodeTypes, DeclarationStatement, createEmptyNode} from '../parse/ast'
 import { processExpression } from './transformExpression'
 
-export const transformAssign: NodeTransform = (node, context) => {
+export const transformAssign = (node, context) => {
     if (node.type === NodeTypes.DECLARATION){
         processAssign(node as DeclarationStatement, context)
     }

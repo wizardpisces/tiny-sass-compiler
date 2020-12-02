@@ -318,6 +318,30 @@ export interface Keyframes extends Atrule {
     prelude: KeyframesPrelude
 }
 
+/**
+ * @media ast tree end
+ */
+
+/* codeGenNode means ast tree that is transformed  */
+
+export type CodegenNode = TextNode | ProgCodeGenNode
+
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude;
+
+export type ParentNode = RootNode | BodyStatement | RuleStatement
+
+export type FileSourceMap = {
+    [key: string]: string
+}
+export interface RootNode extends Node {
+    type: NodeTypes.RootNode
+
+    // codeGenNode ,use it to generate source map between files
+    fileSourceMap: FileSourceMap
+
+    children: (Statement | ProgCodeGenNode)[]
+}
+
 // work before ast transform
 export function createKeyframesPrelude(children: KeyframesPrelude['children']): KeyframesPrelude {
     return {
@@ -382,29 +406,6 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
             filename: prelude.loc.filename
         }
     }
-}
-/**
- * @media ast tree end
- */
-
-/* codeGenNode means ast tree that is transformed  */
-
-export type CodegenNode = TextNode | ProgCodeGenNode
-
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude;
-
-export type ParentNode = RootNode | BodyStatement | RuleStatement
-
-export type FileSourceMap = {
-    [key: string]: string
-}
-export interface RootNode extends Node {
-    type: NodeTypes.RootNode
-
-    // codeGenNode ,use it to generate source map between files
-    fileSourceMap: FileSourceMap
-
-    children: (Statement | ProgCodeGenNode)[]
 }
 
 export function createIdentifierNode(id: TextNode): IdentifierNode {

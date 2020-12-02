@@ -30,7 +30,7 @@ import {
 } from '../parse/errors';
 
 export const transformStatement: NodeTransform = (node, context) => {
-    processStatement(node as Statement, context)
+    return processStatement(node as Statement, context)
 }
 
 
@@ -288,5 +288,5 @@ export function processStatement(
         return node;
     }
 
-    return context.replaceNode(dispatchStatement(node, context))
+    return dispatchStatement(node, context)
 }

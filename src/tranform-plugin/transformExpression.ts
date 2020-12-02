@@ -1,4 +1,4 @@
-import { NodeTransform, TransformContext } from '../transform'
+import { TransformContext } from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode, CallExpression, IncludeStatement } from '../parse/ast'
 import { fillWhitespace } from '../parse/util'
 import {
@@ -7,9 +7,6 @@ import {
     createCompilerError
 } from '../parse/errors';
 
-export const transformExpression: NodeTransform = (node, context) => {
-
-}
 export function callFunctionWithArgs(func: Function, node: IncludeStatement | CallExpression, context: TransformContext) {
     return func.apply(null, node.args.map(arg => {
 
