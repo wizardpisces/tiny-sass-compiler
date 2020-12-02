@@ -4,7 +4,7 @@ import { defaultOnError } from './parse/errors'
 import {
     Environment
 } from './enviroment/Enviroment'
-import transformChain, { transform_module as transformModule} from './transform-middleware/index'
+import { transformModule, transformMiddleware} from './transform-middleware/index'
 import { isBrowser} from './global'
 // - NodeTransform:
 //   Transforms that operate directly on a childNode. NodeTransforms may mutate,
@@ -46,13 +46,13 @@ export function transform(root: RootNode, options: TransformOptions) {
         root = transformModule(root, options)
     }
 
-    traverseRoot(root, context);
+    transformRoot(root, context);
 
-    // transformChain will be slowly replaced by transform plugins if possible, where self designed plugin comes up
-    transformChain(root)
+    // transformMiddleware will be slowly replaced by transform plugins if possible, where self designed plugin comes up
+    transformMiddleware(root)
 }
 
-export function traverseRoot(root:RootNode,context:TransformContext){
+export function transformRoot(root:RootNode,context:TransformContext){
     const { nodeTransforms } = context
 
     root.children = root.children.map((child)=>{

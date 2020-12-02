@@ -19,11 +19,12 @@ import {
     MediaStatement,
     createRuleStatement,
     Keyframes,
-    ContentPlaceholder
+    ContentPlaceholder,
+    DeclarationStatement
 } from '../parse/ast'
 import { deepClone, isEmptyNode, isKeyframesName } from '../parse/util';
-import { processExpression, callFunctionWithArgs } from './transformExpression';
-import { processAssign } from './transformAssign';
+import { processExpression, callFunctionWithArgs } from './processExpression';
+
 import {
     ErrorCodes,
     createCompilerError
@@ -33,7 +34,6 @@ export const transformStatement: NodeTransform = (node, context) => {
     return processStatement(node as Statement, context)
 }
 
-
 export function processStatement(
     node: Statement,
     context: TransformContext,
@@ -41,13 +41,9 @@ export function processStatement(
 
     function dispatchStatement(node: Statement | ContentPlaceholder, context: TransformContext) {
 
-        // console.log(context.env.parent)
-
         switch (node.type) {
-            /**
-            * Statement
-            */
-            case NodeTypes.DECLARATION: return processAssign(node, context);
+
+            case NodeTypes.DECLARATION: return transformDeclaration(node, context);
             case NodeTypes.MIXIN:
             case NodeTypes.FUNCTION: return transformMixnOrFunction(node, context);
             case NodeTypes.RETURN: return transformReturn(node, context);
@@ -67,6 +63,23 @@ export function processStatement(
 
             default: throw createCompilerError(ErrorCodes.UNKNOWN_STATEMENT_TYPE, (node as Node).loc, (node as Node).type)
         }
+    }
+
+
+    function transformDeclaration(node: DeclarationStatement, context: TransformContext) {
+
+        if (node.left.type === NodeTypes.VARIABLE) {
+            context.env.def(node.left.value, processExpression(node.right, context).value)
+            return createEmptyNode();
+        }
+
+        if (node.left.type === NodeTypes.VAR_KEY) {
+            node.left = processExpression(node.left, context);
+        }
+
+        node.right = processExpression(node.right, context);
+
+        return node;
     }
 
     function transformMedia(node: MediaStatement, context: TransformContext): MediaStatement {

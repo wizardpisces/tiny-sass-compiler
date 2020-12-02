@@ -1,3 +1,7 @@
+/**
+ * handle simple expression which does not contain any statement
+ */
+
 import { TransformContext } from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode, CallExpression, IncludeStatement } from '../parse/ast'
 import { fillWhitespace } from '../parse/util'
