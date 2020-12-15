@@ -5,9 +5,21 @@ import {
 } from './errors';
 import {
     SourceLocation,
-}from './ast'
+    Position
+} from './ast'
 
-function input_stream(input: string, filename:string) {
+export type InputStream = {
+    next: () => string,
+    peek: () => string,
+    setCoordination: (position: Position) => void,
+    getCoordination: () => Position,
+    eof: () => boolean,
+    croak: (msg: string) => void,
+    emitError: (code: ErrorCodes, loc?: SourceLocation, additionalMessage?: string) => void
+
+}
+
+function input_stream(input: string, filename: string): InputStream {
 
     let offset = 0, line = 1, column = 1;
     return {
@@ -22,19 +34,19 @@ function input_stream(input: string, filename:string) {
 
     function next() {
         let ch = input.charAt(offset++);
-        
-        if (ch == "\n") line++ , column = 1; else column++;
-        
+
+        if (ch == "\n") line++, column = 1; else column++;
+
         return ch;
     }
 
-    function setCoordination(coordination) {
+    function setCoordination(coordination: Position) {
         offset = coordination.offset;
         line = coordination.line;
         column = coordination.column;
     }
 
-    function getCoordination(){
+    function getCoordination() {
         return {
             offset,
             line,
@@ -49,7 +61,7 @@ function input_stream(input: string, filename:string) {
     function eof() {
         return peek() === "";
     }
-    
+
     function croak(msg) {
         throw new Error(msg + " (" + line + ":" + column + ")");
     }

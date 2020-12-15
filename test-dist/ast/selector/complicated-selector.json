@@ -1,0 +1,415 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 7,
+            "line": 1,
+            "column": 8
+          },
+          "filename": "complicated-selector.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".button",
+          "loc": {
+            "start": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            },
+            "end": {
+              "offset": 7,
+              "line": 1,
+              "column": 8
+            },
+            "filename": "complicated-selector.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "border",
+            "loc": {
+              "start": {
+                "offset": 14,
+                "line": 2,
+                "column": 5
+              },
+              "end": {
+                "offset": 20,
+                "line": 2,
+                "column": 11
+              },
+              "filename": "complicated-selector.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "TEXT",
+                "value": "1px",
+                "loc": {
+                  "start": {
+                    "offset": 22,
+                    "line": 2,
+                    "column": 13
+                  },
+                  "end": {
+                    "offset": 25,
+                    "line": 2,
+                    "column": 16
+                  },
+                  "filename": "complicated-selector.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "solid",
+                "loc": {
+                  "start": {
+                    "offset": 26,
+                    "line": 2,
+                    "column": 17
+                  },
+                  "end": {
+                    "offset": 31,
+                    "line": 2,
+                    "column": 22
+                  },
+                  "filename": "complicated-selector.scss"
+                }
+              },
+              {
+                "type": "TEXT",
+                "value": "black",
+                "loc": {
+                  "start": {
+                    "offset": 32,
+                    "line": 2,
+                    "column": 23
+                  },
+                  "end": {
+                    "offset": 37,
+                    "line": 2,
+                    "column": 28
+                  },
+                  "filename": "complicated-selector.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 22,
+                "line": 2,
+                "column": 13
+              },
+              "end": {
+                "offset": 37,
+                "line": 2,
+                "column": 28
+              },
+              "filename": "complicated-selector.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 14,
+              "line": 2,
+              "column": 5
+            },
+            "end": {
+              "offset": 37,
+              "line": 2,
+              "column": 28
+            },
+            "filename": "complicated-selector.scss"
+          }
+        },
+        {
+          "type": "RULE",
+          "selector": {
+            "type": "SELECTOR",
+            "meta": [],
+            "loc": {
+              "start": {
+                "offset": 44,
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "offset": 66,
+                "line": 3,
+                "column": 28
+              },
+              "filename": "complicated-selector.scss"
+            },
+            "value": {
+              "type": "LIST",
+              "value": [
+                {
+                  "type": "TEXT",
+                  "value": ":",
+                  "loc": {
+                    "start": {
+                      "offset": 44,
+                      "line": 3,
+                      "column": 6
+                    },
+                    "end": {
+                      "offset": 45,
+                      "line": 3,
+                      "column": 7
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": "not",
+                  "loc": {
+                    "start": {
+                      "offset": 45,
+                      "line": 3,
+                      "column": 7
+                    },
+                    "end": {
+                      "offset": 48,
+                      "line": 3,
+                      "column": 10
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": "(",
+                  "loc": {
+                    "start": {
+                      "offset": 48,
+                      "line": 3,
+                      "column": 10
+                    },
+                    "end": {
+                      "offset": 49,
+                      "line": 3,
+                      "column": 11
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": "[disabled]",
+                  "loc": {
+                    "start": {
+                      "offset": 49,
+                      "line": 3,
+                      "column": 11
+                    },
+                    "end": {
+                      "offset": 59,
+                      "line": 3,
+                      "column": 21
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": ")",
+                  "loc": {
+                    "start": {
+                      "offset": 59,
+                      "line": 3,
+                      "column": 21
+                    },
+                    "end": {
+                      "offset": 60,
+                      "line": 3,
+                      "column": 22
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": ":",
+                  "loc": {
+                    "start": {
+                      "offset": 60,
+                      "line": 3,
+                      "column": 22
+                    },
+                    "end": {
+                      "offset": 61,
+                      "line": 3,
+                      "column": 23
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "value": "hover",
+                  "loc": {
+                    "start": {
+                      "offset": 61,
+                      "line": 3,
+                      "column": 23
+                    },
+                    "end": {
+                      "offset": 66,
+                      "line": 3,
+                      "column": 28
+                    },
+                    "filename": "complicated-selector.scss"
+                  }
+                }
+              ],
+              "loc": {
+                "start": {
+                  "offset": 44,
+                  "line": 3,
+                  "column": 6
+                },
+                "end": {
+                  "offset": 66,
+                  "line": 3,
+                  "column": 28
+                },
+                "filename": "complicated-selector.scss"
+              }
+            }
+          },
+          "children": [
+            {
+              "type": "DECLARATION",
+              "left": {
+                "type": "TEXT",
+                "value": "border-width",
+                "loc": {
+                  "start": {
+                    "offset": 77,
+                    "line": 4,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 89,
+                    "line": 4,
+                    "column": 21
+                  },
+                  "filename": "complicated-selector.scss"
+                }
+              },
+              "right": {
+                "type": "LIST",
+                "value": [
+                  {
+                    "type": "TEXT",
+                    "value": "2px",
+                    "loc": {
+                      "start": {
+                        "offset": 91,
+                        "line": 4,
+                        "column": 23
+                      },
+                      "end": {
+                        "offset": 94,
+                        "line": 4,
+                        "column": 26
+                      },
+                      "filename": "complicated-selector.scss"
+                    }
+                  }
+                ],
+                "loc": {
+                  "start": {
+                    "offset": 91,
+                    "line": 4,
+                    "column": 23
+                  },
+                  "end": {
+                    "offset": 94,
+                    "line": 4,
+                    "column": 26
+                  },
+                  "filename": "complicated-selector.scss"
+                }
+              },
+              "loc": {
+                "start": {
+                  "offset": 77,
+                  "line": 4,
+                  "column": 9
+                },
+                "end": {
+                  "offset": 94,
+                  "line": 4,
+                  "column": 26
+                },
+                "filename": "complicated-selector.scss"
+              }
+            }
+          ],
+          "loc": {
+            "filename": "",
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "complicated-selector.scss": ".button {\n    border: 1px solid black;\n    &:not([disabled]):hover {\n        border-width: 2px;\n    }\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

@@ -3,7 +3,7 @@
 
 ### feat
 
-* optimize kind reference https://juejin.cn/post/6898093501376905230
+* complete css selector parser
 * add buildin modules and less.js like @plugin
 * complete @keyframes (based on @content)
 * add static check for acss in vscode
@@ -28,6 +28,7 @@
 
 ### other
 
+* simple webkit(based on canvas) + simple js(based on estree)
 * use go to write the program -> then compile to Native -> auto load platform specific binary (reference [esbuild](https://github.com/evanw/esbuild) and [es-module-lexer](https://github.com/guybedford/es-module-lexer))
 * complete test cases (doing)
 * make API more flexible (reference  [esprima](https://www.npmjs.com/package/esprima) / [ast-types](https://www.npmjs.com/package/ast-types) / [escodegen](https://www.npmjs.com/package/escodegen))

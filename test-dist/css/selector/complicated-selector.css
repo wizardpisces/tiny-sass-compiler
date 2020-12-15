@@ -1,0 +1,6 @@
+.button{
+  border:1px solid black;
+}
+.button :not([disabled]):hover{
+  border-width:2px;
+}

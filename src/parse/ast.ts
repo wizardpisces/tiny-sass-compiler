@@ -8,6 +8,7 @@ export const enum NodeTypes {
     KEYWORD = 'KEYWORD',
     IDENTIFIER = 'IDENTIFIER',
     EMPTY = 'EMPTY',
+    UNKNOWN = 'UNKNOWN',
     SELECTOR = 'SELECTOR',
     /**
      * https://sass-lang.com/documentation/values/lists
