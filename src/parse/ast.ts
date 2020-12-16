@@ -8,6 +8,7 @@ export const enum NodeTypes {
     KEYWORD = 'KEYWORD',
     IDENTIFIER = 'IDENTIFIER',
     EMPTY = 'EMPTY',
+    UNKNOWN = 'UNKNOWN',
     SELECTOR = 'SELECTOR',
     /**
      * https://sass-lang.com/documentation/values/lists
@@ -31,15 +32,17 @@ export const enum NodeTypes {
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
+    CONTENT = 'CONTENT',// must end with @return
     FUNCTION = 'FUNCTION',// must end with @return
 
     /**
-     * internal AtRule
+     * internal Atrule
      */
     MediaFeature = 'MediaFeature',
     MediaPrelude = 'MediaPrelude',
+    KeyframesPrelude = 'KeyframesPrelude',
     MediaQuery = 'MediaQuery',
-    AtRule = 'AtRule',
+    Atrule = 'Atrule',
 
     // exceptions
     ERROR = 'ERROR',
@@ -64,8 +67,15 @@ export const enum NodeTypes {
  * 4. 
  */
 
-export type keywordType = '@extend' | '@mixin' | 'include' | '@import' | '@if' | '@else' | '@error' | '@each' | '@function' | '@return'
-export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face';
+export type keywordType = '@extend'
+    | '@mixin' | '@content' | '@include'
+    | '@import'
+    | '@if' | '@else'
+    | '@error'
+    | '@each'
+    | '@function' | '@return'
+
+export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face' | string;
 
 export type puncType = '(' | ')' | ',' | ';' | '#' | '{' | '}'
 export type assignPuncType = ':'
@@ -95,13 +105,6 @@ export interface Node {
     [key: string]: any
     type: NodeTypes
     loc: SourceLocation
-}
-
-// Simple Node
-
-export interface KeywordNode extends Node { // exists only in lexical
-    type: NodeTypes.KEYWORD
-    value: string
 }
 
 export interface TextNode extends Node {
@@ -182,7 +185,7 @@ export type Statement =
     | IfStatement
     | EachStatement
     | ReturnStatement
-    | AtRule
+    | Atrule
 
 export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
@@ -213,10 +216,15 @@ export interface ImportStatement extends Node {
     params: TextNode[]
 }
 
+export interface ContentPlaceholder extends Node { // @content
+    type: NodeTypes.CONTENT
+}
+
 export interface IncludeStatement extends Node {
     type: NodeTypes.INCLUDE
-    id: IdentifierNode,
+    id: IdentifierNode
     args: ArgsType
+    content?: BodyStatement
 }
 
 export interface ExtendStatement extends Node {
@@ -265,14 +273,14 @@ export interface EachStatement extends Node {
 
 
 /**
- * interface prototype for css internal AtRule eg: @media @keyframes @font-face @charset etc
- * Todos: change @import by AtRule
+ * interface prototype for css internal Atrule eg: @media @keyframes @font-face @charset etc
+ * Todos: change @import by Atrule
  */
-export interface AtRule extends Node {
-    type: NodeTypes.AtRule
+export interface Atrule extends Node {
+    type: NodeTypes.Atrule
     name: internalAtRuleNames
     block: BodyStatement
-    prelude: MediaPrelude | TextNode | null
+    prelude: MediaPrelude | KeyframesPrelude
 }
 /**
  * @media ast tree (simplified) start  
@@ -296,11 +304,70 @@ export interface MediaPrelude extends Node {
     children: MediaQuery[] // splited by ','
 }
 
-export interface MediaStatement extends AtRule {
+export interface MediaStatement extends Atrule {
     name: 'media'
     prelude: MediaPrelude
 }
+
+export interface KeyframesPrelude extends Node {
+    type: NodeTypes.KeyframesPrelude
+    children: (TextNode | VarKeyNode)[]
+}
+
+export interface Keyframes extends Atrule {
+    name: string // keyframes | -webkit-keyframes etc
+    prelude: KeyframesPrelude
+}
+
+/**
+ * @media ast tree end
+ */
+
+/* codeGenNode means ast tree that is transformed  */
+
+export type CodegenNode = TextNode | ProgCodeGenNode
+
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude
+
+export type FileSourceMap = {
+    [key: string]: string
+}
+export interface RootNode extends Node {
+    type: NodeTypes.RootNode
+
+    // codeGenNode ,use it to generate source map between files
+    fileSourceMap: FileSourceMap
+
+    children: (Statement | ProgCodeGenNode)[]
+}
+
 // work before ast transform
+export function createKeyframesPrelude(children: KeyframesPrelude['children']): KeyframesPrelude {
+    return {
+        type: NodeTypes.KeyframesPrelude,
+        children,
+        loc: {
+            start: children[0].loc.start,
+            end: children[children.length - 1].loc.end,
+            filename: children[0].loc.filename
+        }
+    }
+}
+
+export function createKeyframes(name: string, prelude: Keyframes['prelude'], block: Keyframes['block']): Keyframes {
+    return {
+        type: NodeTypes.Atrule,
+        name,
+        block,
+        prelude,
+        loc: {
+            start: prelude.loc.start,
+            end: block.loc.end,
+            filename: prelude.loc.filename
+        }
+    }
+}
+
 export function createMediaFeature(declaration: DeclarationStatement): MediaFeature {
     return {
         type: NodeTypes.MediaFeature,
@@ -328,7 +395,7 @@ export function createMediaPrelude(children: MediaPrelude['children']): MediaPre
 
 export function createMediaStatement(prelude: MediaStatement['prelude'], block: MediaStatement['block']): MediaStatement {
     return {
-        type: NodeTypes.AtRule,
+        type: NodeTypes.Atrule,
         name: 'media',
         block,
         prelude,
@@ -338,29 +405,6 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
             filename: prelude.loc.filename
         }
     }
-}
-/**
- * @media ast tree end
- */
-
-/* codeGenNode means ast tree that is transformed  */
-
-export type CodegenNode = TextNode | ProgCodeGenNode
-
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | AtRule | MediaPrelude;
-
-export type ParentNode = RootNode | BodyStatement | RuleStatement
-
-export type FileSourceMap = {
-    [key: string]: string
-}
-export interface RootNode extends Node {
-    type: NodeTypes.RootNode
-
-    // codeGenNode ,use it to generate source map between files
-    fileSourceMap: FileSourceMap
-
-    children: (Statement | ProgCodeGenNode)[]
 }
 
 export function createIdentifierNode(id: TextNode): IdentifierNode {
@@ -438,7 +482,7 @@ export function createReturnStatement(list: SimpleExpressionNode[]): ReturnState
     }
 }
 
-export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children'], loc:SourceLocation=locStub): RuleStatement {
+export function createRuleStatement(selector: RuleStatement['selector'], children: RuleStatement['children'], loc: SourceLocation = locStub): RuleStatement {
     return {
         type: NodeTypes.RULE,
         selector,
@@ -447,13 +491,26 @@ export function createRuleStatement(selector: RuleStatement['selector'], childre
     }
 }
 
-export function createIncludeStatement(id: IncludeStatement['id'], args: IncludeStatement['args']): IncludeStatement {
+export function createContentPlaceholder(loc: ContentPlaceholder['loc'] = locStub): ContentPlaceholder {
     return {
+        type: NodeTypes.CONTENT,
+        loc
+    }
+}
+
+export function createIncludeStatement(id: IncludeStatement['id'], args: IncludeStatement['args'], content?: IncludeStatement['content']): IncludeStatement {
+    let node: IncludeStatement = {
         type: NodeTypes.INCLUDE,
         id,
         args,
         loc: locStub
     }
+
+    if (content) {
+        node.content = content
+    }
+
+    return node;
 }
 
 export function createIfStatement(test: IfStatement['test'], consequent: IfStatement['consequent'], alternate: IfStatement['alternate']): IfStatement {
@@ -523,6 +580,13 @@ export function createRootNode(children: RootNode['children'], fileSourceMap: Ro
     }
 }
 
+export function createRuleFromBody(body: BodyStatement): RuleStatement {
+    return createRuleStatement(
+        createSelectorNode(createTextNode('')),
+        body.children
+    );
+}
+
 export function createRuleFromMedia(media: MediaStatement): RuleStatement {
     return createRuleStatement(
         createSelectorNode(
@@ -533,21 +597,26 @@ export function createRuleFromMedia(media: MediaStatement): RuleStatement {
     );
 }
 
-export function createMediaFromRule(rule: RuleStatement): MediaStatement {
+export function createMediaFromRule(rules: RuleStatement[] | RuleStatement): MediaStatement {
+    if (!rules.length) {
+        rules = [rules as RuleStatement]
+    }
     /**
      * merge media prelude list as one glued by 'and' idetifier 
      * */
     function mergeMediaPreludeList(preludeList: MediaStatement['prelude'][]): MediaStatement['prelude'] {
 
-        function mergeMediaPreludeChildren(children: MediaPrelude['children'] ): MediaQuery {
+        function mergeMediaPreludeChildren(children: MediaPrelude['children']): MediaQuery {
             let mediaQueryChildren = children.reduce(
                 (mediaQueryList: MediaQuery['children'], mediaQuery: MediaQuery) =>
                     mediaQueryList.concat(mediaQuery['children'])
                 , [])
+
             return createMediaQuery(mediaQueryChildren)
         }
 
         let children: MediaPrelude['children'] = [];
+
         preludeList.forEach((prelude: MediaStatement['prelude']) => {
             if (children.length > 0) { // push 'and' identifer to glue mediaQuery
                 children.push(createMediaQuery([createTextNode('and')]))
@@ -555,11 +624,22 @@ export function createMediaFromRule(rule: RuleStatement): MediaStatement {
             children = children.concat(prelude.children)
         })
 
-        return createMediaPrelude([mergeMediaPreludeChildren(children)])
+        // return mediaPrelude with only one child
+        return createMediaPrelude(children.length > 1 ? [mergeMediaPreludeChildren(children)] : children)
     }
-    let prelude = mergeMediaPreludeList(rule.selector.meta)
-    // reset rule selector meta
-    rule.selector.meta = []
 
-    return createMediaStatement(prelude, createBodyStatement([rule]))
+    let prelude = mergeMediaPreludeList(
+        Array.from(
+            new Set(
+                rules.reduce(
+                    (preludeList: MediaStatement['prelude'][], rule: RuleStatement) =>
+                        preludeList.concat(rule.selector.meta)
+                    , [])
+            )
+        )
+    )
+    // reset rule selector meta
+    rules.forEach((rule: RuleStatement) => rule.selector.meta = [])
+
+    return createMediaStatement(prelude, createBodyStatement(rules as RuleStatement[]))
 }

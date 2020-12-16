@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "complicated-selector.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA;EACI,OAAQ;;AACP;EACG,aAAc",
+  "sourcesContent": [
+    ".button {\n    border: 1px solid black;\n    &:not([disabled]):hover {\n        border-width: 2px;\n    }\n}"
+  ]
+}

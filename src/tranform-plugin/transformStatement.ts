@@ -1,44 +1,62 @@
 import { NodeTransform, TransformContext } from '../transform'
-import { Node, NodeTypes, Statement, BodyStatement, RuleStatement, IncludeStatement, MixinStatement, IfStatement, EachStatement, FunctionStatement, ReturnStatement, TextNode, createTextNode, createEmptyNode, createSelectorNode, AtRule, MediaStatement, createRuleStatement } from '../parse/ast'
-import { deepClone, isEmptyNode } from '../parse/util';
-import { processExpression, callFunctionWithArgs } from './transformExpression';
-import { processAssign } from './transformAssign';
+import {
+    Node,
+    NodeTypes,
+    Statement,
+    BodyStatement,
+    RuleStatement,
+    IncludeStatement,
+    MixinStatement,
+    IfStatement,
+    EachStatement,
+    FunctionStatement,
+    ReturnStatement,
+    TextNode,
+    createTextNode,
+    createEmptyNode,
+    createSelectorNode,
+    Atrule,
+    MediaStatement,
+    createRuleStatement,
+    Keyframes,
+    ContentPlaceholder,
+    DeclarationStatement
+} from '../parse/ast'
+import { deepClone, isEmptyNode, isKeyframesName } from '../parse/util';
+import { processExpression, callFunctionWithArgs } from './processExpression';
+
 import {
     ErrorCodes,
     createCompilerError
 } from '../parse/errors';
 
 export const transformStatement: NodeTransform = (node, context) => {
-    processStatement(node as Statement, context)
+    return processStatement(node as Statement, context)
 }
-
 
 export function processStatement(
     node: Statement,
     context: TransformContext,
 ) {
 
-    function dispatchStatement(node: Statement, context: TransformContext) {
-
-        // console.log(context.env.parent)
+    function dispatchStatement(node: Statement | ContentPlaceholder, context: TransformContext) {
 
         switch (node.type) {
-            /**
-            * Statement
-            */
-            case NodeTypes.DECLARATION: return processAssign(node, context);
+
+            case NodeTypes.DECLARATION: return transformDeclaration(node, context);
             case NodeTypes.MIXIN:
             case NodeTypes.FUNCTION: return transformMixnOrFunction(node, context);
             case NodeTypes.RETURN: return transformReturn(node, context);
+            case NodeTypes.CONTENT: return transformContent(context);
             case NodeTypes.INCLUDE: return transformInclude(node, context);
             case NodeTypes.RULE:
             case NodeTypes.BODY:
-                return transform_child_or_body(node, context);
+                return transformChildOrBody(node, context);
 
             case NodeTypes.EXTEND: return node;
-            case NodeTypes.IFSTATEMENT: return transform_if(node, context);
-            case NodeTypes.EACHSTATEMENT: return transform_each(node, context);
-            case NodeTypes.AtRule: return transformAtRule(node, context);
+            case NodeTypes.IFSTATEMENT: return transformIf(node, context);
+            case NodeTypes.EACHSTATEMENT: return transformEach(node, context);
+            case NodeTypes.Atrule: return transformAtRule(node, context);
 
             case NodeTypes.ERROR:
                 throw new Error(processExpression(node.value, context).value)
@@ -47,21 +65,65 @@ export function processStatement(
         }
     }
 
-    function transformMedia(node: MediaStatement, context: TransformContext) {
+
+    function transformDeclaration(node: DeclarationStatement, context: TransformContext) {
+
+        if (node.left.type === NodeTypes.VARIABLE) {
+            context.env.def(node.left.value, processExpression(node.right, context).value)
+            return createEmptyNode();
+        }
+
+        if (node.left.type === NodeTypes.VAR_KEY) {
+            node.left = processExpression(node.left, context);
+        }
+
+        node.right = processExpression(node.right, context);
+
+        return node;
+    }
+
+    function transformMedia(node: MediaStatement, context: TransformContext): MediaStatement {
+
         // Todos: skip parseExpression for now, mainly to test media bubble
+        node.prelude.children = node.prelude.children.map(mediaQuery => {
+            mediaQuery.children = mediaQuery.children.map(node => {
+                if (node.type === NodeTypes.MediaFeature) {
+                    node.value = processExpression(node.value, context)
+                }
+                return node;
+            })
+            return mediaQuery;
+        })
         node.block = dispatchStatement(node.block, context)
         return node
     }
-    function transformAtRule(node: AtRule, context: TransformContext) {
-        switch (node.name) {
-            case 'media': return transformMedia(node as MediaStatement, context)
+
+    function transformKeyframes(node: Keyframes, context: TransformContext): Keyframes {
+        node.prelude.children = node.prelude.children.map((keyframesPreludeChild) => {
+
+            if (keyframesPreludeChild.type === NodeTypes.VAR_KEY) {
+                keyframesPreludeChild = processExpression(keyframesPreludeChild, context)
+            }
+
+            return keyframesPreludeChild;
+        })
+
+        node.block = dispatchStatement(node.block, context)
+        return node;
+    }
+
+    function transformAtRule(node: Atrule, context: TransformContext) {
+        if (node.name === 'media') {
+            return transformMedia(node as MediaStatement, context);
+        } else if (isKeyframesName(node.name)) {
+            return transformKeyframes(node as Keyframes, context)
         }
     }
 
     /**
      * any expressions separated with spaces or commas count as a list
      */
-    function transform_each(node: EachStatement, context: TransformContext) {
+    function transformEach(node: EachStatement, context: TransformContext) {
         let restoredContext = deepClone(node),
             right = processExpression(restoredContext.right, context),
             scope = context.env.extend(),
@@ -92,11 +154,11 @@ export function processStatement(
             node.loc
         );
     }
-    
+
     /**
      * context will be restored with function 
      */
-    function transform_if(node: IfStatement, context: TransformContext) {
+    function transformIf(node: IfStatement, context: TransformContext) {
 
         function is_true_exp(expression, context: TransformContext) {
 
@@ -165,36 +227,41 @@ export function processStatement(
 
             if (node.type === NodeTypes.FUNCTION) {
                 dispatchStatement(restoredContext.body, { ...context, env: scope })
-                return scope.get('@return')
-            } else {
+                return scope.get('@return', NodeTypes.RETURN)
+            } else if (node.type === NodeTypes.MIXIN) {
                 return dispatchStatement(restoredContext.body, { ...context, env: scope });
             }
 
         }
 
-        context.env.def(node.id.value, make_function)
+        context.env.def(node.id.value, make_function, node.type)
 
         return createEmptyNode();
     }
 
     /**
-    * @return always be evaluated in a @function body
+    * @return only be evaluated in a @function body
     */
     function transformReturn(node: ReturnStatement, context: TransformContext) {
         let result: TextNode = processExpression(node.argument, context);
 
-        context.env.def('@return', result.value);
+        context.env.def('@return', result.value, node.type);
         return createEmptyNode();
     }
 
-    function transformInclude(node: IncludeStatement, context: TransformContext) {
-
-        let func = context.env.get(node.id.value);
-        return callFunctionWithArgs(func, node, context)
+    function transformContent(context: TransformContext) {
+        return context.env.get('@content', NodeTypes.CONTENT)
     }
 
-    function transform_child_or_body(node: RuleStatement | BodyStatement, context: TransformContext) {
+    function transformInclude(node: IncludeStatement, context: TransformContext) {
+        let func = context.env.get(node.id.value, NodeTypes.MIXIN);
 
+        node.content && context.env.def('@content', dispatchStatement(node.content, context), NodeTypes.CONTENT)
+
+        return callFunctionWithArgs(func, node, context) // call mixin which will use just defined @content if mixin contains
+    }
+
+    function transformChildOrBody(node: RuleStatement | BodyStatement, context: TransformContext): RuleStatement | BodyStatement {
         function flatten_included_body(children: Statement[]): Statement[] {
             let arr: Statement[] = []
             children.forEach(child => {
@@ -206,6 +273,7 @@ export function processStatement(
             })
             return arr;
         }
+
         let scope = context.env;
 
         /**
@@ -216,20 +284,22 @@ export function processStatement(
         }
 
         node.children = (node.children as Statement[]).map(child => dispatchStatement(child, { ...context, env: scope })).filter(node => !isEmptyNode(node));
-        if (node.type === NodeTypes.RULE) { // RCHILDust have selector
+
+        if (node.type === NodeTypes.RULE) { // have selector
             if (node.selector.value.type === NodeTypes.LIST) {
                 node.selector.value = processExpression(node.selector.value, { ...context, env: scope })
             }
         }
+
         /**
-         * 
+         *
          * @include include_function_body
          * @if which contain bodyStatement
-          */
+         */
         node.children = flatten_included_body(node.children as Statement[]);
 
         return node;
     }
 
-    return context.replaceNode(dispatchStatement(node, context))
+    return dispatchStatement(node, context)
 }

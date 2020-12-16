@@ -1,14 +1,12 @@
 
-import tranform_nest from './tranformNest'
-import transform_extend from './transformExtend'
-import transform_module from './transformModule'
+import transformNest from './transformNest'
+import transformExtend from './transformExtend'
+import transformModule from './transformModule'
+
+export const transformMiddleware = (ast) => [transformNest, transformExtend].reduce((ast, middleware) => {
+    return middleware.call(null, ast)
+}, ast)
 
 export {
-    transform_module
+    transformModule
 }
-
-let transformMiddleware = [ tranform_nest, transform_extend]
-
-export default (ast) => transformMiddleware.reduce((ast,middleware)=>{
-    return middleware.call(null, ast)
-},ast)

@@ -15,9 +15,10 @@ import {
 } from '../parse/ast';
 import { isEmptyNode } from '../parse/util';
 import {
-    propagateMediaDown,
-    extractMediaUp
+    broadcastMedia,
+    bubbleAndMergeMedia
 } from './transformMedia'
+
 export default function tranformNest(ast: RootNode) {
 
     // DFS search
@@ -69,22 +70,30 @@ export default function tranformNest(ast: RootNode) {
         return flatten(ruleNode)
     }
 
-    function toplevel(ast: RootNode) {
+    function flattenNested(ast:RootNode){
         let children: RootNode["children"] = [];
-
-        propagateMediaDown(ast);
 
         ast.children.forEach(exp => {
             if (exp.type === NodeTypes.RULE) {
                 children = children.concat(...flatten_nested_rule(exp))
+            } else if(exp.type === NodeTypes.BODY){
+                children = children.concat(exp.children as RootNode["children"])
             } else {
                 children.push(exp)
             }
         });
 
         ast.children = children
+    }
 
-        extractMediaUp(ast)
+    function toplevel(ast: RootNode) {
+        // propagate media before flatten selector
+        broadcastMedia(ast);
+
+        flattenNested(ast)
+        
+        // extract after flatten selector and media
+        bubbleAndMergeMedia(ast)
 
         return ast;
     }

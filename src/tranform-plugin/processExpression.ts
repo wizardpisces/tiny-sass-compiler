@@ -1,4 +1,8 @@
-import { NodeTransform, TransformContext } from '../transform'
+/**
+ * handle simple expression which does not contain any statement
+ */
+
+import { TransformContext } from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode, CallExpression, IncludeStatement } from '../parse/ast'
 import { fillWhitespace } from '../parse/util'
 import {
@@ -7,9 +11,6 @@ import {
     createCompilerError
 } from '../parse/errors';
 
-export const transformExpression: NodeTransform = (node, context) => {
-
-}
 export function callFunctionWithArgs(func: Function, node: IncludeStatement | CallExpression, context: TransformContext) {
     return func.apply(null, node.args.map(arg => {
 
@@ -84,29 +85,29 @@ export function processExpression(
     }
 
     function transformCall(node: CallExpression, context: TransformContext): TextNode {
-       
-        function convertCallNodeToString(node:CallExpression):string {
-            return node.id.value + '(' + node.args.map(node=>{
-                if(node.type === NodeTypes.DECLARATION){
+
+        function convertCallNodeToString(node: CallExpression): string {
+            return node.id.value + '(' + node.args.map(node => {
+                if (node.type === NodeTypes.DECLARATION) {
                     return defaultOnError(
                         createCompilerError(ErrorCodes.EXPECTED_X, node.loc, ',')
                     )
                 }
-                return processExpression(node,context).value
+                return processExpression(node, context).value
 
-            }).join(',') +')'
+            }).join(',') + ')'
         }
         // maybe a custom defined function or undefined
-        let func = context.env.get(node.id.value),
-            value:string;
-        if (typeof func === 'function'){
+        let func = context.env.get(node.id.value, NodeTypes.FUNCTION),
+            value: string;
+        if (typeof func === 'function') {
             value = callFunctionWithArgs(func, node, context)
-        }else{
+        } else {
             value = convertCallNodeToString(node)
         }
 
         return {
-            loc:node.loc,
+            loc: node.loc,
             type: NodeTypes.TEXT,
             value
         };
@@ -154,7 +155,7 @@ export function processExpression(
             if (!unitExtracted) {
                 let matched = str.match(/\d+([a-z]*)/);
                 unit = matched && matched.length > 0 ? matched[1] : ''
-                if(unit){
+                if (unit) {
                     unitExtracted = true;
                 }
             }
@@ -204,13 +205,13 @@ export function processExpression(
             }
 
             if (node.type === NodeTypes.VARIABLE) {
-                return evaluateBinary(transformVar(node, context),nearestOperator);
+                return evaluateBinary(transformVar(node, context), nearestOperator);
             }
 
             if (node.type === NodeTypes.CALL) {
                 return evaluateBinary(transformCall(node, context), nearestOperator);
             }
-            
+
             if (node.type === NodeTypes.BINARY) {
                 let left = evaluateBinary(node.left, node.operator.value),
                     right = evaluateBinary(node.right, node.operator.value);
@@ -221,7 +222,7 @@ export function processExpression(
             throw createCompilerError(ErrorCodes.UNKNOWN_EVALUATE_BINARY_TYPE, (node as Node).loc, (node as Node).type + ':' + (node as Node).value)
         };
 
-        let value = evaluateBinary(node,node.operator.value);
+        let value = evaluateBinary(node, node.operator.value);
 
         return {
             ...node,

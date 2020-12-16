@@ -4,7 +4,7 @@ import {
     generate,
     // compile //combings parse + transform + generate
 } from './src'
-import { RootNode} from './src/parse/ast'
+import { RootNode } from './src/parse/ast'
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
@@ -49,7 +49,7 @@ function run(
             codeGenAstDistPath = path.join(outputDir, 'code-gen-ast', sourceDirname.substr(sourceDirLength)),
             sourceMapDistPath = path.join(outputDir, 'source-map', sourceDirname.substr(sourceDirLength)),
             cssDistPath = path.join(outputDir, 'css', sourceDirname.substr(sourceDirLength)),
-            parsedAst:RootNode;
+            parsedAst: RootNode;
 
         if (!options.genOtherInfo) {
             if (!fs.existsSync(normalDistPath)) {
@@ -162,9 +162,11 @@ function run(
             }
 
             // if (filename!== 'flow-control' &&  filename !== 'each' && filename !=='each.scss') return;
+            // if (filename !== 'mixin' && filename !== 'mixin-keyframes-content.scss') return;
             // if (filename!== 'var-simple.scss') return;
             // if (filename!='nest' && filename !== 'at-rules-and-bubbling.scss') return;
             // if (filename!== 'function' && !filename.startsWith('function')) return;
+            // if (filename !== 'selector' && filename != 'complicated-selector.scss') return;
 
             let filePath = path.join(sourceDir, filename),
                 stat = fs.lstatSync(filePath)

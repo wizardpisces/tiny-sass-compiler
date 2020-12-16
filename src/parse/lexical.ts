@@ -8,12 +8,37 @@ import {
     is_punc
 } from './util'
 
-import { NodeTypes } from './ast';
+import { NodeTypes, Node } from './ast';
 import {
     ErrorCodes
 } from './errors';
+import { InputStream } from './input_stream';
 
-export default function lex(input) {
+export type Token = {
+    type: Node['type']
+    value: string
+}
+
+const UnknownToken: Token = {
+    type: NodeTypes.UNKNOWN,
+    value: 'Unknown'
+}
+
+const NullToken: Token = {
+    type: NodeTypes.UNKNOWN,
+    value: 'Null'
+}
+
+export type LexicalStream = {
+    next: () => Token,
+    peek: (n?: number) => Token,
+    eliminateWhitespace: () => void,
+    eof: () => boolean,
+    getCoordination: InputStream['getCoordination'],
+    setCoordination: InputStream['setCoordination'],
+    emitError: InputStream['emitError'],
+}
+export default function lex(input: InputStream): LexicalStream {
 
     let keywords = ' @extend @mixin @include @import @if @else @error @each @function @return',
         comparison_op_chars = '!=><',
@@ -23,7 +48,7 @@ export default function lex(input) {
          * parse.ts also treat undiscoverd internal call expression as string when transformed
          * 
          * Todos: will be replaced by in depth analyze
-         */ 
+         */
         internalCallIdentifiers = ['url'];
 
     return {
@@ -145,7 +170,7 @@ export default function lex(input) {
 
     function read_end(endReg: string | RegExp) {
         let str = "";
-        let is_ended = typeof endReg === 'string' ? 
+        let is_ended = typeof endReg === 'string' ?
             (ch: string): boolean => endReg === ch :
             (ch: string): boolean => endReg.test(ch)
 
@@ -242,9 +267,9 @@ export default function lex(input) {
         }
     }
 
-    function read_next() {
+    function read_next(): Token {
         read_while(is_whitespace);
-        if (input.eof()) return null;
+        if (input.eof()) return NullToken;
         let ch = input.peek();
 
         /**
@@ -268,22 +293,30 @@ export default function lex(input) {
         if (is_base_char(ch)) return read_string();
 
         input.emitError(ErrorCodes.UNKNOWN_CHAR);
+        return UnknownToken;
     }
 
     /**
      * reset coordination after peek value
+     * https://www.geeksforgeeks.org/construction-of-ll1-parsing-table/
      */
-    function peek_next() {
+    function ll(n = 1) {
         let coordination = input.getCoordination()
-        let tok = read_next();
+        let tok: Token | null = read_next();
+
+        while (--n) {
+            tok = read_next();
+        }
+
         input.setCoordination(coordination)
         return tok;
     }
 
-    function peek() {
-        return peek_next();
+    function peek(n = 1): Token {
+        return ll(n);
     }
-    function next() {
+
+    function next(): Token {
         return read_next();
     }
 
@@ -292,7 +325,7 @@ export default function lex(input) {
     }
 
     function eof() {
-        return peek() == null;
+        return peek().type === NodeTypes.UNKNOWN;
     }
 
 }

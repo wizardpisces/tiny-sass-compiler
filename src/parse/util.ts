@@ -23,12 +23,12 @@ export const debug = (function () {
 })()
 
 
-export function is_calculate_op_char(ch:arithmeticOperator) {
+export function is_calculate_op_char(ch: arithmeticOperator | string) {
     let op_chars = ' + - * / % '
     return op_chars.indexOf(' ' + ch + ' ') >= 0;
 }
 
-export function is_punc(ch: puncType) {
+export function is_punc(ch: string | puncType): boolean {
     return ",;(){}#".indexOf(ch) >= 0; // support expr { #{var}:var }
 }
 
@@ -41,88 +41,56 @@ export const PRECEDENCE = {
     "*": 20, "/": 20, "%": 20,
 };
 
-export function is_operator(op:string) {
+export function is_operator(op: string) {
     return Object.keys(PRECEDENCE).includes(op)
 }
- /**
-  * fill whitespace between tokens which is removed in lexical analyze
-  * 
-  */
+
+export function isKeyframesName(name: string): boolean {
+    return name.indexOf('keyframes') > -1
+}
+/**
+ * fill whitespace between tokens which is removed in lexical analyze
+ * 
+ */
 
 export function fillWhitespace(tokens: SimpleExpressionNode[]) {
-     if (tokens.length <= 1) return tokens;
+    if (tokens.length <= 1) return tokens;
 
     let list: SimpleExpressionNode[] = [],
-         whitespaceToken:TextNode = createTextNode(' '),
-         curIndex = 0,
-         curToken,
-         nextToken;
+        whitespaceToken: TextNode = createTextNode(' '),
+        curIndex = 0,
+        curToken,
+        nextToken;
 
-     while (curIndex < tokens.length - 1) {
-         curToken = tokens[curIndex];
-         nextToken = tokens[curIndex + 1];
-         list.push(curToken)
-         if (nextToken.loc.start.offset > curToken.loc.end.offset) {
-             // one whitespace is enough to demonstrate semantics
-             list.push(whitespaceToken)
-         }
-         curIndex++;
-     }
-
-     list.push(tokens[curIndex])
-
-     return list;
- }
-
-export class Environment  {
-    vars : { [name:string] :any}
-    parent: Environment | null
-
-    constructor(parent:Environment | null){
-        this.vars = Object.create(parent ? parent.vars : null);
-        this.parent = parent;
+    while (curIndex < tokens.length - 1) {
+        curToken = tokens[curIndex];
+        nextToken = tokens[curIndex + 1];
+        list.push(curToken)
+        if (nextToken.loc.start.offset > curToken.loc.end.offset) {
+            // one whitespace is enough to demonstrate semantics
+            list.push(whitespaceToken)
+        }
+        curIndex++;
     }
 
-    extend() {
-        return new Environment(this);
-    }
-    // lookup: function (name) {
-    //     let scope = this;
-    //     while (scope) {
-    //         if (Object.prototype.hasOwnProperty.call(scope.vars, name))
-    //             return scope;
-    //         scope = scope.parent;
-    //     }
-    // },
-    get(name:string) {
-        if (name in this.vars)
-            return this.vars[name];
-    }
-    // set: function (name, value) {
-    //     let scope = this.lookup(name);
-    //     // let's not allow defining globals from a nested environment
-    //     if (!scope && this.parent)
-    //         throw new Error("Undefined variable " + name);
-    //     return (scope || this).vars[name] = value;
-    // },
-    def(name:string, value:any) {
-        return this.vars[name] = value;
-    }
-};
+    list.push(tokens[curIndex])
+
+    return list;
+}
 
 /**
  * todos: optimize deep_clone
  */
-export function deepClone(obj:object) {
+export function deepClone(obj: object) {
     return JSON.parse(JSON.stringify(obj))
 }
 
-export function isEmptyNode(node: Node):boolean{
+export function isEmptyNode(node: Node): boolean {
     return node.type === NodeTypes.EMPTY
 }
 
-export function isMediaNode(node: Node):boolean{
-    return node.type === NodeTypes.AtRule && node.name === 'media';
+export function isMediaNode(node: Node): boolean {
+    return node.type === NodeTypes.Atrule && node.name === 'media';
 }
 
 // function createPromiseCallback() {
@@ -162,4 +130,13 @@ export function advancePositionWithMutation(
             : numberOfCharacters - lastNewLinePos
 
     return pos
+}
+
+export function range(n: number) {
+    let list: number[] = [],
+        i = 0;
+    while (n--) {
+        list.push(i++)
+    }
+    return list
 }

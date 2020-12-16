@@ -50,22 +50,30 @@ import {
     createMediaStatement,
     createMediaPrelude,
     createMediaQuery,
-    createBodyStatement
+    createBodyStatement,
+    createKeyframes,
+    Keyframes,
+    createKeyframesPrelude,
+    ContentPlaceholder,
+    createContentPlaceholder
 } from './ast';
 
 import {
     debug,
     PRECEDENCE,
     fillWhitespace,
+    isKeyframesName,
+    range,
 } from './util'
 import { ParserOptions } from '@/type';
+import { LexicalStream, Token } from './lexical';
 
 /**
  * 
  * @param {lex processed stream method} input
  */
 
-export default function parse(input, options: ParserOptions) {
+export default function parse(input: LexicalStream, options: ParserOptions) {
     const { filename, source } = options;
     /**
      * end with ';' , eg:
@@ -78,39 +86,47 @@ export default function parse(input, options: ParserOptions) {
       */
 
     function defaultRightEndCondition() {
-        return is_punc(';')
+        return isPuncToken(';')
     }
 
     function set_call_params_args_assign_right_end_condition() {
-        assignRightEndCondition = () => is_punc(',') || is_punc(')');
+        assignRightEndCondition = () => isPuncToken(',') || isPuncToken(')');
     }
 
     function reset_assign_right_end_condition() {
         assignRightEndCondition = defaultRightEndCondition
     }
 
-    function is_punc(ch?: puncType) {
+    function isPuncToken(ch?: puncType) {
         let tok = input.peek();
         return tok && tok.type == NodeTypes.PUNC && (!ch || tok.value == ch) && tok;
     }
 
-    function is_kw(kw) {
+    function isKwToken(kw: string): Token | boolean {
         let tok = input.peek();
         return tok && tok.type == NodeTypes.KEYWORD && (!kw || tok.value == kw) && tok;
     }
 
-    function is_op(op?: OperatorNode): OperatorNode {
-        let tok = input.peek();
-        return tok && tok.type == NodeTypes.OPERATOR && (!op || tok.value == op) && tok;
+    function isKeyFramesToken() {
+        let tok = input.peek()
+        return tok && tok.type == NodeTypes.KEYWORD && isKeyframesName('keyframes');
     }
 
-    function is_assign() {
+    function isOpToken(op?: string): OperatorNode | boolean {
+        let tok = input.peek();
+        if (tok && tok.type == NodeTypes.OPERATOR && (!op || tok.value == op)) {
+            return tok as OperatorNode
+        }
+        return false
+    }
+
+    function isAssignToken(): boolean {
         let tok = input.peek()
         return tok && tok.type === NodeTypes.DECLARATION;
     }
 
     function skipPunc(ch: any, silent: boolean = false) {
-        if (is_punc(ch)) input.next();
+        if (isPuncToken(ch)) input.next();
         // mandatory skip
         else {
             !silent && input.emitError(ErrorCodes.EXPECTED_X, consumeNextTokenWithLoc().loc, ch)
@@ -129,7 +145,7 @@ export default function parse(input, options: ParserOptions) {
 
         while (!input.eof()) {
             if (debug()) break;
-            if (is_punc(stop)) break;
+            if (isPuncToken(stop)) break;
             if (first) {
                 first = false;
             } else {
@@ -139,7 +155,7 @@ export default function parse(input, options: ParserOptions) {
                     skipPunc(separator);
                 }
             }
-            if (is_punc(stop)) break;
+            if (isPuncToken(stop)) break;
 
             statements.push(parser());
         }
@@ -223,47 +239,52 @@ export default function parse(input, options: ParserOptions) {
 
     function dispatchParser(scanType: 'scan_right' | '' = '') {
 
-        if (is_kw('@extend')) {
+        if (isKwToken('@extend')) {
             input.next()
             return parseExtend();
         }
 
-        if (is_kw('@mixin')) {
+        if (isKwToken('@mixin')) {
             input.next()
             return parseMixin();
         }
 
-        if (is_kw('@function')) {
+        if (isKwToken('@content')) {
+            let tok = consumeNextTokenWithLoc()
+            return parseContent(tok.loc);
+        }
+
+        if (isKwToken('@function')) {
             input.next()
             return parseFunction();
         }
 
-        if (is_kw('@return')) {
+        if (isKwToken('@return')) {
             input.next()
             return parseReturn();
         }
 
-        if (is_kw('@include')) {
+        if (isKwToken('@include')) {
             input.next()
             return parseInclude();
         }
 
-        if (is_kw('@import')) {
+        if (isKwToken('@import')) {
             input.next()
             return parseImport();
         }
 
-        if (is_kw('@if')) {
+        if (isKwToken('@if')) {
             input.next()
             return parseIf();
         }
 
-        if (is_kw('@each')) {
+        if (isKwToken('@each')) {
             input.next()
             return parseEach();
         }
 
-        if (is_kw('@error')) {
+        if (isKwToken('@error')) {
             input.next()
             return parseError();
         }
@@ -301,14 +322,37 @@ export default function parse(input, options: ParserOptions) {
          * etc, should not throw error but parsed as special callExpression
          */
         if (tok.type == NodeTypes.KEYWORD) {
-            if (is_kw('@media')) {
+            if (isKwToken('@media')) {
                 input.next()
                 return parseMedia();
             }
+            /**
+             * @-webkit-keyframes
+             * @-moz-keyframes
+             * @-o-keyframes
+             * @keyframes
+             */
+            if (isKeyFramesToken()) {
+                let kf = input.next()
+                return parseKeyframes(kf.value)
+            }
+
             return input.emitError(ErrorCodes.UNKNOWN_KEYWORD, consumeNextTokenWithLoc().loc, tok.value)
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
+    }
+
+    function parseKeyframes(keyframesName: string): Keyframes {
+        let children: Keyframes['prelude']['children'] = [];
+
+        while (!isPuncToken('{')) {
+            children.push(dispatchParser())
+        }
+
+        let bodyStatement: BodyStatement = parseBody()
+
+        return createKeyframes(keyframesName, createKeyframesPrelude(children), bodyStatement)
     }
 
     function parseMedia(): MediaStatement {
@@ -316,13 +360,13 @@ export default function parse(input, options: ParserOptions) {
             mediaQueryChildren: MediaQuery['children'] = [];
 
         set_call_params_args_assign_right_end_condition()
-        while (!is_punc('{')) {
-            if (is_punc(',')) {
+        while (!isPuncToken('{')) {
+            if (isPuncToken(',')) {
                 // reset mediaQueryChildren
                 mediaQueryListChildren.push(createMediaQuery(mediaQueryChildren))
                 mediaQueryChildren = []
                 skipPunc(',')
-            } else if (is_punc('(')) {
+            } else if (isPuncToken('(')) {
                 skipPunc('(')
                 let left: DeclarationStatement['left'] = consumeNextTokenWithLoc(),
                     declaration = parseDeclaration(left)
@@ -352,7 +396,7 @@ export default function parse(input, options: ParserOptions) {
             /**
              * catch error when missed ';', but encountered ':'
              */
-            if (is_assign() || is_punc('{')) {
+            if (isAssignToken() || isPuncToken('{')) {
                 let tok = consumeNextTokenWithLoc()
                 input.emitError(ErrorCodes.EXPECTED_X, tok.loc, ";")
             }
@@ -373,8 +417,8 @@ export default function parse(input, options: ParserOptions) {
     }
 
     function maybeBinaryNode(left: TextNode | BinaryNode, left_prec): TextNode | BinaryNode {
-        let tok: OperatorNode = is_op()
-        if (tok) {
+        if (isOpToken()) {
+            let tok: OperatorNode = isOpToken() as OperatorNode;
             if (PRECEDENCE[tok.value] > left_prec) {
                 tok = consumeNextTokenWithLoc(); //skip op , add loc
                 let nextNode: TextNode = consumeNextTokenWithLoc();
@@ -404,34 +448,6 @@ export default function parse(input, options: ParserOptions) {
         return createRuleStatement(selector, children)
     }
 
-    function maybeDeclaration(exp) {
-        let expr = exp();
-
-        if (is_assign()) {
-            return parseDeclaration(expr)
-        }
-
-        /**
-         * handle selector may contain key_var, which should be resolved to list ast
-         * .icon-#{$size} {}
-        */
-
-        if (is_punc('#')) {
-            return maybeDeclaration(() => {
-                return createListNode(
-                    expr.type === NodeTypes.LIST ?
-                        expr.value.concat(dispatchParser())
-                        : [expr].concat(dispatchParser()))
-            })
-        }
-
-        if (is_punc('{')) {
-            return parseRule(createSelectorNode(expr)) //passin selector
-        }
-
-        return expr;
-    }
-
     function parseExtend(): ExtendStatement {
         return {
             type: NodeTypes.EXTEND,
@@ -443,6 +459,10 @@ export default function parse(input, options: ParserOptions) {
     function parseBody(): BodyStatement {
         let children: Statement[] = delimited("{", "}", ";", parseStatement);
         return createBodyStatement(children)
+    }
+
+    function parseContent(loc: ContentPlaceholder['loc']): ContentPlaceholder {
+        return createContentPlaceholder(loc)
     }
 
     /**
@@ -457,7 +477,7 @@ export default function parse(input, options: ParserOptions) {
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
-        if (!is_punc('{')) {
+        if (!isPuncToken('{')) {
             /**
              * Support default params, which contains assign ':' symbol; which will be processed in parseDeclaration
              * @mixin replace-text($image,$x:default1, $y:default2) {
@@ -481,7 +501,7 @@ export default function parse(input, options: ParserOptions) {
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
-        if (!is_punc('{')) {
+        if (!isPuncToken('{')) {
             /**
              * Support default params, which contains assign ':' symbol; which will be processed in parseDeclaration
              * @functoin replace-text($image,$x:default1, $y:default2) {
@@ -506,7 +526,7 @@ export default function parse(input, options: ParserOptions) {
      */
     function maybeCall(node: TextNode): TextNode | CallExpression {
 
-        if (is_punc('(')) {
+        if (isPuncToken('(')) {
             set_call_params_args_assign_right_end_condition()
             let callExpression = createCallExpression(createIdentifierNode(node), delimited('(', ')', ',', parseStatement))
             reset_assign_right_end_condition()
@@ -520,9 +540,11 @@ export default function parse(input, options: ParserOptions) {
             type: NodeTypes.IDENTIFIER,
             value: input.next().value,
             loc: locStub
-        }, args: (VariableNode | DeclarationStatement)[] = [];// @include mixin1;
+        },
+            args: (VariableNode | DeclarationStatement)[] = [],
+            content: IncludeStatement['content'];// @include mixin1;
 
-        if (!is_punc(';')) {
+        if (!isPuncToken(';')) {
             set_call_params_args_assign_right_end_condition()
             /**
              * use maybeDeclaration to wrap to deal with possible default include args 
@@ -534,7 +556,11 @@ export default function parse(input, options: ParserOptions) {
 
         reset_assign_right_end_condition()
 
-        return createIncludeStatement(id, args);
+        if (isPuncToken('{')) {
+            content = parseBody()
+        }
+
+        return createIncludeStatement(id, args, content);
     }
 
     function parseImport(): ImportStatement {
@@ -548,12 +574,12 @@ export default function parse(input, options: ParserOptions) {
             params: TextNode[] = [];
 
         if (!delimitor.value.startsWith("'") && !delimitor.value.startsWith('"')) {
-            input.croak(`@import expected with ' or " but encountered ${delimitor}`)
+            input.emitError(ErrorCodes.EXPECTED_X, locStub, `@import expected with ' or " but encountered ${delimitor}`)
         }
 
-        while (!is_punc(';')) {  // @import 'foundation/code', 'foundation/lists';
+        while (!isPuncToken(';')) {  // @import 'foundation/code', 'foundation/lists';
             params.push(processFilenameExp(consumeNextTokenWithLoc()));
-            if (is_punc(',')) {
+            if (isPuncToken(',')) {
                 skipPunc(',')
             }
         }
@@ -574,7 +600,7 @@ export default function parse(input, options: ParserOptions) {
 
         bodyStatement = parseBody();
 
-        if (is_kw('@else')) {
+        if (isKwToken('@else')) {
             input.next();
             let predictToken = input.peek();
             /**
@@ -642,7 +668,7 @@ export default function parse(input, options: ParserOptions) {
             skipPunc('{')
             let node = consumeNextTokenWithLoc();
             if (node.type !== NodeTypes.VARIABLE) {
-                input.croak(`${node} should be a variable which starts with '$'`)
+                input.emitError(ErrorCodes.UNDEFINED_VARIABLE, node.loc, `${node} should be a variable which starts with '$'`)
             }
             skipPunc('}')
             return createVarKeyExpression(node.value, {
@@ -652,9 +678,9 @@ export default function parse(input, options: ParserOptions) {
             })
         }
 
-        let token = consumeNextTokenWithLoc();
+        let token = consumeNextTokenWithLoc(); // token maybe '#'
 
-        if (is_punc('{')) {
+        if (isPuncToken('{')) {
             return parse_key_var_wrapper(token.loc.start)
         }
 
@@ -664,14 +690,86 @@ export default function parse(input, options: ParserOptions) {
         let nextToken = consumeNextTokenWithLoc();
 
         if (nextToken.type !== NodeTypes.TEXT) {
-            input.croak(`[maybeVarKeyWrapper]: expect str token but received ${nextToken.value}`)
+            input.emitError(ErrorCodes.EXPECTED_X, nextToken.loc, `[maybeVarKeyWrapper]: expect str token but received ${nextToken.value}`)
         }
 
-        return createTextNode('#' + nextToken.value, {
+        return createTextNode(token.value + nextToken.value, {
             start: token.start,
             end: nextToken.end,
             filename
         })
+    }
+
+    function maybeDeclaration(exp) {
+        let expr = exp();
+
+        /**
+         * PseudoClassSelector may also enter which is not Declaration
+         *  &:not([disabled]):hover{}
+         *  
+         */
+
+        if (isAssignToken()) {
+            /**
+             * solve scenario default value, prevent from ll(n) check eg:
+             * @mixin avatar($size, $circle: false) 
+             * @include avatar(100px, $circle: false);
+             * 
+             */
+            if (expr.type === NodeTypes.VARIABLE) {
+                return parseDeclaration(expr)
+            }
+
+            /**
+             * 
+             */
+
+            let lln = 1,
+                predictToken: Token;
+            while (true) {
+                predictToken = input.peek(lln);
+                if (predictToken.value === ';' || predictToken.value === '}') { // treat as NodeTypes.DECLARATION
+                    return parseDeclaration(expr)
+                } else if (predictToken.value === '{') { // treat as NodeTypes.SELECTOR
+                    // expr.value = tokens.reduce((prev, token) => prev + token.value, expr.value)
+                    let rule: RuleStatement = parseRule(
+                        createSelectorNode(
+                            createListNode(
+                                range(lln - 1).map((): SimpleExpressionNode => {
+                                    let tok = consumeNextTokenWithLoc()
+                                    tok.type = NodeTypes.TEXT // transform to NodeTypes.TEXT
+                                    return tok;
+                                })
+                            )
+                        )
+                    )
+                    return rule
+
+                } else {
+                    lln++
+                }
+            }
+        }
+
+        /**
+         * handle selector may contain key_var, which should be resolved to list ast
+         * .icon-#{$size} {}
+        */
+
+        if (isPuncToken('#')) {
+            return maybeDeclaration(() => {
+                return createListNode(
+                    expr.type === NodeTypes.LIST ?
+                        expr.value.concat(dispatchParser())
+                        : [expr].concat(dispatchParser()))
+            })
+        }
+
+        if (isPuncToken('{')) {
+            return parseRule(createSelectorNode(expr)) //passin selector
+        }
+
+        return expr;
     }
 
     function parseStatement() {

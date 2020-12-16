@@ -1,18 +1,37 @@
 .component{
   width:300px;
 }
-@media(min-width:1280px){
+@media (min-width:1280px){
   .component .selector{
     width:800px;
   }
 }
-@media(min-width:768px){
+@media (min-width:768px){
   .component{
     width:600px;
   }
 }
-@media(min-resolution:192dpi) and (min-width:768px){
+@media (min-resolution:192dpi) and (min-width:768px){
   .component .selector2{
     background-image:url(/img/retina2x.png);
   }
+}
+@media (min-width:768px){
+  .component .selector3{
+    color:red;
+  }
+}
+@media (min-width:960px){
+  .hide-extra-small{
+    display:none;
+  }
+  .selector1{
+    color:red;
+  }
+  .selector1 .selector1-1{
+    color:green;
+  }
+}
+.class-a{
+  width:1px;
 }

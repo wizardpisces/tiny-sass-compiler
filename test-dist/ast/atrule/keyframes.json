@@ -1,0 +1,655 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "Atrule",
+      "name": "@keyframes",
+      "block": {
+        "type": "BODY",
+        "children": [
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "start": {
+                  "offset": 26,
+                  "line": 2,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 30,
+                  "line": 2,
+                  "column": 9
+                },
+                "filename": "keyframes.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "from",
+                "loc": {
+                  "start": {
+                    "offset": 26,
+                    "line": 2,
+                    "column": 5
+                  },
+                  "end": {
+                    "offset": 30,
+                    "line": 2,
+                    "column": 9
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "margin-left",
+                  "loc": {
+                    "start": {
+                      "offset": 41,
+                      "line": 3,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 52,
+                      "line": 3,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "100%",
+                      "loc": {
+                        "start": {
+                          "offset": 54,
+                          "line": 3,
+                          "column": 22
+                        },
+                        "end": {
+                          "offset": 58,
+                          "line": 3,
+                          "column": 26
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 54,
+                      "line": 3,
+                      "column": 22
+                    },
+                    "end": {
+                      "offset": 58,
+                      "line": 3,
+                      "column": 26
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 41,
+                    "line": 3,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 58,
+                    "line": 3,
+                    "column": 26
+                  },
+                  "filename": "keyframes.scss"
+                }
+              },
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "width",
+                  "loc": {
+                    "start": {
+                      "offset": 68,
+                      "line": 4,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 73,
+                      "line": 4,
+                      "column": 14
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "300%",
+                      "loc": {
+                        "start": {
+                          "offset": 75,
+                          "line": 4,
+                          "column": 16
+                        },
+                        "end": {
+                          "offset": 79,
+                          "line": 4,
+                          "column": 20
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 75,
+                      "line": 4,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 79,
+                      "line": 4,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 68,
+                    "line": 4,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 79,
+                    "line": 4,
+                    "column": 20
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
+          },
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "start": {
+                  "offset": 92,
+                  "line": 7,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 95,
+                  "line": 7,
+                  "column": 8
+                },
+                "filename": "keyframes.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "70%",
+                "loc": {
+                  "start": {
+                    "offset": 92,
+                    "line": 7,
+                    "column": 5
+                  },
+                  "end": {
+                    "offset": 95,
+                    "line": 7,
+                    "column": 8
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "margin-left",
+                  "loc": {
+                    "start": {
+                      "offset": 106,
+                      "line": 8,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 117,
+                      "line": 8,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "90%",
+                      "loc": {
+                        "start": {
+                          "offset": 119,
+                          "line": 8,
+                          "column": 22
+                        },
+                        "end": {
+                          "offset": 122,
+                          "line": 8,
+                          "column": 25
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 119,
+                      "line": 8,
+                      "column": 22
+                    },
+                    "end": {
+                      "offset": 122,
+                      "line": 8,
+                      "column": 25
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 106,
+                    "line": 8,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 122,
+                    "line": 8,
+                    "column": 25
+                  },
+                  "filename": "keyframes.scss"
+                }
+              },
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "width",
+                  "loc": {
+                    "start": {
+                      "offset": 132,
+                      "line": 9,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 137,
+                      "line": 9,
+                      "column": 14
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "150%",
+                      "loc": {
+                        "start": {
+                          "offset": 139,
+                          "line": 9,
+                          "column": 16
+                        },
+                        "end": {
+                          "offset": 143,
+                          "line": 9,
+                          "column": 20
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 139,
+                      "line": 9,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 143,
+                      "line": 9,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 132,
+                    "line": 9,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 143,
+                    "line": 9,
+                    "column": 20
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
+          },
+          {
+            "type": "RULE",
+            "selector": {
+              "type": "SELECTOR",
+              "meta": [],
+              "loc": {
+                "start": {
+                  "offset": 156,
+                  "line": 12,
+                  "column": 5
+                },
+                "end": {
+                  "offset": 158,
+                  "line": 12,
+                  "column": 7
+                },
+                "filename": "keyframes.scss"
+              },
+              "value": {
+                "type": "TEXT",
+                "value": "to",
+                "loc": {
+                  "start": {
+                    "offset": 156,
+                    "line": 12,
+                    "column": 5
+                  },
+                  "end": {
+                    "offset": 158,
+                    "line": 12,
+                    "column": 7
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            },
+            "children": [
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "margin-left",
+                  "loc": {
+                    "start": {
+                      "offset": 169,
+                      "line": 13,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 180,
+                      "line": 13,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "0%",
+                      "loc": {
+                        "start": {
+                          "offset": 182,
+                          "line": 13,
+                          "column": 22
+                        },
+                        "end": {
+                          "offset": 184,
+                          "line": 13,
+                          "column": 24
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 182,
+                      "line": 13,
+                      "column": 22
+                    },
+                    "end": {
+                      "offset": 184,
+                      "line": 13,
+                      "column": 24
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 169,
+                    "line": 13,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 184,
+                    "line": 13,
+                    "column": 24
+                  },
+                  "filename": "keyframes.scss"
+                }
+              },
+              {
+                "type": "DECLARATION",
+                "left": {
+                  "type": "TEXT",
+                  "value": "width",
+                  "loc": {
+                    "start": {
+                      "offset": 194,
+                      "line": 14,
+                      "column": 9
+                    },
+                    "end": {
+                      "offset": 199,
+                      "line": 14,
+                      "column": 14
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "right": {
+                  "type": "LIST",
+                  "value": [
+                    {
+                      "type": "TEXT",
+                      "value": "100%",
+                      "loc": {
+                        "start": {
+                          "offset": 201,
+                          "line": 14,
+                          "column": 16
+                        },
+                        "end": {
+                          "offset": 205,
+                          "line": 14,
+                          "column": 20
+                        },
+                        "filename": "keyframes.scss"
+                      }
+                    }
+                  ],
+                  "loc": {
+                    "start": {
+                      "offset": 201,
+                      "line": 14,
+                      "column": 16
+                    },
+                    "end": {
+                      "offset": 205,
+                      "line": 14,
+                      "column": 20
+                    },
+                    "filename": "keyframes.scss"
+                  }
+                },
+                "loc": {
+                  "start": {
+                    "offset": 194,
+                    "line": 14,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 205,
+                    "line": 14,
+                    "column": 20
+                  },
+                  "filename": "keyframes.scss"
+                }
+              }
+            ],
+            "loc": {
+              "filename": "",
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              }
+            }
+          }
+        ],
+        "loc": {
+          "filename": "",
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          }
+        }
+      },
+      "prelude": {
+        "type": "KeyframesPrelude",
+        "children": [
+          {
+            "type": "TEXT",
+            "value": "slide-in",
+            "loc": {
+              "start": {
+                "offset": 11,
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "offset": 19,
+                "line": 1,
+                "column": 20
+              },
+              "filename": "keyframes.scss"
+            }
+          }
+        ],
+        "loc": {
+          "start": {
+            "offset": 11,
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "offset": 19,
+            "line": 1,
+            "column": 20
+          },
+          "filename": "keyframes.scss"
+        }
+      },
+      "loc": {
+        "start": {
+          "offset": 11,
+          "line": 1,
+          "column": 12
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "filename": "keyframes.scss"
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "keyframes.scss": "@keyframes slide-in {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    70% {\n        margin-left: 90%;\n        width: 150%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 100%;\n    }\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}
