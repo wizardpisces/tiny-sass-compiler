@@ -3,7 +3,6 @@
 
 ### feat
 
-* complete css selector parser
 * add buildin modules and less.js like @plugin
 * complete @keyframes (based on @content)
 * add static check for acss in vscode
