@@ -710,11 +710,25 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
          */
 
         if (isAssignToken()) {
+            /**
+             * solve scenario default value, prevent from ll(n) check eg:
+             * @mixin avatar($size, $circle: false) 
+             * @include avatar(100px, $circle: false);
+             * 
+             */
+            if (expr.type === NodeTypes.VARIABLE) {
+                return parseDeclaration(expr)
+            }
+
+            /**
+             * 
+             */
+
             let lln = 1,
                 predictToken: Token;
             while (true) {
                 predictToken = input.peek(lln);
-                if (predictToken.value === ';' || predictToken.value === '}' || predictToken.value === ',') { // treat as NodeTypes.DECLARATION
+                if (predictToken.value === ';' || predictToken.value === '}') { // treat as NodeTypes.DECLARATION
                     return parseDeclaration(expr)
                 } else if (predictToken.value === '{') { // treat as NodeTypes.SELECTOR
                     // expr.value = tokens.reduce((prev, token) => prev + token.value, expr.value)
