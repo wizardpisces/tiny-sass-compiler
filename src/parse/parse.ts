@@ -712,7 +712,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         if (isAssignToken()) {
             /**
              * solve scenario default value, prevent from ll(n) check eg:
-             * @mixin avatar($size, $circle: false) 
+             * @mixin avatar($size, $circle: false) {}
              * @include avatar(100px, $circle: false);
              * 
              */
@@ -721,7 +721,8 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
             }
 
             /**
-             * 
+             * solve complicated selector eg:
+             * &:not([disabled]):hover {}
              */
 
             let lln = 1,
@@ -729,10 +730,12 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
             while (true) {
                 predictToken = input.peek(lln);
                 if (predictToken.value === ';' || predictToken.value === '}') { // treat as NodeTypes.DECLARATION
+
                     return parseDeclaration(expr)
+
                 } else if (predictToken.value === '{') { // treat as NodeTypes.SELECTOR
-                    // expr.value = tokens.reduce((prev, token) => prev + token.value, expr.value)
-                    let rule: RuleStatement = parseRule(
+
+                    return parseRule(
                         createSelectorNode(
                             createListNode(
                                 range(lln - 1).map((): SimpleExpressionNode => {
@@ -743,7 +746,6 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
                             )
                         )
                     )
-                    return rule
 
                 } else {
                     lln++

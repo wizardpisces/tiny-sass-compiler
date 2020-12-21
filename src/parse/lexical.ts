@@ -297,7 +297,7 @@ export default function lex(input: InputStream): LexicalStream {
     }
 
     /**
-     * reset coordination after peek value
+     * reset coordination after peek ll(n) lexical value
      * https://www.geeksforgeeks.org/construction-of-ll1-parsing-table/
      */
     function ll(n = 1) {
