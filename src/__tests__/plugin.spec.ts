@@ -1,6 +1,6 @@
-import { parse, transform, registerPlugin, generate } from '../index'
+import { parse, transform, generate } from '../index'
 import { CodegenNode, NodeTypes } from '../parse/ast'
-import { PluginContext } from '../pluginManager'
+import { PluginContext, walk, registerPlugin } from '../traverse'
 describe('plugin: tests', () => {
     const source = `
 $stack:    Helvetica, sans-serif;
@@ -34,8 +34,10 @@ let result =
         })
         registerPlugin(testPlugin)
 
-        const { code } = generate(parsedAst)
+        let { code } = generate(parsedAst)
         expect(code).toEqual(result)
         expect(code).toMatchSnapshot()
+
+        walk(parsedAst,testPlugin)
     })
 })

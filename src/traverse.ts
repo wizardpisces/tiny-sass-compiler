@@ -15,13 +15,18 @@ export type PluginObject = {
 export type Plugin = PluginFn | PluginObject
 
 class PluginManager {
-    _enterWalkers: Set<PluginFn> 
+    _enterWalkers: Set<PluginFn>
     _leaveWalkers: Set<PluginFn>
-    _applied:boolean
+    _applied: boolean
     constructor() {
         this._enterWalkers = new Set()
         this._leaveWalkers = new Set()
         this._applied = false
+    }
+
+    public walk(ast: RootNode, plugin) {
+        this.registerPlugin(plugin)
+        this.applyPlugins(ast)
     }
 
     _addEnterWalker(walker: PluginFn) {
@@ -35,24 +40,24 @@ class PluginManager {
     _walk(node: CodegenNode, list: CodegenNode[]) {
         this._runEnterWalkers(node, list)
         if (node.type === NodeTypes.RULE) {
-            (node.children as CodegenNode[]).forEach((CHILDNode: CodegenNode, index: number) => {
-                this._walk(CHILDNode, node.children as CodegenNode[])
+            (node.children as CodegenNode[]).forEach((childNode: CodegenNode, index: number) => {
+                this._walk(childNode, node.children as CodegenNode[])
             })
         }
-        this._runLeaveWakers(node,list)
+        this._runLeaveWakers(node, list)
     }
 
-    applyPlugins(ast:RootNode){
-        if (this._applied){
+    public applyPlugins(ast: RootNode) {
+        if (this._applied) {
             return;
-        }else{
+        } else {
             this._applied = true;
         }
 
         (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode) => this._walk(node, ast.children as ProgCodeGenNode[]));
     }
 
-    registerPlugin(plugin: Plugin) {
+    public registerPlugin(plugin: Plugin) {
         if (typeof plugin === 'function') {
             return this._addEnterWalker(plugin)
         } else {
@@ -61,10 +66,10 @@ class PluginManager {
         }
     }
 
-    _createContext(visitedNode:CodegenNode, list: CodegenNode[]): PluginContext {
+    _createContext(visitedNode: CodegenNode, list: CodegenNode[]): PluginContext {
         return {
             remove(node: CodegenNode) {
-                list.splice(list.indexOf(node),1)
+                list.splice(list.indexOf(node), 1)
             },
             insert(node: CodegenNode) {
                 list.splice(list.indexOf(visitedNode) + 1, 0, node)
@@ -73,18 +78,26 @@ class PluginManager {
     }
 
     _runEnterWalkers(node: CodegenNode, list: CodegenNode[]) {
-        this._enterWalkers.forEach(walker => walker.call(this, node, this._createContext(node, list)))
+        this._enterWalkers.forEach((walker: PluginFn) => walker.call(this, node, this._createContext(node, list)))
     }
     _runLeaveWakers(node: CodegenNode, list: CodegenNode[]) {
-        this._leaveWalkers.forEach(walker => walker.call(this, node, this._createContext(node, list)))
+        this._leaveWalkers.forEach((walker: PluginFn) => walker.call(this, node, this._createContext(node, list)))
     }
 }
 
 export const pluginManager = new PluginManager();
 
-export function registerPlugin(plugin:Plugin){
+// provide open traverse on ast for custom data collection
+export function walk(ast: RootNode, plugin: Plugin) {
+    return pluginManager.walk(ast, plugin)
+}
+
+// provide open plugin registration
+export function registerPlugin(plugin: Plugin) {
     return pluginManager.registerPlugin(plugin)
 }
-export function applyPlugins(ast:RootNode){
+
+// provide open execution of plugins
+export function applyPlugins(ast: RootNode) {
     return pluginManager.applyPlugins(ast)
 }

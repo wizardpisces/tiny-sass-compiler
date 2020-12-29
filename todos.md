@@ -3,7 +3,8 @@
 
 ### feat
 
-* add buildin modules and less.js like @plugin
+* optimize plugins based on @babel/traverse API, and add one useful plugin
+* add buildin modules and [less.js similar @plugin](https://less.bootcss.com/features/#plugin-at-rules),to provide js includes function
 * add static check for acss in vscode
 * add browser style[type='text/acss'] and link[rel='RootNode/acss'] support
 * add changeLog generation （reference vite）

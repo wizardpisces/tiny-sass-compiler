@@ -129,8 +129,10 @@ npm run jest
 
 *Interested in more intermediate status? Please view files in ./test-dist/ which contains ast after parse | transform and code after code generation*
 
-[Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
-[AST travesal plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
+## Other Readme
+
+* [Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
+* [AST travesal plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
 
 ## Reference
 

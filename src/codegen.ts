@@ -11,7 +11,7 @@ import {
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
 import { advancePositionWithMutation, isKeyframesName } from './parse/util'
-import { applyPlugins } from './pluginManager'
+import { applyPlugins } from './traverse'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
