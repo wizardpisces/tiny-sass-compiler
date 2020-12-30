@@ -1,12 +1,14 @@
 import { RuleStatement, MediaStatement, createMediaStatement, createMediaFromRule, NodeTypes, MediaPrelude, MediaQuery } from "../parse/ast";
 import { CodegenContext } from '@/type';
 import { genChildrenIterator } from './util'
+import { Tree } from './tree';
 
 type params = Parameters<typeof createMediaStatement>
 
-export default class Media {
+export default class Media extends Tree{
     mediaStatement: MediaStatement
     constructor(mediaPrelude: params[0] | RuleStatement | RuleStatement[] | MediaStatement, body?: params[1]) {
+        super()
         if (mediaPrelude.length || (mediaPrelude as RuleStatement).type === NodeTypes.RULE) { // create from rules
             // mediaPrelude.type === NodeTypes.RULE
             this.mediaStatement = createMediaFromRule(mediaPrelude as RuleStatement[])

@@ -1,12 +1,14 @@
 import { Keyframes, TextNode, RuleStatement } from "../parse/ast";
 import { CodegenContext } from '@/type';
 import { genChildrenIterator } from './util'
+import { Tree } from './tree';
 
 // type params = Parameters<typeof createSelectorNode>
 
-export default class KeyframesTree {
+export default class KeyframesTree extends Tree{
     keyframes: Keyframes
     constructor(node: Keyframes) {
+        super()
         this.keyframes = node;
     }
 

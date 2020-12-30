@@ -10,5 +10,11 @@
 
 Detail travesal API reference /src/__tests__/plugin.spec.ts
 
+### Todos
+
+* complete traverse with visitor mode and optimize codegen tree using the same traverser
+* merge plugin?
+
 ## reference 
 * https://github.com/csstree/csstree/blob/master/docs/traversal.md 
+* https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors

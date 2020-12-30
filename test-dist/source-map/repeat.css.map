@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "repeat.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA;EACI,MAAO;;AAGX;EACI,MAAO;EACP,KAAM",
+  "sourcesContent": [
+    ".repeat1 {\n    color: red;\n}\n\n.repeat1 {\n    color: green;\n    size: 14px;\n}\n"
+  ]
+}

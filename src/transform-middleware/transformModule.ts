@@ -13,7 +13,7 @@ import {
     TextNode,
     Statement,
     ImportStatement
-} from '@/parse/ast';
+} from '../parse/ast';
 import { ParserOptions } from '../type';
 
 const EXTNAME_GLOBAL = '.scss'

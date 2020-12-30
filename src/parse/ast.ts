@@ -1,4 +1,4 @@
-export const enum NodeTypes {
+export enum NodeTypes {
     TEXT = 'TEXT',  // TEXT = (TEXT\s+ | TEXT\s+)*
     VARIABLE = 'VARIABLE', // VARIABLE.value === variable's name , expression deleted after evaluation
     PUNC = 'PUNC',  // punctuation: parens((|)), comma(,), semicolon(;) etc.
@@ -325,9 +325,9 @@ export interface Keyframes extends Atrule {
 
 /* codeGenNode means ast tree that is transformed  */
 
-export type CodegenNode = TextNode | ProgCodeGenNode
+export type CodegenNode = TextNode | ProgCodeGenNode | RootNode
 
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude
+export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude | MediaStatement | Keyframes
 
 export type FileSourceMap = {
     [key: string]: string
@@ -338,7 +338,7 @@ export interface RootNode extends Node {
     // codeGenNode ,use it to generate source map between files
     fileSourceMap: FileSourceMap
 
-    children: (Statement | ProgCodeGenNode)[]
+    children: (Statement | CodegenNode)[]
 }
 
 // work before ast transform

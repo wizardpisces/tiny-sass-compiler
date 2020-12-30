@@ -3,7 +3,7 @@
  * @function vs @mixin
  * */
 
-import { NodeTypes } from '@/parse/ast';
+import { NodeTypes } from '../parse/ast';
 
 export type Kind = NodeTypes.VARIABLE | NodeTypes.VAR_KEY // VAR_KEY only involes get data so merge into NodeTypes.VARIABLE for now
     | NodeTypes.FUNCTION | NodeTypes.RETURN

@@ -3,12 +3,14 @@ import { isMediaNode, isEmptyNode } from '../parse/util';
 import { CodegenContext } from '@/type';
 import Selector from './selector';
 import { Declaration } from '.';
+import { Tree } from './tree';
 
 type params = Parameters<typeof createRuleStatement>
 
-export default class Rule {
+export default class Rule extends Tree{
     ruleStatement: RuleStatement
     constructor(selector: params[0] | MediaStatement | RuleStatement,children?: params[1]){
+        super()
         if (isMediaNode(selector)){
             this.ruleStatement = createRuleFromMedia(selector as MediaStatement)
         } else if(children){

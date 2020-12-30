@@ -3,6 +3,7 @@
 
 ### feat
 
+* add traverse plugin to merge same selector, and cover more than children traverse (should also includes RULE Selector node)
 * optimize plugins based on @babel/traverse API, and add one useful plugin
 * add buildin modules and [less.js similar @plugin](https://less.bootcss.com/features/#plugin-at-rules),to provide js includes function
 * add static check for acss in vscode

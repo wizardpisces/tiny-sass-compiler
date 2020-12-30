@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugin: PluginFn registerPlugin with PluginFn 1`] = `
+"body .test{
+  color:#333;
+}
+"
+`;
+
+exports[`plugin: PluginFn registerPlugin with PluginVisitor 1`] = `
+"body .test{
+  color:#333;
+}
+"
+`;
