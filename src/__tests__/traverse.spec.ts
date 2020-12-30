@@ -22,14 +22,14 @@ body .test{
         resetPlugin();
     });
 
-    function testPlugin(context: TraverseContext) {
+    function traversePluginFn(context: TraverseContext) {
         let { currentNode } = context;
         if ((currentNode as CodegenNode).type === NodeTypes.DECLARATION && (currentNode as CodegenNode).left.value === 'font') {
             context.removeNode()
         }
     }
 
-    function visitorPlugin(): PluginVisitor {
+    function traverseVisitorPlugin(): PluginVisitor {
         return {
             visitor: {
                 [NodeTypes.DECLARATION](context: TraverseContext) {
@@ -42,7 +42,22 @@ body .test{
         }
     }
 
-    test('registerPlugin with PluginVisitor', () => {
+    function traverseVisitorPluginWithObject(): PluginVisitor {
+        return {
+            visitor: {
+                [NodeTypes.DECLARATION]:{
+                    enter(context: TraverseContext){
+                        let { currentNode } = context;
+                        if ((currentNode as CodegenNode).left.value === 'font') {
+                            context.removeNode()
+                        }
+                   }
+                }
+            }
+        }
+    }
+
+    test('traverseVisitorPlugin', () => {
         let parsedAst = parse(source, {
             filename: `default.scss`,
             source
@@ -51,14 +66,30 @@ body .test{
             filename: `default.scss`,
             source
         })
-        registerPlugin(visitorPlugin())
+        registerPlugin(traverseVisitorPlugin())
 
         let { code } = generate(parsedAst)
         expect(code).toEqual(result)
         expect(code).toMatchSnapshot()
     })
 
-    test('registerPlugin with PluginFn', () => {
+    test('traverseVisitorPluginWithObject', () => {
+        let parsedAst = parse(source, {
+            filename: `default.scss`,
+            source
+        })
+        transform(parsedAst, {
+            filename: `default.scss`,
+            source
+        })
+        registerPlugin(traverseVisitorPluginWithObject())
+
+        let { code } = generate(parsedAst)
+        expect(code).toEqual(result)
+        expect(code).toMatchSnapshot()
+    })
+
+    test('traversePluginFn', () => {
         
         let parsedAst = parse(source, {
             filename: `default.scss`,
@@ -68,7 +99,7 @@ body .test{
             filename: `default.scss`,
             source
         })
-        registerPlugin(testPlugin)
+        registerPlugin(traversePluginFn)
 
         let { code } = generate(parsedAst)
         expect(code).toEqual(result)

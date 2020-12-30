@@ -1,4 +1,8 @@
-import { CodegenNode, NodeTypes, RootNode } from './parse/ast'
+/**
+ * Applied only on codegen related AST
+*/
+import { CodegenNode, NodeTypes, RootNode, MediaPrelude, MediaStatement, KeyframesPrelude, Keyframes } from './parse/ast'
+import { isKeyframesName } from './parse/util';
 
 export type TraverseContext = {
     parent: CodegenNode | null
@@ -19,7 +23,7 @@ export type PluginObject = {
 
 export type PluginVisitor = {
     visitor: {
-        [key in NodeTypes]?: Function
+        [key in NodeTypes]?: Function | PluginObject
     }
 }
 
@@ -74,27 +78,27 @@ function createTraverseContext(): TraverseContext {
     return context
 }
 
-export function cloneContext(context:TraverseContext){
+export function cloneContext(context: TraverseContext) {
     let contextCloned: TraverseContext = {
-       ...context
+        ...context
     }
     return contextCloned;
 }
 
-class PluginManager {
-    _enterWalkers: Set<PluginFn>
-    _enterVisitors: Set<PluginVisitor>
-    _leaveWalkers: Set<PluginFn>
+export class Traverse {
+    enterPlugins: Set<PluginFn>
+    visitorPlugins: Set<PluginVisitor>
+    leavePlugins: Set<PluginFn>
     constructor() {
-        this._enterWalkers = new Set()
-        this._leaveWalkers = new Set()
-        this._enterVisitors = new Set()
+        this.enterPlugins = new Set()
+        this.leavePlugins = new Set()
+        this.visitorPlugins = new Set()
     }
 
-    public resetPlugin(){
-        this._enterWalkers = new Set()
-        this._leaveWalkers = new Set()
-        this._enterVisitors = new Set()
+    public resetPlugin() {
+        this.enterPlugins = new Set()
+        this.leavePlugins = new Set()
+        this.visitorPlugins = new Set()
     }
 
     public walk(ast: RootNode, plugin) {
@@ -117,43 +121,36 @@ class PluginManager {
         if (typeof plugin === 'function') {
             return this.addEnterWalker(plugin)
         } else if ((plugin as PluginVisitor).visitor) {
-            this.addEnterVisitor(plugin as PluginVisitor)
+            this.addVisitorPlugin(plugin as PluginVisitor)
         } else {
             addPluginObject.call(this, plugin as PluginObject)
         }
     }
 
-    addEnterWalker(walker: PluginFn) {
-        this._enterWalkers.add(walker)
+    addEnterWalker(plugin: PluginFn) {
+        this.enterPlugins.add(plugin)
     }
 
-    addEnterVisitor(walker: PluginVisitor) {
-        this._enterVisitors.add(walker)
+    addVisitorPlugin(plugin: PluginVisitor) {
+        this.visitorPlugins.add(plugin)
     }
 
-    addLeaveWalker(walker: PluginFn) {
-        this._enterWalkers.add(walker)
-    }
-
-   
-    walkAtrule(node: CodegenNode, context: TraverseContext) { // use uniform traverse to both generate code and complete traverse visitor
-        // node.block.children.forEach((childNode: any) => {
-        //     this._walk(childNode, node)
-        // })
-        // this._walk(node.MediaPrelude, node);
-        console.warn('[walkAtrule]:Todos...')
+    addLeaveWalker(plugin: PluginFn) {
+        this.leavePlugins.add(plugin)
     }
 
     traverseChildren(
         parent: CodegenNode,
         context: TraverseContext
     ) {
-        let i = 0
+        let children = parent.children || parent.block.children,
+            i = 0
+
         const nodeRemoved = () => {
             i--
         }
-        for (; i < parent.children.length; i++) {
-            const child = parent.children[i]
+        for (; i < children.length; i++) {
+            const child = children[i]
             context.parent = parent
             context.childIndex = i
             context.onNodeRemoved = nodeRemoved
@@ -161,67 +158,87 @@ class PluginManager {
         }
     }
 
-     // depth fisrt search
+    // depth fisrt search
     traverseNode(node: CodegenNode, context: TraverseContext) {
         context.currentNode = node
         let oldContext = cloneContext(context)
 
-        this.runEnterWalkers(oldContext);
+        this.runEnterPlugins(oldContext);
 
-        switch(node.type){
+        switch (node.type) {
             case NodeTypes.RootNode:
                 this.traverseChildren(node, context);
                 break;
             case NodeTypes.RULE:
-                this.traverseChildren(node, context)
+                // first traverse selector for codegen purpose
                 this.traverseNode(node.selector, context);
-                break
+                this.traverseChildren(node, context)
+                break;
+            case NodeTypes.Atrule:
+                if (node.name === 'media') {
+                    this.traverseNode(<MediaPrelude>node.prelude, context)
+                    this.traverseChildren(<MediaStatement>node,context)
+                }else if (isKeyframesName(node.name)) {
+                    this.traverseNode(<KeyframesPrelude>node.prelude, context)
+                    this.traverseChildren(<Keyframes>node,context)
+                }
+                break;
         }
 
-        // if (node.type === NodeTypes.Atrule) {
-        //     this.walkAtrule(node, context)
-        // }
-
-        this.runLeaveWakers(oldContext)
+        this.runLeavePlugins(oldContext)
     }
 
-    runEnterWalkers(context:TraverseContext) {
-        this._enterVisitors.forEach((visitor: PluginVisitor) => {
+    runEnterPlugins(context: TraverseContext) {
+        this.visitorPlugins.forEach((visitor: PluginVisitor) => {
             let nodeType = (context.currentNode as CodegenNode).type
-            if (typeof visitor.visitor[nodeType] === 'function') {
-                (visitor.visitor[nodeType] as Function)(context)
+            if (visitor.visitor[nodeType]) {
+                if (typeof visitor.visitor[nodeType] === 'function') {
+                    (visitor.visitor[nodeType] as Function)(context)
+                } else if (typeof (visitor.visitor[nodeType] as PluginObject).enter === 'function') {
+                    ((visitor.visitor[nodeType] as PluginObject).enter as Function)(context)
+                }
             }
         })
 
-        this._enterWalkers.forEach((walker) => {
-            walker(context)
+        this.enterPlugins.forEach((plugin) => {
+            plugin(context)
         })
     }
 
-    runLeaveWakers(context:TraverseContext) {
-        this._leaveWalkers.forEach((walker: PluginFn) => {
-            walker(context)
+    runLeavePlugins(context: TraverseContext) {
+
+        this.visitorPlugins.forEach((visitor: PluginVisitor) => {
+            let nodeType = (context.currentNode as CodegenNode).type
+            if (visitor.visitor[nodeType]) {
+                if (typeof (visitor.visitor[nodeType] as PluginObject).leave === 'function') {
+                    ((visitor.visitor[nodeType] as PluginObject).leave as Function)(context)
+                }
+            }
+        })
+
+        this.leavePlugins.forEach((plugin: PluginFn) => {
+            plugin(context)
         })
     }
 }
 
-let pluginManager = new PluginManager();
+let traverse = new Traverse();
 
 // provide open traverse on ast for custom data collection
 export function walk(ast: RootNode, plugin: Plugin) {
-    return pluginManager.walk(ast, plugin)
+    return traverse.walk(ast, plugin)
 }
 
 export function resetPlugin() {
-    pluginManager = new PluginManager();
+    traverse = new Traverse();
 }
 
 // provide open plugin registration
 export function registerPlugin(plugin: Plugin) {
-    return pluginManager.registerPlugin(plugin)
+    return traverse.registerPlugin(plugin)
 }
 
 // provide open execution of plugins
 export function applyPlugins(ast: RootNode) {
-    return pluginManager.applyPlugins(ast)
+    return traverse.applyPlugins(ast)
 }

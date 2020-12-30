@@ -327,7 +327,7 @@ export interface Keyframes extends Atrule {
 
 export type CodegenNode = TextNode | ProgCodeGenNode | RootNode
 
-export type ProgCodeGenNode = DeclarationStatement | RuleStatement | EmptyNode | SelectorNode | Atrule | MediaPrelude | MediaStatement | Keyframes
+export type ProgCodeGenNode = RuleStatement | EmptyNode | SelectorNode | DeclarationStatement | Atrule | MediaStatement | MediaPrelude | Keyframes | KeyframesPrelude
 
 export type FileSourceMap = {
     [key: string]: string

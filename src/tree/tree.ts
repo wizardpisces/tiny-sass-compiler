@@ -19,6 +19,8 @@ export class Tree {
  */
 export function deprecate() {
     return function (target, name, descriptor) {
-        console.warn(`[Tree]: ${name} will be deprecated!!!`)
+        console.warn(`
+            [Tree]: ${name} will be deprecated!!! Code generation process has been replaced by genCodeVisitor which reuse traverse over node!!!
+        `)
     }
 }

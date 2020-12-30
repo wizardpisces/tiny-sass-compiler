@@ -11,12 +11,13 @@ import {
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
 import { advancePositionWithMutation, isKeyframesName } from './parse/util'
-import { applyPlugins } from './traverse'
+import { applyPlugins, registerPlugin, resetPlugin } from './traverse'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
 import { Rule, Media } from './tree';
 import KeyframesTree from './tree/keyframes';
+import { genCodeVisitor } from './genCodeVisitor';
 
 function createCodegenContext(
     ast: RootNode,
@@ -98,19 +99,26 @@ export function generate(
 ): CodegenResult {
 
     applyPlugins(ast);// run plugins automatically before codegen
+    resetPlugin(); // reset Plugin to prevent user registered plugins from being executed multiple times
 
     const context = createCodegenContext(ast, options);
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode,index) =>{
-        genNode(node, context);
-        context.newline()
-    })
+    registerPlugin(genCodeVisitor(context));
+
+    applyPlugins(ast);
 
     return {
         ast,
         code: context.code,
         // SourceMapGenerator does have toJSON() method but it's not in the types
         map: context.map ? (context.map as any).toJSON() : undefined
-    }
+    };
+
+    // deprecated!!!! replaced by genCodeVisitor traverse plugin
+    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode,index) =>{
+        genNode(node, context);
+        context.newline()
+    })
+    
 }
 
 function genNode(

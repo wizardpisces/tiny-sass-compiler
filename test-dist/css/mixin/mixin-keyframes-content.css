@@ -5,28 +5,29 @@
   100%{
     transform:translateX(200px);
   }
-}
-@-moz-keyframes move-the-object{
+  
+}@-moz-keyframes move-the-object{
   0%{
     transform:translateX(0);
   }
   100%{
     transform:translateX(200px);
   }
-}
-@-o-keyframes move-the-object{
+  
+}@-o-keyframes move-the-object{
   0%{
     transform:translateX(0);
   }
   100%{
     transform:translateX(200px);
   }
-}
-@keyframes move-the-object{
+  
+}@keyframes move-the-object{
   0%{
     transform:translateX(0);
   }
   100%{
     transform:translateX(200px);
   }
+  
 }
