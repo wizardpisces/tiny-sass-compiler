@@ -1,8 +1,5 @@
-import { RuleStatement, MediaStatement, createRuleFromMedia, createRuleStatement, SelectorNode, DeclarationStatement } from "../parse/ast";
-import { isMediaNode, isEmptyNode } from '../parse/util';
-import { CodegenContext } from '@/type';
-import Selector from './selector';
-import { Declaration } from '.';
+import { RuleStatement, MediaStatement, createRuleFromMedia, createRuleStatement, SelectorNode } from "../parse/ast";
+import { isMediaNode } from '../parse/util';
 import { Tree } from './tree';
 
 type params = Parameters<typeof createRuleStatement>
@@ -27,26 +24,6 @@ export default class Rule extends Tree{
 
     toJSON(){
         return this.ruleStatement
-    }
-
-    genCSS(context:CodegenContext){
-        let node =  this.ruleStatement;
-        const { push, deindent, indent, newline } = context;
-
-        new Selector(node.selector).genCSS(context)
-
-        push('{');
-        indent();
-        node.children.forEach((declaration: any, index: number) => {
-            if (index && !isEmptyNode(declaration)) {
-                newline()
-            }
-            
-            new Declaration(declaration as DeclarationStatement).genCSS(context)
-        })
-
-        deindent();
-        push('}');
     }
 }
 

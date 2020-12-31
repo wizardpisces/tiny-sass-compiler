@@ -1,6 +1,6 @@
 import { parse, transform, generate } from '../index'
 import { NodeTypes, CodegenNode } from '../parse/ast'
-import { TraverseContext, registerPlugin, PluginVisitor, resetPlugin } from '../traverse'
+import traverse,{ TraverseContext, PluginVisitor } from '../traverse'
 
 describe('plugin: PluginFn', () => {
     const source = `
@@ -19,7 +19,7 @@ body .test{
 }
 `   
     beforeEach(() => {
-        resetPlugin();
+        traverse.resetPlugin();
     });
 
     function traversePluginFn(context: TraverseContext) {
@@ -66,7 +66,7 @@ body .test{
             filename: `default.scss`,
             source
         })
-        registerPlugin(traverseVisitorPlugin())
+        traverse.registerPlugin(traverseVisitorPlugin())
 
         let { code } = generate(parsedAst)
         expect(code).toEqual(result)
@@ -82,7 +82,7 @@ body .test{
             filename: `default.scss`,
             source
         })
-        registerPlugin(traverseVisitorPluginWithObject())
+        traverse.registerPlugin(traverseVisitorPluginWithObject())
 
         let { code } = generate(parsedAst)
         expect(code).toEqual(result)
@@ -99,7 +99,7 @@ body .test{
             filename: `default.scss`,
             source
         })
-        registerPlugin(traversePluginFn)
+        traverse.registerPlugin(traversePluginFn)
 
         let { code } = generate(parsedAst)
         expect(code).toEqual(result)

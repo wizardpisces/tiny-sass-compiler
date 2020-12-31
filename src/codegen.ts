@@ -1,22 +1,14 @@
 import {
-    NodeTypes,
     RootNode,
-    CodegenNode,
-    ProgCodeGenNode,
     Position,
-    Atrule,
-    MediaStatement,
     SourceLocation,
-    Keyframes,
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
-import { advancePositionWithMutation, isKeyframesName } from './parse/util'
-import { applyPlugins, registerPlugin, resetPlugin } from './traverse'
+import { advancePositionWithMutation } from './parse/util'
+import traverse from './traverse'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
 import { CodegenContext, CodegenResult, CodegenOptions} from './type'
-import { Rule, Media } from './tree';
-import KeyframesTree from './tree/keyframes';
 import { genCodeVisitor } from './genCodeVisitor';
 
 function createCodegenContext(
@@ -97,14 +89,14 @@ export function generate(
     ast: RootNode,
     options: CodegenOptions = {}
 ): CodegenResult {
-
-    applyPlugins(ast);// run plugins automatically before codegen
-    resetPlugin(); // reset Plugin to prevent user registered plugins from being executed multiple times
+    
+    // run plugins automatically before codegen
+    traverse.applyPlugins(ast);
 
     const context = createCodegenContext(ast, options);
-    registerPlugin(genCodeVisitor(context));
 
-    applyPlugins(ast);
+    // reset Plugin to prevent user registered plugins from being executed multiple times
+    traverse.resetPlugin().registerPlugin(genCodeVisitor(context)).applyPlugins(ast);
 
     return {
         ast,
@@ -112,38 +104,4 @@ export function generate(
         // SourceMapGenerator does have toJSON() method but it's not in the types
         map: context.map ? (context.map as any).toJSON() : undefined
     };
-
-    // deprecated!!!! replaced by genCodeVisitor traverse plugin
-    (ast.children as ProgCodeGenNode[]).forEach((node: ProgCodeGenNode,index) =>{
-        genNode(node, context);
-        context.newline()
-    })
-    
-}
-
-function genNode(
-    node: CodegenNode,
-    context: CodegenContext
-) {
-    switch (node.type) {
-        case NodeTypes.RULE:
-            new Rule(node).genCSS(context)
-            break;
-        case NodeTypes.Atrule:
-            genAtRule(node, context);
-            break;
-        case NodeTypes.EMPTY:
-            break;
-
-        default:
-            throw new Error("Don't know how to genNode for " + JSON.stringify(node));
-    }
-}
-
-function genAtRule(node: Atrule, context: CodegenContext) {
-    if(node.name === 'media'){
-        return new Media(node as MediaStatement).genCSS(context);
-    }else if(isKeyframesName(node.name)){
-        return new KeyframesTree(node as Keyframes).genCSS(context);
-    }
 }

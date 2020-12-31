@@ -1,6 +1,4 @@
-import { RuleStatement, MediaStatement, createMediaStatement, createMediaFromRule, NodeTypes, MediaPrelude, MediaQuery } from "../parse/ast";
-import { CodegenContext } from '@/type';
-import { genChildrenIterator } from './util'
+import { RuleStatement, MediaStatement, createMediaStatement, createMediaFromRule, NodeTypes, MediaQuery } from "../parse/ast";
 import { Tree } from './tree';
 
 type params = Parameters<typeof createMediaStatement>
@@ -26,30 +24,7 @@ export default class Media extends Tree{
     accept(visitor) {
 
     }
-
-    genCSS(context: CodegenContext) {
-        let node = this.mediaStatement;
-
-        context.push('@media ')
-        genMediaQueryPrelude(node.prelude, context)
-        genChildrenIterator(node.block.children as RuleStatement[], context)
-    }
 }
-
-function genMediaQueryPrelude(node: MediaPrelude, context: CodegenContext) {
-    let prelude: string = node.children.map((mediaQuery: MediaQuery) => {
-        return mediaQuery.children.map(child => {
-            if (child.type === NodeTypes.MediaFeature) {
-                return `(${child.name}:${child.value.value})`
-            } else if (child.type === NodeTypes.TEXT) { // csstree name Identifier eg: screen , and etc
-                return child.value
-            }
-        }).join(' ');
-    }).join(',');
-
-    context.push(prelude)
-}
-
 
 export function mergeMediaWithSamePrelude(...mediaList: MediaStatement[]): MediaStatement {
 

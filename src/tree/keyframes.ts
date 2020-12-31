@@ -1,6 +1,4 @@
-import { Keyframes, TextNode, RuleStatement } from "../parse/ast";
-import { CodegenContext } from '@/type';
-import { genChildrenIterator } from './util'
+import { Keyframes } from "../parse/ast";
 import { Tree } from './tree';
 
 // type params = Parameters<typeof createSelectorNode>
@@ -15,16 +13,4 @@ export default class KeyframesTree extends Tree{
     toJSON() {
         return this.keyframes
     }
-
-    genCSS(context: CodegenContext) {
-        let node = this.keyframes;
-
-        context.push(node.name+' ')
-        genPrelude(node.prelude, context)
-        genChildrenIterator(node.block.children as RuleStatement[], context)
-    }
-}
-
-function genPrelude(node:Keyframes['prelude'],context:CodegenContext){
-    context.push(node.children.map((child) => (child as TextNode).value).join(' '),node.loc)
 }

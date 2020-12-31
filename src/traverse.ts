@@ -177,10 +177,10 @@ export class Traverse {
             case NodeTypes.Atrule:
                 if (node.name === 'media') {
                     this.traverseNode(<MediaPrelude>node.prelude, context)
-                    this.traverseChildren(<MediaStatement>node,context)
-                }else if (isKeyframesName(node.name)) {
+                    this.traverseChildren(<MediaStatement>node, context)
+                } else if (isKeyframesName(node.name)) {
                     this.traverseNode(<KeyframesPrelude>node.prelude, context)
-                    this.traverseChildren(<Keyframes>node,context)
+                    this.traverseChildren(<Keyframes>node, context)
                 }
                 break;
         }
@@ -222,23 +222,35 @@ export class Traverse {
     }
 }
 
-let traverse = new Traverse();
 
-// provide open traverse on ast for custom data collection
-export function walk(ast: RootNode, plugin: Plugin) {
-    return traverse.walk(ast, plugin)
+
+
+let traverseInstance = new Traverse();
+
+const traverse = {
+    // provide open traverse on ast for custom data collection
+    walk(ast: RootNode, plugin: Plugin) {
+        traverseInstance.walk(ast, plugin)
+        return traverse
+    },
+
+    resetPlugin() {
+        traverseInstance = new Traverse();
+        return traverse
+    },
+
+    // provide open plugin registration
+    registerPlugin(plugin: Plugin) {
+        traverseInstance.registerPlugin(plugin)
+        return traverse
+    },
+
+    // provide open execution of plugins
+    applyPlugins(ast: RootNode) {
+        traverseInstance.applyPlugins(ast)
+        return traverse
+    }
 }
 
-export function resetPlugin() {
-    traverse = new Traverse();
-}
 
-// provide open plugin registration
-export function registerPlugin(plugin: Plugin) {
-    return traverse.registerPlugin(plugin)
-}
-
-// provide open execution of plugins
-export function applyPlugins(ast: RootNode) {
-    return traverse.applyPlugins(ast)
-}
+export default traverse

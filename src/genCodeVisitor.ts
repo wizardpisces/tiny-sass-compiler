@@ -47,7 +47,14 @@ export function genCodeVisitor(context: CodegenContext): Plugin {
                 leave(ctx: TraverseContext) {
                     context.deindent();
                     context.push('}');
-                    context.newline()
+
+                    if(ctx.parent!.type === NodeTypes.Atrule){
+                        if(ctx.childIndex !== ctx.parent!.block.children.length -1){
+                            context.newline()
+                        }
+                    }else{
+                        context.newline()
+                    }
                 },
             },
             [NodeTypes.KeyframesPrelude]: {
@@ -84,12 +91,11 @@ export function genCodeVisitor(context: CodegenContext): Plugin {
                     } else if (isKeyframesName(node.name)) {
                         context.push(node.name + ' ')
                     }
-                 
-                   
                 },
                 leave(ctx: TraverseContext) {
                     context.deindent();
                     context.push('}');
+                    context.newline()
                 },
             }
         }
