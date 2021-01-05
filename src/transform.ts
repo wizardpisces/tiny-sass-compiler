@@ -1,23 +1,15 @@
-import { NodeTypes, Node, RootNode, Statement } from './parse/ast'
-import { TransformOptions } from './type'
+import { RootNode } from './parse/ast'
+import { TransformOptions, TransformContext } from './type'
 import { defaultOnError } from './parse/errors'
 import {
     Environment
 } from './enviroment/Enviroment'
-import { transformModule, transformMiddleware} from './transform-middleware/index'
-import { isBrowser} from './global'
+import { transformModule, transformMiddleware } from './transform-middleware/index'
+import { isBrowser } from './global'
+import { isEmptyNode } from './parse/util'
 // - NodeTransform:
 //   Transforms that operate directly on a childNode. NodeTransforms may mutate,
 //   replace or remove the node being processed.
-export type NodeTransform = (
-    node: Node,
-    context: TransformContext
-) => Statement
-
-export interface TransformContext extends Required<TransformOptions>{
-    root: RootNode
-    env: Environment,
-}
 
 export function createTransformContext(
     root: RootNode,
@@ -39,11 +31,11 @@ export function createTransformContext(
 }
 
 export function transform(root: RootNode, options: TransformOptions) {
-    
+
     const context = createTransformContext(root, options)
 
-    if (!isBrowser()){
-        root = transformModule(root, options)
+    if (!isBrowser()) {
+        root = transformModule(root, context)
     }
 
     transformRoot(root, context);
@@ -52,13 +44,13 @@ export function transform(root: RootNode, options: TransformOptions) {
     transformMiddleware(root)
 }
 
-export function transformRoot(root:RootNode,context:TransformContext){
+export function transformRoot(root: RootNode, context: TransformContext) {
     const { nodeTransforms } = context
 
-    root.children = root.children.map((child)=>{
+    root.children = root.children.map((child) => {
         for (let i = 0; i < nodeTransforms.length; i++) {
             child = nodeTransforms[i](child, context)
         }
         return child;
-    }).filter((child) => child.type !== NodeTypes.EMPTY)
+    }).filter((child) => !isEmptyNode(child))
 }

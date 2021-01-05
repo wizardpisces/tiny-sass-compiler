@@ -284,6 +284,11 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
             return parseEach();
         }
 
+        if (isKwToken('@plugin')) {
+            input.next()
+            return parsePlugin();
+        }
+
         if (isKwToken('@error')) {
             input.next()
             return parseError();
@@ -341,6 +346,25 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
+    }
+
+    function parsePlugin(){
+        function processFilenameExp(exp) {
+            exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
+            return exp;
+        }
+
+        let delimitor = input.peek()
+
+        if (!delimitor.value.startsWith("'") && !delimitor.value.startsWith('"')) {
+            input.emitError(ErrorCodes.EXPECTED_X, locStub, `@plugin expected with ' or " but encountered ${delimitor}`)
+        }
+
+        return {
+            type: NodeTypes.PLUGIN,
+            value: processFilenameExp(consumeNextTokenWithLoc()),
+            loc: locStub
+        }
     }
 
     function parseKeyframes(keyframesName: string): Keyframes {

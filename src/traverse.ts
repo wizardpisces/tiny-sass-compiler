@@ -1,5 +1,6 @@
 /**
  * Applied only on codegen related AST
+ * use case: genCodeVisitor which is used to gen dist css
 */
 import { CodegenNode, NodeTypes, RootNode, MediaPrelude, MediaStatement, KeyframesPrelude, Keyframes } from './parse/ast'
 import { isKeyframesName } from './parse/util';
@@ -90,12 +91,6 @@ export class Traverse {
     visitorPlugins: Set<PluginVisitor>
     leavePlugins: Set<PluginFn>
     constructor() {
-        this.enterPlugins = new Set()
-        this.leavePlugins = new Set()
-        this.visitorPlugins = new Set()
-    }
-
-    public resetPlugin() {
         this.enterPlugins = new Set()
         this.leavePlugins = new Set()
         this.visitorPlugins = new Set()
@@ -227,7 +222,7 @@ export class Traverse {
 
 let traverseInstance = new Traverse();
 
-const traverse = {
+export const traverse = {
     // provide open traverse on ast for custom data collection
     walk(ast: RootNode, plugin: Plugin) {
         traverseInstance.walk(ast, plugin)
@@ -251,6 +246,3 @@ const traverse = {
         return traverse
     }
 }
-
-
-export default traverse

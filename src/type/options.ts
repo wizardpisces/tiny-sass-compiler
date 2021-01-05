@@ -1,5 +1,17 @@
-import { NodeTransform} from '../transform'
 import { CompilerError} from '../parse/errors'
+import { RootNode, Statement, CodegenNode } from '../parse/ast'
+import { Environment } from '../enviroment/Enviroment'
+
+export interface TransformContext extends Required<TransformOptions> {
+    root: RootNode
+    env: Environment,
+}
+
+export type NodeTransform = (
+    node: Statement | CodegenNode,
+    context: TransformContext
+) => Statement
+
 
 export interface TransformOptions {
     /**

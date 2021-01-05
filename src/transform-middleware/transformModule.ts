@@ -14,11 +14,11 @@ import {
     Statement,
     ImportStatement
 } from '../parse/ast';
-import { ParserOptions } from '../type';
+import { ParserOptions, TransformContext } from '../type';
 
 const EXTNAME_GLOBAL = '.scss'
-export default function transformModule(root: RootNode, options) {
-    const { sourceDir = './' } = options;
+export default function transformModule(root: RootNode, context: TransformContext) {
+    const { sourceDir = './' } = context;
     let statementList: Statement[] = [];
 
     /**

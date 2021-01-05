@@ -1,8 +1,6 @@
 /**
  * handle simple expression which does not contain any statement
  */
-
-import { TransformContext } from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode, CallExpression, IncludeStatement } from '../parse/ast'
 import { fillWhitespace } from '../parse/util'
 import {
@@ -10,6 +8,7 @@ import {
     ErrorCodes,
     createCompilerError
 } from '../parse/errors';
+import { TransformContext } from '@/type';
 
 export function callFunctionWithArgs(func: Function, node: IncludeStatement | CallExpression, context: TransformContext) {
     return func.apply(null, node.args.map(arg => {

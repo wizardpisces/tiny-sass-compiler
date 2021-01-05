@@ -1,6 +1,6 @@
 import { parse, transform, generate } from '../index'
 import { NodeTypes, CodegenNode } from '../parse/ast'
-import traverse,{ TraverseContext, PluginVisitor } from '../traverse'
+import { traverse, TraverseContext, PluginVisitor } from '../traverse'
 
 describe('plugin: PluginFn', () => {
     const source = `
@@ -17,7 +17,7 @@ body .test{
         `body .test{
   color:#333;
 }
-`   
+`
     beforeEach(() => {
         traverse.resetPlugin();
     });
@@ -45,13 +45,13 @@ body .test{
     function traverseVisitorPluginWithObject(): PluginVisitor {
         return {
             visitor: {
-                [NodeTypes.DECLARATION]:{
-                    enter(context: TraverseContext){
+                [NodeTypes.DECLARATION]: {
+                    enter(context: TraverseContext) {
                         let { currentNode } = context;
                         if ((currentNode as CodegenNode).left.value === 'font') {
                             context.removeNode()
                         }
-                   }
+                    }
                 }
             }
         }
@@ -90,7 +90,7 @@ body .test{
     })
 
     test('traversePluginFn', () => {
-        
+
         let parsedAst = parse(source, {
             filename: `default.scss`,
             source

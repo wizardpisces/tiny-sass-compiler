@@ -28,6 +28,7 @@ export enum NodeTypes {
     DECLARATION = 'DECLARATION',
 
     // keyword statement
+    PLUGIN = 'PLUGIN',
     IMPORT = 'IMPORT',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
@@ -74,6 +75,7 @@ export type keywordType = '@extend'
     | '@error'
     | '@each'
     | '@function' | '@return'
+    | '@plugin'
 
 export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face' | string;
 
@@ -168,7 +170,7 @@ export interface CallExpression extends Node {
     args: ArgsType
 }
 
-export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression
+export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression | EmptyNode
 
 /* Statement */
 
@@ -186,6 +188,7 @@ export type Statement =
     | EachStatement
     | ReturnStatement
     | Atrule
+    | PluginStatement
 
 export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
@@ -214,6 +217,10 @@ export interface DeclarationStatement extends Node {
 export interface ImportStatement extends Node {
     type: NodeTypes.IMPORT
     params: TextNode[]
+}
+export interface PluginStatement extends Node {
+    type: NodeTypes.PLUGIN
+    value: TextNode
 }
 
 export interface ContentPlaceholder extends Node { // @content

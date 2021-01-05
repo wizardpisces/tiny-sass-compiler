@@ -1,0 +1,123 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 35,
+            "line": 4,
+            "column": 1
+          },
+          "end": {
+            "offset": 46,
+            "line": 4,
+            "column": 12
+          },
+          "filename": "plugin.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".show-me-pi",
+          "loc": {
+            "start": {
+              "offset": 35,
+              "line": 4,
+              "column": 1
+            },
+            "end": {
+              "offset": 46,
+              "line": 4,
+              "column": 12
+            },
+            "filename": "plugin.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "value",
+            "loc": {
+              "start": {
+                "offset": 53,
+                "line": 5,
+                "column": 5
+              },
+              "end": {
+                "offset": 58,
+                "line": 5,
+                "column": 10
+              },
+              "filename": "plugin.scss"
+            }
+          },
+          "right": {
+            "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 60,
+                "line": 5,
+                "column": 12
+              },
+              "end": {
+                "offset": 62,
+                "line": 5,
+                "column": 14
+              },
+              "filename": "plugin.scss"
+            },
+            "value": "3.141592653589793"
+          },
+          "loc": {
+            "start": {
+              "offset": 53,
+              "line": 5,
+              "column": 5
+            },
+            "end": {
+              "offset": 62,
+              "line": 5,
+              "column": 14
+            },
+            "filename": "plugin.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "plugin.scss": "// less code\n@plugin \"my-plugin\";\n\n.show-me-pi {\n    value: pi();\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

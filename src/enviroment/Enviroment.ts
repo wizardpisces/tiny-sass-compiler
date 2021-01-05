@@ -69,9 +69,18 @@ export class Environment {
     //     return (scope || this).vars[name] = value;
     // },
     public def(name: string, value: any = '', kind: Kind = NodeTypes.VARIABLE) {
+        
+        if (kind === NodeTypes.VARIABLE && typeof value === 'function'){ // outside register function plugin
+            kind = NodeTypes.FUNCTION
+        }
+
         if (!this.vars[kind]) {
             this.vars[kind] = {}
         }
         return this.vars[kind][name] = new Variable(kind, value);
+    }
+
+    public add(...args: Parameters<Environment['def']>) {
+        this.def.apply(this, args)
     }
 };
