@@ -1,5 +1,6 @@
 export enum NodeTypes {
     TEXT = 'TEXT',  // TEXT = (TEXT\s+ | TEXT\s+)*
+    NAMESPACE = 'NAMESPACE', // namespace splited by ., to support @use which is namespace based
     VARIABLE = 'VARIABLE', // VARIABLE.value === variable's name , expression deleted after evaluation
     PUNC = 'PUNC',  // punctuation: parens((|)), comma(,), semicolon(;) etc.
     OPERATOR = 'OPERATOR',   // arithmeticOperator | comparisonOperator
@@ -30,6 +31,7 @@ export enum NodeTypes {
     // keyword statement
     PLUGIN = 'PLUGIN',
     IMPORT = 'IMPORT',
+    USE = 'USE',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
@@ -70,7 +72,7 @@ export enum NodeTypes {
 
 export type keywordType = '@extend'
     | '@mixin' | '@content' | '@include'
-    | '@import'
+    | '@import' | '@use'
     | '@if' | '@else'
     | '@error'
     | '@each'
@@ -109,6 +111,11 @@ export interface Node {
     loc: SourceLocation
 }
 
+// mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
+export interface Namespace extends Node {
+    namespace?: string
+}
+
 export interface TextNode extends Node {
     type: NodeTypes.TEXT
     value: string
@@ -117,7 +124,7 @@ export interface EmptyNode extends Node {
     type: NodeTypes.EMPTY
 }
 
-export interface VariableNode extends Node {
+export interface VariableNode extends Namespace {
     type: NodeTypes.VARIABLE
     value: string
 }
@@ -130,7 +137,7 @@ export interface PlaceholderNode extends Node {
     value: string
 }
 
-export interface VarKeyNode extends Node {
+export interface VarKeyNode extends Namespace {
     type: NodeTypes.VAR_KEY
     value: string
 }
@@ -164,7 +171,7 @@ export interface ListNode extends Node {
     value: SimpleExpressionNode[]
 }
 
-export interface CallExpression extends Node {
+export interface CallExpression extends Namespace {
     type: NodeTypes.CALL
     id: IdentifierNode
     args: ArgsType
@@ -179,6 +186,7 @@ export type Statement =
     | RuleStatement
     | DeclarationStatement
     | ImportStatement
+    | UseStatement
     | IncludeStatement
     | ExtendStatement
     | MixinStatement
@@ -218,6 +226,10 @@ export interface ImportStatement extends Node {
     type: NodeTypes.IMPORT
     params: TextNode[]
 }
+export interface UseStatement extends Node {
+    type: NodeTypes.USE
+    params: TextNode[]
+}
 export interface PluginStatement extends Node {
     type: NodeTypes.PLUGIN
     value: TextNode
@@ -227,14 +239,14 @@ export interface ContentPlaceholder extends Node { // @content
     type: NodeTypes.CONTENT
 }
 
-export interface IncludeStatement extends Node {
+export interface IncludeStatement extends Namespace { // used with mixin, eg: @include reset-mixin
     type: NodeTypes.INCLUDE
     id: IdentifierNode
     args: ArgsType
     content?: BodyStatement
 }
 
-export interface ExtendStatement extends Node {
+export interface ExtendStatement extends Node { //  @extend .error;
     type: NodeTypes.EXTEND
     param: TextNode | PlaceholderNode
 }
@@ -649,4 +661,16 @@ export function createMediaFromRule(rules: RuleStatement[] | RuleStatement): Med
     rules.forEach((rule: RuleStatement) => rule.selector.meta = [])
 
     return createMediaStatement(prelude, createBodyStatement(rules as RuleStatement[]))
+}
+
+export function createVariableWithNamespace(namespace: Namespace, variable: VariableNode): VariableNode {
+    return {
+        ...variable,
+        namespace: namespace.namespace,
+        loc: {
+            ...namespace.loc,
+            start: namespace.loc.start,
+            end: variable.loc.end
+        }
+    }
 }

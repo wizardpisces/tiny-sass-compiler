@@ -1,0 +1,23 @@
+.base-3 {
+  background: red;
+}
+
+.base-2 {
+  background: yellow;
+}
+
+.base {
+  color: yellow;
+}
+
+.base-3 {
+  background: red;
+}
+
+.use {
+  background-color: yellow;
+  color: 3;
+  font: 1212.1212;
+}
+
+/*# sourceMappingURL=use.css.map */

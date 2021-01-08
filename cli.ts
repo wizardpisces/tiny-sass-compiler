@@ -94,7 +94,7 @@ function run(
             try {
                 transform(parsedAst, {
                     ...requireCss,
-                    sourceDir: sourceDirname,
+                    filePath,
                     sourceMap: options.sourceMap
                 })
                 compiled = generate(parsedAst, {

@@ -4,9 +4,10 @@ import { defaultOnError } from './parse/errors'
 import {
     Environment
 } from './enviroment/Enviroment'
-import { transformModule, transformMiddleware } from './transform-middleware/index'
+import { transformMiddleware } from './transform-middleware/index'
 import { isBrowser } from './global'
 import { isEmptyNode } from './parse/util'
+import { loadImportModuleByAst } from './css-module/module'
 // - NodeTransform:
 //   Transforms that operate directly on a childNode. NodeTransforms may mutate,
 //   replace or remove the node being processed.
@@ -16,14 +17,14 @@ export function createTransformContext(
     {
         nodeTransforms = [],
         onError = defaultOnError,
-        sourceDir = './'
+        filePath = './default.scss'
     }: TransformOptions
 ): TransformContext {
     const context: TransformContext = {
         onError,
         nodeTransforms,
         root,
-        sourceDir,
+        filePath,
         env: new Environment(null),
     }
 
@@ -35,7 +36,8 @@ export function transform(root: RootNode, options: TransformOptions) {
     const context = createTransformContext(root, options)
 
     if (!isBrowser()) {
-        root = transformModule(root, context)
+        loadImportModuleByAst(root, context)
+        // transformUseModule(root, context)
     }
 
     transformRoot(root, context);

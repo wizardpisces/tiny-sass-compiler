@@ -1,0 +1,10 @@
+// styles.scss
+@use "./base.scss";
+@use "./base-3.scss";
+@import "./base-3.scss";
+
+.use {
+  background-color: base.$primary-color;
+  color: base-3.plus(1,2);
+  font: 1212.1212;
+}

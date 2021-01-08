@@ -373,7 +373,7 @@
             "line": 5,
             "column": 9
           },
-          "filename": "index.scss"
+          "filename": "import.scss"
         },
         "value": {
           "type": "TEXT",
@@ -389,7 +389,7 @@
               "line": 5,
               "column": 9
             },
-            "filename": "index.scss"
+            "filename": "import.scss"
           }
         }
       },
@@ -410,7 +410,7 @@
                 "line": 6,
                 "column": 19
               },
-              "filename": "index.scss"
+              "filename": "import.scss"
             }
           },
           "right": {
@@ -426,7 +426,7 @@
                 "line": 6,
                 "column": 35
               },
-              "filename": "index.scss"
+              "filename": "import.scss"
             },
             "value": "#333"
           },
@@ -441,7 +441,7 @@
               "line": 6,
               "column": 35
             },
-            "filename": "index.scss"
+            "filename": "import.scss"
           }
         },
         {
@@ -460,7 +460,7 @@
                 "line": 7,
                 "column": 8
               },
-              "filename": "index.scss"
+              "filename": "import.scss"
             }
           },
           "right": {
@@ -476,7 +476,7 @@
                 "line": 7,
                 "column": 15
               },
-              "filename": "index.scss"
+              "filename": "import.scss"
             },
             "value": "white"
           },
@@ -491,7 +491,7 @@
               "line": 7,
               "column": 15
             },
-            "filename": "index.scss"
+            "filename": "import.scss"
           }
         }
       ],
@@ -511,7 +511,7 @@
     }
   ],
   "fileSourceMap": {
-    "index.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}",
+    "import.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}",
     "./base.scss": "@import \"./base-2.scss\";\n// _base.scss\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
     "./base-2.scss": "$font-stack: Helvetica,\nsans-serif;\n$primary-color: #333;\n\n.base-2 {\n    background: red;\n}"
   },

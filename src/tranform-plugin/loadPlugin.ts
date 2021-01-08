@@ -4,7 +4,7 @@ import { TransformContext } from '@/type';
 
 const EXTNAME_GLOBAL = '.js'
 export function loadPlugin(node: PluginStatement, context: TransformContext): EmptyNode {
-    const { sourceDir = './', env } = context;
+    const { filePath = './', env } = context;
     let filename = node.value.value,
         extname = path.extname(filename),
         basename = path.basename(filename),
@@ -14,9 +14,9 @@ export function loadPlugin(node: PluginStatement, context: TransformContext): Em
          * path.join generate: test/plugin/my-plugin which cannot be required by node
          * path.resolve generate: /Users/.../test/plugin/my-plugin which can be required by node
          */
-        filePath = path.resolve(sourceDir, dirname, basename + (extname ? '' : EXTNAME_GLOBAL));
+        resolvedFilePath = path.resolve(path.dirname(filePath), dirname, basename + (extname ? '' : EXTNAME_GLOBAL));
 
-    require(filePath).install(env)
+    require(resolvedFilePath).install(env)
 
     return createEmptyNode()
 }

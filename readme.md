@@ -25,7 +25,7 @@ A compiler that compile sass to css, can be used both in ***node*** and ***brows
 3. Extend/Inheritance
 4. Operators
 5. Mixins
-6. Modules
+6. Modules (@import)
 
 ## Installation
 
@@ -131,9 +131,9 @@ npm run jest
 
 ## Other Readme
 
-* [Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
-* [AST travesal plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
-* [Transform Runtime Plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/transform.md)
+* [AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
+* [AST travesal Plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
+* [AST Interpret Transform Plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/transform.md)
 
 ## Reference
 

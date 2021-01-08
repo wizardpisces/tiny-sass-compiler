@@ -2,21 +2,21 @@
   "type": "RootNode",
   "children": [
     {
-      "type": "IMPORT",
+      "type": "USE",
       "params": [
         {
           "type": "TEXT",
           "value": "./base.scss",
           "loc": {
             "start": {
-              "offset": 23,
+              "offset": 20,
               "line": 2,
-              "column": 9
+              "column": 6
             },
             "end": {
-              "offset": 36,
+              "offset": 33,
               "line": 2,
-              "column": 22
+              "column": 19
             },
             "filename": "index.scss"
           }
@@ -37,21 +37,21 @@
       }
     },
     {
-      "type": "IMPORT",
+      "type": "USE",
       "params": [
         {
           "type": "TEXT",
           "value": "./base-2.scss",
           "loc": {
             "start": {
-              "offset": 46,
+              "offset": 40,
               "line": 3,
-              "column": 9
+              "column": 6
             },
             "end": {
-              "offset": 61,
+              "offset": 55,
               "line": 3,
-              "column": 24
+              "column": 21
             },
             "filename": "index.scss"
           }
@@ -78,12 +78,12 @@
         "meta": [],
         "loc": {
           "start": {
-            "offset": 64,
+            "offset": 58,
             "line": 5,
             "column": 1
           },
           "end": {
-            "offset": 72,
+            "offset": 66,
             "line": 5,
             "column": 9
           },
@@ -94,12 +94,12 @@
           "value": ".inverse",
           "loc": {
             "start": {
-              "offset": 64,
+              "offset": 58,
               "line": 5,
               "column": 1
             },
             "end": {
-              "offset": 72,
+              "offset": 66,
               "line": 5,
               "column": 9
             },
@@ -115,12 +115,12 @@
             "value": "background-color",
             "loc": {
               "start": {
-                "offset": 77,
+                "offset": 71,
                 "line": 6,
                 "column": 3
               },
               "end": {
-                "offset": 93,
+                "offset": 87,
                 "line": 6,
                 "column": 19
               },
@@ -135,12 +135,12 @@
                 "value": "$primary-color",
                 "loc": {
                   "start": {
-                    "offset": 95,
+                    "offset": 89,
                     "line": 6,
                     "column": 21
                   },
                   "end": {
-                    "offset": 109,
+                    "offset": 103,
                     "line": 6,
                     "column": 35
                   },
@@ -150,12 +150,12 @@
             ],
             "loc": {
               "start": {
-                "offset": 95,
+                "offset": 89,
                 "line": 6,
                 "column": 21
               },
               "end": {
-                "offset": 109,
+                "offset": 103,
                 "line": 6,
                 "column": 35
               },
@@ -164,12 +164,12 @@
           },
           "loc": {
             "start": {
-              "offset": 77,
+              "offset": 71,
               "line": 6,
               "column": 3
             },
             "end": {
-              "offset": 109,
+              "offset": 103,
               "line": 6,
               "column": 35
             },
@@ -183,12 +183,12 @@
             "value": "color",
             "loc": {
               "start": {
-                "offset": 113,
+                "offset": 107,
                 "line": 7,
                 "column": 3
               },
               "end": {
-                "offset": 118,
+                "offset": 112,
                 "line": 7,
                 "column": 8
               },
@@ -203,12 +203,12 @@
                 "value": "white",
                 "loc": {
                   "start": {
-                    "offset": 120,
+                    "offset": 114,
                     "line": 7,
                     "column": 10
                   },
                   "end": {
-                    "offset": 125,
+                    "offset": 119,
                     "line": 7,
                     "column": 15
                   },
@@ -218,12 +218,12 @@
             ],
             "loc": {
               "start": {
-                "offset": 120,
+                "offset": 114,
                 "line": 7,
                 "column": 10
               },
               "end": {
-                "offset": 125,
+                "offset": 119,
                 "line": 7,
                 "column": 15
               },
@@ -232,12 +232,12 @@
           },
           "loc": {
             "start": {
-              "offset": 113,
+              "offset": 107,
               "line": 7,
               "column": 3
             },
             "end": {
-              "offset": 125,
+              "offset": 119,
               "line": 7,
               "column": 15
             },
@@ -261,7 +261,7 @@
     }
   ],
   "fileSourceMap": {
-    "index.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+    "index.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   },
   "loc": {
     "filename": "",

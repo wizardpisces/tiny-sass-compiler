@@ -1,0 +1,434 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "USE",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./base.scss",
+          "loc": {
+            "start": {
+              "offset": 20,
+              "line": 2,
+              "column": 6
+            },
+            "end": {
+              "offset": 33,
+              "line": 2,
+              "column": 19
+            },
+            "filename": "use.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "USE",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./base-3.scss",
+          "loc": {
+            "start": {
+              "offset": 40,
+              "line": 3,
+              "column": 6
+            },
+            "end": {
+              "offset": 55,
+              "line": 3,
+              "column": 21
+            },
+            "filename": "use.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "IMPORT",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./base-3.scss",
+          "loc": {
+            "start": {
+              "offset": 65,
+              "line": 4,
+              "column": 9
+            },
+            "end": {
+              "offset": 80,
+              "line": 4,
+              "column": 24
+            },
+            "filename": "use.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 83,
+            "line": 6,
+            "column": 1
+          },
+          "end": {
+            "offset": 87,
+            "line": 6,
+            "column": 5
+          },
+          "filename": "use.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".use",
+          "loc": {
+            "start": {
+              "offset": 83,
+              "line": 6,
+              "column": 1
+            },
+            "end": {
+              "offset": 87,
+              "line": 6,
+              "column": 5
+            },
+            "filename": "use.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "background-color",
+            "loc": {
+              "start": {
+                "offset": 92,
+                "line": 7,
+                "column": 3
+              },
+              "end": {
+                "offset": 108,
+                "line": 7,
+                "column": 19
+              },
+              "filename": "use.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "TEXT",
+                "value": "base.$primary-color",
+                "loc": {
+                  "start": {
+                    "offset": 110,
+                    "line": 7,
+                    "column": 21
+                  },
+                  "end": {
+                    "offset": 129,
+                    "line": 7,
+                    "column": 40
+                  },
+                  "filename": "use.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 110,
+                "line": 7,
+                "column": 21
+              },
+              "end": {
+                "offset": 129,
+                "line": 7,
+                "column": 40
+              },
+              "filename": "use.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 92,
+              "line": 7,
+              "column": 3
+            },
+            "end": {
+              "offset": 129,
+              "line": 7,
+              "column": 40
+            },
+            "filename": "use.scss"
+          }
+        },
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "color",
+            "loc": {
+              "start": {
+                "offset": 133,
+                "line": 8,
+                "column": 3
+              },
+              "end": {
+                "offset": 138,
+                "line": 8,
+                "column": 8
+              },
+              "filename": "use.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "CALL",
+                "id": {
+                  "loc": {
+                    "start": {
+                      "offset": 140,
+                      "line": 8,
+                      "column": 10
+                    },
+                    "end": {
+                      "offset": 151,
+                      "line": 8,
+                      "column": 21
+                    },
+                    "filename": "use.scss"
+                  },
+                  "value": "base-3.plus",
+                  "type": "IDENTIFIER"
+                },
+                "args": [
+                  {
+                    "type": "TEXT",
+                    "value": "1",
+                    "loc": {
+                      "start": {
+                        "offset": 152,
+                        "line": 8,
+                        "column": 22
+                      },
+                      "end": {
+                        "offset": 153,
+                        "line": 8,
+                        "column": 23
+                      },
+                      "filename": "use.scss"
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "value": "2",
+                    "loc": {
+                      "start": {
+                        "offset": 154,
+                        "line": 8,
+                        "column": 24
+                      },
+                      "end": {
+                        "offset": 155,
+                        "line": 8,
+                        "column": 25
+                      },
+                      "filename": "use.scss"
+                    }
+                  }
+                ],
+                "loc": {
+                  "start": {
+                    "offset": 140,
+                    "line": 8,
+                    "column": 10
+                  },
+                  "end": {
+                    "offset": 155,
+                    "line": 8,
+                    "column": 25
+                  },
+                  "filename": "use.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 140,
+                "line": 8,
+                "column": 10
+              },
+              "end": {
+                "offset": 155,
+                "line": 8,
+                "column": 25
+              },
+              "filename": "use.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 133,
+              "line": 8,
+              "column": 3
+            },
+            "end": {
+              "offset": 155,
+              "line": 8,
+              "column": 25
+            },
+            "filename": "use.scss"
+          }
+        },
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "font",
+            "loc": {
+              "start": {
+                "offset": 160,
+                "line": 9,
+                "column": 3
+              },
+              "end": {
+                "offset": 164,
+                "line": 9,
+                "column": 7
+              },
+              "filename": "use.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "TEXT",
+                "value": "1212.1212",
+                "loc": {
+                  "start": {
+                    "offset": 166,
+                    "line": 9,
+                    "column": 9
+                  },
+                  "end": {
+                    "offset": 175,
+                    "line": 9,
+                    "column": 18
+                  },
+                  "filename": "use.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 166,
+                "line": 9,
+                "column": 9
+              },
+              "end": {
+                "offset": 175,
+                "line": 9,
+                "column": 18
+              },
+              "filename": "use.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 160,
+              "line": 9,
+              "column": 3
+            },
+            "end": {
+              "offset": 175,
+              "line": 9,
+              "column": 18
+            },
+            "filename": "use.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n@import \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

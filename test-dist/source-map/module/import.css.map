@@ -3,7 +3,7 @@
   "sources": [
     "./base-2.scss",
     "./base.scss",
-    "index.scss"
+    "import.scss"
   ],
   "names": [],
   "mappings": "AAIA;EACI,WAAY;;ACJhB;EAGE,KAAM;EACN,MAAO;;ADDT;EACI,WAAY;;AEDhB;EACE,iBAAkB;EAClB,MAAO",

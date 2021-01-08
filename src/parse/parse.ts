@@ -12,6 +12,7 @@ import {
     IfStatement,
     BodyStatement,
     ImportStatement,
+    UseStatement,
     MixinStatement,
     IdentifierNode,
     VariableNode,
@@ -55,7 +56,9 @@ import {
     Keyframes,
     createKeyframesPrelude,
     ContentPlaceholder,
-    createContentPlaceholder
+    createContentPlaceholder,
+    // Namespace,
+    // createVariableWithNamespace
 } from './ast';
 
 import {
@@ -269,6 +272,11 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
             return parseInclude();
         }
 
+        if (isKwToken('@use')) {
+            input.next()
+            return parseUse();
+        }
+
         if (isKwToken('@import')) {
             input.next()
             return parseImport();
@@ -295,6 +303,10 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         }
 
         let tok = input.peek();
+
+        // if (tok.type === NodeTypes.NAMESPACE) {
+        //     return parseNamespace()
+        // }
 
         if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
             return consumeNextTokenWithLoc();
@@ -348,7 +360,18 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
 
-    function parsePlugin(){
+    // function parseNamespace() { // todos: to parse namespaced IncludeStatement ,VarKeyNode,callExpression
+    //     let namespace: Namespace = consumeNextTokenWithLoc(),
+    //         nextNode = dispatchParser();
+
+    //     if (nextNode.type === NodeTypes.VARIABLE) {
+    //         return createVariableWithNamespace(namespace, nextNode)
+    //     }
+
+
+    // }
+
+    function parsePlugin() {
         function processFilenameExp(exp) {
             exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
             return exp;
@@ -587,8 +610,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         return createIncludeStatement(id, args, content);
     }
 
-    function parseImport(): ImportStatement {
-
+    function parseModuleParams(): ImportStatement['params'] {
         function processFilenameExp(exp) {
             exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
             return exp;
@@ -607,10 +629,21 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
                 skipPunc(',')
             }
         }
+        return params
+    }
 
+    function parseUse(): UseStatement {
+        return {
+            type: NodeTypes.USE,
+            params: parseModuleParams(),
+            loc: locStub
+        }
+    }
+
+    function parseImport(): ImportStatement {
         return {
             type: NodeTypes.IMPORT,
-            params,
+            params: parseModuleParams(),
             loc: locStub
         }
     }
