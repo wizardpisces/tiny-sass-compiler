@@ -17,7 +17,7 @@
             "line": 14,
             "column": 11
           },
-          "filename": "optional-params.scss"
+          "filename": "test/mixin/optional-params.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 14,
               "column": 11
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 3,
                 "column": 14
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 3,
                 "column": 24
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "-99999em"
           },
@@ -85,7 +85,7 @@
               "line": 3,
               "column": 24
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -104,7 +104,7 @@
                 "line": 4,
                 "column": 11
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -120,7 +120,7 @@
                 "line": 4,
                 "column": 19
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "hidden"
           },
@@ -135,7 +135,7 @@
               "line": 4,
               "column": 19
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -154,7 +154,7 @@
                 "line": 5,
                 "column": 13
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -170,7 +170,7 @@
                 "line": 5,
                 "column": 19
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "left"
           },
@@ -185,7 +185,7 @@
               "line": 5,
               "column": 19
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       ],
@@ -219,7 +219,7 @@
             "line": 7,
             "column": 13
           },
-          "filename": "optional-params.scss"
+          "filename": "test/mixin/optional-params.scss"
         },
         "value": {
           "type": "TEXT",
@@ -235,7 +235,7 @@
               "line": 7,
               "column": 13
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       },
@@ -256,7 +256,7 @@
                 "line": 8,
                 "column": 10
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -272,7 +272,7 @@
                 "line": 8,
                 "column": 18
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "url(\"/images/mail.svg\")"
           },
@@ -287,7 +287,7 @@
               "line": 8,
               "column": 18
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -306,7 +306,7 @@
                 "line": 9,
                 "column": 11
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -322,7 +322,7 @@
                 "line": 9,
                 "column": 22
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "no-repeat"
           },
@@ -337,7 +337,7 @@
               "line": 9,
               "column": 22
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -356,7 +356,7 @@
                 "line": 10,
                 "column": 13
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -372,7 +372,7 @@
                 "line": 10,
                 "column": 20
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             },
             "value": "Helvetica, sans-serif default2"
           },
@@ -387,7 +387,7 @@
               "line": 10,
               "column": 20
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       ],
@@ -407,7 +407,7 @@
     }
   ],
   "fileSourceMap": {
-    "optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
+    "test/mixin/optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
   },
   "loc": {
     "filename": "",

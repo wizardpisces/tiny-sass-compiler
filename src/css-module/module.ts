@@ -30,7 +30,7 @@ export function loadImportModuleByAst(root: RootNode, context: TransformContext)
                     filePath = Module._resolveFilename(filename, context.filename),
                     source = fs.readFileSync(filePath, 'utf8'),
                     parseOptions: ParserOptions = {
-                        filename,
+                        filename: filePath,
                         source
                     };
 

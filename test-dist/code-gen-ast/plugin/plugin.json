@@ -17,7 +17,7 @@
             "line": 4,
             "column": 12
           },
-          "filename": "plugin.scss"
+          "filename": "test/plugin/plugin.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 4,
               "column": 12
             },
-            "filename": "plugin.scss"
+            "filename": "test/plugin/plugin.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 5,
                 "column": 10
               },
-              "filename": "plugin.scss"
+              "filename": "test/plugin/plugin.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 5,
                 "column": 14
               },
-              "filename": "plugin.scss"
+              "filename": "test/plugin/plugin.scss"
             },
             "value": "3.141592653589793"
           },
@@ -85,7 +85,7 @@
               "line": 5,
               "column": 14
             },
-            "filename": "plugin.scss"
+            "filename": "test/plugin/plugin.scss"
           }
         }
       ],
@@ -105,7 +105,7 @@
     }
   ],
   "fileSourceMap": {
-    "plugin.scss": "// less code\n@plugin \"my-plugin\";\n\n.show-me-pi {\n    value: pi();\n}"
+    "test/plugin/plugin.scss": "// less code\n@plugin \"my-plugin\";\n\n.show-me-pi {\n    value: pi();\n}"
   },
   "loc": {
     "filename": "",

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "plugin.scss"
+    "test/plugin/plugin.scss"
   ],
   "names": [],
   "mappings": "AAGA;EACI,MAAO",

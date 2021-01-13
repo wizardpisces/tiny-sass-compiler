@@ -35,7 +35,7 @@
               "line": 1,
               "column": 22
             },
-            "filename": "else-if.scss"
+            "filename": "test/flow-control/else-if.scss"
           }
         },
         {
@@ -52,7 +52,7 @@
               "line": 1,
               "column": 30
             },
-            "filename": "else-if.scss"
+            "filename": "test/flow-control/else-if.scss"
           }
         },
         {
@@ -69,7 +69,7 @@
               "line": 1,
               "column": 42
             },
-            "filename": "else-if.scss"
+            "filename": "test/flow-control/else-if.scss"
           }
         }
       ],
@@ -92,7 +92,7 @@
                   "line": 2,
                   "column": 9
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "right": {
@@ -112,7 +112,7 @@
                       "line": 2,
                       "column": 12
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -127,7 +127,7 @@
                   "line": 2,
                   "column": 12
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "loc": {
@@ -141,7 +141,7 @@
                 "line": 2,
                 "column": 12
               },
-              "filename": "else-if.scss"
+              "filename": "test/flow-control/else-if.scss"
             }
           },
           {
@@ -160,7 +160,7 @@
                   "line": 3,
                   "column": 8
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "right": {
@@ -180,7 +180,7 @@
                       "line": 3,
                       "column": 11
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -195,7 +195,7 @@
                   "line": 3,
                   "column": 11
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "loc": {
@@ -209,7 +209,7 @@
                 "line": 3,
                 "column": 11
               },
-              "filename": "else-if.scss"
+              "filename": "test/flow-control/else-if.scss"
             }
           },
           {
@@ -228,7 +228,7 @@
                   "line": 5,
                   "column": 15
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "right": {
@@ -248,7 +248,7 @@
                       "line": 5,
                       "column": 28
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -263,7 +263,7 @@
                   "line": 5,
                   "column": 28
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "loc": {
@@ -277,7 +277,7 @@
                 "line": 5,
                 "column": 28
               },
-              "filename": "else-if.scss"
+              "filename": "test/flow-control/else-if.scss"
             }
           },
           {
@@ -296,7 +296,7 @@
                   "line": 6,
                   "column": 15
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "right": {
@@ -316,7 +316,7 @@
                       "line": 6,
                       "column": 22
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -331,7 +331,7 @@
                   "line": 6,
                   "column": 22
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "loc": {
@@ -345,7 +345,7 @@
                 "line": 6,
                 "column": 22
               },
-              "filename": "else-if.scss"
+              "filename": "test/flow-control/else-if.scss"
             }
           },
           {
@@ -364,7 +364,7 @@
                   "line": 7,
                   "column": 15
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "right": {
@@ -386,7 +386,7 @@
                         "line": 7,
                         "column": 24
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "left": {
@@ -403,7 +403,7 @@
                         "line": 7,
                         "column": 22
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "right": {
@@ -420,7 +420,7 @@
                         "line": 7,
                         "column": 26
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "loc": {
@@ -434,7 +434,7 @@
                       "line": 7,
                       "column": 26
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -449,7 +449,7 @@
                   "line": 7,
                   "column": 26
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "loc": {
@@ -463,7 +463,7 @@
                 "line": 7,
                 "column": 26
               },
-              "filename": "else-if.scss"
+              "filename": "test/flow-control/else-if.scss"
             }
           },
           {
@@ -484,7 +484,7 @@
                     "line": 9,
                     "column": 20
                   },
-                  "filename": "else-if.scss"
+                  "filename": "test/flow-control/else-if.scss"
                 }
               },
               "left": {
@@ -501,7 +501,7 @@
                     "line": 9,
                     "column": 17
                   },
-                  "filename": "else-if.scss"
+                  "filename": "test/flow-control/else-if.scss"
                 }
               },
               "right": {
@@ -518,7 +518,7 @@
                     "line": 9,
                     "column": 23
                   },
-                  "filename": "else-if.scss"
+                  "filename": "test/flow-control/else-if.scss"
                 }
               },
               "loc": {
@@ -532,7 +532,7 @@
                   "line": 9,
                   "column": 23
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             "consequent": {
@@ -554,7 +554,7 @@
                         "line": 10,
                         "column": 24
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "right": {
@@ -574,7 +574,7 @@
                             "line": 10,
                             "column": 32
                           },
-                          "filename": "else-if.scss"
+                          "filename": "test/flow-control/else-if.scss"
                         }
                       }
                     ],
@@ -589,7 +589,7 @@
                         "line": 10,
                         "column": 32
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "loc": {
@@ -603,7 +603,7 @@
                       "line": 10,
                       "column": 32
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 }
               ],
@@ -639,7 +639,7 @@
                       "line": 11,
                       "column": 27
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 },
                 "left": {
@@ -656,7 +656,7 @@
                       "line": 11,
                       "column": 24
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 },
                 "right": {
@@ -673,7 +673,7 @@
                       "line": 11,
                       "column": 33
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 },
                 "loc": {
@@ -687,7 +687,7 @@
                     "line": 11,
                     "column": 33
                   },
-                  "filename": "else-if.scss"
+                  "filename": "test/flow-control/else-if.scss"
                 }
               },
               "consequent": {
@@ -709,7 +709,7 @@
                           "line": 12,
                           "column": 22
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     },
                     "right": {
@@ -729,7 +729,7 @@
                               "line": 12,
                               "column": 30
                             },
-                            "filename": "else-if.scss"
+                            "filename": "test/flow-control/else-if.scss"
                           }
                         }
                       ],
@@ -744,7 +744,7 @@
                           "line": 12,
                           "column": 30
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     },
                     "loc": {
@@ -758,7 +758,7 @@
                         "line": 12,
                         "column": 30
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   }
                 ],
@@ -794,7 +794,7 @@
                         "line": 13,
                         "column": 27
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "left": {
@@ -811,7 +811,7 @@
                         "line": 13,
                         "column": 24
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "right": {
@@ -828,7 +828,7 @@
                         "line": 13,
                         "column": 32
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "loc": {
@@ -842,7 +842,7 @@
                       "line": 13,
                       "column": 32
                     },
-                    "filename": "else-if.scss"
+                    "filename": "test/flow-control/else-if.scss"
                   }
                 },
                 "consequent": {
@@ -864,7 +864,7 @@
                             "line": 14,
                             "column": 21
                           },
-                          "filename": "else-if.scss"
+                          "filename": "test/flow-control/else-if.scss"
                         }
                       },
                       "right": {
@@ -884,7 +884,7 @@
                                 "line": 14,
                                 "column": 29
                               },
-                              "filename": "else-if.scss"
+                              "filename": "test/flow-control/else-if.scss"
                             }
                           }
                         ],
@@ -899,7 +899,7 @@
                             "line": 14,
                             "column": 29
                           },
-                          "filename": "else-if.scss"
+                          "filename": "test/flow-control/else-if.scss"
                         }
                       },
                       "loc": {
@@ -913,7 +913,7 @@
                           "line": 14,
                           "column": 29
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     }
                   ],
@@ -949,7 +949,7 @@
                           "line": 15,
                           "column": 27
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     },
                     "left": {
@@ -966,7 +966,7 @@
                           "line": 15,
                           "column": 24
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     },
                     "right": {
@@ -983,7 +983,7 @@
                           "line": 15,
                           "column": 32
                         },
-                        "filename": "else-if.scss"
+                        "filename": "test/flow-control/else-if.scss"
                       }
                     },
                     "loc": {
@@ -997,7 +997,7 @@
                         "line": 15,
                         "column": 32
                       },
-                      "filename": "else-if.scss"
+                      "filename": "test/flow-control/else-if.scss"
                     }
                   },
                   "consequent": {
@@ -1019,7 +1019,7 @@
                               "line": 16,
                               "column": 23
                             },
-                            "filename": "else-if.scss"
+                            "filename": "test/flow-control/else-if.scss"
                           }
                         },
                         "right": {
@@ -1039,7 +1039,7 @@
                                   "line": 16,
                                   "column": 31
                                 },
-                                "filename": "else-if.scss"
+                                "filename": "test/flow-control/else-if.scss"
                               }
                             }
                           ],
@@ -1054,7 +1054,7 @@
                               "line": 16,
                               "column": 31
                             },
-                            "filename": "else-if.scss"
+                            "filename": "test/flow-control/else-if.scss"
                           }
                         },
                         "loc": {
@@ -1068,7 +1068,7 @@
                             "line": 16,
                             "column": 31
                           },
-                          "filename": "else-if.scss"
+                          "filename": "test/flow-control/else-if.scss"
                         }
                       }
                     ],
@@ -1108,7 +1108,7 @@
                                   "line": 18,
                                   "column": 30
                                 },
-                                "filename": "else-if.scss"
+                                "filename": "test/flow-control/else-if.scss"
                               }
                             },
                             {
@@ -1125,7 +1125,7 @@
                                   "line": 18,
                                   "column": 43
                                 },
-                                "filename": "else-if.scss"
+                                "filename": "test/flow-control/else-if.scss"
                               }
                             },
                             {
@@ -1142,7 +1142,7 @@
                                   "line": 18,
                                   "column": 46
                                 },
-                                "filename": "else-if.scss"
+                                "filename": "test/flow-control/else-if.scss"
                               }
                             }
                           ]
@@ -1158,7 +1158,7 @@
                             "line": 18,
                             "column": 46
                           },
-                          "filename": "else-if.scss"
+                          "filename": "test/flow-control/else-if.scss"
                         }
                       }
                     ],
@@ -1277,7 +1277,7 @@
             "line": 22,
             "column": 6
           },
-          "filename": "else-if.scss"
+          "filename": "test/flow-control/else-if.scss"
         },
         "value": {
           "type": "TEXT",
@@ -1293,7 +1293,7 @@
               "line": 22,
               "column": 6
             },
-            "filename": "else-if.scss"
+            "filename": "test/flow-control/else-if.scss"
           }
         }
       },
@@ -1332,7 +1332,7 @@
                   "line": 23,
                   "column": 24
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             {
@@ -1349,7 +1349,7 @@
                   "line": 23,
                   "column": 31
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             },
             {
@@ -1366,7 +1366,7 @@
                   "line": 23,
                   "column": 38
                 },
-                "filename": "else-if.scss"
+                "filename": "test/flow-control/else-if.scss"
               }
             }
           ],
@@ -1401,7 +1401,7 @@
     }
   ],
   "fileSourceMap": {
-    "else-if.scss": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
+    "test/flow-control/else-if.scss": "@mixin triangle($size, $color, $direction) {\n  height: 0;\n  width: 0;\n\n  border-color: transparent;\n  border-style: solid;\n  border-width: $size / 2;\n\n  @if $direction == up {\n    border-bottom-color: $color;\n  } @else if $direction == right {\n    border-left-color: $color;\n  } @else if $direction == down {\n    border-top-color: $color;\n  } @else if $direction == left {\n    border-right-color: $color;\n  } @else {\n    @error \"Unknown direction #{$direction}.\";\n  }\n}\n\n.next {\n  @include triangle(5px, black, right);\n}"
   },
   "loc": {
     "filename": "",

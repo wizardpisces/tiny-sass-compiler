@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "extend.scss"
+    "test/extend.scss"
   ],
   "names": [],
   "mappings": "AAAA;EACI,OAAQ;EACR,QAAS;EACT,MAAO;;AAGX;EACE,OAAQ;EACR,QAAS;EACT,MAAO;;AAOT;EAEI,aAAc;;AAElB;EACI,MAAM",

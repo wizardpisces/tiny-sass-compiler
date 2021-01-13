@@ -17,7 +17,7 @@
             "line": 15,
             "column": 7
           },
-          "filename": "basic.scss"
+          "filename": "test/mixin/basic.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 15,
               "column": 7
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 2,
                 "column": 9
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 2,
                 "column": 12
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             },
             "value": "0"
           },
@@ -85,7 +85,7 @@
               "line": 2,
               "column": 12
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         },
         {
@@ -104,7 +104,7 @@
                 "line": 3,
                 "column": 10
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           "right": {
@@ -120,7 +120,7 @@
                 "line": 3,
                 "column": 13
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             },
             "value": "0"
           },
@@ -135,7 +135,7 @@
               "line": 3,
               "column": 13
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         },
         {
@@ -154,7 +154,7 @@
                 "line": 4,
                 "column": 13
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           "right": {
@@ -170,7 +170,7 @@
                 "line": 4,
                 "column": 19
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             },
             "value": "none"
           },
@@ -185,7 +185,7 @@
               "line": 4,
               "column": 19
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         }
       ],
@@ -219,7 +219,7 @@
             "line": 10,
             "column": 5
           },
-          "filename": "basic.scss"
+          "filename": "test/mixin/basic.scss"
         },
         "value": {
           "type": "TEXT",
@@ -235,7 +235,7 @@
               "line": 10,
               "column": 5
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         }
       },
@@ -256,7 +256,7 @@
                 "line": 11,
                 "column": 12
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           "right": {
@@ -272,7 +272,7 @@
                 "line": 11,
                 "column": 26
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             },
             "value": "inline-block"
           },
@@ -287,7 +287,7 @@
               "line": 11,
               "column": 26
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         }
       ],
@@ -307,7 +307,7 @@
     }
   ],
   "fileSourceMap": {
-    "basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
+    "test/mixin/basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
   },
   "loc": {
     "filename": "",

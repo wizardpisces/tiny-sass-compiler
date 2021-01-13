@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "else-if.scss"
+    "test/flow-control/else-if.scss"
   ],
   "names": [],
   "mappings": "AAqBA;EApBE,OAAQ;EACR,MAAO;EAEP,aAAc;EACd,aAAc;EACd,aAAc;EAKZ,kBAAmB",

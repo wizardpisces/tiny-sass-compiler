@@ -23,7 +23,7 @@
                   "line": 2,
                   "column": 9
                 },
-                "filename": "keyframes.scss"
+                "filename": "test/atrule/keyframes.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -39,7 +39,7 @@
                     "line": 2,
                     "column": 9
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             },
@@ -60,7 +60,7 @@
                       "line": 3,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -80,7 +80,7 @@
                           "line": 3,
                           "column": 26
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -95,7 +95,7 @@
                       "line": 3,
                       "column": 26
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -109,7 +109,7 @@
                     "line": 3,
                     "column": 26
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               },
               {
@@ -128,7 +128,7 @@
                       "line": 4,
                       "column": 14
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -148,7 +148,7 @@
                           "line": 4,
                           "column": 20
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -163,7 +163,7 @@
                       "line": 4,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -177,7 +177,7 @@
                     "line": 4,
                     "column": 20
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             ],
@@ -211,7 +211,7 @@
                   "line": 7,
                   "column": 8
                 },
-                "filename": "keyframes.scss"
+                "filename": "test/atrule/keyframes.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -227,7 +227,7 @@
                     "line": 7,
                     "column": 8
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             },
@@ -248,7 +248,7 @@
                       "line": 8,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -268,7 +268,7 @@
                           "line": 8,
                           "column": 25
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -283,7 +283,7 @@
                       "line": 8,
                       "column": 25
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -297,7 +297,7 @@
                     "line": 8,
                     "column": 25
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               },
               {
@@ -316,7 +316,7 @@
                       "line": 9,
                       "column": 14
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -336,7 +336,7 @@
                           "line": 9,
                           "column": 20
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -351,7 +351,7 @@
                       "line": 9,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -365,7 +365,7 @@
                     "line": 9,
                     "column": 20
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             ],
@@ -399,7 +399,7 @@
                   "line": 12,
                   "column": 7
                 },
-                "filename": "keyframes.scss"
+                "filename": "test/atrule/keyframes.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -415,7 +415,7 @@
                     "line": 12,
                     "column": 7
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             },
@@ -436,7 +436,7 @@
                       "line": 13,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -456,7 +456,7 @@
                           "line": 13,
                           "column": 24
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -471,7 +471,7 @@
                       "line": 13,
                       "column": 24
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -485,7 +485,7 @@
                     "line": 13,
                     "column": 24
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               },
               {
@@ -504,7 +504,7 @@
                       "line": 14,
                       "column": 14
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "right": {
@@ -524,7 +524,7 @@
                           "line": 14,
                           "column": 20
                         },
-                        "filename": "keyframes.scss"
+                        "filename": "test/atrule/keyframes.scss"
                       }
                     }
                   ],
@@ -539,7 +539,7 @@
                       "line": 14,
                       "column": 20
                     },
-                    "filename": "keyframes.scss"
+                    "filename": "test/atrule/keyframes.scss"
                   }
                 },
                 "loc": {
@@ -553,7 +553,7 @@
                     "line": 14,
                     "column": 20
                   },
-                  "filename": "keyframes.scss"
+                  "filename": "test/atrule/keyframes.scss"
                 }
               }
             ],
@@ -603,7 +603,7 @@
                 "line": 1,
                 "column": 20
               },
-              "filename": "keyframes.scss"
+              "filename": "test/atrule/keyframes.scss"
             }
           }
         ],
@@ -618,7 +618,7 @@
             "line": 1,
             "column": 20
           },
-          "filename": "keyframes.scss"
+          "filename": "test/atrule/keyframes.scss"
         }
       },
       "loc": {
@@ -632,12 +632,12 @@
           "column": 1,
           "offset": 0
         },
-        "filename": "keyframes.scss"
+        "filename": "test/atrule/keyframes.scss"
       }
     }
   ],
   "fileSourceMap": {
-    "keyframes.scss": "@keyframes slide-in {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    70% {\n        margin-left: 90%;\n        width: 150%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 100%;\n    }\n}"
+    "test/atrule/keyframes.scss": "@keyframes slide-in {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    70% {\n        margin-left: 90%;\n        width: 150%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 100%;\n    }\n}"
   },
   "loc": {
     "filename": "",

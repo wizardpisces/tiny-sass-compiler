@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "function.scss"
+    "test/function/function.scss"
   ],
   "names": [],
   "mappings": "AAKA;EACI,MAAO;EACP,YAAa",

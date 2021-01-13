@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "var-nested.scss"
+    "test/nest/var-nested.scss"
   ],
   "names": [],
   "mappings": "AAGA;EAEI,OAAQ;EACR,MAAO;;AAEX;EACI,IAAO;;AAEH;EACI,WAAW;;AAEf;EACI,WAAW",

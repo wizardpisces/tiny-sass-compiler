@@ -35,7 +35,7 @@
               "line": 1,
               "column": 21
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         },
         {
@@ -52,7 +52,7 @@
               "line": 1,
               "column": 33
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         },
         {
@@ -69,7 +69,7 @@
               "line": 1,
               "column": 45
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         }
       ],
@@ -92,7 +92,7 @@
                   "line": 2,
                   "column": 14
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             "right": {
@@ -112,7 +112,7 @@
                       "line": 2,
                       "column": 27
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 }
               ],
@@ -127,7 +127,7 @@
                   "line": 2,
                   "column": 27
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             "loc": {
@@ -141,7 +141,7 @@
                 "line": 2,
                 "column": 27
               },
-              "filename": "var-key-parent-selector.scss"
+              "filename": "test/mixin/var-key-parent-selector.scss"
             }
           },
           {
@@ -160,7 +160,7 @@
                   "line": 4,
                   "column": 22
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -176,7 +176,7 @@
                     "line": 4,
                     "column": 22
                   },
-                  "filename": "var-key-parent-selector.scss"
+                  "filename": "test/mixin/var-key-parent-selector.scss"
                 }
               }
             },
@@ -197,7 +197,7 @@
                       "line": 5,
                       "column": 17
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 },
                 "right": {
@@ -217,7 +217,7 @@
                           "line": 5,
                           "column": 31
                         },
-                        "filename": "var-key-parent-selector.scss"
+                        "filename": "test/mixin/var-key-parent-selector.scss"
                       }
                     }
                   ],
@@ -232,7 +232,7 @@
                       "line": 5,
                       "column": 31
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 },
                 "loc": {
@@ -246,7 +246,7 @@
                     "line": 5,
                     "column": 31
                   },
-                  "filename": "var-key-parent-selector.scss"
+                  "filename": "test/mixin/var-key-parent-selector.scss"
                 }
               }
             ],
@@ -309,7 +309,7 @@
             "line": 9,
             "column": 9
           },
-          "filename": "var-key-parent-selector.scss"
+          "filename": "test/mixin/var-key-parent-selector.scss"
         },
         "value": {
           "type": "TEXT",
@@ -325,7 +325,7 @@
               "line": 9,
               "column": 9
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         }
       },
@@ -364,7 +364,7 @@
                   "line": 10,
                   "column": 21
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             {
@@ -381,7 +381,7 @@
                   "line": 10,
                   "column": 27
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             {
@@ -398,7 +398,7 @@
                   "line": 10,
                   "column": 34
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             }
           ],
@@ -433,7 +433,7 @@
     }
   ],
   "fileSourceMap": {
-    "var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+    "test/mixin/var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
   },
   "loc": {
     "filename": "",

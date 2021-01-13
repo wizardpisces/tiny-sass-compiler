@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "repeat.scss"
+    "test/repeat.scss"
   ],
   "names": [],
   "mappings": "AAAA;EACI,MAAO;;AAGX;EACI,MAAO;EACP,KAAM",

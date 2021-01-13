@@ -18,7 +18,7 @@
               "line": 2,
               "column": 22
             },
-            "filename": "import.scss"
+            "filename": "test/module/import.scss"
           }
         }
       ],
@@ -53,7 +53,7 @@
               "line": 3,
               "column": 24
             },
-            "filename": "import.scss"
+            "filename": "test/module/import.scss"
           }
         }
       ],
@@ -87,7 +87,7 @@
             "line": 5,
             "column": 9
           },
-          "filename": "import.scss"
+          "filename": "test/module/import.scss"
         },
         "value": {
           "type": "TEXT",
@@ -103,7 +103,7 @@
               "line": 5,
               "column": 9
             },
-            "filename": "import.scss"
+            "filename": "test/module/import.scss"
           }
         }
       },
@@ -124,7 +124,7 @@
                 "line": 6,
                 "column": 19
               },
-              "filename": "import.scss"
+              "filename": "test/module/import.scss"
             }
           },
           "right": {
@@ -144,7 +144,7 @@
                     "line": 6,
                     "column": 35
                   },
-                  "filename": "import.scss"
+                  "filename": "test/module/import.scss"
                 }
               }
             ],
@@ -159,7 +159,7 @@
                 "line": 6,
                 "column": 35
               },
-              "filename": "import.scss"
+              "filename": "test/module/import.scss"
             }
           },
           "loc": {
@@ -173,7 +173,7 @@
               "line": 6,
               "column": 35
             },
-            "filename": "import.scss"
+            "filename": "test/module/import.scss"
           }
         },
         {
@@ -192,7 +192,7 @@
                 "line": 7,
                 "column": 8
               },
-              "filename": "import.scss"
+              "filename": "test/module/import.scss"
             }
           },
           "right": {
@@ -212,7 +212,7 @@
                     "line": 7,
                     "column": 15
                   },
-                  "filename": "import.scss"
+                  "filename": "test/module/import.scss"
                 }
               }
             ],
@@ -227,7 +227,7 @@
                 "line": 7,
                 "column": 15
               },
-              "filename": "import.scss"
+              "filename": "test/module/import.scss"
             }
           },
           "loc": {
@@ -241,7 +241,7 @@
               "line": 7,
               "column": 15
             },
-            "filename": "import.scss"
+            "filename": "test/module/import.scss"
           }
         }
       ],
@@ -261,7 +261,7 @@
     }
   ],
   "fileSourceMap": {
-    "import.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+    "test/module/import.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   },
   "loc": {
     "filename": "",

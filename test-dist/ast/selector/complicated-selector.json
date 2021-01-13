@@ -17,7 +17,7 @@
             "line": 1,
             "column": 8
           },
-          "filename": "complicated-selector.scss"
+          "filename": "test/selector/complicated-selector.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 1,
               "column": 8
             },
-            "filename": "complicated-selector.scss"
+            "filename": "test/selector/complicated-selector.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 2,
                 "column": 11
               },
-              "filename": "complicated-selector.scss"
+              "filename": "test/selector/complicated-selector.scss"
             }
           },
           "right": {
@@ -74,7 +74,7 @@
                     "line": 2,
                     "column": 16
                   },
-                  "filename": "complicated-selector.scss"
+                  "filename": "test/selector/complicated-selector.scss"
                 }
               },
               {
@@ -91,7 +91,7 @@
                     "line": 2,
                     "column": 22
                   },
-                  "filename": "complicated-selector.scss"
+                  "filename": "test/selector/complicated-selector.scss"
                 }
               },
               {
@@ -108,7 +108,7 @@
                     "line": 2,
                     "column": 28
                   },
-                  "filename": "complicated-selector.scss"
+                  "filename": "test/selector/complicated-selector.scss"
                 }
               }
             ],
@@ -123,7 +123,7 @@
                 "line": 2,
                 "column": 28
               },
-              "filename": "complicated-selector.scss"
+              "filename": "test/selector/complicated-selector.scss"
             }
           },
           "loc": {
@@ -137,7 +137,7 @@
               "line": 2,
               "column": 28
             },
-            "filename": "complicated-selector.scss"
+            "filename": "test/selector/complicated-selector.scss"
           }
         },
         {
@@ -156,7 +156,7 @@
                 "line": 3,
                 "column": 28
               },
-              "filename": "complicated-selector.scss"
+              "filename": "test/selector/complicated-selector.scss"
             },
             "value": {
               "type": "LIST",
@@ -175,7 +175,7 @@
                       "line": 3,
                       "column": 7
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -192,7 +192,7 @@
                       "line": 3,
                       "column": 10
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -209,7 +209,7 @@
                       "line": 3,
                       "column": 11
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -226,7 +226,7 @@
                       "line": 3,
                       "column": 21
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -243,7 +243,7 @@
                       "line": 3,
                       "column": 22
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -260,7 +260,7 @@
                       "line": 3,
                       "column": 23
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 },
                 {
@@ -277,7 +277,7 @@
                       "line": 3,
                       "column": 28
                     },
-                    "filename": "complicated-selector.scss"
+                    "filename": "test/selector/complicated-selector.scss"
                   }
                 }
               ],
@@ -292,7 +292,7 @@
                   "line": 3,
                   "column": 28
                 },
-                "filename": "complicated-selector.scss"
+                "filename": "test/selector/complicated-selector.scss"
               }
             }
           },
@@ -313,7 +313,7 @@
                     "line": 4,
                     "column": 21
                   },
-                  "filename": "complicated-selector.scss"
+                  "filename": "test/selector/complicated-selector.scss"
                 }
               },
               "right": {
@@ -333,7 +333,7 @@
                         "line": 4,
                         "column": 26
                       },
-                      "filename": "complicated-selector.scss"
+                      "filename": "test/selector/complicated-selector.scss"
                     }
                   }
                 ],
@@ -348,7 +348,7 @@
                     "line": 4,
                     "column": 26
                   },
-                  "filename": "complicated-selector.scss"
+                  "filename": "test/selector/complicated-selector.scss"
                 }
               },
               "loc": {
@@ -362,7 +362,7 @@
                   "line": 4,
                   "column": 26
                 },
-                "filename": "complicated-selector.scss"
+                "filename": "test/selector/complicated-selector.scss"
               }
             }
           ],
@@ -397,7 +397,7 @@
     }
   ],
   "fileSourceMap": {
-    "complicated-selector.scss": ".button {\n    border: 1px solid black;\n    &:not([disabled]):hover {\n        border-width: 2px;\n    }\n}"
+    "test/selector/complicated-selector.scss": ".button {\n    border: 1px solid black;\n    &:not([disabled]):hover {\n        border-width: 2px;\n    }\n}"
   },
   "loc": {
     "filename": "",

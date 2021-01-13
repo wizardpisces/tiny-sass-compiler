@@ -1,9 +1,9 @@
 {
   "version": 3,
   "sources": [
-    "./base-2.scss",
-    "./base.scss",
-    "import.scss"
+    "test/module/_base-2.scss",
+    "test/module/_base.scss",
+    "test/module/import.scss"
   ],
   "names": [],
   "mappings": "AAIA;EACI,WAAY;;ACJhB;EAGE,KAAM;EACN,MAAO;;ADDT;EACI,WAAY;;AEDhB;EACE,iBAAkB;EAClB,MAAO",

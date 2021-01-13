@@ -35,7 +35,7 @@
               "line": 1,
               "column": 20
             },
-            "filename": "if.scss"
+            "filename": "test/flow-control/if.scss"
           }
         },
         {
@@ -54,7 +54,7 @@
                 "line": 1,
                 "column": 29
               },
-              "filename": "if.scss"
+              "filename": "test/flow-control/if.scss"
             }
           },
           "right": {
@@ -74,7 +74,7 @@
                     "line": 1,
                     "column": 36
                   },
-                  "filename": "if.scss"
+                  "filename": "test/flow-control/if.scss"
                 }
               }
             ],
@@ -89,7 +89,7 @@
                 "line": 1,
                 "column": 36
               },
-              "filename": "if.scss"
+              "filename": "test/flow-control/if.scss"
             }
           },
           "loc": {
@@ -103,7 +103,7 @@
               "line": 1,
               "column": 36
             },
-            "filename": "if.scss"
+            "filename": "test/flow-control/if.scss"
           }
         }
       ],
@@ -126,7 +126,7 @@
                   "line": 2,
                   "column": 8
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             "right": {
@@ -146,7 +146,7 @@
                       "line": 2,
                       "column": 15
                     },
-                    "filename": "if.scss"
+                    "filename": "test/flow-control/if.scss"
                   }
                 }
               ],
@@ -161,7 +161,7 @@
                   "line": 2,
                   "column": 15
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             "loc": {
@@ -175,7 +175,7 @@
                 "line": 2,
                 "column": 15
               },
-              "filename": "if.scss"
+              "filename": "test/flow-control/if.scss"
             }
           },
           {
@@ -194,7 +194,7 @@
                   "line": 3,
                   "column": 9
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             "right": {
@@ -214,7 +214,7 @@
                       "line": 3,
                       "column": 16
                     },
-                    "filename": "if.scss"
+                    "filename": "test/flow-control/if.scss"
                   }
                 }
               ],
@@ -229,7 +229,7 @@
                   "line": 3,
                   "column": 16
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             "loc": {
@@ -243,7 +243,7 @@
                 "line": 3,
                 "column": 16
               },
-              "filename": "if.scss"
+              "filename": "test/flow-control/if.scss"
             }
           },
           {
@@ -262,7 +262,7 @@
                   "line": 5,
                   "column": 14
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             "consequent": {
@@ -284,7 +284,7 @@
                         "line": 6,
                         "column": 18
                       },
-                      "filename": "if.scss"
+                      "filename": "test/flow-control/if.scss"
                     }
                   },
                   "right": {
@@ -306,7 +306,7 @@
                               "line": 6,
                               "column": 27
                             },
-                            "filename": "if.scss"
+                            "filename": "test/flow-control/if.scss"
                           }
                         },
                         "left": {
@@ -323,7 +323,7 @@
                               "line": 6,
                               "column": 25
                             },
-                            "filename": "if.scss"
+                            "filename": "test/flow-control/if.scss"
                           }
                         },
                         "right": {
@@ -340,7 +340,7 @@
                               "line": 6,
                               "column": 29
                             },
-                            "filename": "if.scss"
+                            "filename": "test/flow-control/if.scss"
                           }
                         },
                         "loc": {
@@ -354,7 +354,7 @@
                             "line": 6,
                             "column": 29
                           },
-                          "filename": "if.scss"
+                          "filename": "test/flow-control/if.scss"
                         }
                       }
                     ],
@@ -369,7 +369,7 @@
                         "line": 6,
                         "column": 29
                       },
-                      "filename": "if.scss"
+                      "filename": "test/flow-control/if.scss"
                     }
                   },
                   "loc": {
@@ -383,7 +383,7 @@
                       "line": 6,
                       "column": 29
                     },
-                    "filename": "if.scss"
+                    "filename": "test/flow-control/if.scss"
                   }
                 }
               ],
@@ -461,7 +461,7 @@
             "line": 10,
             "column": 11
           },
-          "filename": "if.scss"
+          "filename": "test/flow-control/if.scss"
         },
         "value": {
           "type": "TEXT",
@@ -477,7 +477,7 @@
               "line": 10,
               "column": 11
             },
-            "filename": "if.scss"
+            "filename": "test/flow-control/if.scss"
           }
         }
       },
@@ -516,7 +516,7 @@
                   "line": 10,
                   "column": 35
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             {
@@ -535,7 +535,7 @@
                     "line": 10,
                     "column": 44
                   },
-                  "filename": "if.scss"
+                  "filename": "test/flow-control/if.scss"
                 }
               },
               "right": {
@@ -555,7 +555,7 @@
                         "line": 10,
                         "column": 51
                       },
-                      "filename": "if.scss"
+                      "filename": "test/flow-control/if.scss"
                     }
                   }
                 ],
@@ -570,7 +570,7 @@
                     "line": 10,
                     "column": 51
                   },
-                  "filename": "if.scss"
+                  "filename": "test/flow-control/if.scss"
                 }
               },
               "loc": {
@@ -584,7 +584,7 @@
                   "line": 10,
                   "column": 51
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             }
           ],
@@ -633,7 +633,7 @@
             "line": 11,
             "column": 11
           },
-          "filename": "if.scss"
+          "filename": "test/flow-control/if.scss"
         },
         "value": {
           "type": "TEXT",
@@ -649,7 +649,7 @@
               "line": 11,
               "column": 11
             },
-            "filename": "if.scss"
+            "filename": "test/flow-control/if.scss"
           }
         }
       },
@@ -688,7 +688,7 @@
                   "line": 11,
                   "column": 35
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             },
             {
@@ -707,7 +707,7 @@
                     "line": 11,
                     "column": 44
                   },
-                  "filename": "if.scss"
+                  "filename": "test/flow-control/if.scss"
                 }
               },
               "right": {
@@ -727,7 +727,7 @@
                         "line": 11,
                         "column": 50
                       },
-                      "filename": "if.scss"
+                      "filename": "test/flow-control/if.scss"
                     }
                   }
                 ],
@@ -742,7 +742,7 @@
                     "line": 11,
                     "column": 50
                   },
-                  "filename": "if.scss"
+                  "filename": "test/flow-control/if.scss"
                 }
               },
               "loc": {
@@ -756,7 +756,7 @@
                   "line": 11,
                   "column": 50
                 },
-                "filename": "if.scss"
+                "filename": "test/flow-control/if.scss"
               }
             }
           ],
@@ -791,7 +791,7 @@
     }
   ],
   "fileSourceMap": {
-    "if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
+    "test/flow-control/if.scss": "@mixin avatar($size, $circle: false) {\n  width: $size;\n  height: $size;\n\n  @if $circle {\n    border-radius: $size / 2;\n  }\n}\n\n.square-av { @include avatar(100px, $circle: false); }\n.circle-av { @include avatar(100px, $circle: true); }"
   },
   "loc": {
     "filename": "",

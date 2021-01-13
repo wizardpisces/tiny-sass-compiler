@@ -17,7 +17,7 @@
             "line": 11,
             "column": 9
           },
-          "filename": "function-with-if.scss"
+          "filename": "test/function/function-with-if.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 11,
               "column": 9
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 12,
                 "column": 16
               },
-              "filename": "function-with-if.scss"
+              "filename": "test/function/function-with-if.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 12,
                 "column": 34
               },
-              "filename": "function-with-if.scss"
+              "filename": "test/function/function-with-if.scss"
             },
             "value": "10px"
           },
@@ -85,7 +85,7 @@
               "line": 12,
               "column": 34
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         }
       ],
@@ -105,7 +105,7 @@
     }
   ],
   "fileSourceMap": {
-    "function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
+    "test/function/function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
   },
   "loc": {
     "filename": "",

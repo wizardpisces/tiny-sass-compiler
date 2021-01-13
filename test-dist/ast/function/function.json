@@ -35,7 +35,7 @@
               "line": 1,
               "column": 18
             },
-            "filename": "function.scss"
+            "filename": "test/function/function.scss"
           }
         },
         {
@@ -52,7 +52,7 @@
               "line": 1,
               "column": 22
             },
-            "filename": "function.scss"
+            "filename": "test/function/function.scss"
           }
         }
       ],
@@ -80,7 +80,7 @@
                         "line": 2,
                         "column": 17
                       },
-                      "filename": "function.scss"
+                      "filename": "test/function/function.scss"
                     }
                   },
                   "left": {
@@ -97,7 +97,7 @@
                         "line": 2,
                         "column": 15
                       },
-                      "filename": "function.scss"
+                      "filename": "test/function/function.scss"
                     }
                   },
                   "right": {
@@ -114,7 +114,7 @@
                         "line": 2,
                         "column": 20
                       },
-                      "filename": "function.scss"
+                      "filename": "test/function/function.scss"
                     }
                   },
                   "loc": {
@@ -128,7 +128,7 @@
                       "line": 2,
                       "column": 20
                     },
-                    "filename": "function.scss"
+                    "filename": "test/function/function.scss"
                   }
                 }
               ],
@@ -143,7 +143,7 @@
                   "line": 2,
                   "column": 20
                 },
-                "filename": "function.scss"
+                "filename": "test/function/function.scss"
               }
             },
             "loc": {
@@ -205,7 +205,7 @@
             "line": 6,
             "column": 9
           },
-          "filename": "function.scss"
+          "filename": "test/function/function.scss"
         },
         "value": {
           "type": "TEXT",
@@ -221,7 +221,7 @@
               "line": 6,
               "column": 9
             },
-            "filename": "function.scss"
+            "filename": "test/function/function.scss"
           }
         }
       },
@@ -242,7 +242,7 @@
                 "line": 7,
                 "column": 10
               },
-              "filename": "function.scss"
+              "filename": "test/function/function.scss"
             }
           },
           "right": {
@@ -262,7 +262,7 @@
                     "line": 7,
                     "column": 16
                   },
-                  "filename": "function.scss"
+                  "filename": "test/function/function.scss"
                 }
               }
             ],
@@ -277,7 +277,7 @@
                 "line": 7,
                 "column": 16
               },
-              "filename": "function.scss"
+              "filename": "test/function/function.scss"
             }
           },
           "loc": {
@@ -291,7 +291,7 @@
               "line": 7,
               "column": 16
             },
-            "filename": "function.scss"
+            "filename": "test/function/function.scss"
           }
         },
         {
@@ -310,7 +310,7 @@
                 "line": 8,
                 "column": 16
               },
-              "filename": "function.scss"
+              "filename": "test/function/function.scss"
             }
           },
           "right": {
@@ -332,7 +332,7 @@
                       "line": 8,
                       "column": 30
                     },
-                    "filename": "function.scss"
+                    "filename": "test/function/function.scss"
                   }
                 },
                 "left": {
@@ -349,7 +349,7 @@
                         "line": 8,
                         "column": 22
                       },
-                      "filename": "function.scss"
+                      "filename": "test/function/function.scss"
                     },
                     "value": "plus",
                     "type": "IDENTIFIER"
@@ -369,7 +369,7 @@
                           "line": 8,
                           "column": 24
                         },
-                        "filename": "function.scss"
+                        "filename": "test/function/function.scss"
                       }
                     },
                     {
@@ -386,7 +386,7 @@
                           "line": 8,
                           "column": 27
                         },
-                        "filename": "function.scss"
+                        "filename": "test/function/function.scss"
                       }
                     }
                   ],
@@ -401,7 +401,7 @@
                       "line": 8,
                       "column": 27
                     },
-                    "filename": "function.scss"
+                    "filename": "test/function/function.scss"
                   }
                 },
                 "right": {
@@ -418,7 +418,7 @@
                       "line": 8,
                       "column": 34
                     },
-                    "filename": "function.scss"
+                    "filename": "test/function/function.scss"
                   }
                 },
                 "loc": {
@@ -432,7 +432,7 @@
                     "line": 8,
                     "column": 34
                   },
-                  "filename": "function.scss"
+                  "filename": "test/function/function.scss"
                 }
               }
             ],
@@ -447,7 +447,7 @@
                 "line": 8,
                 "column": 34
               },
-              "filename": "function.scss"
+              "filename": "test/function/function.scss"
             }
           },
           "loc": {
@@ -461,7 +461,7 @@
               "line": 8,
               "column": 34
             },
-            "filename": "function.scss"
+            "filename": "test/function/function.scss"
           }
         }
       ],
@@ -481,7 +481,7 @@
     }
   ],
   "fileSourceMap": {
-    "function.scss": "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
+    "test/function/function.scss": "@function plus($a, $b) {\n    @return $a + $b;\n}\n\n\n.sidebar {\n    float: left;\n    margin-left: plus(4, 3) * 2px;\n}\n"
   },
   "loc": {
     "filename": "",
