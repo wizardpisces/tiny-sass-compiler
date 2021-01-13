@@ -1,6 +1,6 @@
 # Project Target
 
-This project is for people who want to understand how to write a compiler , mainly cover steps:
+This project is for people who want to understand how to write a compiler (almost zero third-party dependencies) , mainly cover steps:
 
 1. sourceCode (sass scanning)
 2. tokens (parsing)

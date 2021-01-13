@@ -13,7 +13,7 @@ import { CodegenResult } from './src/type';
 function require_css(scssPath: string) {
     return {
         source: fs.readFileSync(scssPath, 'utf8'),
-        filename: path.basename(scssPath)
+        filename: scssPath
     }
 }
 export interface RunOptions {
@@ -94,7 +94,7 @@ function run(
             try {
                 transform(parsedAst, {
                     ...requireCss,
-                    filePath,
+                    filename: filePath,
                     sourceMap: options.sourceMap
                 })
                 compiled = generate(parsedAst, {

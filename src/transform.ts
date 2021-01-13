@@ -17,14 +17,14 @@ export function createTransformContext(
     {
         nodeTransforms = [],
         onError = defaultOnError,
-        filePath = './default.scss'
+        filename = './default.scss'
     }: TransformOptions
 ): TransformContext {
     const context: TransformContext = {
         onError,
         nodeTransforms,
         root,
-        filePath,
+        filename,
         env: new Environment(null),
     }
 

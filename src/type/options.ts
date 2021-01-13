@@ -20,7 +20,7 @@ export interface TransformOptions {
     nodeTransforms?: NodeTransform[]
 
     // mainly used to resolve @import,@use module
-    filePath?: string
+    filename?: string
 
     onError?: (error: CompilerError) => void
 }

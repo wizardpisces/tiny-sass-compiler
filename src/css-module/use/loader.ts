@@ -74,7 +74,7 @@ export class Module {
 
     _compile(source: string) {
         let root = parse(source, { filename: this.filename, source })
-        root.children = root.children.filter(statement=>statement.type === NodeTypes.USE)
+        root.children.filter(statement=>statement.type === NodeTypes.USE)
         // transform(ast)
     }
 

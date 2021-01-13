@@ -57,8 +57,6 @@ import {
     createKeyframesPrelude,
     ContentPlaceholder,
     createContentPlaceholder,
-    // Namespace,
-    // createVariableWithNamespace
 } from './ast';
 
 import {
@@ -304,10 +302,6 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
 
         let tok = input.peek();
 
-        // if (tok.type === NodeTypes.NAMESPACE) {
-        //     return parseNamespace()
-        // }
-
         if (tok.type === NodeTypes.VARIABLE || tok.type === NodeTypes.PLACEHOLDER) {
             return consumeNextTokenWithLoc();
         }
@@ -359,17 +353,6 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
     }
-
-    // function parseNamespace() { // todos: to parse namespaced IncludeStatement ,VarKeyNode,callExpression
-    //     let namespace: Namespace = consumeNextTokenWithLoc(),
-    //         nextNode = dispatchParser();
-
-    //     if (nextNode.type === NodeTypes.VARIABLE) {
-    //         return createVariableWithNamespace(namespace, nextNode)
-    //     }
-
-
-    // }
 
     function parsePlugin() {
         function processFilenameExp(exp) {

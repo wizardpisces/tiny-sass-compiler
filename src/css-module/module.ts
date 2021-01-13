@@ -27,7 +27,7 @@ export function loadImportModuleByAst(root: RootNode, context: TransformContext)
         function requireModule(module: ImportStatement, parent: RootNode) {
             module.params.forEach((param: TextNode) => {
                 let filename = param.value,
-                    filePath = Module._resolveFilename(filename, context.filePath),
+                    filePath = Module._resolveFilename(filename, context.filename),
                     source = fs.readFileSync(filePath, 'utf8'),
                     parseOptions: ParserOptions = {
                         filename,
