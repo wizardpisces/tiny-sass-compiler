@@ -1,18 +1,13 @@
 import fs from 'fs'
-import parse from '../parse'
-import { TransformContext, ParserOptions } from '../type'
-import { RootNode, Statement, TextNode, NodeTypes, ImportStatement } from '../parse/ast'
-import { Module } from './use/loader'
+import parse from '../../parse'
+import { TransformContext, ParserOptions } from '../../type'
+import { RootNode, Statement, TextNode, NodeTypes, ImportStatement } from '../../parse/ast'
+import { resolveSourceFilePath } from '../util'
 
-
-export function loadUseModuleByAst(root: RootNode, context: TransformContext) {
-    // const { filePath } = context;
-    root.children = root.children.filter(statement => statement.type === NodeTypes.USE)
-    
-    // Module._load(filePath, null)
-}
-
-export function loadImportModuleByAst(root: RootNode, context: TransformContext) {
+// prevent same file be parsed multiple times
+const parseCache = new Object(null)
+// will be deprecated by @use
+export function importModule(root: RootNode, context: TransformContext) {
     let statementList: RootNode['children'] = [];
 
     /**
@@ -23,19 +18,20 @@ export function loadImportModuleByAst(root: RootNode, context: TransformContext)
      */
     function walkNode(root: RootNode) {
 
-
         function requireModule(module: ImportStatement, parent: RootNode) {
             module.params.forEach((param: TextNode) => {
                 let filename = param.value,
-                    filePath = Module._resolveFilename(filename, context.filename),
+                    filePath = resolveSourceFilePath(filename, context.filename),
                     source = fs.readFileSync(filePath, 'utf8'),
                     parseOptions: ParserOptions = {
                         filename: filePath,
                         source
                     };
 
-                let childRootNode: RootNode = parse(source, parseOptions)
 
+                let childRootNode: RootNode = parseCache[filePath] || parse(source, parseOptions)
+
+                parseCache[filePath] = childRootNode
 
                 walkNode(childRootNode)
 

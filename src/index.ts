@@ -1,4 +1,5 @@
 export { default as parse } from './parse'
 export { generate } from './codegen'
 export * from './traverse'
-export { default as compile, transform } from './compile'
+export { transform } from './transform'
+export { default as compile } from './compile'

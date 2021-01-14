@@ -342,19 +342,26 @@ export interface Keyframes extends Atrule {
  * @media ast tree end
  */
 
-/* codeGenNode means ast tree that is transformed  */
-
+/**
+ * codeGenNode is ast that could directly codegen to css
+ */
 export type CodegenNode = TextNode | ProgCodeGenNode | RootNode
 
 export type ProgCodeGenNode = RuleStatement | EmptyNode | SelectorNode | DeclarationStatement | Atrule | MediaStatement | MediaPrelude | Keyframes | KeyframesPrelude
 
+/**
+ * {
+ *  filename: scssSourceCode
+ * }
+ * used to generate sourceMap
+ */
+
 export type FileSourceMap = {
-    [key: string]: string
+    [filename: string]: string
 }
 export interface RootNode extends Node {
     type: NodeTypes.RootNode
 
-    // codeGenNode ,use it to generate source map between files
     fileSourceMap: FileSourceMap
 
     children: (Statement | CodegenNode)[]

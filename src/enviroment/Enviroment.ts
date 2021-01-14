@@ -10,7 +10,7 @@ export type Kind = NodeTypes.VARIABLE | NodeTypes.VAR_KEY // VAR_KEY only invole
     | NodeTypes.MIXIN | NodeTypes.CONTENT
 
 export class Variable {
-    private _value: any
+    private _value: string | number | Function | Environment
     kind: Kind = NodeTypes.VARIABLE // set default as VARIABLE
     constructor(kind: Kind, val: any) {
         this.kind = kind;
@@ -30,6 +30,10 @@ export class Environment {
             [name: string]: Variable
         }
     }
+
+    namespaceEnv: {
+        [namespace: string]: Environment
+    } = {}
 
     parent: Environment | null
 
@@ -51,6 +55,17 @@ export class Environment {
         }
     }
 
+    /**
+     * support for length one namespace for now
+     */
+    public setEnvByNamespace(namespace: string, env: Environment) {
+        this.namespaceEnv[namespace] = env
+    }
+
+    public getEnvByNamespace(namespace: string) {
+        return this.namespaceEnv[namespace]
+    }
+
     public get(name: string, kind: Kind = NodeTypes.VARIABLE) {
         let result = this.lookup(name, kind);
 
@@ -69,8 +84,8 @@ export class Environment {
     //     return (scope || this).vars[name] = value;
     // },
     public def(name: string, value: any = '', kind: Kind = NodeTypes.VARIABLE) {
-        
-        if (kind === NodeTypes.VARIABLE && typeof value === 'function'){ // outside register function plugin
+
+        if (kind === NodeTypes.VARIABLE && typeof value === 'function') { // outside register function plugin
             kind = NodeTypes.FUNCTION
         }
 

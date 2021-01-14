@@ -1,0 +1,10 @@
+// styles.scss
+@use "./base.scss";
+@use "./base-2.scss";
+@import "./base.scss";
+
+.use {
+    background-color: base.$primary-color;
+    color: base-2.plus(1, 2);
+    width: 1212.1212;
+}

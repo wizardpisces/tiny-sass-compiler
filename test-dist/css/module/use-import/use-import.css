@@ -1,14 +1,14 @@
-.base-3{
+.base-2{
   background:red;
 }
-.base-2{
-  background:base-3.$primary-color;
+.base{
+  color:base-2.$primary-color;
 }
 .base{
   color:base-2.$primary-color;
 }
 .use{
   background-color:base.$primary-color;
-  color:base-3.plus(1,2);
-  font:1212.1212;
+  color:base-2.plus(1,2);
+  width:1212.1212;
 }

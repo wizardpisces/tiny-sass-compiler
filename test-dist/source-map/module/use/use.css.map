@@ -1,15 +1,17 @@
 {
   "version": 3,
   "sources": [
-    "./base-2.scss",
-    "./base.scss",
-    "use.scss"
+    "test/module/use/_base-3.scss",
+    "test/module/use/_base-2.scss",
+    "test/module/use/_base.scss",
+    "test/module/use/use.scss"
   ],
   "names": [],
-  "mappings": "AAIA;EACI,WAAY;;ACJhB;EAGE,KAAM;EACN,MAAO;;ADDT;EACI,WAAY;;AEDhB;EACE,iBAAkB;EAClB,MAAO",
+  "mappings": "AAKA;EACI,WAAY;;ACFhB;EACI,WAAY;;ACDhB;EACE,MAAO;;ACDT;EACE,iBAAkB;EAClB,MAAO;EACP,KAAM",
   "sourcesContent": [
-    "$font-stack: Helvetica,\nsans-serif;\n$primary-color: #333;\n\n.base-2 {\n    background: red;\n}",
-    "@use \"./base-2.scss\";\n// _base.scss\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
-    "// styles.scss\n@use \"./base.scss\";\n@use \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+    "// @use './base';\n$primary-color: yellow;\n@function plus($a, $b) {\n    @return $a+$b;\n}\n.base-3 {\n    background: red;\n}",
+    "@use './base-3';\n\n$primary-color: base-3.$primary-color;\n\n.base-2 {\n    background: base-3.$primary-color;\n}",
+    "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}",
+    "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}"
   ]
 }

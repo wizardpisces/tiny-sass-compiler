@@ -31,11 +31,6 @@ export interface CodegenOptions {
      * @default false
      */
     sourceMap?: boolean
-
-    /**
-   * Filename for source map generation.
-   */
-    // filename: string
 }
 
 export interface ParserOptions {

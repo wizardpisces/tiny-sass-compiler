@@ -93,9 +93,7 @@ function run(
 
             try {
                 transform(parsedAst, {
-                    ...requireCss,
-                    filename: filePath,
-                    sourceMap: options.sourceMap
+                    ...requireCss
                 })
                 compiled = generate(parsedAst, {
                     sourceMap: options.sourceMap
@@ -167,6 +165,7 @@ function run(
             // if (filename!='nest' && filename !== 'at-rules-and-bubbling.scss') return;
             // if (filename!== 'function' && !filename.startsWith('function')) return;
             // if (filename !== 'selector' && filename != 'complicated-selector.scss') return;
+            // if (filename !== 'module' && filename != 'use' && filename!=='use.scss') return;
 
             let filePath = path.join(sourceDir, filename),
                 stat = fs.lstatSync(filePath)

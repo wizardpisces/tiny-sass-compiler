@@ -1,7 +1,6 @@
 // styles.scss
 @use "./base.scss";
 @use "./base-3.scss";
-@import "./base-3.scss";
 
 .use {
   background-color: base.$primary-color;

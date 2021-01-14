@@ -5,6 +5,7 @@
 
 * upgrade transformModule reference to node require principle (same path cache), 
 * write selector lexical analyze in detail
+* support length(n) namespace for @use ? Is it necessary?
 * implement sass @use and handle recursive @import [reference here](https://sass-lang.com/documentation/at-rules/import)
 * add traverse plugin to merge same selector, and cover more than children traverse (should also includes RULE Selector node)
 * add static check for acss in vscode

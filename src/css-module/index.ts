@@ -1,0 +1,1 @@
+export { compatibleLoadModule } from './use/loader'

@@ -18,7 +18,7 @@
               "line": 2,
               "column": 19
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
           }
         }
       ],
@@ -41,7 +41,7 @@
       "params": [
         {
           "type": "TEXT",
-          "value": "./base-3.scss",
+          "value": "./base-2.scss",
           "loc": {
             "start": {
               "offset": 40,
@@ -53,7 +53,42 @@
               "line": 3,
               "column": 21
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "IMPORT",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./base.scss",
+          "loc": {
+            "start": {
+              "offset": 65,
+              "line": 4,
+              "column": 9
+            },
+            "end": {
+              "offset": 78,
+              "line": 4,
+              "column": 22
+            },
+            "filename": "test/module/use-import/use-import.scss"
           }
         }
       ],
@@ -78,32 +113,32 @@
         "meta": [],
         "loc": {
           "start": {
-            "offset": 58,
-            "line": 5,
+            "offset": 81,
+            "line": 6,
             "column": 1
           },
           "end": {
-            "offset": 62,
-            "line": 5,
+            "offset": 85,
+            "line": 6,
             "column": 5
           },
-          "filename": "test/module/use/use.scss"
+          "filename": "test/module/use-import/use-import.scss"
         },
         "value": {
           "type": "TEXT",
           "value": ".use",
           "loc": {
             "start": {
-              "offset": 58,
-              "line": 5,
+              "offset": 81,
+              "line": 6,
               "column": 1
             },
             "end": {
-              "offset": 62,
-              "line": 5,
+              "offset": 85,
+              "line": 6,
               "column": 5
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
           }
         }
       },
@@ -115,16 +150,16 @@
             "value": "background-color",
             "loc": {
               "start": {
-                "offset": 67,
-                "line": 6,
-                "column": 3
+                "offset": 92,
+                "line": 7,
+                "column": 5
               },
               "end": {
-                "offset": 83,
-                "line": 6,
-                "column": 19
+                "offset": 108,
+                "line": 7,
+                "column": 21
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "right": {
@@ -135,45 +170,45 @@
                 "value": "base.$primary-color",
                 "loc": {
                   "start": {
-                    "offset": 85,
-                    "line": 6,
-                    "column": 21
+                    "offset": 110,
+                    "line": 7,
+                    "column": 23
                   },
                   "end": {
-                    "offset": 104,
-                    "line": 6,
-                    "column": 40
+                    "offset": 129,
+                    "line": 7,
+                    "column": 42
                   },
-                  "filename": "test/module/use/use.scss"
+                  "filename": "test/module/use-import/use-import.scss"
                 }
               }
             ],
             "loc": {
               "start": {
-                "offset": 85,
-                "line": 6,
-                "column": 21
+                "offset": 110,
+                "line": 7,
+                "column": 23
               },
               "end": {
-                "offset": 104,
-                "line": 6,
-                "column": 40
+                "offset": 129,
+                "line": 7,
+                "column": 42
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "loc": {
             "start": {
-              "offset": 67,
-              "line": 6,
-              "column": 3
+              "offset": 92,
+              "line": 7,
+              "column": 5
             },
             "end": {
-              "offset": 104,
-              "line": 6,
-              "column": 40
+              "offset": 129,
+              "line": 7,
+              "column": 42
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
           }
         },
         {
@@ -183,16 +218,16 @@
             "value": "color",
             "loc": {
               "start": {
-                "offset": 108,
-                "line": 7,
-                "column": 3
+                "offset": 135,
+                "line": 8,
+                "column": 5
               },
               "end": {
-                "offset": 113,
-                "line": 7,
-                "column": 8
+                "offset": 140,
+                "line": 8,
+                "column": 10
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "right": {
@@ -203,18 +238,18 @@
                 "id": {
                   "loc": {
                     "start": {
-                      "offset": 115,
-                      "line": 7,
-                      "column": 10
+                      "offset": 142,
+                      "line": 8,
+                      "column": 12
                     },
                     "end": {
-                      "offset": 126,
-                      "line": 7,
-                      "column": 21
+                      "offset": 153,
+                      "line": 8,
+                      "column": 23
                     },
-                    "filename": "test/module/use/use.scss"
+                    "filename": "test/module/use-import/use-import.scss"
                   },
-                  "value": "base-3.plus",
+                  "value": "base-2.plus",
                   "type": "IDENTIFIER"
                 },
                 "args": [
@@ -223,16 +258,16 @@
                     "value": "1",
                     "loc": {
                       "start": {
-                        "offset": 127,
-                        "line": 7,
-                        "column": 22
+                        "offset": 154,
+                        "line": 8,
+                        "column": 24
                       },
                       "end": {
-                        "offset": 128,
-                        "line": 7,
-                        "column": 23
+                        "offset": 155,
+                        "line": 8,
+                        "column": 25
                       },
-                      "filename": "test/module/use/use.scss"
+                      "filename": "test/module/use-import/use-import.scss"
                     }
                   },
                   {
@@ -240,79 +275,79 @@
                     "value": "2",
                     "loc": {
                       "start": {
-                        "offset": 129,
-                        "line": 7,
-                        "column": 24
+                        "offset": 157,
+                        "line": 8,
+                        "column": 27
                       },
                       "end": {
-                        "offset": 130,
-                        "line": 7,
-                        "column": 25
+                        "offset": 158,
+                        "line": 8,
+                        "column": 28
                       },
-                      "filename": "test/module/use/use.scss"
+                      "filename": "test/module/use-import/use-import.scss"
                     }
                   }
                 ],
                 "loc": {
                   "start": {
-                    "offset": 115,
-                    "line": 7,
-                    "column": 10
+                    "offset": 142,
+                    "line": 8,
+                    "column": 12
                   },
                   "end": {
-                    "offset": 130,
-                    "line": 7,
-                    "column": 25
+                    "offset": 158,
+                    "line": 8,
+                    "column": 28
                   },
-                  "filename": "test/module/use/use.scss"
+                  "filename": "test/module/use-import/use-import.scss"
                 }
               }
             ],
             "loc": {
               "start": {
-                "offset": 115,
-                "line": 7,
-                "column": 10
+                "offset": 142,
+                "line": 8,
+                "column": 12
               },
               "end": {
-                "offset": 130,
-                "line": 7,
-                "column": 25
+                "offset": 158,
+                "line": 8,
+                "column": 28
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "loc": {
             "start": {
-              "offset": 108,
-              "line": 7,
-              "column": 3
+              "offset": 135,
+              "line": 8,
+              "column": 5
             },
             "end": {
-              "offset": 130,
-              "line": 7,
-              "column": 25
+              "offset": 158,
+              "line": 8,
+              "column": 28
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
           }
         },
         {
           "type": "DECLARATION",
           "left": {
             "type": "TEXT",
-            "value": "font",
+            "value": "width",
             "loc": {
               "start": {
-                "offset": 135,
-                "line": 8,
-                "column": 3
+                "offset": 165,
+                "line": 9,
+                "column": 5
               },
               "end": {
-                "offset": 139,
-                "line": 8,
-                "column": 7
+                "offset": 170,
+                "line": 9,
+                "column": 10
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "right": {
@@ -323,45 +358,45 @@
                 "value": "1212.1212",
                 "loc": {
                   "start": {
-                    "offset": 141,
-                    "line": 8,
-                    "column": 9
+                    "offset": 172,
+                    "line": 9,
+                    "column": 12
                   },
                   "end": {
-                    "offset": 150,
-                    "line": 8,
-                    "column": 18
+                    "offset": 181,
+                    "line": 9,
+                    "column": 21
                   },
-                  "filename": "test/module/use/use.scss"
+                  "filename": "test/module/use-import/use-import.scss"
                 }
               }
             ],
             "loc": {
               "start": {
-                "offset": 141,
-                "line": 8,
-                "column": 9
+                "offset": 172,
+                "line": 9,
+                "column": 12
               },
               "end": {
-                "offset": 150,
-                "line": 8,
-                "column": 18
+                "offset": 181,
+                "line": 9,
+                "column": 21
               },
-              "filename": "test/module/use/use.scss"
+              "filename": "test/module/use-import/use-import.scss"
             }
           },
           "loc": {
             "start": {
-              "offset": 135,
-              "line": 8,
-              "column": 3
+              "offset": 165,
+              "line": 9,
+              "column": 5
             },
             "end": {
-              "offset": 150,
-              "line": 8,
-              "column": 18
+              "offset": 181,
+              "line": 9,
+              "column": 21
             },
-            "filename": "test/module/use/use.scss"
+            "filename": "test/module/use-import/use-import.scss"
           }
         }
       ],
@@ -381,7 +416,7 @@
     }
   ],
   "fileSourceMap": {
-    "test/module/use/use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}"
+    "test/module/use-import/use-import.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-2.scss\";\n@import \"./base.scss\";\n\n.use {\n    background-color: base.$primary-color;\n    color: base-2.plus(1, 2);\n    width: 1212.1212;\n}"
   },
   "loc": {
     "filename": "",
