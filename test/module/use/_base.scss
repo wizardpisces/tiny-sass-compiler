@@ -5,3 +5,8 @@ $primary-color:base-2.$primary-color;
 .base {
   color: base-2.$primary-color;
 }
+
+@mixin base-mixin {
+  margin: 0;
+  padding: 0;
+}

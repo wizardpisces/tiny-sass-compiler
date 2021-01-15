@@ -4,21 +4,21 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "keyframes",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 7,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 8
           },
           "end": {
+            "offset": 16,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 17
+          },
+          "filename": "test/mixin/mixin-keyframes-content.scss"
+        },
+        "name": "keyframes",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -418,21 +418,21 @@
     {
       "type": "INCLUDE",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "keyframes",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 302,
+            "line": 19,
+            "column": 10
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 311,
+            "line": 19,
+            "column": 19
+          },
+          "filename": "test/mixin/mixin-keyframes-content.scss"
+        },
+        "name": "keyframes",
+        "type": "IDENTIFIER"
       },
       "args": [
         {
@@ -544,7 +544,7 @@
                           },
                           "filename": "test/mixin/mixin-keyframes-content.scss"
                         },
-                        "value": "translateX",
+                        "name": "translateX",
                         "type": "IDENTIFIER"
                       },
                       "args": [
@@ -699,7 +699,7 @@
                           },
                           "filename": "test/mixin/mixin-keyframes-content.scss"
                         },
-                        "value": "translateX",
+                        "name": "translateX",
                         "type": "IDENTIFIER"
                       },
                       "args": [

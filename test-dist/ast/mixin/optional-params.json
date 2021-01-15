@@ -106,21 +106,21 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "replace-text",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 40,
+            "line": 2,
+            "column": 8
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 52,
+            "line": 2,
+            "column": 20
+          },
+          "filename": "test/mixin/optional-params.scss"
+        },
+        "name": "replace-text",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -826,21 +826,21 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "replace-text",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 263,
+                "line": 15,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 275,
+                "line": 15,
+                "column": 24
+              },
+              "filename": "test/mixin/optional-params.scss"
+            },
+            "name": "replace-text",
+            "type": "IDENTIFIER"
           },
           "args": [
             {

@@ -4,21 +4,21 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "avatar",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 7,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 8
           },
           "end": {
+            "offset": 13,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 14
+          },
+          "filename": "test/flow-control/if.scss"
+        },
+        "name": "avatar",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -485,21 +485,21 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "avatar",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 148,
+                "line": 10,
+                "column": 23
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 154,
+                "line": 10,
+                "column": 29
+              },
+              "filename": "test/flow-control/if.scss"
+            },
+            "name": "avatar",
+            "type": "IDENTIFIER"
           },
           "args": [
             {
@@ -657,21 +657,21 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "avatar",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 203,
+                "line": 11,
+                "column": 23
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 209,
+                "line": 11,
+                "column": 29
+              },
+              "filename": "test/flow-control/if.scss"
+            },
+            "name": "avatar",
+            "type": "IDENTIFIER"
           },
           "args": [
             {

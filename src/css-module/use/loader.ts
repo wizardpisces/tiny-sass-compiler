@@ -13,20 +13,25 @@ function loadModule(module: Module, filename: string) {
     module._compile(source)
 }
 
-function updateChildren(parent: Module | null, child: Module) {
+function updateChildren(parent: Module | null, child: Module, scan:boolean = false) {
     const children = parent && parent.children;
-    if (children && !(children.includes(child)))
+    /**
+     * create child and parent relationship
+     * first time needs no scan
+     */
+    if (children && !(scan && children.includes(child))){
         children.push(child);
+    }
 }
 
-function updateEnvAndSourceMap(parent: Module | null) {
-    if (parent) {
-        parent.children.forEach((childModule: Module) => {
+function updateEnvAndSourceMap(module: Module | null) {
+    if (module) {
+        module.children.forEach((childModule: Module) => {
             /**
              * extend @use child namespace
              */
-            parent.exports.env.setEnvByNamespace(childModule.id, childModule.exports.env)
-            Object.assign(parent.ast.fileSourceMap, childModule.ast.fileSourceMap)
+            module.exports.env.setEnvByNamespace(childModule.id, childModule.exports.env)
+            Object.assign(module.ast.fileSourceMap, childModule.ast.fileSourceMap)
         })
     }
 }
@@ -60,6 +65,7 @@ export class Module {
         this.filename = ''
         this.children = []
         this.isMain = parent === null
+        updateChildren(parent, this, false);
     }
 
     /**
@@ -73,12 +79,13 @@ export class Module {
             module = new Module(filename, parent)
             Module._cache[filename] = module
             module.load(filename)
+        }else{
+            updateChildren(parent, module, true)
         }
         /**
          * create scoped env to resolve namespaced variable
          */
         updateEnvAndSourceMap(module)
-        updateChildren(parent, module);
 
         return module
     }

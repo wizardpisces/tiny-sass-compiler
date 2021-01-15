@@ -214,7 +214,7 @@
                     },
                     "filename": "test/module/use/use.scss"
                   },
-                  "value": "base-3.plus",
+                  "name": "base-3.plus",
                   "type": "IDENTIFIER"
                 },
                 "args": [
@@ -363,6 +363,160 @@
             },
             "filename": "test/module/use/use.scss"
           }
+        },
+        {
+          "type": "INCLUDE",
+          "id": {
+            "loc": {
+              "start": {
+                "offset": 163,
+                "line": 9,
+                "column": 12
+              },
+              "end": {
+                "offset": 178,
+                "line": 9,
+                "column": 27
+              },
+              "filename": "test/module/use/use.scss"
+            },
+            "name": "base.base-mixin",
+            "type": "IDENTIFIER"
+          },
+          "args": [],
+          "loc": {
+            "filename": "",
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            }
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 183,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 211,
+            "line": 12,
+            "column": 29
+          },
+          "filename": "test/module/use/use.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".use-more-than-one-namespace",
+          "loc": {
+            "start": {
+              "offset": 183,
+              "line": 12,
+              "column": 1
+            },
+            "end": {
+              "offset": 211,
+              "line": 12,
+              "column": 29
+            },
+            "filename": "test/module/use/use.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "color",
+            "loc": {
+              "start": {
+                "offset": 215,
+                "line": 13,
+                "column": 3
+              },
+              "end": {
+                "offset": 220,
+                "line": 13,
+                "column": 8
+              },
+              "filename": "test/module/use/use.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "TEXT",
+                "value": "base.base-2.$primary-color",
+                "loc": {
+                  "start": {
+                    "offset": 222,
+                    "line": 13,
+                    "column": 10
+                  },
+                  "end": {
+                    "offset": 248,
+                    "line": 13,
+                    "column": 36
+                  },
+                  "filename": "test/module/use/use.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 222,
+                "line": 13,
+                "column": 10
+              },
+              "end": {
+                "offset": 248,
+                "line": 13,
+                "column": 36
+              },
+              "filename": "test/module/use/use.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 215,
+              "line": 13,
+              "column": 3
+            },
+            "end": {
+              "offset": 248,
+              "line": 13,
+              "column": 36
+            },
+            "filename": "test/module/use/use.scss"
+          }
         }
       ],
       "loc": {
@@ -381,7 +535,7 @@
     }
   ],
   "fileSourceMap": {
-    "test/module/use/use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}"
+    "test/module/use/use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n  @include base.base-mixin;\n}\n\n.use-more-than-one-namespace{\n  color: base.base-2.$primary-color;\n}"
   },
   "loc": {
     "filename": "",

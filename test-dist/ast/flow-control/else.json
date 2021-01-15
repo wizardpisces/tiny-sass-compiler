@@ -276,21 +276,21 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "theme-colors",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 103,
+            "line": 6,
+            "column": 8
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 115,
+            "line": 6,
+            "column": 20
+          },
+          "filename": "test/flow-control/else.scss"
+        },
+        "name": "theme-colors",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -775,21 +775,21 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "theme-colors",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 327,
+                "line": 17,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 339,
+                "line": 17,
+                "column": 24
+              },
+              "filename": "test/flow-control/else.scss"
+            },
+            "name": "theme-colors",
+            "type": "IDENTIFIER"
           },
           "args": [
             {
@@ -915,21 +915,21 @@
             {
               "type": "INCLUDE",
               "id": {
-                "type": "IDENTIFIER",
-                "value": "theme-colors",
                 "loc": {
-                  "filename": "",
                   "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
+                    "offset": 390,
+                    "line": 19,
+                    "column": 14
                   },
                   "end": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  }
-                }
+                    "offset": 402,
+                    "line": 19,
+                    "column": 26
+                  },
+                  "filename": "test/flow-control/else.scss"
+                },
+                "name": "theme-colors",
+                "type": "IDENTIFIER"
               },
               "args": [
                 {

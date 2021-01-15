@@ -12,3 +12,6 @@
   color:base-3.plus(1,2);
   font:1212.1212;
 }
+.use-more-than-one-namespace{
+  color:base.base-2.$primary-color;
+}

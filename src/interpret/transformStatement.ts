@@ -240,7 +240,7 @@ export function processStatement(
 
         }
 
-        context.env.def(node.id.value, make_function, node.type)
+        context.env.def(node.id.name, make_function, node.type)
 
         return createEmptyNode();
     }
@@ -260,7 +260,7 @@ export function processStatement(
     }
 
     function transformInclude(node: IncludeStatement, context: TransformContext) {
-        let func = context.env.get(node.id.value, NodeTypes.MIXIN);
+        let func = context.env.get(node.id.name, NodeTypes.MIXIN);
 
         node.content && context.env.def('@content', dispatchStatement(node.content, context), NodeTypes.CONTENT)
 

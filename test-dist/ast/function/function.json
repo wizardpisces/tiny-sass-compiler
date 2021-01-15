@@ -4,21 +4,21 @@
     {
       "type": "FUNCTION",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "plus",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 10,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 11
           },
           "end": {
+            "offset": 14,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 15
+          },
+          "filename": "test/function/function.scss"
+        },
+        "name": "plus",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -351,7 +351,7 @@
                       },
                       "filename": "test/function/function.scss"
                     },
-                    "value": "plus",
+                    "name": "plus",
                     "type": "IDENTIFIER"
                   },
                   "args": [

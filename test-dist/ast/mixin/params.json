@@ -39,7 +39,7 @@
                 },
                 "filename": "test/mixin/params.scss"
               },
-              "value": "skew",
+              "name": "skew",
               "type": "IDENTIFIER"
             },
             "args": [
@@ -124,21 +124,21 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "transform",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 40,
+            "line": 2,
+            "column": 8
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 49,
+            "line": 2,
+            "column": 17
+          },
+          "filename": "test/mixin/params.scss"
+        },
+        "name": "transform",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -469,21 +469,21 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "transform",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 190,
+                "line": 8,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 199,
+                "line": 8,
+                "column": 21
+              },
+              "filename": "test/mixin/params.scss"
+            },
+            "name": "transform",
+            "type": "IDENTIFIER"
           },
           "args": [
             {
@@ -502,7 +502,7 @@
                   },
                   "filename": "test/mixin/params.scss"
                 },
-                "value": "rotate",
+                "name": "rotate",
                 "type": "IDENTIFIER"
               },
               "args": [

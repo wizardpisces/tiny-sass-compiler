@@ -249,7 +249,7 @@
                     },
                     "filename": "test/module/use-import/use-import.scss"
                   },
-                  "value": "base-2.plus",
+                  "name": "base-2.plus",
                   "type": "IDENTIFIER"
                 },
                 "args": [

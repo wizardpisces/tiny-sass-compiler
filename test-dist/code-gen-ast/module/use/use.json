@@ -508,11 +508,113 @@
           "offset": 0
         }
       }
+    },
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 155,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 183,
+            "line": 11,
+            "column": 29
+          },
+          "filename": "test/module/use/use.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".use-more-than-one-namespace",
+          "loc": {
+            "start": {
+              "offset": 155,
+              "line": 11,
+              "column": 1
+            },
+            "end": {
+              "offset": 183,
+              "line": 11,
+              "column": 29
+            },
+            "filename": "test/module/use/use.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "color",
+            "loc": {
+              "start": {
+                "offset": 187,
+                "line": 12,
+                "column": 3
+              },
+              "end": {
+                "offset": 192,
+                "line": 12,
+                "column": 8
+              },
+              "filename": "test/module/use/use.scss"
+            }
+          },
+          "right": {
+            "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 194,
+                "line": 12,
+                "column": 10
+              },
+              "end": {
+                "offset": 220,
+                "line": 12,
+                "column": 36
+              },
+              "filename": "test/module/use/use.scss"
+            },
+            "value": "base.base-2.$primary-color"
+          },
+          "loc": {
+            "start": {
+              "offset": 187,
+              "line": 12,
+              "column": 3
+            },
+            "end": {
+              "offset": 220,
+              "line": 12,
+              "column": 36
+            },
+            "filename": "test/module/use/use.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
     }
   ],
   "fileSourceMap": {
-    "test/module/use/use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}",
-    "test/module/use/_base.scss": "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}",
+    "test/module/use/use.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}\n\n.use-more-than-one-namespace{\n  color: base.base-2.$primary-color;\n}",
+    "test/module/use/_base.scss": "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}\n\n@mixin base-mixin {\n  margin: 0;\n  padding: 0;\n}\n",
     "test/module/use/_base-2.scss": "@use './base-3';\n\n$primary-color: base-3.$primary-color;\n\n.base-2 {\n    background: base-3.$primary-color;\n}",
     "test/module/use/_base-3.scss": "// @use './base';\n$primary-color: yellow;\n@function plus($a, $b) {\n    @return $a+$b;\n}\n.base-3 {\n    background: red;\n}"
   },

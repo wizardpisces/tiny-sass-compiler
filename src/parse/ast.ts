@@ -111,9 +111,13 @@ export interface Node {
     loc: SourceLocation
 }
 
-// mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
+/**
+ * mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
+ * 
+ */ 
+
 export interface Namespace extends Node {
-    namespace?: string
+    namespace?: string | string[]
 }
 
 export interface TextNode extends Node {
@@ -128,9 +132,9 @@ export interface VariableNode extends Namespace {
     type: NodeTypes.VARIABLE
     value: string
 }
-export interface IdentifierNode extends Node {
+export interface IdentifierNode extends Namespace {
     type: NodeTypes.IDENTIFIER
-    value: string
+    name: string
 }
 export interface PlaceholderNode extends Node {
     type: NodeTypes.PLACEHOLDER
@@ -171,7 +175,7 @@ export interface ListNode extends Node {
     value: SimpleExpressionNode[]
 }
 
-export interface CallExpression extends Namespace {
+export interface CallExpression extends Node {
     type: NodeTypes.CALL
     id: IdentifierNode
     args: ArgsType
@@ -239,7 +243,7 @@ export interface ContentPlaceholder extends Node { // @content
     type: NodeTypes.CONTENT
 }
 
-export interface IncludeStatement extends Namespace { // used with mixin, eg: @include reset-mixin
+export interface IncludeStatement extends Node { // used with mixin, eg: @include reset-mixin
     type: NodeTypes.INCLUDE
     id: IdentifierNode
     args: ArgsType
@@ -435,8 +439,8 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
 
 export function createIdentifierNode(id: TextNode): IdentifierNode {
     return {
-        loc: id.loc,
-        value: id.value,
+        loc: id.loc || locStub,
+        name: id.value,
         type: NodeTypes.IDENTIFIER
     }
 }

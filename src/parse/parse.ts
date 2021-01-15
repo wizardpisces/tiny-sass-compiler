@@ -499,11 +499,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
      * Todos: add @content kw and include body
      */
     function parseMixin(): MixinStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
@@ -523,11 +519,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
     }
 
     function parseFunction(): FunctionStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
@@ -566,11 +558,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
     }
 
     function parseInclude(): IncludeStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             args: (VariableNode | DeclarationStatement)[] = [],
             content: IncludeStatement['content'];// @include mixin1;
 
