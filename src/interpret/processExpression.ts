@@ -69,6 +69,21 @@ export function processExpression(
     }
 
     function transformText(node: TextNode): TextNode {
+        let arr = node.value.split('.'),
+            maybeVar = arr[arr.length - 1]
+
+        if (maybeVar.startsWith('$')) {
+            
+            return {
+                ...node,
+                type:NodeTypes.TEXT,
+                value: context.env.get({
+                    name: arr.pop() as string,
+                    namespace: arr
+                })
+            }
+        }
+
         return node;
     }
 
@@ -100,7 +115,10 @@ export function processExpression(
             }).join(',') + ')'
         }
         // maybe a custom defined function or undefined
-        let func = context.env.get(node.id.name, NodeTypes.FUNCTION),
+        let func = context.env.get({
+            name: node.id.name,
+            namespace: node.id.namespace
+        }, NodeTypes.FUNCTION),
             value: string;
         if (typeof func === 'function') {
             value = callFunctionWithArgs(func, node, context)

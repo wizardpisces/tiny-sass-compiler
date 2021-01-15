@@ -17,6 +17,7 @@
           },
           "filename": "test/flow-control/else-if.scss"
         },
+        "namespace": [],
         "name": "triangle",
         "type": "IDENTIFIER"
       },
@@ -1314,6 +1315,7 @@
               },
               "filename": "test/flow-control/else-if.scss"
             },
+            "namespace": [],
             "name": "triangle",
             "type": "IDENTIFIER"
           },

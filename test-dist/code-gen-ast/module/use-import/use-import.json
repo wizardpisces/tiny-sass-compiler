@@ -8,12 +8,12 @@
         "meta": [],
         "loc": {
           "start": {
-            "offset": 88,
+            "offset": 90,
             "line": 6,
             "column": 1
           },
           "end": {
-            "offset": 95,
+            "offset": 97,
             "line": 6,
             "column": 8
           },
@@ -24,12 +24,12 @@
           "value": ".base-2",
           "loc": {
             "start": {
-              "offset": 88,
+              "offset": 90,
               "line": 6,
               "column": 1
             },
             "end": {
-              "offset": 95,
+              "offset": 97,
               "line": 6,
               "column": 8
             },
@@ -45,12 +45,12 @@
             "value": "background",
             "loc": {
               "start": {
-                "offset": 102,
+                "offset": 104,
                 "line": 7,
                 "column": 5
               },
               "end": {
-                "offset": 112,
+                "offset": 114,
                 "line": 7,
                 "column": 15
               },
@@ -61,12 +61,12 @@
             "type": "TEXT",
             "loc": {
               "start": {
-                "offset": 114,
+                "offset": 116,
                 "line": 7,
                 "column": 17
               },
               "end": {
-                "offset": 117,
+                "offset": 119,
                 "line": 7,
                 "column": 20
               },
@@ -76,12 +76,12 @@
           },
           "loc": {
             "start": {
-              "offset": 102,
+              "offset": 104,
               "line": 7,
               "column": 5
             },
             "end": {
-              "offset": 117,
+              "offset": 119,
               "line": 7,
               "column": 20
             },
@@ -174,7 +174,7 @@
               },
               "filename": "test/module/use-import/_base.scss"
             },
-            "value": "base-2.$primary-color"
+            "value": "yellow"
           },
           "loc": {
             "start": {
@@ -276,7 +276,7 @@
               },
               "filename": "test/module/use-import/_base.scss"
             },
-            "value": "base-2.$primary-color"
+            "value": "yellow"
           },
           "loc": {
             "start": {
@@ -378,7 +378,7 @@
               },
               "filename": "test/module/use-import/use-import.scss"
             },
-            "value": "base.$primary-color"
+            "value": "yellow"
           },
           "loc": {
             "start": {
@@ -428,7 +428,7 @@
               },
               "filename": "test/module/use-import/use-import.scss"
             },
-            "value": "base-2.plus(1,2)"
+            "value": "3"
           },
           "loc": {
             "start": {
@@ -512,8 +512,7 @@
   ],
   "fileSourceMap": {
     "test/module/use-import/use-import.scss": "// styles.scss\n@use \"./base.scss\";\n@use \"./base-2.scss\";\n@import \"./base.scss\";\n\n.use {\n    background-color: base.$primary-color;\n    color: base-2.plus(1, 2);\n    width: 1212.1212;\n}",
-    "test/module/use-import/_base.scss": "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}",
-    "test/module/use-import/_base-2.scss": "// @use './base';\n$primary-color: yellow;\n@function plus($a, $b) {\n    @return $a+$b;\n}\n.base-2 {\n    background: red;\n}"
+    "test/module/use-import/_base.scss": "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}"
   },
   "loc": {
     "filename": "",

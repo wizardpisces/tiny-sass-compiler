@@ -17,6 +17,7 @@
           },
           "filename": "test/function/function.scss"
         },
+        "namespace": [],
         "name": "plus",
         "type": "IDENTIFIER"
       },
@@ -351,6 +352,7 @@
                       },
                       "filename": "test/function/function.scss"
                     },
+                    "namespace": [],
                     "name": "plus",
                     "type": "IDENTIFIER"
                   },

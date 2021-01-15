@@ -260,7 +260,10 @@ export function processStatement(
     }
 
     function transformInclude(node: IncludeStatement, context: TransformContext) {
-        let func = context.env.get(node.id.name, NodeTypes.MIXIN);
+        let func = context.env.get({
+            name: node.id.name,
+            namespace: node.id.namespace
+        }, NodeTypes.MIXIN);
 
         node.content && context.env.def('@content', dispatchStatement(node.content, context), NodeTypes.CONTENT)
 

@@ -39,6 +39,7 @@
                 },
                 "filename": "test/mixin/params.scss"
               },
+              "namespace": [],
               "name": "skew",
               "type": "IDENTIFIER"
             },
@@ -137,6 +138,7 @@
           },
           "filename": "test/mixin/params.scss"
         },
+        "namespace": [],
         "name": "transform",
         "type": "IDENTIFIER"
       },
@@ -482,6 +484,7 @@
               },
               "filename": "test/mixin/params.scss"
             },
+            "namespace": [],
             "name": "transform",
             "type": "IDENTIFIER"
           },
@@ -502,6 +505,7 @@
                   },
                   "filename": "test/mixin/params.scss"
                 },
+                "namespace": [],
                 "name": "rotate",
                 "type": "IDENTIFIER"
               },

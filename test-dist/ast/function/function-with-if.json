@@ -17,6 +17,7 @@
           },
           "filename": "test/function/function-with-if.scss"
         },
+        "namespace": [],
         "name": "min2",
         "type": "IDENTIFIER"
       },
@@ -403,6 +404,7 @@
                       },
                       "filename": "test/function/function-with-if.scss"
                     },
+                    "namespace": [],
                     "name": "min2",
                     "type": "IDENTIFIER"
                   },

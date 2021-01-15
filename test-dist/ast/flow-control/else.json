@@ -289,6 +289,7 @@
           },
           "filename": "test/flow-control/else.scss"
         },
+        "namespace": [],
         "name": "theme-colors",
         "type": "IDENTIFIER"
       },
@@ -788,6 +789,7 @@
               },
               "filename": "test/flow-control/else.scss"
             },
+            "namespace": [],
             "name": "theme-colors",
             "type": "IDENTIFIER"
           },
@@ -928,6 +930,7 @@
                   },
                   "filename": "test/flow-control/else.scss"
                 },
+                "namespace": [],
                 "name": "theme-colors",
                 "type": "IDENTIFIER"
               },

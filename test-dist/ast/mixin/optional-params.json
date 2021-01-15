@@ -119,6 +119,7 @@
           },
           "filename": "test/mixin/optional-params.scss"
         },
+        "namespace": [],
         "name": "replace-text",
         "type": "IDENTIFIER"
       },
@@ -839,6 +840,7 @@
               },
               "filename": "test/mixin/optional-params.scss"
             },
+            "namespace": [],
             "name": "replace-text",
             "type": "IDENTIFIER"
           },

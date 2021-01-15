@@ -438,9 +438,14 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
 }
 
 export function createIdentifierNode(id: TextNode): IdentifierNode {
+    let arr = id.value.split('.'),
+        name = arr.pop() as string,
+        namespace = arr;
+        
     return {
         loc: id.loc || locStub,
-        name: id.value,
+        namespace,
+        name,
         type: NodeTypes.IDENTIFIER
     }
 }

@@ -17,6 +17,7 @@
           },
           "filename": "test/mixin/mixin-keyframes-content.scss"
         },
+        "namespace": [],
         "name": "keyframes",
         "type": "IDENTIFIER"
       },
@@ -431,6 +432,7 @@
           },
           "filename": "test/mixin/mixin-keyframes-content.scss"
         },
+        "namespace": [],
         "name": "keyframes",
         "type": "IDENTIFIER"
       },
@@ -544,6 +546,7 @@
                           },
                           "filename": "test/mixin/mixin-keyframes-content.scss"
                         },
+                        "namespace": [],
                         "name": "translateX",
                         "type": "IDENTIFIER"
                       },
@@ -699,6 +702,7 @@
                           },
                           "filename": "test/mixin/mixin-keyframes-content.scss"
                         },
+                        "namespace": [],
                         "name": "translateX",
                         "type": "IDENTIFIER"
                       },

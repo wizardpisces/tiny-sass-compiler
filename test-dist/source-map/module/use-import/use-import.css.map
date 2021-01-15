@@ -8,7 +8,7 @@
   "names": [],
   "mappings": "AAKA;EACI,WAAY;;ACFhB;EACE,MAAO;;AADT;EACE,MAAO;;ACAT;EACI,iBAAkB;EAClB,MAAO;EACP,MAAO",
   "sourcesContent": [
-    "// @use './base';\n$primary-color: yellow;\n@function plus($a, $b) {\n    @return $a+$b;\n}\n.base-2 {\n    background: red;\n}",
+    null,
     "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}",
     "// styles.scss\n@use \"./base.scss\";\n@use \"./base-2.scss\";\n@import \"./base.scss\";\n\n.use {\n    background-color: base.$primary-color;\n    color: base-2.plus(1, 2);\n    width: 1212.1212;\n}"
   ]

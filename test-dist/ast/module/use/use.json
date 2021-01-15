@@ -214,7 +214,10 @@
                     },
                     "filename": "test/module/use/use.scss"
                   },
-                  "name": "base-3.plus",
+                  "namespace": [
+                    "base-3"
+                  ],
+                  "name": "plus",
                   "type": "IDENTIFIER"
                 },
                 "args": [
@@ -380,7 +383,10 @@
               },
               "filename": "test/module/use/use.scss"
             },
-            "name": "base.base-mixin",
+            "namespace": [
+              "base"
+            ],
+            "name": "base-mixin",
             "type": "IDENTIFIER"
           },
           "args": [],

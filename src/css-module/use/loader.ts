@@ -5,7 +5,7 @@ import { TransformContext, ParserOptions } from '../../type'
 import { RootNode, NodeTypes, UseStatement, TextNode } from '../../parse/ast'
 import { Environment } from '../../enviroment/Enviroment'
 import { importModule } from '../import/importModule'
-import { resolveSourceFilePath } from '../util'
+import { resolveSourceFilePath, EXTNAME_GLOBAL } from '../util'
 import { isEmptyNode } from '../../parse/util'
 
 function loadModule(module: Module, filename: string) {
@@ -13,26 +13,31 @@ function loadModule(module: Module, filename: string) {
     module._compile(source)
 }
 
-function updateChildren(parent: Module | null, child: Module, scan:boolean = false) {
+function updateChildren(parent: Module | null, child: Module, scan: boolean = false) {
     const children = parent && parent.children;
     /**
      * create child and parent relationship
      * first time needs no scan
      */
-    if (children && !(scan && children.includes(child))){
+    if (children && !(scan && children.includes(child))) {
         children.push(child);
     }
 }
 
-function updateEnvAndSourceMap(module: Module | null) {
-    if (module) {
-        module.children.forEach((childModule: Module) => {
-            /**
-             * extend @use child namespace
-             */
-            module.exports.env.setEnvByNamespace(childModule.id, childModule.exports.env)
-            Object.assign(module.ast.fileSourceMap, childModule.ast.fileSourceMap)
-        })
+function updateEnvAndSourceMap(parent: Module | null, module: Module) {
+
+    function getPureName(filename: string) {
+        let name = path.basename(filename, EXTNAME_GLOBAL);
+        return name.indexOf('_') < 0 ? name : name.substring(1)
+    }
+
+    if (parent) {
+        let name = getPureName(module.id);
+        /**
+         * extend @use child namespace
+         */
+        parent.exports.env.setEnvByNamespace(name, module.exports.env)
+        Object.assign(module.ast.fileSourceMap, module.ast.fileSourceMap)
     }
 }
 
@@ -72,20 +77,20 @@ export class Module {
      * module entry point
      */
     static _load(id: string, parent: Module | null) {
-        let filename = id, 
+        let filename = id,
             module: Module = Module._cache[filename];
 
-        if(!module){
+        if (!module) {
             module = new Module(filename, parent)
             Module._cache[filename] = module
             module.load(filename)
-        }else{
+        } else {
             updateChildren(parent, module, true)
         }
         /**
          * create scoped env to resolve namespaced variable
          */
-        updateEnvAndSourceMap(module)
+        updateEnvAndSourceMap(parent, module)
 
         return module
     }
@@ -104,7 +109,7 @@ export class Module {
             ...Module._context,
             root,
             filename: this.filename,
-            env: new Environment(null)
+            env: this.exports.env
         }
 
         /**
@@ -147,7 +152,7 @@ export class Module {
 const moduleCombinded = new WeakMap();
 function combineModule(module: Module): RootNode['children'] {
     let root: RootNode = module.ast
-    if (moduleCombinded.get(module)){
+    if (moduleCombinded.get(module)) {
         return []
     }
     moduleCombinded.set(module, true)

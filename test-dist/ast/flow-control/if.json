@@ -17,6 +17,7 @@
           },
           "filename": "test/flow-control/if.scss"
         },
+        "namespace": [],
         "name": "avatar",
         "type": "IDENTIFIER"
       },
@@ -498,6 +499,7 @@
               },
               "filename": "test/flow-control/if.scss"
             },
+            "namespace": [],
             "name": "avatar",
             "type": "IDENTIFIER"
           },
@@ -670,6 +672,7 @@
               },
               "filename": "test/flow-control/if.scss"
             },
+            "namespace": [],
             "name": "avatar",
             "type": "IDENTIFIER"
           },

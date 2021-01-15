@@ -249,7 +249,10 @@
                     },
                     "filename": "test/module/use-import/use-import.scss"
                   },
-                  "name": "base-2.plus",
+                  "namespace": [
+                    "base-2"
+                  ],
+                  "name": "plus",
                   "type": "IDENTIFIER"
                 },
                 "args": [

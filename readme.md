@@ -25,7 +25,7 @@ A compiler that compile sass to css, can be used both in ***node*** and ***brows
 3. Extend/Inheritance
 4. Operators
 5. Mixins
-6. Modules (@import)
+6. Modules ([@import](https://sass-lang.com/documentation/at-rules/import) and [@use](https://sass-lang.com/documentation/at-rules/use)(which is more efficient than @import))
 
 ## Installation
 

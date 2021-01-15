@@ -2,16 +2,18 @@
   background:red;
 }
 .base-2{
-  background:base-3.$primary-color;
+  background:yellow;
 }
 .base{
-  color:base-2.$primary-color;
+  color:yellow;
 }
 .use{
-  background-color:base.$primary-color;
-  color:base-3.plus(1,2);
+  background-color:yellow;
+  color:3;
   font:1212.1212;
+  margin:0;
+  padding:0;
 }
 .use-more-than-one-namespace{
-  color:base.base-2.$primary-color;
+  color:yellow;
 }

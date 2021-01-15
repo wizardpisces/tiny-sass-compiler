@@ -17,6 +17,7 @@
           },
           "filename": "test/mixin/basic.scss"
         },
+        "namespace": [],
         "name": "reset-list",
         "type": "IDENTIFIER"
       },
@@ -273,6 +274,7 @@
           },
           "filename": "test/mixin/basic.scss"
         },
+        "namespace": [],
         "name": "horizontal-list",
         "type": "IDENTIFIER"
       },
@@ -296,6 +298,7 @@
                 },
                 "filename": "test/mixin/basic.scss"
               },
+              "namespace": [],
               "name": "reset-list",
               "type": "IDENTIFIER"
             },
@@ -516,6 +519,7 @@
               },
               "filename": "test/mixin/basic.scss"
             },
+            "namespace": [],
             "name": "horizontal-list",
             "type": "IDENTIFIER"
           },

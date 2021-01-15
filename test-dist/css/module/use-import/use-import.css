@@ -2,13 +2,13 @@
   background:red;
 }
 .base{
-  color:base-2.$primary-color;
+  color:yellow;
 }
 .base{
-  color:base-2.$primary-color;
+  color:yellow;
 }
 .use{
-  background-color:base.$primary-color;
-  color:base-2.plus(1,2);
+  background-color:yellow;
+  color:3;
   width:1212.1212;
 }

@@ -109,6 +109,7 @@
                     },
                     "filename": "test/plugin/plugin.scss"
                   },
+                  "namespace": [],
                   "name": "pi",
                   "type": "IDENTIFIER"
                 },

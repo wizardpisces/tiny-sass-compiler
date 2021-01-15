@@ -7,11 +7,11 @@
     "test/module/use/use.scss"
   ],
   "names": [],
-  "mappings": "AAKA;EACI,WAAY;;ACFhB;EACI,WAAY;;ACDhB;EACE,MAAO;;ACDT;EACE,iBAAkB;EAClB,MAAO;EACP,KAAM;;AAGR;EACE,MAAO",
+  "mappings": "AAKA;EACI,WAAY;;ACFhB;EACI,WAAY;;ACDhB;EACE,MAAO;;ACDT;EACE,iBAAkB;EAClB,MAAO;EACP,KAAM;EDEN,OAAQ;EACR,QAAS;;ACCX;EACE,MAAO",
   "sourcesContent": [
-    "// @use './base';\n$primary-color: yellow;\n@function plus($a, $b) {\n    @return $a+$b;\n}\n.base-3 {\n    background: red;\n}",
-    "@use './base-3';\n\n$primary-color: base-3.$primary-color;\n\n.base-2 {\n    background: base-3.$primary-color;\n}",
-    "@use \"./base-2.scss\";\n// _base.scss\n$primary-color:base-2.$primary-color;\n\n.base {\n  color: base-2.$primary-color;\n}\n\n@mixin base-mixin {\n  margin: 0;\n  padding: 0;\n}\n",
-    "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n}\n\n.use-more-than-one-namespace{\n  color: base.base-2.$primary-color;\n}"
+    null,
+    null,
+    null,
+    "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n  @include base.base-mixin;\n}\n\n.use-more-than-one-namespace{\n  color: base.base-2.$primary-color;\n}"
   ]
 }
