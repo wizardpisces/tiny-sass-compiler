@@ -1,5 +1,17 @@
-import { NodeTransform} from '../transform'
 import { CompilerError} from '../parse/errors'
+import { RootNode, Statement, CodegenNode } from '../parse/ast'
+import { Environment } from '../enviroment/Enviroment'
+
+export interface TransformContext extends Required<TransformOptions> {
+    root: RootNode
+    env: Environment,
+}
+
+export type NodeTransform = (
+    node: Statement | CodegenNode,
+    context: TransformContext
+) => Statement
+
 
 export interface TransformOptions {
     /**
@@ -7,8 +19,8 @@ export interface TransformOptions {
      */
     nodeTransforms?: NodeTransform[]
 
-    // resolve @import
-    sourceDir?: string
+    // mainly used to resolve @import,@use module
+    filename?: string
 
     onError?: (error: CompilerError) => void
 }
@@ -19,11 +31,6 @@ export interface CodegenOptions {
      * @default false
      */
     sourceMap?: boolean
-
-    /**
-   * Filename for source map generation.
-   */
-    // filename: string
 }
 
 export interface ParserOptions {

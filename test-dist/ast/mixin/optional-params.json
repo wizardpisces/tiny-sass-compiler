@@ -17,7 +17,7 @@
             "line": 1,
             "column": 6
           },
-          "filename": "optional-params.scss"
+          "filename": "test/mixin/optional-params.scss"
         }
       },
       "right": {
@@ -37,7 +37,7 @@
                 "line": 1,
                 "column": 20
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           {
@@ -54,7 +54,7 @@
                 "line": 1,
                 "column": 21
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           {
@@ -71,7 +71,7 @@
                 "line": 1,
                 "column": 32
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           }
         ],
@@ -86,7 +86,7 @@
             "line": 1,
             "column": 32
           },
-          "filename": "optional-params.scss"
+          "filename": "test/mixin/optional-params.scss"
         }
       },
       "loc": {
@@ -100,27 +100,28 @@
           "line": 1,
           "column": 32
         },
-        "filename": "optional-params.scss"
+        "filename": "test/mixin/optional-params.scss"
       }
     },
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "replace-text",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 40,
+            "line": 2,
+            "column": 8
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 52,
+            "line": 2,
+            "column": 20
+          },
+          "filename": "test/mixin/optional-params.scss"
+        },
+        "namespace": [],
+        "name": "replace-text",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -137,7 +138,7 @@
               "line": 2,
               "column": 27
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -156,7 +157,7 @@
                 "line": 2,
                 "column": 30
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -176,7 +177,7 @@
                     "line": 2,
                     "column": 39
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               }
             ],
@@ -191,7 +192,7 @@
                 "line": 2,
                 "column": 39
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "loc": {
@@ -205,7 +206,7 @@
               "line": 2,
               "column": 39
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         },
         {
@@ -224,7 +225,7 @@
                 "line": 2,
                 "column": 43
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "right": {
@@ -244,7 +245,7 @@
                     "line": 2,
                     "column": 52
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               }
             ],
@@ -259,7 +260,7 @@
                 "line": 2,
                 "column": 52
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           "loc": {
@@ -273,7 +274,7 @@
               "line": 2,
               "column": 52
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       ],
@@ -296,7 +297,7 @@
                   "line": 3,
                   "column": 14
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "right": {
@@ -316,7 +317,7 @@
                       "line": 3,
                       "column": 24
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 }
               ],
@@ -331,7 +332,7 @@
                   "line": 3,
                   "column": 24
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "loc": {
@@ -345,7 +346,7 @@
                 "line": 3,
                 "column": 24
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           {
@@ -364,7 +365,7 @@
                   "line": 4,
                   "column": 11
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "right": {
@@ -384,7 +385,7 @@
                       "line": 4,
                       "column": 19
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 }
               ],
@@ -399,7 +400,7 @@
                   "line": 4,
                   "column": 19
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "loc": {
@@ -413,7 +414,7 @@
                 "line": 4,
                 "column": 19
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           {
@@ -432,7 +433,7 @@
                   "line": 5,
                   "column": 13
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "right": {
@@ -452,7 +453,7 @@
                       "line": 5,
                       "column": 19
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 }
               ],
@@ -467,7 +468,7 @@
                   "line": 5,
                   "column": 19
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             "loc": {
@@ -481,7 +482,7 @@
                 "line": 5,
                 "column": 19
               },
-              "filename": "optional-params.scss"
+              "filename": "test/mixin/optional-params.scss"
             }
           },
           {
@@ -500,7 +501,7 @@
                   "line": 7,
                   "column": 13
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -516,7 +517,7 @@
                     "line": 7,
                     "column": 13
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               }
             },
@@ -537,7 +538,7 @@
                       "line": 8,
                       "column": 10
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "right": {
@@ -557,7 +558,7 @@
                           "line": 8,
                           "column": 18
                         },
-                        "filename": "optional-params.scss"
+                        "filename": "test/mixin/optional-params.scss"
                       }
                     }
                   ],
@@ -572,7 +573,7 @@
                       "line": 8,
                       "column": 18
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "loc": {
@@ -586,7 +587,7 @@
                     "line": 8,
                     "column": 18
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               },
               {
@@ -605,7 +606,7 @@
                       "line": 9,
                       "column": 11
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "right": {
@@ -625,7 +626,7 @@
                           "line": 9,
                           "column": 22
                         },
-                        "filename": "optional-params.scss"
+                        "filename": "test/mixin/optional-params.scss"
                       }
                     }
                   ],
@@ -640,7 +641,7 @@
                       "line": 9,
                       "column": 22
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "loc": {
@@ -654,7 +655,7 @@
                     "line": 9,
                     "column": 22
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               },
               {
@@ -673,7 +674,7 @@
                       "line": 10,
                       "column": 13
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "right": {
@@ -693,7 +694,7 @@
                           "line": 10,
                           "column": 17
                         },
-                        "filename": "optional-params.scss"
+                        "filename": "test/mixin/optional-params.scss"
                       }
                     },
                     {
@@ -710,7 +711,7 @@
                           "line": 10,
                           "column": 20
                         },
-                        "filename": "optional-params.scss"
+                        "filename": "test/mixin/optional-params.scss"
                       }
                     }
                   ],
@@ -725,7 +726,7 @@
                       "line": 10,
                       "column": 20
                     },
-                    "filename": "optional-params.scss"
+                    "filename": "test/mixin/optional-params.scss"
                   }
                 },
                 "loc": {
@@ -739,7 +740,7 @@
                     "line": 10,
                     "column": 20
                   },
-                  "filename": "optional-params.scss"
+                  "filename": "test/mixin/optional-params.scss"
                 }
               }
             ],
@@ -802,7 +803,7 @@
             "line": 14,
             "column": 11
           },
-          "filename": "optional-params.scss"
+          "filename": "test/mixin/optional-params.scss"
         },
         "value": {
           "type": "TEXT",
@@ -818,7 +819,7 @@
               "line": 14,
               "column": 11
             },
-            "filename": "optional-params.scss"
+            "filename": "test/mixin/optional-params.scss"
           }
         }
       },
@@ -826,21 +827,22 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "replace-text",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 263,
+                "line": 15,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 275,
+                "line": 15,
+                "column": 24
+              },
+              "filename": "test/mixin/optional-params.scss"
+            },
+            "namespace": [],
+            "name": "replace-text",
+            "type": "IDENTIFIER"
           },
           "args": [
             {
@@ -857,7 +859,7 @@
                   "line": 15,
                   "column": 48
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             },
             {
@@ -874,7 +876,7 @@
                   "line": 15,
                   "column": 54
                 },
-                "filename": "optional-params.scss"
+                "filename": "test/mixin/optional-params.scss"
               }
             }
           ],
@@ -909,7 +911,7 @@
     }
   ],
   "fileSourceMap": {
-    "optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
+    "test/mixin/optional-params.scss": "$font:    Helvetica, sans-serif;\n@mixin replace-text($image,$x:default1, $y:default2) {\n  text-indent: -99999em;\n  overflow: hidden;\n  text-align: left;\n\n  background {\n    image: $image;\n    repeat: no-repeat;\n    position: $x $y;\n  }\n}\n\n.mail-icon {\n  @include replace-text(url(\"/images/mail.svg\"),$font);\n}\n"
   },
   "loc": {
     "filename": "",

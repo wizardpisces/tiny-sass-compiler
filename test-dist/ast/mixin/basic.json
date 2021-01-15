@@ -4,21 +4,22 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "reset-list",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 7,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 8
           },
           "end": {
+            "offset": 17,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 18
+          },
+          "filename": "test/mixin/basic.scss"
+        },
+        "namespace": [],
+        "name": "reset-list",
+        "type": "IDENTIFIER"
       },
       "params": [],
       "body": {
@@ -40,7 +41,7 @@
                   "line": 2,
                   "column": 9
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "right": {
@@ -60,7 +61,7 @@
                       "line": 2,
                       "column": 12
                     },
-                    "filename": "basic.scss"
+                    "filename": "test/mixin/basic.scss"
                   }
                 }
               ],
@@ -75,7 +76,7 @@
                   "line": 2,
                   "column": 12
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "loc": {
@@ -89,7 +90,7 @@
                 "line": 2,
                 "column": 12
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           {
@@ -108,7 +109,7 @@
                   "line": 3,
                   "column": 10
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "right": {
@@ -128,7 +129,7 @@
                       "line": 3,
                       "column": 13
                     },
-                    "filename": "basic.scss"
+                    "filename": "test/mixin/basic.scss"
                   }
                 }
               ],
@@ -143,7 +144,7 @@
                   "line": 3,
                   "column": 13
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "loc": {
@@ -157,7 +158,7 @@
                 "line": 3,
                 "column": 13
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           },
           {
@@ -176,7 +177,7 @@
                   "line": 4,
                   "column": 13
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "right": {
@@ -196,7 +197,7 @@
                       "line": 4,
                       "column": 19
                     },
-                    "filename": "basic.scss"
+                    "filename": "test/mixin/basic.scss"
                   }
                 }
               ],
@@ -211,7 +212,7 @@
                   "line": 4,
                   "column": 19
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               }
             },
             "loc": {
@@ -225,7 +226,7 @@
                 "line": 4,
                 "column": 19
               },
-              "filename": "basic.scss"
+              "filename": "test/mixin/basic.scss"
             }
           }
         ],
@@ -260,21 +261,22 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "horizontal-list",
         "loc": {
-          "filename": "",
           "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
+            "offset": 77,
+            "line": 7,
+            "column": 8
           },
           "end": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "offset": 92,
+            "line": 7,
+            "column": 23
+          },
+          "filename": "test/mixin/basic.scss"
+        },
+        "namespace": [],
+        "name": "horizontal-list",
+        "type": "IDENTIFIER"
       },
       "params": [],
       "body": {
@@ -283,21 +285,22 @@
           {
             "type": "INCLUDE",
             "id": {
-              "type": "IDENTIFIER",
-              "value": "reset-list",
               "loc": {
-                "filename": "",
                 "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
+                  "offset": 106,
+                  "line": 8,
+                  "column": 12
                 },
                 "end": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                }
-              }
+                  "offset": 116,
+                  "line": 8,
+                  "column": 22
+                },
+                "filename": "test/mixin/basic.scss"
+              },
+              "namespace": [],
+              "name": "reset-list",
+              "type": "IDENTIFIER"
             },
             "args": [],
             "loc": {
@@ -330,7 +333,7 @@
                   "line": 10,
                   "column": 5
                 },
-                "filename": "basic.scss"
+                "filename": "test/mixin/basic.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -346,7 +349,7 @@
                     "line": 10,
                     "column": 5
                   },
-                  "filename": "basic.scss"
+                  "filename": "test/mixin/basic.scss"
                 }
               }
             },
@@ -367,7 +370,7 @@
                       "line": 11,
                       "column": 12
                     },
-                    "filename": "basic.scss"
+                    "filename": "test/mixin/basic.scss"
                   }
                 },
                 "right": {
@@ -387,7 +390,7 @@
                           "line": 11,
                           "column": 26
                         },
-                        "filename": "basic.scss"
+                        "filename": "test/mixin/basic.scss"
                       }
                     }
                   ],
@@ -402,7 +405,7 @@
                       "line": 11,
                       "column": 26
                     },
-                    "filename": "basic.scss"
+                    "filename": "test/mixin/basic.scss"
                   }
                 },
                 "loc": {
@@ -416,7 +419,7 @@
                     "line": 11,
                     "column": 26
                   },
-                  "filename": "basic.scss"
+                  "filename": "test/mixin/basic.scss"
                 }
               }
             ],
@@ -479,7 +482,7 @@
             "line": 15,
             "column": 7
           },
-          "filename": "basic.scss"
+          "filename": "test/mixin/basic.scss"
         },
         "value": {
           "type": "TEXT",
@@ -495,7 +498,7 @@
               "line": 15,
               "column": 7
             },
-            "filename": "basic.scss"
+            "filename": "test/mixin/basic.scss"
           }
         }
       },
@@ -503,21 +506,22 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "horizontal-list",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 180,
+                "line": 16,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 195,
+                "line": 16,
+                "column": 27
+              },
+              "filename": "test/mixin/basic.scss"
+            },
+            "namespace": [],
+            "name": "horizontal-list",
+            "type": "IDENTIFIER"
           },
           "args": [],
           "loc": {
@@ -551,7 +555,7 @@
     }
   ],
   "fileSourceMap": {
-    "basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
+    "test/mixin/basic.scss": "@mixin reset-list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n@mixin horizontal-list {\n  @include reset-list;\n\n  li {\n    display: inline-block;\n  }\n}\n\nnav ul {\n  @include horizontal-list;\n}"
   },
   "loc": {
     "filename": "",

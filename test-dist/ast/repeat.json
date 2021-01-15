@@ -17,7 +17,7 @@
             "line": 1,
             "column": 9
           },
-          "filename": "repeat.scss"
+          "filename": "test/repeat.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 1,
               "column": 9
             },
-            "filename": "repeat.scss"
+            "filename": "test/repeat.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 2,
                 "column": 10
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "right": {
@@ -74,7 +74,7 @@
                     "line": 2,
                     "column": 15
                   },
-                  "filename": "repeat.scss"
+                  "filename": "test/repeat.scss"
                 }
               }
             ],
@@ -89,7 +89,7 @@
                 "line": 2,
                 "column": 15
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "loc": {
@@ -103,7 +103,7 @@
               "line": 2,
               "column": 15
             },
-            "filename": "repeat.scss"
+            "filename": "test/repeat.scss"
           }
         }
       ],
@@ -137,7 +137,7 @@
             "line": 5,
             "column": 9
           },
-          "filename": "repeat.scss"
+          "filename": "test/repeat.scss"
         },
         "value": {
           "type": "TEXT",
@@ -153,7 +153,7 @@
               "line": 5,
               "column": 9
             },
-            "filename": "repeat.scss"
+            "filename": "test/repeat.scss"
           }
         }
       },
@@ -174,7 +174,7 @@
                 "line": 6,
                 "column": 10
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "right": {
@@ -194,7 +194,7 @@
                     "line": 6,
                     "column": 17
                   },
-                  "filename": "repeat.scss"
+                  "filename": "test/repeat.scss"
                 }
               }
             ],
@@ -209,7 +209,7 @@
                 "line": 6,
                 "column": 17
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "loc": {
@@ -223,7 +223,7 @@
               "line": 6,
               "column": 17
             },
-            "filename": "repeat.scss"
+            "filename": "test/repeat.scss"
           }
         },
         {
@@ -242,7 +242,7 @@
                 "line": 7,
                 "column": 9
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "right": {
@@ -262,7 +262,7 @@
                     "line": 7,
                     "column": 15
                   },
-                  "filename": "repeat.scss"
+                  "filename": "test/repeat.scss"
                 }
               }
             ],
@@ -277,7 +277,7 @@
                 "line": 7,
                 "column": 15
               },
-              "filename": "repeat.scss"
+              "filename": "test/repeat.scss"
             }
           },
           "loc": {
@@ -291,7 +291,7 @@
               "line": 7,
               "column": 15
             },
-            "filename": "repeat.scss"
+            "filename": "test/repeat.scss"
           }
         }
       ],
@@ -311,7 +311,7 @@
     }
   ],
   "fileSourceMap": {
-    "repeat.scss": ".repeat1 {\n    color: red;\n}\n\n.repeat1 {\n    color: green;\n    size: 14px;\n}\n"
+    "test/repeat.scss": ".repeat1 {\n    color: red;\n}\n\n.repeat1 {\n    color: green;\n    size: 14px;\n}\n"
   },
   "loc": {
     "filename": "",

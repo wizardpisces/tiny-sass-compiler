@@ -23,7 +23,7 @@
                   "line": 20,
                   "column": 7
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -39,7 +39,7 @@
                     "line": 20,
                     "column": 7
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -60,7 +60,7 @@
                       "line": 21,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -76,7 +76,7 @@
                       "line": 21,
                       "column": 32
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(0)"
                 },
@@ -91,7 +91,7 @@
                     "line": 21,
                     "column": 32
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -125,7 +125,7 @@
                   "line": 24,
                   "column": 9
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -141,7 +141,7 @@
                     "line": 24,
                     "column": 9
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -162,7 +162,7 @@
                       "line": 25,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -178,7 +178,7 @@
                       "line": 25,
                       "column": 36
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(200px)"
                 },
@@ -193,7 +193,7 @@
                     "line": 25,
                     "column": 36
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -243,7 +243,7 @@
                 "line": 2,
                 "column": 40
               },
-              "filename": "mixin-keyframes-content.scss"
+              "filename": "test/mixin/mixin-keyframes-content.scss"
             }
           }
         ],
@@ -258,7 +258,7 @@
             "line": 2,
             "column": 40
           },
-          "filename": "mixin-keyframes-content.scss"
+          "filename": "test/mixin/mixin-keyframes-content.scss"
         }
       },
       "loc": {
@@ -272,7 +272,7 @@
           "column": 1,
           "offset": 0
         },
-        "filename": "mixin-keyframes-content.scss"
+        "filename": "test/mixin/mixin-keyframes-content.scss"
       }
     },
     {
@@ -297,7 +297,7 @@
                   "line": 20,
                   "column": 7
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -313,7 +313,7 @@
                     "line": 20,
                     "column": 7
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -334,7 +334,7 @@
                       "line": 21,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -350,7 +350,7 @@
                       "line": 21,
                       "column": 32
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(0)"
                 },
@@ -365,7 +365,7 @@
                     "line": 21,
                     "column": 32
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -399,7 +399,7 @@
                   "line": 24,
                   "column": 9
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -415,7 +415,7 @@
                     "line": 24,
                     "column": 9
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -436,7 +436,7 @@
                       "line": 25,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -452,7 +452,7 @@
                       "line": 25,
                       "column": 36
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(200px)"
                 },
@@ -467,7 +467,7 @@
                     "line": 25,
                     "column": 36
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -517,7 +517,7 @@
                 "line": 6,
                 "column": 37
               },
-              "filename": "mixin-keyframes-content.scss"
+              "filename": "test/mixin/mixin-keyframes-content.scss"
             }
           }
         ],
@@ -532,7 +532,7 @@
             "line": 6,
             "column": 37
           },
-          "filename": "mixin-keyframes-content.scss"
+          "filename": "test/mixin/mixin-keyframes-content.scss"
         }
       },
       "loc": {
@@ -546,7 +546,7 @@
           "column": 1,
           "offset": 0
         },
-        "filename": "mixin-keyframes-content.scss"
+        "filename": "test/mixin/mixin-keyframes-content.scss"
       }
     },
     {
@@ -571,7 +571,7 @@
                   "line": 20,
                   "column": 7
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -587,7 +587,7 @@
                     "line": 20,
                     "column": 7
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -608,7 +608,7 @@
                       "line": 21,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -624,7 +624,7 @@
                       "line": 21,
                       "column": 32
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(0)"
                 },
@@ -639,7 +639,7 @@
                     "line": 21,
                     "column": 32
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -673,7 +673,7 @@
                   "line": 24,
                   "column": 9
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -689,7 +689,7 @@
                     "line": 24,
                     "column": 9
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -710,7 +710,7 @@
                       "line": 25,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -726,7 +726,7 @@
                       "line": 25,
                       "column": 36
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(200px)"
                 },
@@ -741,7 +741,7 @@
                     "line": 25,
                     "column": 36
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -791,7 +791,7 @@
                 "line": 10,
                 "column": 35
               },
-              "filename": "mixin-keyframes-content.scss"
+              "filename": "test/mixin/mixin-keyframes-content.scss"
             }
           }
         ],
@@ -806,7 +806,7 @@
             "line": 10,
             "column": 35
           },
-          "filename": "mixin-keyframes-content.scss"
+          "filename": "test/mixin/mixin-keyframes-content.scss"
         }
       },
       "loc": {
@@ -820,7 +820,7 @@
           "column": 1,
           "offset": 0
         },
-        "filename": "mixin-keyframes-content.scss"
+        "filename": "test/mixin/mixin-keyframes-content.scss"
       }
     },
     {
@@ -845,7 +845,7 @@
                   "line": 20,
                   "column": 7
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -861,7 +861,7 @@
                     "line": 20,
                     "column": 7
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -882,7 +882,7 @@
                       "line": 21,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -898,7 +898,7 @@
                       "line": 21,
                       "column": 32
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(0)"
                 },
@@ -913,7 +913,7 @@
                     "line": 21,
                     "column": 32
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -947,7 +947,7 @@
                   "line": 24,
                   "column": 9
                 },
-                "filename": "mixin-keyframes-content.scss"
+                "filename": "test/mixin/mixin-keyframes-content.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -963,7 +963,7 @@
                     "line": 24,
                     "column": 9
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             },
@@ -984,7 +984,7 @@
                       "line": 25,
                       "column": 18
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   }
                 },
                 "right": {
@@ -1000,7 +1000,7 @@
                       "line": 25,
                       "column": 36
                     },
-                    "filename": "mixin-keyframes-content.scss"
+                    "filename": "test/mixin/mixin-keyframes-content.scss"
                   },
                   "value": "translateX(200px)"
                 },
@@ -1015,7 +1015,7 @@
                     "line": 25,
                     "column": 36
                   },
-                  "filename": "mixin-keyframes-content.scss"
+                  "filename": "test/mixin/mixin-keyframes-content.scss"
                 }
               }
             ],
@@ -1065,7 +1065,7 @@
                 "line": 14,
                 "column": 32
               },
-              "filename": "mixin-keyframes-content.scss"
+              "filename": "test/mixin/mixin-keyframes-content.scss"
             }
           }
         ],
@@ -1080,7 +1080,7 @@
             "line": 14,
             "column": 32
           },
-          "filename": "mixin-keyframes-content.scss"
+          "filename": "test/mixin/mixin-keyframes-content.scss"
         }
       },
       "loc": {
@@ -1094,12 +1094,12 @@
           "column": 1,
           "offset": 0
         },
-        "filename": "mixin-keyframes-content.scss"
+        "filename": "test/mixin/mixin-keyframes-content.scss"
       }
     }
   ],
   "fileSourceMap": {
-    "mixin-keyframes-content.scss": "@mixin keyframes($animationName) {\n    @-webkit-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-moz-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-o-keyframes #{$animationName} {\n        @content;\n    }\n\n    @keyframes #{$animationName} {\n        @content;\n    }\n}\n\n@include keyframes(move-the-object) {\n    0% {\n        transform: translateX(0);\n    }\n\n    100% {\n        transform: translateX(200px);\n    }\n}"
+    "test/mixin/mixin-keyframes-content.scss": "@mixin keyframes($animationName) {\n    @-webkit-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-moz-keyframes #{$animationName} {\n        @content;\n    }\n\n    @-o-keyframes #{$animationName} {\n        @content;\n    }\n\n    @keyframes #{$animationName} {\n        @content;\n    }\n}\n\n@include keyframes(move-the-object) {\n    0% {\n        transform: translateX(0);\n    }\n\n    100% {\n        transform: translateX(200px);\n    }\n}"
   },
   "loc": {
     "filename": "",

@@ -1,0 +1,14 @@
+// styles.scss
+@use "./base.scss";
+@use "./base-3.scss";
+
+.use {
+  background-color: base.$primary-color;
+  color: base-3.plus(1,2);
+  font: 1212.1212;
+  @include base.base-mixin;
+}
+
+.use-more-than-one-namespace{
+  color: base.base-2.$primary-color;
+}

@@ -1,0 +1,192 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "PLUGIN",
+      "value": {
+        "type": "TEXT",
+        "value": "my-plugin",
+        "loc": {
+          "start": {
+            "offset": 21,
+            "line": 2,
+            "column": 9
+          },
+          "end": {
+            "offset": 32,
+            "line": 2,
+            "column": 20
+          },
+          "filename": "test/plugin/plugin.scss"
+        }
+      },
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 35,
+            "line": 4,
+            "column": 1
+          },
+          "end": {
+            "offset": 46,
+            "line": 4,
+            "column": 12
+          },
+          "filename": "test/plugin/plugin.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".show-me-pi",
+          "loc": {
+            "start": {
+              "offset": 35,
+              "line": 4,
+              "column": 1
+            },
+            "end": {
+              "offset": 46,
+              "line": 4,
+              "column": 12
+            },
+            "filename": "test/plugin/plugin.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "value",
+            "loc": {
+              "start": {
+                "offset": 53,
+                "line": 5,
+                "column": 5
+              },
+              "end": {
+                "offset": 58,
+                "line": 5,
+                "column": 10
+              },
+              "filename": "test/plugin/plugin.scss"
+            }
+          },
+          "right": {
+            "type": "LIST",
+            "value": [
+              {
+                "type": "CALL",
+                "id": {
+                  "loc": {
+                    "start": {
+                      "offset": 60,
+                      "line": 5,
+                      "column": 12
+                    },
+                    "end": {
+                      "offset": 62,
+                      "line": 5,
+                      "column": 14
+                    },
+                    "filename": "test/plugin/plugin.scss"
+                  },
+                  "namespace": [],
+                  "name": "pi",
+                  "type": "IDENTIFIER"
+                },
+                "args": [],
+                "loc": {
+                  "start": {
+                    "offset": 60,
+                    "line": 5,
+                    "column": 12
+                  },
+                  "end": {
+                    "offset": 62,
+                    "line": 5,
+                    "column": 14
+                  },
+                  "filename": "test/plugin/plugin.scss"
+                }
+              }
+            ],
+            "loc": {
+              "start": {
+                "offset": 60,
+                "line": 5,
+                "column": 12
+              },
+              "end": {
+                "offset": 62,
+                "line": 5,
+                "column": 14
+              },
+              "filename": "test/plugin/plugin.scss"
+            }
+          },
+          "loc": {
+            "start": {
+              "offset": 53,
+              "line": 5,
+              "column": 5
+            },
+            "end": {
+              "offset": 62,
+              "line": 5,
+              "column": 14
+            },
+            "filename": "test/plugin/plugin.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "test/plugin/plugin.scss": "// less code\n@plugin \"my-plugin\";\n\n.show-me-pi {\n    value: pi();\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

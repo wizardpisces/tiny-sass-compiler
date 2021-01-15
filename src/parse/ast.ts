@@ -1,5 +1,6 @@
 export enum NodeTypes {
     TEXT = 'TEXT',  // TEXT = (TEXT\s+ | TEXT\s+)*
+    NAMESPACE = 'NAMESPACE', // namespace splited by ., to support @use which is namespace based
     VARIABLE = 'VARIABLE', // VARIABLE.value === variable's name , expression deleted after evaluation
     PUNC = 'PUNC',  // punctuation: parens((|)), comma(,), semicolon(;) etc.
     OPERATOR = 'OPERATOR',   // arithmeticOperator | comparisonOperator
@@ -28,7 +29,9 @@ export enum NodeTypes {
     DECLARATION = 'DECLARATION',
 
     // keyword statement
+    PLUGIN = 'PLUGIN',
     IMPORT = 'IMPORT',
+    USE = 'USE',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
@@ -69,11 +72,12 @@ export enum NodeTypes {
 
 export type keywordType = '@extend'
     | '@mixin' | '@content' | '@include'
-    | '@import'
+    | '@import' | '@use'
     | '@if' | '@else'
     | '@error'
     | '@each'
     | '@function' | '@return'
+    | '@plugin'
 
 export type internalAtRuleNames = 'media' | 'keyframes' | 'support' | 'charset' | 'font-face' | string;
 
@@ -107,6 +111,15 @@ export interface Node {
     loc: SourceLocation
 }
 
+/**
+ * mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
+ * 
+ */ 
+
+export interface Namespace extends Node {
+    namespace?: string | string[]
+}
+
 export interface TextNode extends Node {
     type: NodeTypes.TEXT
     value: string
@@ -115,20 +128,20 @@ export interface EmptyNode extends Node {
     type: NodeTypes.EMPTY
 }
 
-export interface VariableNode extends Node {
+export interface VariableNode extends Namespace {
     type: NodeTypes.VARIABLE
     value: string
 }
-export interface IdentifierNode extends Node {
+export interface IdentifierNode extends Namespace {
     type: NodeTypes.IDENTIFIER
-    value: string
+    name: string
 }
 export interface PlaceholderNode extends Node {
     type: NodeTypes.PLACEHOLDER
     value: string
 }
 
-export interface VarKeyNode extends Node {
+export interface VarKeyNode extends Namespace {
     type: NodeTypes.VAR_KEY
     value: string
 }
@@ -168,7 +181,7 @@ export interface CallExpression extends Node {
     args: ArgsType
 }
 
-export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression
+export type SimpleExpressionNode = TextNode | PuncNode | OperatorNode | VariableNode | VarKeyNode | BinaryNode | ListNode | CallExpression | EmptyNode
 
 /* Statement */
 
@@ -177,6 +190,7 @@ export type Statement =
     | RuleStatement
     | DeclarationStatement
     | ImportStatement
+    | UseStatement
     | IncludeStatement
     | ExtendStatement
     | MixinStatement
@@ -186,6 +200,7 @@ export type Statement =
     | EachStatement
     | ReturnStatement
     | Atrule
+    | PluginStatement
 
 export type ArgsType = (TextNode | VariableNode | BinaryNode | DeclarationStatement)[]
 
@@ -215,19 +230,27 @@ export interface ImportStatement extends Node {
     type: NodeTypes.IMPORT
     params: TextNode[]
 }
+export interface UseStatement extends Node {
+    type: NodeTypes.USE
+    params: TextNode[]
+}
+export interface PluginStatement extends Node {
+    type: NodeTypes.PLUGIN
+    value: TextNode
+}
 
 export interface ContentPlaceholder extends Node { // @content
     type: NodeTypes.CONTENT
 }
 
-export interface IncludeStatement extends Node {
+export interface IncludeStatement extends Node { // used with mixin, eg: @include reset-mixin
     type: NodeTypes.INCLUDE
     id: IdentifierNode
     args: ArgsType
     content?: BodyStatement
 }
 
-export interface ExtendStatement extends Node {
+export interface ExtendStatement extends Node { //  @extend .error;
     type: NodeTypes.EXTEND
     param: TextNode | PlaceholderNode
 }
@@ -323,19 +346,26 @@ export interface Keyframes extends Atrule {
  * @media ast tree end
  */
 
-/* codeGenNode means ast tree that is transformed  */
-
+/**
+ * codeGenNode is ast that could directly codegen to css
+ */
 export type CodegenNode = TextNode | ProgCodeGenNode | RootNode
 
 export type ProgCodeGenNode = RuleStatement | EmptyNode | SelectorNode | DeclarationStatement | Atrule | MediaStatement | MediaPrelude | Keyframes | KeyframesPrelude
 
+/**
+ * {
+ *  filename: scssSourceCode
+ * }
+ * used to generate sourceMap
+ */
+
 export type FileSourceMap = {
-    [key: string]: string
+    [filename: string]: string
 }
 export interface RootNode extends Node {
     type: NodeTypes.RootNode
 
-    // codeGenNode ,use it to generate source map between files
     fileSourceMap: FileSourceMap
 
     children: (Statement | CodegenNode)[]
@@ -408,9 +438,14 @@ export function createMediaStatement(prelude: MediaStatement['prelude'], block: 
 }
 
 export function createIdentifierNode(id: TextNode): IdentifierNode {
+    let arr = id.value.split('.'),
+        name = arr.pop() as string,
+        namespace = arr;
+        
     return {
-        loc: id.loc,
-        value: id.value,
+        loc: id.loc || locStub,
+        namespace,
+        name,
         type: NodeTypes.IDENTIFIER
     }
 }
@@ -642,4 +677,16 @@ export function createMediaFromRule(rules: RuleStatement[] | RuleStatement): Med
     rules.forEach((rule: RuleStatement) => rule.selector.meta = [])
 
     return createMediaStatement(prelude, createBodyStatement(rules as RuleStatement[]))
+}
+
+export function createVariableWithNamespace(namespace: Namespace, variable: VariableNode): VariableNode {
+    return {
+        ...variable,
+        namespace: namespace.namespace,
+        loc: {
+            ...namespace.loc,
+            start: namespace.loc.start,
+            end: variable.loc.end
+        }
+    }
 }

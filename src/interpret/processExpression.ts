@@ -1,8 +1,6 @@
 /**
  * handle simple expression which does not contain any statement
  */
-
-import { TransformContext } from '../transform'
 import { NodeTypes, SimpleExpressionNode, TextNode, VariableNode, BinaryNode, Node, PuncNode, OperatorNode, VarKeyNode, ListNode, CallExpression, IncludeStatement } from '../parse/ast'
 import { fillWhitespace } from '../parse/util'
 import {
@@ -10,8 +8,12 @@ import {
     ErrorCodes,
     createCompilerError
 } from '../parse/errors';
+import { TransformContext } from '@/type';
 
 export function callFunctionWithArgs(func: Function, node: IncludeStatement | CallExpression, context: TransformContext) {
+    if (!func) {
+        throw createCompilerError(ErrorCodes.UNDEFINED_VARIABLE, node.id.loc, node.id.name)
+    }
     return func.apply(null, node.args.map(arg => {
 
         /**
@@ -67,6 +69,21 @@ export function processExpression(
     }
 
     function transformText(node: TextNode): TextNode {
+        let arr = node.value.split('.'),
+            maybeVar = arr[arr.length - 1]
+
+        if (maybeVar.startsWith('$')) {
+            
+            return {
+                ...node,
+                type:NodeTypes.TEXT,
+                value: context.env.get({
+                    name: arr.pop() as string,
+                    namespace: arr
+                })
+            }
+        }
+
         return node;
     }
 
@@ -87,7 +104,7 @@ export function processExpression(
     function transformCall(node: CallExpression, context: TransformContext): TextNode {
 
         function convertCallNodeToString(node: CallExpression): string {
-            return node.id.value + '(' + node.args.map(node => {
+            return node.id.name + '(' + node.args.map(node => {
                 if (node.type === NodeTypes.DECLARATION) {
                     return defaultOnError(
                         createCompilerError(ErrorCodes.EXPECTED_X, node.loc, ',')
@@ -98,7 +115,10 @@ export function processExpression(
             }).join(',') + ')'
         }
         // maybe a custom defined function or undefined
-        let func = context.env.get(node.id.value, NodeTypes.FUNCTION),
+        let func = context.env.get({
+            name: node.id.name,
+            namespace: node.id.namespace
+        }, NodeTypes.FUNCTION),
             value: string;
         if (typeof func === 'function') {
             value = callFunctionWithArgs(func, node, context)

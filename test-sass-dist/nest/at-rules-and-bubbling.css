@@ -16,5 +16,26 @@
     background-image: url(/img/retina2x.png);
   }
 }
+@media (min-width: 768px) {
+  .component .selector3 {
+    color: red;
+  }
+}
+
+@media (min-width: 960px) {
+  .hide-extra-small {
+    display: none;
+  }
+
+  .selector1 {
+    color: red;
+  }
+  .selector1 .selector1-1 {
+    color: green;
+  }
+}
+.class-a {
+  width: 1px;
+}
 
 /*# sourceMappingURL=at-rules-and-bubbling.css.map */

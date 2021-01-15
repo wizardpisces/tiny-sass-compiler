@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "operator.scss"
+    "test/operator.scss"
   ],
   "names": [],
   "mappings": "AACA;EACE,MAAO;;AAGT;EACE,MAAO;EACP,MAAO;;AAGT;EACE,MAAO;EACP,MAAO",

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "else.scss"
+    "test/flow-control/else.scss"
   ],
   "names": [],
   "mappings": "AAeA;EARI,iBAAkB;EAClB,MAAO;;AAST;EAPE,iBAAkB;EAClB,MAAO",

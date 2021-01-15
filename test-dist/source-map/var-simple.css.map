@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "var-simple.scss"
+    "test/var-simple.scss"
   ],
   "names": [],
   "mappings": "AAGA;EACE,KAAM;EACN,MAAO",

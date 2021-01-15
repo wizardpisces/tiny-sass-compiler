@@ -4,21 +4,22 @@
     {
       "type": "MIXIN",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "rtl",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 7,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 8
           },
           "end": {
+            "offset": 10,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 11
+          },
+          "filename": "test/mixin/var-key-parent-selector.scss"
+        },
+        "namespace": [],
+        "name": "rtl",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -35,7 +36,7 @@
               "line": 1,
               "column": 21
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         },
         {
@@ -52,7 +53,7 @@
               "line": 1,
               "column": 33
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         },
         {
@@ -69,7 +70,7 @@
               "line": 1,
               "column": 45
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         }
       ],
@@ -92,7 +93,7 @@
                   "line": 2,
                   "column": 14
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             "right": {
@@ -112,7 +113,7 @@
                       "line": 2,
                       "column": 27
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 }
               ],
@@ -127,7 +128,7 @@
                   "line": 2,
                   "column": 27
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             "loc": {
@@ -141,7 +142,7 @@
                 "line": 2,
                 "column": 27
               },
-              "filename": "var-key-parent-selector.scss"
+              "filename": "test/mixin/var-key-parent-selector.scss"
             }
           },
           {
@@ -160,7 +161,7 @@
                   "line": 4,
                   "column": 22
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -176,7 +177,7 @@
                     "line": 4,
                     "column": 22
                   },
-                  "filename": "var-key-parent-selector.scss"
+                  "filename": "test/mixin/var-key-parent-selector.scss"
                 }
               }
             },
@@ -197,7 +198,7 @@
                       "line": 5,
                       "column": 17
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 },
                 "right": {
@@ -217,7 +218,7 @@
                           "line": 5,
                           "column": 31
                         },
-                        "filename": "var-key-parent-selector.scss"
+                        "filename": "test/mixin/var-key-parent-selector.scss"
                       }
                     }
                   ],
@@ -232,7 +233,7 @@
                       "line": 5,
                       "column": 31
                     },
-                    "filename": "var-key-parent-selector.scss"
+                    "filename": "test/mixin/var-key-parent-selector.scss"
                   }
                 },
                 "loc": {
@@ -246,7 +247,7 @@
                     "line": 5,
                     "column": 31
                   },
-                  "filename": "var-key-parent-selector.scss"
+                  "filename": "test/mixin/var-key-parent-selector.scss"
                 }
               }
             ],
@@ -309,7 +310,7 @@
             "line": 9,
             "column": 9
           },
-          "filename": "var-key-parent-selector.scss"
+          "filename": "test/mixin/var-key-parent-selector.scss"
         },
         "value": {
           "type": "TEXT",
@@ -325,7 +326,7 @@
               "line": 9,
               "column": 9
             },
-            "filename": "var-key-parent-selector.scss"
+            "filename": "test/mixin/var-key-parent-selector.scss"
           }
         }
       },
@@ -333,21 +334,22 @@
         {
           "type": "INCLUDE",
           "id": {
-            "type": "IDENTIFIER",
-            "value": "rtl",
             "loc": {
-              "filename": "",
               "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
+                "offset": 162,
+                "line": 10,
+                "column": 12
               },
               "end": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              }
-            }
+                "offset": 165,
+                "line": 10,
+                "column": 15
+              },
+              "filename": "test/mixin/var-key-parent-selector.scss"
+            },
+            "namespace": [],
+            "name": "rtl",
+            "type": "IDENTIFIER"
           },
           "args": [
             {
@@ -364,7 +366,7 @@
                   "line": 10,
                   "column": 21
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             {
@@ -381,7 +383,7 @@
                   "line": 10,
                   "column": 27
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             },
             {
@@ -398,7 +400,7 @@
                   "line": 10,
                   "column": 34
                 },
-                "filename": "var-key-parent-selector.scss"
+                "filename": "test/mixin/var-key-parent-selector.scss"
               }
             }
           ],
@@ -433,7 +435,7 @@
     }
   ],
   "fileSourceMap": {
-    "var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
+    "test/mixin/var-key-parent-selector.scss": "@mixin rtl($property, $ltr-value, $rtl-value) {\n  #{$property}: $ltr-value;\n\n   [dir=rtl] &.second {\n    #{ $property }: $rtl-value;\n  }\n}\n\n.sidebar {\n  @include rtl(float, left, right);\n}"
   },
   "loc": {
     "filename": "",

@@ -17,7 +17,7 @@
             "line": 1,
             "column": 11
           },
-          "filename": "at-rules-and-bubbling.scss"
+          "filename": "test/nest/at-rules-and-bubbling.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 1,
               "column": 11
             },
-            "filename": "at-rules-and-bubbling.scss"
+            "filename": "test/nest/at-rules-and-bubbling.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 2,
                 "column": 10
               },
-              "filename": "at-rules-and-bubbling.scss"
+              "filename": "test/nest/at-rules-and-bubbling.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 2,
                 "column": 17
               },
-              "filename": "at-rules-and-bubbling.scss"
+              "filename": "test/nest/at-rules-and-bubbling.scss"
             },
             "value": "300px"
           },
@@ -85,7 +85,7 @@
               "line": 2,
               "column": 17
             },
-            "filename": "at-rules-and-bubbling.scss"
+            "filename": "test/nest/at-rules-and-bubbling.scss"
           }
         }
       ],
@@ -162,7 +162,7 @@
                       "line": 5,
                       "column": 18
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -178,7 +178,7 @@
                       "line": 5,
                       "column": 25
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "800px"
                 },
@@ -193,7 +193,7 @@
                     "line": 5,
                     "column": 25
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -249,7 +249,7 @@
                       "line": 4,
                       "column": 34
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -263,7 +263,7 @@
                     "line": 4,
                     "column": 34
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -369,7 +369,7 @@
                       "line": 9,
                       "column": 14
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -385,7 +385,7 @@
                       "line": 9,
                       "column": 21
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "600px"
                 },
@@ -400,7 +400,7 @@
                     "line": 9,
                     "column": 21
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -456,7 +456,7 @@
                       "line": 8,
                       "column": 29
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -470,7 +470,7 @@
                     "line": 8,
                     "column": 29
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -576,7 +576,7 @@
                       "line": 12,
                       "column": 33
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -592,7 +592,7 @@
                       "line": 12,
                       "column": 57
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "url(/img/retina2x.png)"
                 },
@@ -607,7 +607,7 @@
                     "line": 12,
                     "column": 57
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -663,7 +663,7 @@
                       "line": 11,
                       "column": 43
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -677,7 +677,7 @@
                     "line": 11,
                     "column": 43
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               },
               {
@@ -714,7 +714,7 @@
                       "line": 8,
                       "column": 29
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -728,7 +728,7 @@
                     "line": 8,
                     "column": 29
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -797,7 +797,7 @@
                   "line": 15,
                   "column": 19
                 },
-                "filename": "at-rules-and-bubbling.scss"
+                "filename": "test/nest/at-rules-and-bubbling.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -813,7 +813,7 @@
                     "line": 15,
                     "column": 19
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             },
@@ -834,7 +834,7 @@
                       "line": 16,
                       "column": 18
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -850,7 +850,7 @@
                       "line": 16,
                       "column": 22
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "red"
                 },
@@ -865,7 +865,7 @@
                     "line": 16,
                     "column": 22
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -921,7 +921,7 @@
                       "line": 8,
                       "column": 29
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -935,7 +935,7 @@
                     "line": 8,
                     "column": 29
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -1004,7 +1004,7 @@
                   "line": 24,
                   "column": 22
                 },
-                "filename": "at-rules-and-bubbling.scss"
+                "filename": "test/nest/at-rules-and-bubbling.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -1020,7 +1020,7 @@
                     "line": 24,
                     "column": 22
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             },
@@ -1041,7 +1041,7 @@
                       "line": 25,
                       "column": 16
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -1057,7 +1057,7 @@
                       "line": 25,
                       "column": 22
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "none"
                 },
@@ -1072,7 +1072,7 @@
                     "line": 25,
                     "column": 22
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -1106,7 +1106,7 @@
                   "line": 27,
                   "column": 15
                 },
-                "filename": "at-rules-and-bubbling.scss"
+                "filename": "test/nest/at-rules-and-bubbling.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -1122,7 +1122,7 @@
                     "line": 27,
                     "column": 15
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             },
@@ -1143,7 +1143,7 @@
                       "line": 28,
                       "column": 14
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -1159,7 +1159,7 @@
                       "line": 28,
                       "column": 18
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "red"
                 },
@@ -1174,7 +1174,7 @@
                     "line": 28,
                     "column": 18
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -1208,7 +1208,7 @@
                   "line": 29,
                   "column": 21
                 },
-                "filename": "at-rules-and-bubbling.scss"
+                "filename": "test/nest/at-rules-and-bubbling.scss"
               },
               "value": {
                 "type": "TEXT",
@@ -1224,7 +1224,7 @@
                     "line": 29,
                     "column": 21
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             },
@@ -1245,7 +1245,7 @@
                       "line": 30,
                       "column": 18
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "right": {
@@ -1261,7 +1261,7 @@
                       "line": 30,
                       "column": 24
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   },
                   "value": "green"
                 },
@@ -1276,7 +1276,7 @@
                     "line": 30,
                     "column": 24
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -1332,7 +1332,7 @@
                       "line": 23,
                       "column": 44
                     },
-                    "filename": "at-rules-and-bubbling.scss"
+                    "filename": "test/nest/at-rules-and-bubbling.scss"
                   }
                 },
                 "loc": {
@@ -1346,7 +1346,7 @@
                     "line": 23,
                     "column": 44
                   },
-                  "filename": "at-rules-and-bubbling.scss"
+                  "filename": "test/nest/at-rules-and-bubbling.scss"
                 }
               }
             ],
@@ -1409,7 +1409,7 @@
             "line": 35,
             "column": 9
           },
-          "filename": "at-rules-and-bubbling.scss"
+          "filename": "test/nest/at-rules-and-bubbling.scss"
         },
         "value": {
           "type": "TEXT",
@@ -1425,7 +1425,7 @@
               "line": 35,
               "column": 9
             },
-            "filename": "at-rules-and-bubbling.scss"
+            "filename": "test/nest/at-rules-and-bubbling.scss"
           }
         }
       },
@@ -1446,7 +1446,7 @@
                 "line": 36,
                 "column": 10
               },
-              "filename": "at-rules-and-bubbling.scss"
+              "filename": "test/nest/at-rules-and-bubbling.scss"
             }
           },
           "right": {
@@ -1462,7 +1462,7 @@
                 "line": 36,
                 "column": 15
               },
-              "filename": "at-rules-and-bubbling.scss"
+              "filename": "test/nest/at-rules-and-bubbling.scss"
             },
             "value": "1px"
           },
@@ -1477,7 +1477,7 @@
               "line": 36,
               "column": 15
             },
-            "filename": "at-rules-and-bubbling.scss"
+            "filename": "test/nest/at-rules-and-bubbling.scss"
           }
         }
       ],
@@ -1497,7 +1497,7 @@
     }
   ],
   "fileSourceMap": {
-    "at-rules-and-bubbling.scss": ".component {\n    width: 300px;\n    .selector{\n        @media (min-width: 1280px) {\n            width: 800px;\n        }\n    }\n    @media (min-width: 768px) {\n        width: 600px;\n        .selector2{\n            @media (min-resolution: 192dpi) {\n                background-image: url(/img/retina2x.png);\n            }\n        }\n        .selector3{\n            color:red;\n        }\n    }\n}\n\n$layout-breakpoint-small: 960px;\n\n@media (min-width: $layout-breakpoint-small) {\n    .hide-extra-small {\n        display: none;\n    }\n    .selector1{\n        color:red;\n        .selector1-1{\n            color:green;\n        }\n    }\n}\n\n.class-a{\n    width: 1px;\n}"
+    "test/nest/at-rules-and-bubbling.scss": ".component {\n    width: 300px;\n    .selector{\n        @media (min-width: 1280px) {\n            width: 800px;\n        }\n    }\n    @media (min-width: 768px) {\n        width: 600px;\n        .selector2{\n            @media (min-resolution: 192dpi) {\n                background-image: url(/img/retina2x.png);\n            }\n        }\n        .selector3{\n            color:red;\n        }\n    }\n}\n\n$layout-breakpoint-small: 960px;\n\n@media (min-width: $layout-breakpoint-small) {\n    .hide-extra-small {\n        display: none;\n    }\n    .selector1{\n        color:red;\n        .selector1-1{\n            color:green;\n        }\n    }\n}\n\n.class-a{\n    width: 1px;\n}"
   },
   "loc": {
     "filename": "",

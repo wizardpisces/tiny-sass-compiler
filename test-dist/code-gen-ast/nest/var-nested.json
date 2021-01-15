@@ -17,7 +17,7 @@
             "line": 4,
             "column": 7
           },
-          "filename": "var-nested.scss"
+          "filename": "test/nest/var-nested.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 4,
               "column": 7
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 6,
                 "column": 11
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 6,
                 "column": 20
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             },
             "value": "3px"
           },
@@ -85,7 +85,7 @@
               "line": 6,
               "column": 20
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         },
         {
@@ -104,7 +104,7 @@
                 "line": 7,
                 "column": 10
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             }
           },
           "right": {
@@ -120,7 +120,7 @@
                 "line": 7,
                 "column": 18
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             },
             "value": "20px"
           },
@@ -135,7 +135,7 @@
               "line": 7,
               "column": 18
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       ],
@@ -169,7 +169,7 @@
             "line": 9,
             "column": 6
           },
-          "filename": "var-nested.scss"
+          "filename": "test/nest/var-nested.scss"
         },
         "value": {
           "type": "TEXT",
@@ -185,7 +185,7 @@
               "line": 9,
               "column": 6
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       },
@@ -206,7 +206,7 @@
                 "line": 10,
                 "column": 8
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             }
           },
           "right": {
@@ -222,7 +222,7 @@
                 "line": 10,
                 "column": 16
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             },
             "value": "20px"
           },
@@ -237,7 +237,7 @@
               "line": 10,
               "column": 16
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       ],
@@ -271,7 +271,7 @@
             "line": 12,
             "column": 16
           },
-          "filename": "var-nested.scss"
+          "filename": "test/nest/var-nested.scss"
         },
         "value": {
           "type": "TEXT",
@@ -287,7 +287,7 @@
               "line": 12,
               "column": 16
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       },
@@ -308,7 +308,7 @@
                 "line": 13,
                 "column": 23
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             }
           },
           "right": {
@@ -324,7 +324,7 @@
                 "line": 13,
                 "column": 29
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             },
             "value": "green"
           },
@@ -339,7 +339,7 @@
               "line": 13,
               "column": 29
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       ],
@@ -373,7 +373,7 @@
             "line": 15,
             "column": 16
           },
-          "filename": "var-nested.scss"
+          "filename": "test/nest/var-nested.scss"
         },
         "value": {
           "type": "TEXT",
@@ -389,7 +389,7 @@
               "line": 15,
               "column": 16
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       },
@@ -410,7 +410,7 @@
                 "line": 16,
                 "column": 23
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             }
           },
           "right": {
@@ -426,7 +426,7 @@
                 "line": 16,
                 "column": 29
               },
-              "filename": "var-nested.scss"
+              "filename": "test/nest/var-nested.scss"
             },
             "value": "green"
           },
@@ -441,7 +441,7 @@
               "line": 16,
               "column": 29
             },
-            "filename": "var-nested.scss"
+            "filename": "test/nest/var-nested.scss"
           }
         }
       ],
@@ -461,7 +461,7 @@
     }
   ],
   "fileSourceMap": {
-    "var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
+    "test/nest/var-nested.scss": "$top : 20px;\n$margin: 2px;\n$right: $top;\n.main2{\n    $margin: 3px;\n    margin: $margin;\n    right: $right;\n}\n.main {\n    top  : $top;   \n    .child1{\n        .child2{\n            background:green;\n        }\n        .child3{\n            background:green;\n        }\n    }\n}\n"
   },
   "loc": {
     "filename": "",

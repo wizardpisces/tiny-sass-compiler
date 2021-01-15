@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "test/plugin/plugin.scss"
+  ],
+  "names": [],
+  "mappings": "AAGA;EACI,MAAO",
+  "sourcesContent": [
+    "// less code\n@plugin \"my-plugin\";\n\n.show-me-pi {\n    value: pi();\n}"
+  ]
+}

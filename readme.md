@@ -1,6 +1,6 @@
 # Project Target
 
-This project is for people who want to understand how to write a compiler , mainly cover steps:
+This project is for people who want to understand how to write a compiler (almost zero third-party dependencies) , mainly cover steps:
 
 1. sourceCode (sass scanning)
 2. tokens (parsing)
@@ -25,7 +25,7 @@ A compiler that compile sass to css, can be used both in ***node*** and ***brows
 3. Extend/Inheritance
 4. Operators
 5. Mixins
-6. Modules
+6. Modules ([@import](https://sass-lang.com/documentation/at-rules/import) and [@use](https://sass-lang.com/documentation/at-rules/use)(which is more efficient than @import))
 
 ## Installation
 
@@ -131,8 +131,9 @@ npm run jest
 
 ## Other Readme
 
-* [Tiny Sass AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
-* [AST travesal plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
+* [AST Descriptor Syntax](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/src/parse/ast.ts)
+* [AST travesal Plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/traversal.md)
+* [AST Interpret Transform Plugin](https://github.com/wizardpisces/tiny-sass-compiler/blob/master/transform.md)
 
 ## Reference
 
@@ -140,6 +141,6 @@ npm run jest
 * https://astexplorer.net/#/gist/244e2fb4da940df52bf0f4b94277db44/e79aff44611020b22cfd9708f3a99ce09b7d67a8
 * https://github.com/vuejs/vue-next/tree/master/packages/compiler-core
 * http://lisperator.net/pltut/
-* http://lesscss.org/
+* https://less.bootcss.com/features/#plugin-at-rules
 * https://github.com/syntax-tree/hast
 * https://github.com/syntax-tree/unist

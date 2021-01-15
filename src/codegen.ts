@@ -5,10 +5,10 @@ import {
 } from './parse/ast';
 import { SourceMapGenerator } from 'source-map'
 import { advancePositionWithMutation } from './parse/util'
-import traverse from './traverse'
+import { traverse } from './traverse'
 // todos complete CodegenNode type
 import { isBrowser } from './global'
-import { CodegenContext, CodegenResult, CodegenOptions} from './type'
+import { CodegenContext, CodegenResult, CodegenOptions } from './type'
 import { genCodeVisitor } from './genCodeVisitor';
 
 function createCodegenContext(
@@ -26,8 +26,8 @@ function createCodegenContext(
         indentLevel: 0,
         // source: ast.source,
         push(code: string, sourceLoc: SourceLocation) {
-            function isValidSourceLocation(sourceLoc: SourceLocation){
-                return sourceLoc && sourceLoc.end.offset>0;
+            function isValidSourceLocation(sourceLoc: SourceLocation) {
+                return sourceLoc && sourceLoc.end.offset > 0;
             }
             context.code += code
             if (!isBrowser() && context.map) {
@@ -89,7 +89,7 @@ export function generate(
     ast: RootNode,
     options: CodegenOptions = {}
 ): CodegenResult {
-    
+
     // run plugins automatically before codegen
     traverse.applyPlugins(ast);
 

@@ -37,19 +37,54 @@
       }
     },
     {
+      "type": "IMPORT",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./base-2.scss",
+          "loc": {
+            "start": {
+              "offset": 46,
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "offset": 61,
+              "line": 3,
+              "column": 24
+            },
+            "filename": "index.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    },
+    {
       "type": "RULE",
       "selector": {
         "type": "SELECTOR",
         "meta": [],
         "loc": {
           "start": {
-            "offset": 39,
-            "line": 4,
+            "offset": 64,
+            "line": 5,
             "column": 1
           },
           "end": {
-            "offset": 47,
-            "line": 4,
+            "offset": 72,
+            "line": 5,
             "column": 9
           },
           "filename": "index.scss"
@@ -59,13 +94,13 @@
           "value": ".inverse",
           "loc": {
             "start": {
-              "offset": 39,
-              "line": 4,
+              "offset": 64,
+              "line": 5,
               "column": 1
             },
             "end": {
-              "offset": 47,
-              "line": 4,
+              "offset": 72,
+              "line": 5,
               "column": 9
             },
             "filename": "index.scss"
@@ -80,13 +115,13 @@
             "value": "background-color",
             "loc": {
               "start": {
-                "offset": 52,
-                "line": 5,
+                "offset": 77,
+                "line": 6,
                 "column": 3
               },
               "end": {
-                "offset": 68,
-                "line": 5,
+                "offset": 93,
+                "line": 6,
                 "column": 19
               },
               "filename": "index.scss"
@@ -100,13 +135,13 @@
                 "value": "$primary-color",
                 "loc": {
                   "start": {
-                    "offset": 70,
-                    "line": 5,
+                    "offset": 95,
+                    "line": 6,
                     "column": 21
                   },
                   "end": {
-                    "offset": 84,
-                    "line": 5,
+                    "offset": 109,
+                    "line": 6,
                     "column": 35
                   },
                   "filename": "index.scss"
@@ -115,13 +150,13 @@
             ],
             "loc": {
               "start": {
-                "offset": 70,
-                "line": 5,
+                "offset": 95,
+                "line": 6,
                 "column": 21
               },
               "end": {
-                "offset": 84,
-                "line": 5,
+                "offset": 109,
+                "line": 6,
                 "column": 35
               },
               "filename": "index.scss"
@@ -129,13 +164,13 @@
           },
           "loc": {
             "start": {
-              "offset": 52,
-              "line": 5,
+              "offset": 77,
+              "line": 6,
               "column": 3
             },
             "end": {
-              "offset": 84,
-              "line": 5,
+              "offset": 109,
+              "line": 6,
               "column": 35
             },
             "filename": "index.scss"
@@ -148,13 +183,13 @@
             "value": "color",
             "loc": {
               "start": {
-                "offset": 88,
-                "line": 6,
+                "offset": 113,
+                "line": 7,
                 "column": 3
               },
               "end": {
-                "offset": 93,
-                "line": 6,
+                "offset": 118,
+                "line": 7,
                 "column": 8
               },
               "filename": "index.scss"
@@ -168,13 +203,13 @@
                 "value": "white",
                 "loc": {
                   "start": {
-                    "offset": 95,
-                    "line": 6,
+                    "offset": 120,
+                    "line": 7,
                     "column": 10
                   },
                   "end": {
-                    "offset": 100,
-                    "line": 6,
+                    "offset": 125,
+                    "line": 7,
                     "column": 15
                   },
                   "filename": "index.scss"
@@ -183,13 +218,13 @@
             ],
             "loc": {
               "start": {
-                "offset": 95,
-                "line": 6,
+                "offset": 120,
+                "line": 7,
                 "column": 10
               },
               "end": {
-                "offset": 100,
-                "line": 6,
+                "offset": 125,
+                "line": 7,
                 "column": 15
               },
               "filename": "index.scss"
@@ -197,13 +232,13 @@
           },
           "loc": {
             "start": {
-              "offset": 88,
-              "line": 6,
+              "offset": 113,
+              "line": 7,
               "column": 3
             },
             "end": {
-              "offset": 100,
-              "line": 6,
+              "offset": 125,
+              "line": 7,
               "column": 15
             },
             "filename": "index.scss"
@@ -226,7 +261,7 @@
     }
   ],
   "fileSourceMap": {
-    "index.scss": "// styles.scss\n@import \"./base.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+    "index.scss": "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
   },
   "loc": {
     "filename": "",

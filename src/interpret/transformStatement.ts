@@ -1,4 +1,3 @@
-import { NodeTransform, TransformContext } from '../transform'
 import {
     Node,
     NodeTypes,
@@ -29,15 +28,21 @@ import {
     ErrorCodes,
     createCompilerError
 } from '../parse/errors';
+import { loadPlugin } from './loadPlugin';
+import { isBrowser } from '../global';
+import { NodeTransform, TransformContext } from '@/type';
 
 export const transformStatement: NodeTransform = (node, context) => {
     return processStatement(node as Statement, context)
 }
 
+const loadPluginProxy = !isBrowser() ? loadPlugin : (node, context) => createEmptyNode()
+
 export function processStatement(
     node: Statement,
     context: TransformContext,
 ) {
+
 
     function dispatchStatement(node: Statement | ContentPlaceholder, context: TransformContext) {
 
@@ -57,6 +62,7 @@ export function processStatement(
             case NodeTypes.IFSTATEMENT: return transformIf(node, context);
             case NodeTypes.EACHSTATEMENT: return transformEach(node, context);
             case NodeTypes.Atrule: return transformAtRule(node, context);
+            case NodeTypes.PLUGIN: return loadPluginProxy(node, context);
 
             case NodeTypes.ERROR:
                 throw new Error(processExpression(node.value, context).value)
@@ -234,7 +240,7 @@ export function processStatement(
 
         }
 
-        context.env.def(node.id.value, make_function, node.type)
+        context.env.def(node.id.name, make_function, node.type)
 
         return createEmptyNode();
     }
@@ -254,7 +260,10 @@ export function processStatement(
     }
 
     function transformInclude(node: IncludeStatement, context: TransformContext) {
-        let func = context.env.get(node.id.value, NodeTypes.MIXIN);
+        let func = context.env.get({
+            name: node.id.name,
+            namespace: node.id.namespace
+        }, NodeTypes.MIXIN);
 
         node.content && context.env.def('@content', dispatchStatement(node.content, context), NodeTypes.CONTENT)
 

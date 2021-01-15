@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "complicated-selector.scss"
+    "test/selector/complicated-selector.scss"
   ],
   "names": [],
   "mappings": "AAAA;EACI,OAAQ;;AACP;EACG,aAAc",

@@ -40,7 +40,7 @@ export type LexicalStream = {
 }
 export default function lex(input: InputStream): LexicalStream {
 
-    let keywords = ' @extend @mixin @include @import @if @else @error @each @function @return',
+    let keywords = ' @extend @mixin @include @import @use @if @else @error @each @function @return @plugin ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==', '!=', '>=', '<=', '>', '<'],
         /** 
@@ -87,9 +87,8 @@ export default function lex(input: InputStream): LexicalStream {
         return ":".indexOf(ch) >= 0;
     }
 
-    function is_base_char(ch) {
-        return /[a-z0-9_\.\#\@\%\-"'&\[\]]/i.test(ch);
-        // return !is_punc(ch);
+    function is_base_char(ch: string): boolean {
+        return /[a-z0-9_\#\@\%\.\-"'&\[\]]/i.test(ch);
     }
 
     function is_id_char_limit(ch) {
@@ -119,7 +118,7 @@ export default function lex(input: InputStream): LexicalStream {
         return str;
     }
 
-    function readInternalCall(callName: string) {
+    function readInternalCall(callName: string) { // treat internal call as str for now
         let params = read_end(')')
         input.next();// skip ')
         return {
@@ -128,17 +127,17 @@ export default function lex(input: InputStream): LexicalStream {
         }
     }
 
-    function read_keyword() {
+    function read_keyword() { // internal keyword needs to be handled more precisely such as : @charset,@font-face etc
         let kw = read_while(is_base_char);
 
         if (!is_keyword(kw)) {
             // unknown keyword handle moved to parse.ts dispatchParser
         }
 
-        if (internalCallIdentifiers.includes(kw)) { //treat inner call as string, possible @media
-            let callStr = readInternalCall(kw)
-            return callStr;
-        }
+        // if (internalCallIdentifiers.includes(kw)) {
+        //     let callStr = readInternalCall(kw)
+        //     return callStr;
+        // }
 
         return {
             type: NodeTypes.KEYWORD,
@@ -267,7 +266,43 @@ export default function lex(input: InputStream): LexicalStream {
         }
     }
 
-    function read_next(): Token {
+    // function maybeNamespace(token: Token): Token {
+
+    //     if (input.peek() === '.') {
+    //         if (token.value === '&') { // parent selector: &.class
+    //             return {
+    //                 type: NodeTypes.TEXT,
+    //                 value: '&' + read_string().value
+    //             }
+    //         }
+    //         if (parseFloat(token.value)) {// decimal value : 11.11
+    //             return {
+    //                 type: NodeTypes.TEXT,
+    //                 value: token.value + '.' + read_string().value
+    //             }
+    //         }
+    //         return {
+    //             type: NodeTypes.NAMESPACE,
+    //             value: token.value
+    //         }
+    //     }
+
+    //     return token
+    // }
+
+    // function readClassName(): Token {
+    //     input.next();// skip '.'
+    //     return {
+    //         type: NodeTypes.TEXT,
+    //         value: '.' + read_string().value
+    //     }
+    // }
+
+    // function isClassStart(ch: string) {
+    //     return ch === '.'
+    // }
+
+    function read_next(): Token { // needs to do more in depth analyze for css selector
         read_while(is_whitespace);
         if (input.eof()) return NullToken;
         let ch = input.peek();
@@ -291,6 +326,8 @@ export default function lex(input: InputStream): LexicalStream {
         if (is_calculate_op_char(ch)) return maybe_calculate_op_token(read_while(is_calculate_op_char));
         if (is_comparison_op_char(ch)) return maybe_comparison_op_token(read_while(is_comparison_op_char));
         if (is_base_char(ch)) return read_string();
+        // if (is_base_char(ch)) return maybeNamespace(read_string());
+        // if (isClassStart(ch)) return readClassName();
 
         input.emitError(ErrorCodes.UNKNOWN_CHAR);
         return UnknownToken;

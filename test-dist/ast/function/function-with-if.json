@@ -4,21 +4,22 @@
     {
       "type": "FUNCTION",
       "id": {
-        "type": "IDENTIFIER",
-        "value": "min2",
         "loc": {
-          "filename": "",
           "start": {
+            "offset": 10,
             "line": 1,
-            "column": 1,
-            "offset": 0
+            "column": 11
           },
           "end": {
+            "offset": 14,
             "line": 1,
-            "column": 1,
-            "offset": 0
-          }
-        }
+            "column": 15
+          },
+          "filename": "test/function/function-with-if.scss"
+        },
+        "namespace": [],
+        "name": "min2",
+        "type": "IDENTIFIER"
       },
       "params": [
         {
@@ -35,7 +36,7 @@
               "line": 1,
               "column": 18
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         },
         {
@@ -52,7 +53,7 @@
               "line": 1,
               "column": 22
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         }
       ],
@@ -77,7 +78,7 @@
                     "line": 2,
                     "column": 13
                   },
-                  "filename": "function-with-if.scss"
+                  "filename": "test/function/function-with-if.scss"
                 }
               },
               "left": {
@@ -94,7 +95,7 @@
                     "line": 2,
                     "column": 11
                   },
-                  "filename": "function-with-if.scss"
+                  "filename": "test/function/function-with-if.scss"
                 }
               },
               "right": {
@@ -111,7 +112,7 @@
                     "line": 2,
                     "column": 16
                   },
-                  "filename": "function-with-if.scss"
+                  "filename": "test/function/function-with-if.scss"
                 }
               },
               "loc": {
@@ -125,7 +126,7 @@
                   "line": 2,
                   "column": 16
                 },
-                "filename": "function-with-if.scss"
+                "filename": "test/function/function-with-if.scss"
               }
             },
             "consequent": {
@@ -150,7 +151,7 @@
                             "line": 3,
                             "column": 19
                           },
-                          "filename": "function-with-if.scss"
+                          "filename": "test/function/function-with-if.scss"
                         }
                       }
                     ],
@@ -165,7 +166,7 @@
                         "line": 3,
                         "column": 19
                       },
-                      "filename": "function-with-if.scss"
+                      "filename": "test/function/function-with-if.scss"
                     }
                   },
                   "loc": {
@@ -219,7 +220,7 @@
                             "line": 7,
                             "column": 19
                           },
-                          "filename": "function-with-if.scss"
+                          "filename": "test/function/function-with-if.scss"
                         }
                       }
                     ],
@@ -234,7 +235,7 @@
                         "line": 7,
                         "column": 19
                       },
-                      "filename": "function-with-if.scss"
+                      "filename": "test/function/function-with-if.scss"
                     }
                   },
                   "loc": {
@@ -325,7 +326,7 @@
             "line": 11,
             "column": 9
           },
-          "filename": "function-with-if.scss"
+          "filename": "test/function/function-with-if.scss"
         },
         "value": {
           "type": "TEXT",
@@ -341,7 +342,7 @@
               "line": 11,
               "column": 9
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         }
       },
@@ -362,7 +363,7 @@
                 "line": 12,
                 "column": 16
               },
-              "filename": "function-with-if.scss"
+              "filename": "test/function/function-with-if.scss"
             }
           },
           "right": {
@@ -384,7 +385,7 @@
                       "line": 12,
                       "column": 30
                     },
-                    "filename": "function-with-if.scss"
+                    "filename": "test/function/function-with-if.scss"
                   }
                 },
                 "left": {
@@ -401,9 +402,10 @@
                         "line": 12,
                         "column": 22
                       },
-                      "filename": "function-with-if.scss"
+                      "filename": "test/function/function-with-if.scss"
                     },
-                    "value": "min2",
+                    "namespace": [],
+                    "name": "min2",
                     "type": "IDENTIFIER"
                   },
                   "args": [
@@ -421,7 +423,7 @@
                           "line": 12,
                           "column": 24
                         },
-                        "filename": "function-with-if.scss"
+                        "filename": "test/function/function-with-if.scss"
                       }
                     },
                     {
@@ -438,7 +440,7 @@
                           "line": 12,
                           "column": 27
                         },
-                        "filename": "function-with-if.scss"
+                        "filename": "test/function/function-with-if.scss"
                       }
                     }
                   ],
@@ -453,7 +455,7 @@
                       "line": 12,
                       "column": 27
                     },
-                    "filename": "function-with-if.scss"
+                    "filename": "test/function/function-with-if.scss"
                   }
                 },
                 "right": {
@@ -470,7 +472,7 @@
                       "line": 12,
                       "column": 34
                     },
-                    "filename": "function-with-if.scss"
+                    "filename": "test/function/function-with-if.scss"
                   }
                 },
                 "loc": {
@@ -484,7 +486,7 @@
                     "line": 12,
                     "column": 34
                   },
-                  "filename": "function-with-if.scss"
+                  "filename": "test/function/function-with-if.scss"
                 }
               }
             ],
@@ -499,7 +501,7 @@
                 "line": 12,
                 "column": 34
               },
-              "filename": "function-with-if.scss"
+              "filename": "test/function/function-with-if.scss"
             }
           },
           "loc": {
@@ -513,7 +515,7 @@
               "line": 12,
               "column": 34
             },
-            "filename": "function-with-if.scss"
+            "filename": "test/function/function-with-if.scss"
           }
         }
       ],
@@ -533,7 +535,7 @@
     }
   ],
   "fileSourceMap": {
-    "function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
+    "test/function/function-with-if.scss": "@function min2($a, $b) {\n    @if $a > $b {\n        @return $b;\n    }\n\n    @else {\n        @return $a;\n    }\n}\n\n.sidebar {\n    margin-left: min2(5, 6) * 2px;\n}"
   },
   "loc": {
     "filename": "",

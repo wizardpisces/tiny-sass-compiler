@@ -1,0 +1,19 @@
+.base-3{
+  background:red;
+}
+.base-2{
+  background:yellow;
+}
+.base{
+  color:yellow;
+}
+.use{
+  background-color:yellow;
+  color:3;
+  font:1212.1212;
+  margin:0;
+  padding:0;
+}
+.use-more-than-one-namespace{
+  color:yellow;
+}

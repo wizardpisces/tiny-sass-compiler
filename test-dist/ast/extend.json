@@ -17,7 +17,7 @@
             "line": 1,
             "column": 16
           },
-          "filename": "extend.scss"
+          "filename": "test/extend.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 1,
               "column": 16
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 2,
                 "column": 11
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -74,7 +74,7 @@
                     "line": 2,
                     "column": 16
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               },
               {
@@ -91,7 +91,7 @@
                     "line": 2,
                     "column": 22
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               },
               {
@@ -108,7 +108,7 @@
                     "line": 2,
                     "column": 27
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -123,7 +123,7 @@
                 "line": 2,
                 "column": 27
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -137,7 +137,7 @@
               "line": 2,
               "column": 27
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         },
         {
@@ -156,7 +156,7 @@
                 "line": 3,
                 "column": 12
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -176,7 +176,7 @@
                     "line": 3,
                     "column": 18
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -191,7 +191,7 @@
                 "line": 3,
                 "column": 18
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -205,7 +205,7 @@
               "line": 3,
               "column": 18
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         },
         {
@@ -224,7 +224,7 @@
                 "line": 4,
                 "column": 10
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -244,7 +244,7 @@
                     "line": 4,
                     "column": 16
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -259,7 +259,7 @@
                 "line": 4,
                 "column": 16
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -273,7 +273,7 @@
               "line": 4,
               "column": 16
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       ],
@@ -307,7 +307,7 @@
             "line": 7,
             "column": 16
           },
-          "filename": "extend.scss"
+          "filename": "test/extend.scss"
         },
         "value": {
           "type": "PLACEHOLDER",
@@ -323,7 +323,7 @@
               "line": 7,
               "column": 16
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       },
@@ -344,7 +344,7 @@
                 "line": 8,
                 "column": 9
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -364,7 +364,7 @@
                     "line": 8,
                     "column": 14
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               },
               {
@@ -381,7 +381,7 @@
                     "line": 8,
                     "column": 20
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               },
               {
@@ -398,7 +398,7 @@
                     "line": 8,
                     "column": 25
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -413,7 +413,7 @@
                 "line": 8,
                 "column": 25
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -427,7 +427,7 @@
               "line": 8,
               "column": 25
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         },
         {
@@ -446,7 +446,7 @@
                 "line": 9,
                 "column": 10
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -466,7 +466,7 @@
                     "line": 9,
                     "column": 16
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -481,7 +481,7 @@
                 "line": 9,
                 "column": 16
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -495,7 +495,7 @@
               "line": 9,
               "column": 16
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         },
         {
@@ -514,7 +514,7 @@
                 "line": 10,
                 "column": 8
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -534,7 +534,7 @@
                     "line": 10,
                     "column": 14
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -549,7 +549,7 @@
                 "line": 10,
                 "column": 14
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -563,7 +563,7 @@
               "line": 10,
               "column": 14
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       ],
@@ -597,7 +597,7 @@
             "line": 13,
             "column": 9
           },
-          "filename": "extend.scss"
+          "filename": "test/extend.scss"
         },
         "value": {
           "type": "TEXT",
@@ -613,7 +613,7 @@
               "line": 13,
               "column": 9
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       },
@@ -634,7 +634,7 @@
                 "line": 14,
                 "column": 28
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -682,7 +682,7 @@
             "line": 17,
             "column": 9
           },
-          "filename": "extend.scss"
+          "filename": "test/extend.scss"
         },
         "value": {
           "type": "TEXT",
@@ -698,7 +698,7 @@
               "line": 17,
               "column": 9
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       },
@@ -719,7 +719,7 @@
                 "line": 18,
                 "column": 28
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -752,7 +752,7 @@
                 "line": 19,
                 "column": 17
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -772,7 +772,7 @@
                     "line": 19,
                     "column": 24
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -787,7 +787,7 @@
                 "line": 19,
                 "column": 24
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -801,7 +801,7 @@
               "line": 19,
               "column": 24
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       ],
@@ -835,7 +835,7 @@
             "line": 21,
             "column": 7
           },
-          "filename": "extend.scss"
+          "filename": "test/extend.scss"
         },
         "value": {
           "type": "TEXT",
@@ -851,7 +851,7 @@
               "line": 21,
               "column": 7
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         }
       },
@@ -872,7 +872,7 @@
                 "line": 22,
                 "column": 10
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "right": {
@@ -892,7 +892,7 @@
                     "line": 22,
                     "column": 14
                   },
-                  "filename": "extend.scss"
+                  "filename": "test/extend.scss"
                 }
               }
             ],
@@ -907,7 +907,7 @@
                 "line": 22,
                 "column": 14
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -921,7 +921,7 @@
               "line": 22,
               "column": 14
             },
-            "filename": "extend.scss"
+            "filename": "test/extend.scss"
           }
         },
         {
@@ -940,7 +940,7 @@
                 "line": 23,
                 "column": 28
               },
-              "filename": "extend.scss"
+              "filename": "test/extend.scss"
             }
           },
           "loc": {
@@ -974,7 +974,7 @@
     }
   ],
   "fileSourceMap": {
-    "extend.scss": ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
+    "test/extend.scss": ".message-shared {\n    border: 1px solid #ccc;\n    padding: 10px;\n    color: #333;\n}\n\n%message-shared {\n  border: 1px solid #ccc;\n  padding: 10px;\n  color: #333;\n}\n\n.message {\n    @extend .message-shared;\n}\n\n.success {\n    @extend .message-shared;\n    border-color: green;\n}\n.error{\n    color:red;\n    @extend %message-shared\n}"
   },
   "loc": {
     "filename": "",

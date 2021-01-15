@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "keyframes.scss"
+    "test/atrule/keyframes.scss"
   ],
   "names": [],
   "mappings": "WAAW;EACP;IACI,YAAa;IACb,MAAO;;EAGX;IACI,YAAa;IACb,MAAO;;EAGX;IACI,YAAa;IACb,MAAO",

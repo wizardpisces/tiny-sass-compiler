@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "sources": [
+    "test/module/use/_base-3.scss",
+    "test/module/use/_base-2.scss",
+    "test/module/use/_base.scss",
+    "test/module/use/use.scss"
+  ],
+  "names": [],
+  "mappings": "AAKA;EACI,WAAY;;ACFhB;EACI,WAAY;;ACDhB;EACE,MAAO;;ACDT;EACE,iBAAkB;EAClB,MAAO;EACP,KAAM;EDEN,OAAQ;EACR,QAAS;;ACCX;EACE,MAAO",
+  "sourcesContent": [
+    null,
+    null,
+    null,
+    "// styles.scss\n@use \"./base.scss\";\n@use \"./base-3.scss\";\n\n.use {\n  background-color: base.$primary-color;\n  color: base-3.plus(1,2);\n  font: 1212.1212;\n  @include base.base-mixin;\n}\n\n.use-more-than-one-namespace{\n  color: base.base-2.$primary-color;\n}"
+  ]
+}

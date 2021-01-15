@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "sources": [
+    "test/module/_base-2.scss",
+    "test/module/_base.scss",
+    "test/module/import.scss"
+  ],
+  "names": [],
+  "mappings": "AAIA;EACI,WAAY;;ACJhB;EAGE,KAAM;EACN,MAAO;;ADDT;EACI,WAAY;;AEDhB;EACE,iBAAkB;EAClB,MAAO",
+  "sourcesContent": [
+    "$font-stack: Helvetica,\nsans-serif;\n$primary-color: #333;\n\n.base-2 {\n    background: red;\n}",
+    "@import \"./base-2.scss\";\n// _base.scss\n\nbody {\n  font: 100% $font-stack;\n  color: $primary-color;\n}",
+    "// styles.scss\n@import \"./base.scss\";\n@import \"./base-2.scss\";\n\n.inverse {\n  background-color: $primary-color;\n  color: white;\n}"
+  ]
+}

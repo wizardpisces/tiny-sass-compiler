@@ -17,7 +17,7 @@
             "line": 7,
             "column": 5
           },
-          "filename": "params.scss"
+          "filename": "test/mixin/params.scss"
         },
         "value": {
           "type": "TEXT",
@@ -33,7 +33,7 @@
               "line": 7,
               "column": 5
             },
-            "filename": "params.scss"
+            "filename": "test/mixin/params.scss"
           }
         }
       },
@@ -54,7 +54,7 @@
                 "line": 3,
                 "column": 20
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             }
           },
           "right": {
@@ -70,7 +70,7 @@
                 "line": 3,
                 "column": 31
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             },
             "value": "rotate(30deg)"
           },
@@ -85,7 +85,7 @@
               "line": 3,
               "column": 31
             },
-            "filename": "params.scss"
+            "filename": "test/mixin/params.scss"
           }
         },
         {
@@ -104,7 +104,7 @@
                 "line": 4,
                 "column": 16
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             }
           },
           "right": {
@@ -120,7 +120,7 @@
                 "line": 4,
                 "column": 27
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             },
             "value": "rotate(30deg)"
           },
@@ -135,7 +135,7 @@
               "line": 4,
               "column": 27
             },
-            "filename": "params.scss"
+            "filename": "test/mixin/params.scss"
           }
         },
         {
@@ -154,7 +154,7 @@
                 "line": 5,
                 "column": 12
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             }
           },
           "right": {
@@ -170,7 +170,7 @@
                 "line": 5,
                 "column": 34
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             },
             "value": "rotate(30deg) skew(30deg,20deg)"
           },
@@ -185,7 +185,7 @@
               "line": 5,
               "column": 34
             },
-            "filename": "params.scss"
+            "filename": "test/mixin/params.scss"
           }
         },
         {
@@ -204,7 +204,7 @@
                 "line": 9,
                 "column": 7
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             }
           },
           "right": {
@@ -220,7 +220,7 @@
                 "line": 9,
                 "column": 11
               },
-              "filename": "params.scss"
+              "filename": "test/mixin/params.scss"
             },
             "value": "1px"
           },
@@ -235,7 +235,7 @@
               "line": 9,
               "column": 11
             },
-            "filename": "params.scss"
+            "filename": "test/mixin/params.scss"
           }
         }
       ],
@@ -255,7 +255,7 @@
     }
   ],
   "fileSourceMap": {
-    "params.scss": "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
+    "test/mixin/params.scss": "$property2 : skew(30deg, 20deg);\n@mixin transform($property,$property2) {\n  -webkit-transform: $property;\n  -ms-transform: $property;\n  transform: $property $property2;\n}\n.box { \n  @include transform(rotate(30deg),$property2); \n  left:1px;\n}\n"
   },
   "loc": {
     "filename": "",

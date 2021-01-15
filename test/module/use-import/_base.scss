@@ -1,0 +1,7 @@
+@use "./base-2.scss";
+// _base.scss
+$primary-color:base-2.$primary-color;
+
+.base {
+  color: base-2.$primary-color;
+}

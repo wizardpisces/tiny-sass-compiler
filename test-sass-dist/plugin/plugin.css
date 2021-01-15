@@ -1,0 +1,6 @@
+@plugin "my-plugin";
+.show-me-pi {
+  value: pi();
+}
+
+/*# sourceMappingURL=plugin.css.map */

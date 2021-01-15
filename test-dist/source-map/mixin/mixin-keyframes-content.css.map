@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": [
-    "mixin-keyframes-content.scss"
+    "test/mixin/mixin-keyframes-content.scss"
   ],
   "names": [],
   "mappings": "mBACuB;EAkBnB;IACI,UAAW;;EAGf;IACI,UAAW;;;gBAnBC;EAchB;IACI,UAAW;;EAGf;IACI,UAAW;;;cAfD;EAUd;IACI,UAAW;;EAGf;IACI,UAAW;;;WAXJ;EAMX;IACI,UAAW;;EAGf;IACI,UAAW",

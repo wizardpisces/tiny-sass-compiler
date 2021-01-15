@@ -1,0 +1,7 @@
+@use './base-3';
+
+$primary-color: base-3.$primary-color;
+
+.base-2 {
+    background: base-3.$primary-color;
+}

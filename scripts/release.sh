@@ -9,8 +9,6 @@ npm run test
 
 echo "Enter commit message: "
 read MESSAGE
-echo "Enter release version: "
-read VERSION
 
 read -p "Releasing $VERSION - are you sure? (y/n)" -n 1 -r
 echo    # (optional) move to a new line

@@ -12,6 +12,7 @@ import {
     IfStatement,
     BodyStatement,
     ImportStatement,
+    UseStatement,
     MixinStatement,
     IdentifierNode,
     VariableNode,
@@ -55,7 +56,7 @@ import {
     Keyframes,
     createKeyframesPrelude,
     ContentPlaceholder,
-    createContentPlaceholder
+    createContentPlaceholder,
 } from './ast';
 
 import {
@@ -269,6 +270,11 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
             return parseInclude();
         }
 
+        if (isKwToken('@use')) {
+            input.next()
+            return parseUse();
+        }
+
         if (isKwToken('@import')) {
             input.next()
             return parseImport();
@@ -282,6 +288,11 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         if (isKwToken('@each')) {
             input.next()
             return parseEach();
+        }
+
+        if (isKwToken('@plugin')) {
+            input.next()
+            return parsePlugin();
         }
 
         if (isKwToken('@error')) {
@@ -341,6 +352,25 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         }
 
         return input.emitError(ErrorCodes.UNKNONWN_TOKEN_TYPE, consumeNextTokenWithLoc().loc, tok.type)
+    }
+
+    function parsePlugin() {
+        function processFilenameExp(exp) {
+            exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
+            return exp;
+        }
+
+        let delimitor = input.peek()
+
+        if (!delimitor.value.startsWith("'") && !delimitor.value.startsWith('"')) {
+            input.emitError(ErrorCodes.EXPECTED_X, locStub, `@plugin expected with ' or " but encountered ${delimitor}`)
+        }
+
+        return {
+            type: NodeTypes.PLUGIN,
+            value: processFilenameExp(consumeNextTokenWithLoc()),
+            loc: locStub
+        }
     }
 
     function parseKeyframes(keyframesName: string): Keyframes {
@@ -469,11 +499,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
      * Todos: add @content kw and include body
      */
     function parseMixin(): MixinStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
@@ -493,11 +519,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
     }
 
     function parseFunction(): FunctionStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             params: (VariableNode | DeclarationStatement)[] = [];
 
 
@@ -536,11 +558,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
     }
 
     function parseInclude(): IncludeStatement {
-        let id: IdentifierNode = {
-            type: NodeTypes.IDENTIFIER,
-            value: input.next().value,
-            loc: locStub
-        },
+        let id: IdentifierNode = createIdentifierNode(consumeNextTokenWithLoc()),
             args: (VariableNode | DeclarationStatement)[] = [],
             content: IncludeStatement['content'];// @include mixin1;
 
@@ -563,8 +581,7 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         return createIncludeStatement(id, args, content);
     }
 
-    function parseImport(): ImportStatement {
-
+    function parseModuleParams(): ImportStatement['params'] {
         function processFilenameExp(exp) {
             exp.value = exp.value.match(/^['"](.+)['"]$/)[1]
             return exp;
@@ -583,10 +600,21 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
                 skipPunc(',')
             }
         }
+        return params
+    }
 
+    function parseUse(): UseStatement {
+        return {
+            type: NodeTypes.USE,
+            params: parseModuleParams(),
+            loc: locStub
+        }
+    }
+
+    function parseImport(): ImportStatement {
         return {
             type: NodeTypes.IMPORT,
-            params,
+            params: parseModuleParams(),
             loc: locStub
         }
     }
