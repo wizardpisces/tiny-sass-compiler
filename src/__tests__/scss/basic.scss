@@ -1,0 +1,8 @@
+$stack: Helvetica,
+sans-serif;
+$primary: #333;
+
+body .test {
+    font: 100% $stack;
+    color: $primary;
+}

@@ -35,15 +35,15 @@ export function createTransformContext(
 export function transform(root: RootNode, options: TransformOptions) {
 
     const context = createTransformContext(root, options)
-    
-    let hasModule = root.children.some(node=>node.type === NodeTypes.IMPORT || node.type === NodeTypes.USE)
+
+    let hasModule = root.children.some(node => node.type === NodeTypes.IMPORT || node.type === NodeTypes.USE)
     if (!isBrowser() && hasModule) {
         /**
          * resolve module
          * @use ,@import
          * load-module <--- depend on ----> interpret-module
          */
-         compatibleLoadModule(root, context)
+        compatibleLoadModule(context, null, root)
     } else {
         interpret(root, context)
     }

@@ -114,7 +114,7 @@ export interface Node {
 /**
  * mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
  * 
- */ 
+ */
 
 export interface Namespace extends Node {
     namespace?: string | string[]
@@ -441,7 +441,7 @@ export function createIdentifierNode(id: TextNode): IdentifierNode {
     let arr = id.value.split('.'),
         name = arr.pop() as string,
         namespace = arr;
-        
+
     return {
         loc: id.loc || locStub,
         namespace,
@@ -606,7 +606,7 @@ export function createBodyStatement(children: BodyStatement['children']): BodySt
     };
 }
 
-export function createRootNode(children: RootNode['children'], fileSourceMap: RootNode['fileSourceMap'], loc: Node['loc'] = locStub): RootNode {
+export function createRootNode(children: RootNode['children'] = [], fileSourceMap: RootNode['fileSourceMap'], loc: Node['loc'] = locStub): RootNode {
     return {
         type: NodeTypes.RootNode,
         children,

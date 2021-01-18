@@ -2,7 +2,8 @@ import {
     parse,
     transform,
     generate,
-    // compile //combings parse + transform + generate
+    requireCSS
+    // compile = parse + transform + generate
 } from './src'
 import { RootNode } from './src/parse/ast'
 import fs from 'fs';
@@ -10,12 +11,6 @@ import path from 'path';
 import mkdirp from 'mkdirp';
 import { CodegenResult } from './src/type';
 
-function require_css(scssPath: string) {
-    return {
-        source: fs.readFileSync(scssPath, 'utf8'),
-        filename: scssPath
-    }
-}
 export interface RunOptions {
     genOtherInfo: boolean
     sourceMap: boolean
@@ -40,7 +35,7 @@ function run(
 
         if (path.extname(filePath) !== '.scss') return;
 
-        let requireCss = require_css(filePath),
+        let cssRequired = requireCSS(filePath),
             basename = path.basename(filePath, '.scss'),
             sourceDirname = path.dirname(filePath),
 
@@ -72,7 +67,7 @@ function run(
         }
 
         try {
-            parsedAst = parse(requireCss.source, requireCss)
+            parsedAst = parse(cssRequired.source, cssRequired)
         } catch (e) {
             console.error(`\nParser Error:\n filePath: ${filePath}\n`, e)
             return;
@@ -93,7 +88,7 @@ function run(
 
             try {
                 transform(parsedAst, {
-                    ...requireCss
+                    ...cssRequired
                 })
                 compiled = generate(parsedAst, {
                     sourceMap: options.sourceMap

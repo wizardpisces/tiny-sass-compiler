@@ -7,7 +7,7 @@ import { resolveSourceFilePath } from '../util'
 // prevent same file be parsed multiple times
 const parseCache = new Object(null)
 // will be deprecated by @use
-export function importModule(root: RootNode, context: TransformContext) {
+export function importModule(context: TransformContext, root: RootNode) {
     let statementList: RootNode['children'] = [];
 
     /**

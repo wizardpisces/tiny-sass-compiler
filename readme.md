@@ -36,16 +36,14 @@ npm install --save tiny-sass-compiler
 ### Usage in node
 
 ```ts
-import {compile} from "tiny-sass-compiler";
-const result = compile(`
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+import sass from "tiny-sass-compiler";
 
-body .test{
-  font: 100% $font-stack;
-  color: $primary-color;
-}`)
-
+//render API
+sass.render({filename:'./default.scss'},(err,result)=>{
+  console.log(result.code)
+})
+// or renderSync
+const result = sass.renderSync({filename:'./default.scss'})
 console.log(result.code)
 ```
 

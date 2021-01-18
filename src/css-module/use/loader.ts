@@ -140,7 +140,7 @@ export class Module {
          * @use must be used on top of the file
          * will _load child module
         */
-        compatibleLoadModule(root, context, this);
+        compatibleLoadModule(context, this, root );
 
         /**
          * interpret variable , function , mixin etc
@@ -199,12 +199,13 @@ function useModule(context: TransformContext, parent: Module | null = null, root
 
     // load module entrance
     if (parent === null) {
-        let module: Module = Module._load(context.filename, parent)
+        let rootModule: Module = Module._load(context.filename, parent)
+        root = root || rootModule.ast
         /**
         * combine module after recursive loaded all children
         */
-        root.children = combineModule(module)
-        root.fileSourceMap = module.ast.fileSourceMap
+        root.children = combineModule(rootModule)
+        root.fileSourceMap = rootModule.ast.fileSourceMap
 
     } else {
         root.children.forEach(node => {
@@ -231,13 +232,13 @@ export function interpret(root: RootNode, context: TransformContext) {
     }).filter((child) => !isEmptyNode(child))
 }
 
-export function compatibleLoadModule(root: RootNode, context: TransformContext, parent: Module | null = null) {
+export function compatibleLoadModule(context: TransformContext, parent: Module | null = null, root: RootNode) {
     /**
      * update context for later extend context
      */
     Module._context = context
 
-    importModule(root, context)
+    importModule(context, root)
 
     useModule(context, parent, root)
 }
