@@ -1,4 +1,4 @@
-import { RootNode } from './parse/ast'
+import { RootNode, NodeTypes } from './parse/ast'
 import { TransformOptions, TransformContext } from './type'
 import { defaultOnError } from './parse/errors'
 import {
@@ -35,14 +35,15 @@ export function createTransformContext(
 export function transform(root: RootNode, options: TransformOptions) {
 
     const context = createTransformContext(root, options)
-
-    if (!isBrowser()) {
+    
+    let hasModule = root.children.some(node=>node.type === NodeTypes.IMPORT || node.type === NodeTypes.USE)
+    if (!isBrowser() && hasModule) {
         /**
          * resolve module
          * @use ,@import
          * load-module <--- depend on ----> interpret-module
          */
-        compatibleLoadModule(root, context)
+         compatibleLoadModule(root, context)
     } else {
         interpret(root, context)
     }
