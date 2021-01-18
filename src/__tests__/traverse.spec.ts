@@ -64,7 +64,6 @@ body .test{
         })
         transform(parsedAst, {
             filename: `default.scss`,
-            source
         })
         traverse.registerPlugin(traverseVisitorPlugin())
 
@@ -80,7 +79,6 @@ body .test{
         })
         transform(parsedAst, {
             filename: `default.scss`,
-            source
         })
         traverse.registerPlugin(traverseVisitorPluginWithObject())
 
@@ -97,7 +95,6 @@ body .test{
         })
         transform(parsedAst, {
             filename: `default.scss`,
-            source
         })
         traverse.registerPlugin(traversePluginFn)
 
