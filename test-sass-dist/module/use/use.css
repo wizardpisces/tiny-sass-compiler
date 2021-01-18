@@ -1,9 +1,16 @@
-/* Error: expected ";".
- *   ,
- * 9 |   @include base.base-2.$primary-color;
- *   |                       ^
+/* Error: Module loop: this module is already being loaded.
+ *   ,--> test/module/use/_base-3.scss
+ * 1 | @use './base';
+ *   | ^^^^^^^^^^^^^ new load
  *   '
- *   test/module/use/use.scss 9:23  root stylesheet */
+ *   ,--> test/module/use/use.scss
+ * 2 | @use "./base.scss";
+ *   | ================== original load
+ *   '
+ *   test/module/use/_base-3.scss 1:1  @use
+ *   test/module/use/_base-2.scss 1:1  @use
+ *   test/module/use/_base.scss 1:1    @use
+ *   test/module/use/use.scss 2:1      root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +20,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected ";".\a   \2577 \a 9 \2502    @include base.base-2.$primary-color;\a   \2502                        ^\a   \2575 \a   test/module/use/use.scss 9:23  root stylesheet';
+  content: "Error: Module loop: this module is already being loaded.\a   \250c \2500 \2500 > test/module/use/_base-3.scss\a 1 \2502  @use './base';\a   \2502  ^^^^^^^^^^^^^ new load\a   \2575 \a   \250c \2500 \2500 > test/module/use/use.scss\a 2 \2502  @use \"./base.scss\";\a   \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  original load\a   \2575 \a   test/module/use/_base-3.scss 1:1  @use\a   test/module/use/_base-2.scss 1:1  @use\a   test/module/use/_base.scss 1:1    @use\a   test/module/use/use.scss 2:1      root stylesheet";
 }

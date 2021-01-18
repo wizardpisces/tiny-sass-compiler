@@ -10,3 +10,7 @@ export function resolveSourceFilePath(filename: string, parentPath = './') {
 
     return filePath
 }
+
+export function createModuleError(msg){
+    throw Error(`[ tiny-sass-compiler -> module ]: ${msg}`)
+}

@@ -5,8 +5,19 @@ import { TransformContext, ParserOptions } from '../../type'
 import { RootNode, NodeTypes, UseStatement, TextNode } from '../../parse/ast'
 import { Environment } from '../../enviroment/Enviroment'
 import { importModule } from '../import/importModule'
-import { resolveSourceFilePath, EXTNAME_GLOBAL } from '../util'
+import { resolveSourceFilePath, EXTNAME_GLOBAL, createModuleError } from '../util'
 import { isEmptyNode } from '../../parse/util'
+
+function createCircularReferenceChain(module: Module, parent: Module): string {
+    let temp = parent,
+        msg = [module.id, parent.id]
+    while (temp && temp.id !== module.id) {
+        temp = temp.parent as Module
+        msg.push(temp.id)
+    }
+
+    return `\n -> ${msg.reverse().join('\n -> ')}`
+}
 
 function loadModule(module: Module, filename: string) {
     const source = fs.readFileSync(filename, 'utf8')
@@ -60,7 +71,7 @@ export class Module {
     loaded: boolean = false
     filename!: string
     children: Module[] = []
-    ast!: RootNode // css related CodegenNode[]
+    ast!: RootNode // ast which has been compiled: interpreted, and before transform-middleware
     isMain: Boolean = false
 
     constructor(id: string = '', parent: Module | null = null) {
@@ -76,15 +87,27 @@ export class Module {
     /**
      * module entry point
      */
-    static _load(id: string, parent: Module | null) {
+    static _load(id: string, parent: Module | null): Module {
         let filename = id,
             module: Module = Module._cache[filename];
 
         if (!module) {
-            module = new Module(filename, parent)
-            Module._cache[filename] = module
+            module = new Module(filename, parent);
+            /**
+             * set cache before load complete for convenient circular reference check
+             */
+            Module._cache[filename] = module;
             module.load(filename)
         } else {
+            /**
+             * 1. cached
+             * 2. not loaded
+             * 3. present as current module
+             */
+            if (!module.loaded && parent) {
+                createModuleError(`Circular reference: ${createCircularReferenceChain(module, parent)}`)
+            }
+
             updateChildren(parent, module, true)
         }
         /**
@@ -209,6 +232,9 @@ export function interpret(root: RootNode, context: TransformContext) {
 }
 
 export function compatibleLoadModule(root: RootNode, context: TransformContext, parent: Module | null = null) {
+    /**
+     * update context for later extend context
+     */
     Module._context = context
 
     importModule(root, context)
