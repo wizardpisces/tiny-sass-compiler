@@ -136,9 +136,9 @@ export class Module {
         }
 
         /**
-         * to both resolve @use and @import
+         * resolve module both @use and @import
          * @use must be used on top of the file
-         * will _load child module
+         * when resolve @import this will concat child module children to root children for next interpret
         */
         compatibleLoadModule(context, this, root );
 
@@ -200,7 +200,6 @@ function useModule(context: TransformContext, parent: Module | null = null, root
     // load module entrance
     if (parent === null) {
         let rootModule: Module = Module._load(context.filename, parent)
-        root = root || rootModule.ast
         /**
         * combine module after recursive loaded all children
         */
@@ -208,12 +207,12 @@ function useModule(context: TransformContext, parent: Module | null = null, root
         root.fileSourceMap = rootModule.ast.fileSourceMap
 
     } else {
-        root.children.forEach(node => {
-            if (node.type === NodeTypes.USE) {
-                loadUseStatement(node)
+        root.children = root.children.filter(child => {
+            if (child.type === NodeTypes.USE) {
+                loadUseStatement(child)
             }
+            return child.type !== NodeTypes.USE
         })
-        root.children = root.children.filter(child => child.type !== NodeTypes.USE)
     }
 }
 
@@ -240,5 +239,8 @@ export function compatibleLoadModule(context: TransformContext, parent: Module |
 
     importModule(context, root)
 
+    /**
+     * exit when main module _load finished
+     */
     useModule(context, parent, root)
 }

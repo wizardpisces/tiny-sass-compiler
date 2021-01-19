@@ -117,7 +117,7 @@ export class Environment {
             return result.vars[kind][name].value
         }
 
-        return null;
+        return undefined;
     }
 
     public def(name: string, value: any = '', kind: Kind = NodeTypes.VARIABLE) {

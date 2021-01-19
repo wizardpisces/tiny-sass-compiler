@@ -1,3 +1,6 @@
+/**
+ * will be deprecated, replaced by @use and merge @import to @use
+ */
 import fs from 'fs'
 import parse from '../../parse'
 import { TransformContext, ParserOptions } from '../../type'
