@@ -3,7 +3,7 @@
 
 ### feat
 
-* upgrade transformModule reference to node require principle (same path cache), 
+* [incremental parsing](https://tree-sitter.github.io/tree-sitter/)?
 * write selector lexical analyze in detail (complete selector parse)
 * support length(n) namespace for @use ? Is it necessary?
 * implement sass @use and handle recursive @import [reference here](https://sass-lang.com/documentation/at-rules/import)
