@@ -1,0 +1,173 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "RULE",
+      "selector": {
+        "type": "SELECTOR",
+        "meta": [],
+        "loc": {
+          "start": {
+            "offset": 24,
+            "line": 3,
+            "column": 1
+          },
+          "end": {
+            "offset": 37,
+            "line": 3,
+            "column": 14
+          },
+          "filename": "test/module/forward/bootstrap-forward.scss"
+        },
+        "value": {
+          "type": "TEXT",
+          "value": ".forward-test",
+          "loc": {
+            "start": {
+              "offset": 24,
+              "line": 3,
+              "column": 1
+            },
+            "end": {
+              "offset": 37,
+              "line": 3,
+              "column": 14
+            },
+            "filename": "test/module/forward/bootstrap-forward.scss"
+          }
+        }
+      },
+      "children": [
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "color",
+            "loc": {
+              "start": {
+                "offset": 43,
+                "line": 4,
+                "column": 5
+              },
+              "end": {
+                "offset": 48,
+                "line": 4,
+                "column": 10
+              },
+              "filename": "test/module/forward/bootstrap-forward.scss"
+            }
+          },
+          "right": {
+            "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 50,
+                "line": 4,
+                "column": 12
+              },
+              "end": {
+                "offset": 72,
+                "line": 4,
+                "column": 34
+              },
+              "filename": "test/module/forward/bootstrap-forward.scss"
+            },
+            "value": "red"
+          },
+          "loc": {
+            "start": {
+              "offset": 43,
+              "line": 4,
+              "column": 5
+            },
+            "end": {
+              "offset": 72,
+              "line": 4,
+              "column": 34
+            },
+            "filename": "test/module/forward/bootstrap-forward.scss"
+          }
+        },
+        {
+          "type": "DECLARATION",
+          "left": {
+            "type": "TEXT",
+            "value": "background",
+            "loc": {
+              "start": {
+                "offset": 78,
+                "line": 5,
+                "column": 5
+              },
+              "end": {
+                "offset": 88,
+                "line": 5,
+                "column": 15
+              },
+              "filename": "test/module/forward/bootstrap-forward.scss"
+            }
+          },
+          "right": {
+            "type": "TEXT",
+            "loc": {
+              "start": {
+                "offset": 90,
+                "line": 5,
+                "column": 17
+              },
+              "end": {
+                "offset": 104,
+                "line": 5,
+                "column": 31
+              },
+              "filename": "test/module/forward/bootstrap-forward.scss"
+            },
+            "value": "#fff"
+          },
+          "loc": {
+            "start": {
+              "offset": 78,
+              "line": 5,
+              "column": 5
+            },
+            "end": {
+              "offset": 104,
+              "line": 5,
+              "column": 31
+            },
+            "filename": "test/module/forward/bootstrap-forward.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "test/module/forward/bootstrap-forward.scss": "@use './forward.scss';\n\n.forward-test{\n    color: forward.$color-primary;\n    background: forward.$white;\n}"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

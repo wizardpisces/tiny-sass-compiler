@@ -36,7 +36,7 @@ export function transform(root: RootNode, options: TransformOptions) {
 
     const context = createTransformContext(root, options)
 
-    let hasModule = root.children.some(node => node.type === NodeTypes.IMPORT || node.type === NodeTypes.USE)
+    let hasModule = root.children.some(node => node.type === NodeTypes.IMPORT || node.type === NodeTypes.USE || node.type === NodeTypes.FORWARD)
     if (!isBrowser() && hasModule) {
         /**
          * resolve module

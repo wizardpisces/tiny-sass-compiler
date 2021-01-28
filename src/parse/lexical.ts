@@ -40,7 +40,7 @@ export type LexicalStream = {
 }
 export default function lex(input: InputStream): LexicalStream {
 
-    let keywords = ' @extend @mixin @include @import @use @if @else @error @each @function @return @plugin ',
+    let keywords = ' @extend @mixin @include @import @use @forward @if @else @error @each @function @return @plugin ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==', '!=', '>=', '<=', '>', '<'],
         /** 

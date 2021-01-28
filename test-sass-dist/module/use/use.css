@@ -1,24 +1,25 @@
-/* Error: Module loop: this module is already being loaded.
- *   ,--> test/module/use/_base-3.scss
- * 1 | @use './base';
- *   | ^^^^^^^^^^^^^ new load
- *   '
- *   ,--> test/module/use/use.scss
- * 2 | @use "./base.scss";
- *   | ================== original load
- *   '
- *   test/module/use/_base-3.scss 1:1  @use
- *   test/module/use/_base-2.scss 1:1  @use
- *   test/module/use/_base.scss 1:1    @use
- *   test/module/use/use.scss 2:1      root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Module loop: this module is already being loaded.\a   \250c \2500 \2500 > test/module/use/_base-3.scss\a 1 \2502  @use './base';\a   \2502  ^^^^^^^^^^^^^ new load\a   \2575 \a   \250c \2500 \2500 > test/module/use/use.scss\a 2 \2502  @use \"./base.scss\";\a   \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  original load\a   \2575 \a   test/module/use/_base-3.scss 1:1  @use\a   test/module/use/_base-2.scss 1:1  @use\a   test/module/use/_base.scss 1:1    @use\a   test/module/use/use.scss 2:1      root stylesheet";
+.base-3 {
+  background: red;
 }
+
+.base-2 {
+  background: yellow;
+}
+
+.base {
+  color: yellow;
+}
+
+.use {
+  background-color: yellow;
+  color: 3;
+  font: 1212.1212;
+  margin: 0;
+  padding: 0;
+}
+
+.use-more-than-one-namespace {
+  color: yellow;
+}
+
+/*# sourceMappingURL=use.css.map */

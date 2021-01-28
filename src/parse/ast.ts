@@ -32,6 +32,7 @@ export enum NodeTypes {
     PLUGIN = 'PLUGIN',
     IMPORT = 'IMPORT',
     USE = 'USE',
+    FORWARD = 'FORWARD',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
@@ -72,7 +73,7 @@ export enum NodeTypes {
 
 export type keywordType = '@extend'
     | '@mixin' | '@content' | '@include'
-    | '@import' | '@use'
+    | '@import' | '@use' | '@forward'
     | '@if' | '@else'
     | '@error'
     | '@each'
@@ -191,6 +192,7 @@ export type Statement =
     | DeclarationStatement
     | ImportStatement
     | UseStatement
+    | ForwardStatement
     | IncludeStatement
     | ExtendStatement
     | MixinStatement
@@ -232,6 +234,10 @@ export interface ImportStatement extends Node {
 }
 export interface UseStatement extends Node {
     type: NodeTypes.USE
+    params: TextNode[]
+}
+export interface ForwardStatement extends Node {
+    type: NodeTypes.FORWARD
     params: TextNode[]
 }
 export interface PluginStatement extends Node {

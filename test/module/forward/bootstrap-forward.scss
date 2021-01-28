@@ -1,0 +1,6 @@
+@use './forward.scss';
+
+.forward-test{
+    color: forward.$color-primary;
+    background: forward.$white;
+}

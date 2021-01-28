@@ -3,20 +3,19 @@
 
 ### feat
 
+* add @forward
+* try to add more detailed selector parsing reference [css-selector-parser](https://github.com/mdevils/css-selector-parser)
+* use [fiber](https://www.npmjs.com/package/fibers)/[sass-fiber](https://sass-lang.com/documentation/js-api#fiber) to optimize render/renderSync ?
 * [incremental parsing](https://tree-sitter.github.io/tree-sitter/)?
+* add '( | )' check to binary precedence, only support whitespace gap operator (eg: 1 + 2 but not 1+2)
 * write selector lexical analyze in detail (complete selector parse)
 * support length(n) namespace for @use ? Is it necessary?
-* implement sass @use and handle recursive @import [reference here](https://sass-lang.com/documentation/at-rules/import)
-* add traverse plugin to merge same selector, and cover more than children traverse (should also includes RULE Selector node)
 * add static check for acss in vscode
 * add browser style[type='text/acss'] and link[rel='RootNode/acss'] support
 * add changeLog generation （reference vite）
-* resolve css internal keyword @media etc (keep them as raw code)
 * parse errors
     1. correctly report syntax error when there is no bracket
 * contribute rollup/webpack/vite etc tiny-sass-compiler loader or plugin
-* add '( | )' check to binary precedence, only support whitespace gap operator (eg: 1 + 2 but not 1+2)
-* add position to more tokens (doing)
 * update scripts/release.sh (reference vue-next)
 
 ### other advance

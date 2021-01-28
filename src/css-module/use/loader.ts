@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import parse from '../../parse'
 import { TransformContext, ParserOptions } from '../../type'
-import { RootNode, NodeTypes, UseStatement, TextNode } from '../../parse/ast'
+import { RootNode, NodeTypes, UseStatement, TextNode, ForwardStatement } from '../../parse/ast'
 import { Environment } from '../../enviroment/Enviroment'
 import { importModule } from '../import/importModule'
 import { resolveSourceFilePath, EXTNAME_GLOBAL, createModuleError } from '../util'
@@ -35,7 +35,7 @@ function updateChildren(parent: Module | null, child: Module, scan: boolean = fa
     }
 }
 
-function updateEnvAndSourceMap(parent: Module | null, module: Module) {
+function updateEnvAndSourceMap(parent: Module | null, module: Module, type: NodeTypes.USE | NodeTypes.FORWARD = NodeTypes.USE) {
 
     function getPureName(filename: string) {
         let name = path.basename(filename, EXTNAME_GLOBAL);
@@ -47,7 +47,13 @@ function updateEnvAndSourceMap(parent: Module | null, module: Module) {
         /**
          * extend @use child namespace
          */
-        parent.exports.env.setEnvByNamespace(name, module.exports.env)
+
+        if (type === NodeTypes.USE) {
+            parent.exports.env.setEnvByName(name, module.exports.env)
+        } else if (type === NodeTypes.FORWARD) {
+            parent.exports.env.addLookUpModuleChain(module.exports.env)
+        }
+
         Object.assign(module.ast.fileSourceMap, module.ast.fileSourceMap)
     }
 }
@@ -87,7 +93,7 @@ export class Module {
     /**
      * module entry point
      */
-    static _load(id: string, parent: Module | null): Module {
+    static _load(id: string, parent: Module | null, type: NodeTypes.USE | NodeTypes.FORWARD = NodeTypes.USE): Module {
         let filename = id,
             module: Module = Module._cache[filename];
 
@@ -113,7 +119,7 @@ export class Module {
         /**
          * create scoped env to resolve namespaced variable
          */
-        updateEnvAndSourceMap(parent, module)
+        updateEnvAndSourceMap(parent, module, type)
 
         return module
     }
@@ -140,7 +146,7 @@ export class Module {
          * @use must be used on top of the file
          * when resolve @import this will concat child module children to root children for next interpret
         */
-        compatibleLoadModule(context, this, root );
+        compatibleLoadModule(context, this, root);
 
         /**
          * interpret variable , function , mixin etc
@@ -191,9 +197,9 @@ function combineModule(module: Module): RootNode['children'] {
 
 function useModule(context: TransformContext, parent: Module | null = null, root: RootNode) {
 
-    function loadUseStatement(node: UseStatement) {
+    function loadUseStatement(node: UseStatement | ForwardStatement) {
         node.params.forEach((param: TextNode) => {
-            Module._load(resolveSourceFilePath(param.value, context.filename), parent)
+            Module._load(resolveSourceFilePath(param.value, context.filename), parent, node.type)
         })
     }
 
@@ -208,10 +214,10 @@ function useModule(context: TransformContext, parent: Module | null = null, root
 
     } else {
         root.children = root.children.filter(child => {
-            if (child.type === NodeTypes.USE) {
+            if (child.type === NodeTypes.USE || child.type === NodeTypes.FORWARD) {
                 loadUseStatement(child)
             }
-            return child.type !== NodeTypes.USE
+            return !(child.type === NodeTypes.USE || child.type === NodeTypes.FORWARD)
         })
     }
 }

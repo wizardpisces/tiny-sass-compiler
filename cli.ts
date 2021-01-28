@@ -149,7 +149,10 @@ function run(
 
     function renderDir(sourceDir) {
         fs.readdirSync(sourceDir).forEach((filename) => {
-            //Todos Only analyze filename without '_'
+            /**
+             * do not compile partial files as entry point
+             * https://sass-lang.com/documentation/at-rules/use
+             */
             if (filename.startsWith('_')) {
                 return;
             }

@@ -1,0 +1,23 @@
+/* Error: Module loop: this module is already being loaded.
+ *   ,--> test/module/circular/_c2.scss
+ * 1 | @use './c1';
+ *   | ^^^^^^^^^^^ new load
+ *   '
+ *   ,--> test/module/circular/circular-reference.scss
+ * 1 | @use './c1';
+ *   | =========== original load
+ *   '
+ *   test/module/circular/_c2.scss 1:1                 @use
+ *   test/module/circular/_c1.scss 1:1                 @use
+ *   test/module/circular/circular-reference.scss 1:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Module loop: this module is already being loaded.\a   \250c \2500 \2500 > test/module/circular/_c2.scss\a 1 \2502  @use './c1';\a   \2502  ^^^^^^^^^^^ new load\a   \2575 \a   \250c \2500 \2500 > test/module/circular/circular-reference.scss\a 1 \2502  @use './c1';\a   \2502  \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  original load\a   \2575 \a   test/module/circular/_c2.scss 1:1                 @use\a   test/module/circular/_c1.scss 1:1                 @use\a   test/module/circular/circular-reference.scss 1:1  root stylesheet";
+}

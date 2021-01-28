@@ -57,6 +57,7 @@ import {
     createKeyframesPrelude,
     ContentPlaceholder,
     createContentPlaceholder,
+    ForwardStatement,
 } from './ast';
 
 import {
@@ -273,6 +274,11 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
         if (isKwToken('@use')) {
             input.next()
             return parseUse();
+        }
+
+        if (isKwToken('@forward')) {
+            input.next()
+            return parseFoward();
         }
 
         if (isKwToken('@import')) {
@@ -606,6 +612,14 @@ export default function parse(input: LexicalStream, options: ParserOptions) {
     function parseUse(): UseStatement {
         return {
             type: NodeTypes.USE,
+            params: parseModuleParams(),
+            loc: locStub
+        }
+    }
+
+    function parseFoward(): ForwardStatement {
+        return {
+            type: NodeTypes.FORWARD,
             params: parseModuleParams(),
             loc: locStub
         }

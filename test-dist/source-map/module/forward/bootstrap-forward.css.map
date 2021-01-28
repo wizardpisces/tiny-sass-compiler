@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "test/module/forward/bootstrap-forward.scss"
+  ],
+  "names": [],
+  "mappings": "AAEA;EACI,MAAO;EACP,WAAY",
+  "sourcesContent": [
+    "@use './forward.scss';\n\n.forward-test{\n    color: forward.$color-primary;\n    background: forward.$white;\n}"
+  ]
+}
