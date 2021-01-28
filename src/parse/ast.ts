@@ -32,6 +32,7 @@ export enum NodeTypes {
     PLUGIN = 'PLUGIN',
     IMPORT = 'IMPORT',
     USE = 'USE',
+    FORWARD = 'FORWARD',
     INCLUDE = 'INCLUDE',// use mixin
     EXTEND = 'EXTEND',// combind repeated css
     MIXIN = 'MIXIN', // allow you to define styles that can be re-used throughout your RootNode.
@@ -72,7 +73,7 @@ export enum NodeTypes {
 
 export type keywordType = '@extend'
     | '@mixin' | '@content' | '@include'
-    | '@import' | '@use'
+    | '@import' | '@use' | '@forward'
     | '@if' | '@else'
     | '@error'
     | '@each'
@@ -114,7 +115,7 @@ export interface Node {
 /**
  * mainly used fo @use namespace to interpret namespaced: Variable | CallExpression | Include
  * 
- */ 
+ */
 
 export interface Namespace extends Node {
     namespace?: string | string[]
@@ -191,6 +192,7 @@ export type Statement =
     | DeclarationStatement
     | ImportStatement
     | UseStatement
+    | ForwardStatement
     | IncludeStatement
     | ExtendStatement
     | MixinStatement
@@ -232,6 +234,10 @@ export interface ImportStatement extends Node {
 }
 export interface UseStatement extends Node {
     type: NodeTypes.USE
+    params: TextNode[]
+}
+export interface ForwardStatement extends Node {
+    type: NodeTypes.FORWARD
     params: TextNode[]
 }
 export interface PluginStatement extends Node {
@@ -441,7 +447,7 @@ export function createIdentifierNode(id: TextNode): IdentifierNode {
     let arr = id.value.split('.'),
         name = arr.pop() as string,
         namespace = arr;
-        
+
     return {
         loc: id.loc || locStub,
         namespace,
@@ -606,7 +612,7 @@ export function createBodyStatement(children: BodyStatement['children']): BodySt
     };
 }
 
-export function createRootNode(children: RootNode['children'], fileSourceMap: RootNode['fileSourceMap'], loc: Node['loc'] = locStub): RootNode {
+export function createRootNode(children: RootNode['children'] = [], fileSourceMap: RootNode['fileSourceMap'], loc: Node['loc'] = locStub): RootNode {
     return {
         type: NodeTypes.RootNode,
         children,

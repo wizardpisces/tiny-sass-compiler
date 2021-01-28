@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render: tests render 1`] = `
+"body .test{
+  font:100% Helvetica, sans-serif;
+  color:#333;
+}
+"
+`;
+
+exports[`render: tests renderSync 1`] = `
+"body .test{
+  font:100% Helvetica, sans-serif;
+  color:#333;
+}
+"
+`;

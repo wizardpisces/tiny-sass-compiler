@@ -40,7 +40,7 @@ export type LexicalStream = {
 }
 export default function lex(input: InputStream): LexicalStream {
 
-    let keywords = ' @extend @mixin @include @import @use @if @else @error @each @function @return @plugin ',
+    let keywords = ' @extend @mixin @include @import @use @forward @if @else @error @each @function @return @plugin ',
         comparison_op_chars = '!=><',
         comparison_op_tokens = ['==', '!=', '>=', '<=', '>', '<'],
         /** 
@@ -61,7 +61,7 @@ export default function lex(input: InputStream): LexicalStream {
         emitError: input.emitError
     }
 
-    function is_comment_char(ch) {
+    function isCommentChar(ch) {
         return "/".indexOf(ch) >= 0;
     }
 
@@ -69,9 +69,16 @@ export default function lex(input: InputStream): LexicalStream {
         return /[$]/.test(ch);
     }
 
-    function skip_comment() {
+    function skipLine() {
         read_while(function (ch) { return ch != "\n" });
-        input.next();
+        input.next(); // skip '\n'
+    }
+
+    function skipMultilineComment() {
+        while (!isCommentChar(input.next())){ // decide '/'
+            read_while(function (ch) { return ch != "*" });
+            input.next(); // skip '*'
+        }
     }
 
     function is_comparison_op_char(ch) {
@@ -160,7 +167,7 @@ export default function lex(input: InputStream): LexicalStream {
         };
     }
 
-    function generate_op_token(op) {
+    function generateOpToken(op) {
         return {
             type: NodeTypes.OPERATOR,
             value: op
@@ -203,14 +210,22 @@ export default function lex(input: InputStream): LexicalStream {
             value: str
         };
     }
-
-    function maybe_comment(ch) {
-
-        if (is_comment_char(input.peek())) {
-            skip_comment();
-            return read_next()
-        } else {
-            return generate_op_token(ch)
+/**
+ * 
+ * @param ch 
+ */
+    function maybeComment(ch:string) {
+        function isMultilineCommentChar(ch:string){
+            return ch === '*'
+        }
+        if (isCommentChar(input.peek())) {
+            skipLine();
+            return readNext()
+        } else if (isMultilineCommentChar(input.peek())) {
+            skipMultilineComment();
+            return readNext()
+        }else{
+            return generateOpToken(ch)
         }
     }
 
@@ -221,13 +236,13 @@ export default function lex(input: InputStream): LexicalStream {
                 value: ch + read_while(is_base_char)
             }
         } else {
-            return generate_op_token(ch)
+            return generateOpToken(ch)
         }
     }
 
     function maybe_calculate_op_token(chStr) {
         if (input.peek() === ' ') {
-            return generate_op_token(chStr);
+            return generateOpToken(chStr);
         } else {
             return {
                 type: NodeTypes.TEXT,
@@ -239,7 +254,7 @@ export default function lex(input: InputStream): LexicalStream {
     function maybe_comparison_op_token(chStr) {
         if (is_comparison_op_tokens(chStr)) {
 
-            return generate_op_token(chStr);
+            return generateOpToken(chStr);
         } else {
             return {
                 type: NodeTypes.TEXT,
@@ -302,7 +317,7 @@ export default function lex(input: InputStream): LexicalStream {
     //     return ch === '.'
     // }
 
-    function read_next(): Token { // needs to do more in depth analyze for css selector
+    function readNext(): Token { // needs to do more in depth analyze for css selector
         read_while(is_whitespace);
         if (input.eof()) return NullToken;
         let ch = input.peek();
@@ -311,7 +326,7 @@ export default function lex(input: InputStream): LexicalStream {
          * comment //  contains op /
          * Todos:还未支持多行注释如：\/**\/
         */
-        if (is_comment_char(ch)) return maybe_comment(input.next());
+        if (isCommentChar(ch)) return maybeComment(input.next());
         if (is_placeholder_start(ch)) return maybe_placeholder(input.next());// @extend %message-shared;  contains op '%'
 
         if (is_assign_char(ch)) return read_assign_char();
@@ -339,10 +354,10 @@ export default function lex(input: InputStream): LexicalStream {
      */
     function ll(n = 1) {
         let coordination = input.getCoordination()
-        let tok: Token | null = read_next();
+        let tok: Token | null = readNext();
 
         while (--n) {
-            tok = read_next();
+            tok = readNext();
         }
 
         input.setCoordination(coordination)
@@ -354,7 +369,7 @@ export default function lex(input: InputStream): LexicalStream {
     }
 
     function next(): Token {
-        return read_next();
+        return readNext();
     }
 
     function eliminateWhitespace() {

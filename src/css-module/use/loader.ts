@@ -2,11 +2,22 @@ import path from 'path'
 import fs from 'fs'
 import parse from '../../parse'
 import { TransformContext, ParserOptions } from '../../type'
-import { RootNode, NodeTypes, UseStatement, TextNode } from '../../parse/ast'
+import { RootNode, NodeTypes, UseStatement, TextNode, ForwardStatement } from '../../parse/ast'
 import { Environment } from '../../enviroment/Enviroment'
 import { importModule } from '../import/importModule'
-import { resolveSourceFilePath, EXTNAME_GLOBAL } from '../util'
+import { resolveSourceFilePath, EXTNAME_GLOBAL, createModuleError } from '../util'
 import { isEmptyNode } from '../../parse/util'
+
+function createCircularReferenceChain(module: Module, parent: Module): string {
+    let temp = parent,
+        msg = [module.id, parent.id]
+    while (temp && temp.id !== module.id) {
+        temp = temp.parent as Module
+        msg.push(temp.id)
+    }
+
+    return `\n -> ${msg.reverse().join('\n -> ')}`
+}
 
 function loadModule(module: Module, filename: string) {
     const source = fs.readFileSync(filename, 'utf8')
@@ -24,7 +35,7 @@ function updateChildren(parent: Module | null, child: Module, scan: boolean = fa
     }
 }
 
-function updateEnvAndSourceMap(parent: Module | null, module: Module) {
+function updateEnvAndSourceMap(parent: Module | null, module: Module, type: NodeTypes.USE | NodeTypes.FORWARD = NodeTypes.USE) {
 
     function getPureName(filename: string) {
         let name = path.basename(filename, EXTNAME_GLOBAL);
@@ -36,7 +47,13 @@ function updateEnvAndSourceMap(parent: Module | null, module: Module) {
         /**
          * extend @use child namespace
          */
-        parent.exports.env.setEnvByNamespace(name, module.exports.env)
+
+        if (type === NodeTypes.USE) {
+            parent.exports.env.setEnvByName(name, module.exports.env)
+        } else if (type === NodeTypes.FORWARD) {
+            parent.exports.env.addLookUpModuleChain(module.exports.env)
+        }
+
         Object.assign(module.ast.fileSourceMap, module.ast.fileSourceMap)
     }
 }
@@ -60,7 +77,7 @@ export class Module {
     loaded: boolean = false
     filename!: string
     children: Module[] = []
-    ast!: RootNode // css related CodegenNode[]
+    ast!: RootNode // ast which has been compiled: interpreted, and before transform-middleware
     isMain: Boolean = false
 
     constructor(id: string = '', parent: Module | null = null) {
@@ -76,21 +93,33 @@ export class Module {
     /**
      * module entry point
      */
-    static _load(id: string, parent: Module | null) {
+    static _load(id: string, parent: Module | null, type: NodeTypes.USE | NodeTypes.FORWARD = NodeTypes.USE): Module {
         let filename = id,
             module: Module = Module._cache[filename];
 
         if (!module) {
-            module = new Module(filename, parent)
-            Module._cache[filename] = module
+            module = new Module(filename, parent);
+            /**
+             * set cache before load complete for convenient circular reference check
+             */
+            Module._cache[filename] = module;
             module.load(filename)
         } else {
+            /**
+             * 1. cached
+             * 2. not loaded
+             * 3. present as current module
+             */
+            if (!module.loaded && parent) {
+                createModuleError(`Circular reference: ${createCircularReferenceChain(module, parent)}`)
+            }
+
             updateChildren(parent, module, true)
         }
         /**
          * create scoped env to resolve namespaced variable
          */
-        updateEnvAndSourceMap(parent, module)
+        updateEnvAndSourceMap(parent, module, type)
 
         return module
     }
@@ -113,11 +142,11 @@ export class Module {
         }
 
         /**
-         * to both resolve @use and @import
+         * resolve module both @use and @import
          * @use must be used on top of the file
-         * will _load child module
+         * when resolve @import this will concat child module children to root children for next interpret
         */
-        compatibleLoadModule(root, context, this);
+        compatibleLoadModule(context, this, root);
 
         /**
          * interpret variable , function , mixin etc
@@ -168,28 +197,28 @@ function combineModule(module: Module): RootNode['children'] {
 
 function useModule(context: TransformContext, parent: Module | null = null, root: RootNode) {
 
-    function loadUseStatement(node: UseStatement) {
+    function loadUseStatement(node: UseStatement | ForwardStatement) {
         node.params.forEach((param: TextNode) => {
-            Module._load(resolveSourceFilePath(param.value, context.filename), parent)
+            Module._load(resolveSourceFilePath(param.value, context.filename), parent, node.type)
         })
     }
 
     // load module entrance
     if (parent === null) {
-        let module: Module = Module._load(context.filename, parent)
+        let rootModule: Module = Module._load(context.filename, parent)
         /**
         * combine module after recursive loaded all children
         */
-        root.children = combineModule(module)
-        root.fileSourceMap = module.ast.fileSourceMap
+        root.children = combineModule(rootModule)
+        root.fileSourceMap = rootModule.ast.fileSourceMap
 
     } else {
-        root.children.forEach(node => {
-            if (node.type === NodeTypes.USE) {
-                loadUseStatement(node)
+        root.children = root.children.filter(child => {
+            if (child.type === NodeTypes.USE || child.type === NodeTypes.FORWARD) {
+                loadUseStatement(child)
             }
+            return !(child.type === NodeTypes.USE || child.type === NodeTypes.FORWARD)
         })
-        root.children = root.children.filter(child => child.type !== NodeTypes.USE)
     }
 }
 
@@ -208,10 +237,16 @@ export function interpret(root: RootNode, context: TransformContext) {
     }).filter((child) => !isEmptyNode(child))
 }
 
-export function compatibleLoadModule(root: RootNode, context: TransformContext, parent: Module | null = null) {
+export function compatibleLoadModule(context: TransformContext, parent: Module | null = null, root: RootNode) {
+    /**
+     * update context for later extend context
+     */
     Module._context = context
 
-    importModule(root, context)
+    importModule(context, root)
 
+    /**
+     * exit when main module _load finished
+     */
     useModule(context, parent, root)
 }

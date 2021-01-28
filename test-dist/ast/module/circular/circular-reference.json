@@ -1,0 +1,56 @@
+{
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "USE",
+      "params": [
+        {
+          "type": "TEXT",
+          "value": "./c1",
+          "loc": {
+            "start": {
+              "offset": 5,
+              "line": 1,
+              "column": 6
+            },
+            "end": {
+              "offset": 11,
+              "line": 1,
+              "column": 12
+            },
+            "filename": "test/module/circular/circular-reference.scss"
+          }
+        }
+      ],
+      "loc": {
+        "filename": "",
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        }
+      }
+    }
+  ],
+  "fileSourceMap": {
+    "test/module/circular/circular-reference.scss": "@use './c1';"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

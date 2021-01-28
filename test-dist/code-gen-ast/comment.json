@@ -1,0 +1,20 @@
+{
+  "type": "RootNode",
+  "children": [],
+  "fileSourceMap": {
+    "test/comment.scss": "/*\ntest multiline comment\n*/\n\n// test single line comment"
+  },
+  "loc": {
+    "filename": "",
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    }
+  }
+}

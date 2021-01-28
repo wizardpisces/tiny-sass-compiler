@@ -37,12 +37,19 @@ export class Environment {
     }
     /**
      * to resolve @use namespaced variable ,@include ,callExpression etc
+     * etc: 
+     * @use './vars.scss'
+     * body{
+     *     color: vars.$color-primary
+     * }
      */
     envMap: {
         [namespace: string]: Environment
     } = {}
 
     parent: Environment | null
+
+    lookUpModuleChain: Environment[] = []
 
     constructor(parent: Environment | null) {
         /**
@@ -60,26 +67,54 @@ export class Environment {
          * link parent for convinient scope search
          */
         this.parent = parent;
+
+        /**
+         * added first in first
+         */
+        this.lookUpModuleChain = [this]
+    }
+
+    /**
+      * lookup steps:
+      * 1. search this module
+      * 2. search up this -> parent module
+      * 3. search through @forward modules (loopUpChain)
+      * 4. repeat step 1
+      */
+
+    lookup(name: string, kind: Kind): Environment | undefined {
+
+        let envList: Environment[] = [this,...this.lookUpModuleChain];
+
+        function searchScope(scope: Environment | null) {
+            while (scope) {
+                if (scope.vars[kind] && scope.vars[kind][name])
+                    return scope;
+                scope = scope.parent;
+            }
+            return undefined
+        }
+
+        return envList.find((moduleEnv: Environment) => {
+            return searchScope(moduleEnv) !== undefined
+        })
+    }
+
+    public addLookUpModuleChain(env: Environment) {
+        /**
+         * later added module will be higher lookup (refer to lookup method) priority
+         */
+        this.lookUpModuleChain.unshift(env)
     }
 
     public extend() {
         return new Environment(this);
     }
-
-    lookup(name: string, kind: Kind) {
-        let scope: Environment | null = this;
-        while (scope) {
-            if (scope.vars[kind] && scope.vars[kind][name])
-                return scope;
-            scope = scope.parent;
-        }
-    }
-
     /**
      * support for length one namespace for now
      */
-    public setEnvByNamespace(namespace: string, env: Environment) {
-        this.envMap[namespace] = env
+    public setEnvByName(name: string, env: Environment) {
+        this.envMap[name] = env
     }
 
     public getEnvByNamespace(namespace: NamespacedId['namespace']): Environment {
@@ -106,7 +141,7 @@ export class Environment {
 
         if (typeof name === 'object') {
             env = env.getEnvByNamespace(name.namespace)
-            if(!env){
+            if (!env) {
                 throw new Error(`[Environment]: Undefined Environment name:${name.name},namespace:${JSON.stringify(name.namespace)}`);
             }
             name = name.name
@@ -117,7 +152,7 @@ export class Environment {
             return result.vars[kind][name].value
         }
 
-        return null;
+        return undefined;
     }
 
     public def(name: string, value: any = '', kind: Kind = NodeTypes.VARIABLE) {
