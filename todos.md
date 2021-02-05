@@ -3,7 +3,6 @@
 
 ### feat
 
-* add @forward
 * try to add more detailed selector parsing reference [css-selector-parser](https://github.com/mdevils/css-selector-parser)
 * use [fiber](https://www.npmjs.com/package/fibers)/[sass-fiber](https://sass-lang.com/documentation/js-api#fiber) to optimize render/renderSync ?
 * [incremental parsing](https://tree-sitter.github.io/tree-sitter/)?
