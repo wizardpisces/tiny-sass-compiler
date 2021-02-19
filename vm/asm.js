@@ -68,3 +68,7 @@ function getTokens(code) {
 
     return arLines;
 }
+
+module.exports = {
+    assemble
+}

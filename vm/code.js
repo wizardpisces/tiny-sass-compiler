@@ -1,8 +1,6 @@
-var ui = require("./ui");
-var vm = require("./vm");
-var asm = require("./asm");
-
-var code = `// Loads value 10 in R0 
+let vm = require("./vm");
+let asm = require("./asm");
+let code = `// Loads value 10 in R0 
 // and calls Fibonacci routine
 
 MOVV R0, 10
@@ -18,6 +16,7 @@ MOVV R0, 0
 MOVV R1, 1
 MOVV R3, 1
 PRINT R1
+
 MOVR R2, R0
 ADD R2, R1
 PRINT R2
@@ -32,26 +31,26 @@ POP R0
 RET
 `;
 
-ui.createUI(code, assemble, run);
-
 function assemble(code) {
-    var bytes = asm.assemble(code);
+    let bytes = asm.assemble(code);
     return bytes.toString();
 }
 
-function run(txtBytes, txtOutput) {
-    var bytes = getBytes(txtBytes);
+function run(txtBytes) {
+    let bytes = getBytes(txtBytes);
 
-    vm.init(bytes, txtOutput);
+    vm.init(bytes);
     vm.run();
 }
 
 function getBytes(txt) {
-    var bytes = txt.split(",");
+    let bytes = txt.split(",");
 
-    for (var i = 0; i < bytes.length; i++) {
+    for (let i = 0; i < bytes.length; i++) {
         bytes[i] = parseInt(bytes[i]);
     }
 
     return bytes;
 }
+
+run(assemble(code))
