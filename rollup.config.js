@@ -9,6 +9,8 @@ const pkg = require(resolve(`package.json`))
 const masterVersion = pkg.version
 const packageOptions = pkg.buildOptions || {}
 
+export default packageConfigs
+
 const outputConfigs = {
     cjs: {
         file: resolve(`dist/${name}.cjs.js`),
@@ -41,11 +43,9 @@ const packageConfigs = []
 if (process.env.NODE_ENV === 'production') {
     packageFormats.forEach(format => {
         packageConfigs.push(createProductionConfig(format))
-        // packageConfigs.push(createMinifiedConfig(format))
+        packageConfigs.push(createMinifiedConfig(format))
     })
 }
-
-export default packageConfigs
 
 function createConfig(format, output, plugins = []) {
     if (!output) {
