@@ -1,6 +1,9 @@
-# Project Target
+## Description 
 
-This project is for people who want to understand how to write a compiler (almost zero third-party dependencies) , mainly cover steps:
+Another sass compiler written in typescript from scratch, runnable both in ***node*** and ***browser*** environment
+
+## Target
+This project(**Not Production Ready**) is for people who want to understand how to write a compiler (almost zero dependencies) , compile steps:
 
 1. sourceCode (sass scanning)
 2. tokens (parsing)
@@ -8,15 +11,9 @@ This project is for people who want to understand how to write a compiler (almos
 4. intermediateRepresentation or IR (code generation + sourceMap)
 5. highLevelLanguage (css)
 
-## Sass Compiler
-
-A tiny Sass compiler in javascript for people familiar with javascript and want to know more about compiler
+## Simple demo
 
 [Online Demo](https://wizardpisces.github.io/)
-
-## Description 
-
-A compiler that compile sass to css, can be used both in ***node*** and ***browser*** environment
 
 ### Features:
 
