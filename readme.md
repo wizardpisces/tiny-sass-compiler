@@ -1,21 +1,19 @@
 ## Description 
 
-Another sass compiler written in typescript from scratch, runnable both in ***node*** and ***browser*** environment
+Another SASS compiler written from scratch, runnable both in ***node*** and ***browser*** environment
+
+[Demo](https://wizardpisces.github.io/sass)
 
 ## Target
-This project(**Not Production Ready**) is for people who want to understand how to write a compiler (almost zero dependencies) , compile steps:
+This project(**Not Production Ready**) is for people who want to understand how to write a compiler; Basic Steps:
 
-1. sourceCode (sass scanning)
-2. tokens (parsing)
-3. syntaxTree (analysis)
-4. intermediateRepresentation or IR (code generation + sourceMap)
-5. highLevelLanguage (css)
+1. SourceCode (SASS Scanning)  
+2. TokenStream (Parsing) 
+3. [AST or Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (Analysis) 
+4. [IR or Intermediate_representation](https://en.wikipedia.org/wiki/Intermediate_representation)
+5. HighLevelLanguage (CSS Code and SourceMap Generation)
 
-## Simple demo
-
-[Online Demo](https://wizardpisces.github.io/)
-
-### Features:
+## Features:
 
 1. Variables
 2. Nesting
@@ -122,7 +120,7 @@ body .test {
 npm run jest
 ```
 
-*Interested in more intermediate status? Please view files in ./test-dist/ which contains ast after parse | transform and code after code generation*
+*Interested in more intermediate status? View files in ./test-dist/ which contains ast after parse+transform and dist code after codegen*
 
 ## Other Readme
 
