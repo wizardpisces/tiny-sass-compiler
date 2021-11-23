@@ -86,6 +86,11 @@ tiny-sass src/ dist/
 ## Test
 
 ### Snapshot Test
+**Development**
+```bash
+npm run test-source
+```
+**Production**
 ```bash
 npm run test
 ```
